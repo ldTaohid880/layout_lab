@@ -1,0 +1,44 @@
+{
+  "id": "sticky-footer",
+  "title": "Footer at the bottom",
+  "category": "Flexbox",
+  "level": "beginner",
+  "summary": "A column layout with flex: 1 on main keeps the footer down on short pages.",
+  "concepts": [
+    "flex-direction",
+    "flex",
+    "min-width"
+  ],
+  "explanation": [
+    "The page is a flex column at least as tall as the viewport. main has flex: 1, so it grows to fill whatever height the header and footer leave.",
+    "When content is longer than the viewport, main simply grows and the footer follows it: no positioning involved."
+  ],
+  "tryThis": [
+    "Remove flex: 1 from .main.",
+    "Add lots of text to main and watch the page grow."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "page",
+      "children": [
+        {
+          "tag": "header",
+          "cls": "header",
+          "text": "Header"
+        },
+        {
+          "tag": "main",
+          "cls": "main",
+          "text": "Short content"
+        },
+        {
+          "tag": "footer",
+          "cls": "footer",
+          "text": "Footer stays at the bottom"
+        }
+      ]
+    }
+  ],
+  "css": "body {\n  margin: 0;\n}\n\n.page {\n  display: flex;\n  flex-direction: column;\n  min-height: 100vh;\n}\n\n.main {\n  flex: 1;\n  padding: 16px;\n}\n\n.header, .footer {\n  padding: 12px 16px;\n  background: #18181b;\n  color: #fafafa;\n}\n"
+}

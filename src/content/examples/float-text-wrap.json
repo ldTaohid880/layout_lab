@@ -1,0 +1,31 @@
+{
+  "id": "float-text-wrap",
+  "title": "Text wrapping around a float",
+  "category": "Positioning",
+  "level": "beginner",
+  "summary": "float: left pulls an image to the side so the text flows around it.",
+  "concepts": ["float", "margin", "overflow", "object-fit"],
+  "explanation": [
+    "A floated element leaves the normal flow and moves to the left or right edge. Inline text then wraps along its side, which is how text sat around images long before flexbox.",
+    "A float collapses its parent: the box shrinks to the text and the image pokes out below. overflow: hidden on the parent makes it contain its floats again."
+  ],
+  "tryThis": [
+    "Change float to right and the image moves to the other side.",
+    "Remove overflow: hidden from .post and watch the box shrink below the image."
+  ],
+  "items": [
+    {
+      "tag": "article",
+      "cls": "post",
+      "children": [
+        { "tag": "img", "cls": "pic", "attrs": { "alt": "" } },
+        {
+          "tag": "p",
+          "cls": "text",
+          "text": "This paragraph wraps around the floated picture on its left. Keep reading and the lines fill the space beside the image, then return to the full width once the picture is finished. Add more words to see how the text keeps flowing."
+        }
+      ]
+    }
+  ],
+  "css": ".post {\n  overflow: hidden; /* contain the float */\n  max-width: 480px;\n  padding: 12px;\n  border: 2px dashed #a1a1aa;\n}\n\n.pic {\n  float: left;\n  width: 120px;\n  height: 120px;\n  margin: 0 16px 8px 0;\n  object-fit: cover;\n  border-radius: 6px;\n  background: #fed7aa;\n}\n\n.text {\n  margin: 0;\n}\n"
+}

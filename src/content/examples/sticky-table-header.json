@@ -1,0 +1,53 @@
+{
+  "id": "sticky-table-header",
+  "title": "Scrolling table with a sticky header",
+  "category": "Sizing & overflow",
+  "level": "intermediate",
+  "summary": "A scroll box with a sticky header row; the header needs its own background and a z-index to stay readable.",
+  "concepts": ["overflow", "position", "top", "z-index", "min-width", "width", "padding"],
+  "explanation": [
+    "The scroll box has a fixed height and overflow: auto, so the whole table scrolls inside it. The header row is position: sticky with top: 0, so it stays at the top while the rows slide under it.",
+    "Sticky cells need a solid background and z-index: 1, or the rows would show through the header as they scroll past. Each cell also gets a min-width so long columns stay readable and the row scrolls sideways when needed."
+  ],
+  "tryThis": [
+    "Remove background from .head: the rows show through the header as you scroll.",
+    "Remove position: sticky from .head: the header scrolls away with the rest.",
+    "Set overflow to hidden on .scroller: you can no longer scroll to the lower rows."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "scroller",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "row head",
+          "children": [
+            { "tag": "div", "cls": "cell", "text": "Invoice" },
+            { "tag": "div", "cls": "cell", "text": "Client" },
+            { "tag": "div", "cls": "cell", "text": "Amount" }
+          ]
+        },
+        { "tag": "div", "cls": "row", "children": [
+          { "tag": "div", "cls": "cell", "text": "#1001" }, { "tag": "div", "cls": "cell", "text": "Northwind" }, { "tag": "div", "cls": "cell", "text": "$1,200" }
+        ] },
+        { "tag": "div", "cls": "row", "children": [
+          { "tag": "div", "cls": "cell", "text": "#1002" }, { "tag": "div", "cls": "cell", "text": "Contoso" }, { "tag": "div", "cls": "cell", "text": "$860" }
+        ] },
+        { "tag": "div", "cls": "row", "children": [
+          { "tag": "div", "cls": "cell", "text": "#1003" }, { "tag": "div", "cls": "cell", "text": "Fabrikam" }, { "tag": "div", "cls": "cell", "text": "$2,430" }
+        ] },
+        { "tag": "div", "cls": "row", "children": [
+          { "tag": "div", "cls": "cell", "text": "#1004" }, { "tag": "div", "cls": "cell", "text": "Adatum" }, { "tag": "div", "cls": "cell", "text": "$975" }
+        ] },
+        { "tag": "div", "cls": "row", "children": [
+          { "tag": "div", "cls": "cell", "text": "#1005" }, { "tag": "div", "cls": "cell", "text": "Litware" }, { "tag": "div", "cls": "cell", "text": "$1,640" }
+        ] },
+        { "tag": "div", "cls": "row", "children": [
+          { "tag": "div", "cls": "cell", "text": "#1006" }, { "tag": "div", "cls": "cell", "text": "Tailspin" }, { "tag": "div", "cls": "cell", "text": "$310" }
+        ] }
+      ]
+    }
+  ],
+  "css": ".scroller {\n  height: 200px;\n  max-width: 360px;\n  overflow: auto;\n  border: 1px solid #a1a1aa;\n}\n\n.row {\n  display: flex;\n  min-width: 420px; /* wider than the box, so it scrolls sideways */\n  border-bottom: 1px solid #e4e4e7;\n}\n\n.cell {\n  flex: 1 0 140px;\n  min-width: 0;\n  padding: 8px 12px;\n}\n\n.head {\n  position: sticky;\n  top: 0;\n  z-index: 1;\n  background: #18181b;\n  color: #fafafa;\n  font-weight: 600;\n}\n"
+}

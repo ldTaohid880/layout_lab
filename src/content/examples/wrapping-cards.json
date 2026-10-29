@@ -1,0 +1,60 @@
+{
+  "id": "wrapping-cards",
+  "title": "Wrapping card row",
+  "category": "Flexbox",
+  "level": "beginner",
+  "summary": "flex-wrap plus a flex-basis gives responsive rows with no media queries.",
+  "concepts": [
+    "flex-wrap",
+    "flex",
+    "flex-basis",
+    "gap"
+  ],
+  "explanation": [
+    "flex: 1 1 160px means \"start at 160px, grow to share spare room, shrink if needed\". With flex-wrap: wrap, items that cannot fit at their basis move to a new line.",
+    "Each line grows independently, so the last line's cards can be wider than the others. If you need equal columns, a grid is the better tool."
+  ],
+  "tryThis": [
+    "Drag the preview width and watch the cards reflow.",
+    "Change flex to 0 0 160px: no more growing."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "row",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "Card 1"
+        },
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "Card 2"
+        },
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "Card 3"
+        },
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "Card 4"
+        },
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "Card 5"
+        },
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "Card 6"
+        }
+      ]
+    }
+  ],
+  "css": ".row {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 12px;\n  padding: 12px;\n}\n\n.card {\n  flex: 1 1 160px;\n  padding: 24px 16px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n"
+}

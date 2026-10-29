@@ -1,0 +1,121 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* One accent (signal orange); everything else is neutral zinc. */
+  :root {
+    --background: 0 0% 100%;
+    --surface: 240 5% 97%;
+    --foreground: 240 10% 10%;
+    --muted: 240 5% 94%;
+    --muted-foreground: 240 4% 40%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 10%;
+    --secondary: 240 5% 93%;
+    --secondary-foreground: 240 6% 12%;
+    --border: 240 6% 88%;
+    --input: 240 6% 82%;
+    --primary: 22 92% 46%;
+    --primary-foreground: 0 0% 100%;
+    --accent: 22 92% 46%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 48%;
+    --destructive-foreground: 0 0% 100%;
+    --ring: 22 92% 46%;
+    --radius: 0.375rem;
+
+    --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono Variable', ui-monospace, SFMono-Regular, monospace;
+
+    /* Editor syntax colours */
+    --cm-property: 221 70% 42%;
+    --cm-selector: 22 85% 38%;
+    --cm-value: 160 70% 28%;
+    --cm-string: 280 50% 42%;
+    --cm-variable: 330 60% 42%;
+  }
+
+  .dark {
+    --background: 240 6% 8%;
+    --surface: 240 6% 10%;
+    --foreground: 240 5% 92%;
+    --muted: 240 5% 15%;
+    --muted-foreground: 240 5% 62%;
+    --popover: 240 6% 11%;
+    --popover-foreground: 240 5% 92%;
+    --secondary: 240 5% 17%;
+    --secondary-foreground: 240 5% 92%;
+    --border: 240 5% 19%;
+    --input: 240 5% 26%;
+    --primary: 24 95% 55%;
+    --primary-foreground: 240 10% 6%;
+    --accent: 24 95% 55%;
+    --accent-foreground: 240 10% 6%;
+    --destructive: 0 70% 58%;
+    --destructive-foreground: 0 0% 100%;
+    --ring: 24 95% 55%;
+
+    --cm-property: 213 85% 72%;
+    --cm-selector: 28 92% 66%;
+    --cm-value: 155 50% 62%;
+    --cm-string: 280 60% 76%;
+    --cm-variable: 330 70% 74%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    @apply bg-background font-sans text-[13px] text-foreground antialiased;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-1 ring-offset-background;
+  }
+
+  /* Search fields get the app's own clear button, not the browser's. */
+  input[type='search']::-webkit-search-cancel-button,
+  input[type='search']::-webkit-search-decoration {
+    appearance: none;
+  }
+
+  /* While dragging a splitter or the width handle, the iframe must not swallow pointer events. */
+  body[data-dragging] iframe {
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  .pane-header {
+    @apply flex h-9 shrink-0 items-center gap-2 border-b bg-surface px-3 text-2xs font-medium uppercase tracking-wider text-muted-foreground;
+  }
+}
+
+@layer utilities {
+  /* Narrow toolbars may scroll sideways; native scrollbars would eat their whole height. */
+  .no-scrollbar {
+    scrollbar-width: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}

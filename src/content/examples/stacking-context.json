@@ -1,0 +1,51 @@
+{
+  "id": "stacking-context",
+  "title": "z-index and stacking contexts",
+  "category": "Positioning",
+  "level": "intermediate",
+  "summary": "Why z-index: 999 can still lose: it only competes inside its stacking context.",
+  "concepts": [
+    "z-index",
+    "isolation",
+    "position"
+  ],
+  "explanation": [
+    "B has z-index: 999, yet A (3) and C (2) paint above it. B lives inside .group, which creates its own stacking context with isolation: isolate.",
+    "A stacking context is painted as one unit at its own level (here 0, since .group has no z-index). Nothing inside can rise above siblings of the group, whatever its z-index.",
+    "opacity below 1, transform, filter and position with a z-index also create stacking contexts, which is how this bites in real code."
+  ],
+  "tryThis": [
+    "Delete isolation: isolate from .group: B jumps to the top.",
+    "Instead give .group z-index: 4."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "scene",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "layer a",
+          "text": "A · z-index 3"
+        },
+        {
+          "tag": "div",
+          "cls": "group",
+          "children": [
+            {
+              "tag": "div",
+              "cls": "layer b",
+              "text": "B · z-index 999"
+            }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "layer c",
+          "text": "C · z-index 2"
+        }
+      ]
+    }
+  ],
+  "css": ".scene {\n  position: relative;\n  height: 260px;\n  margin: 16px;\n}\n\n.group {\n  position: relative;\n  isolation: isolate; /* new stacking context */\n}\n\n.layer {\n  position: absolute;\n  width: 150px;\n  height: 100px;\n  padding: 8px;\n  border: 1px solid #18181b;\n  border-radius: 6px;\n}\n\n.a { top: 0;     left: 0;     z-index: 3;   background: #fed7aa; }\n.b { top: 50px;  left: 70px;  z-index: 999; background: #bfdbfe; }\n.c { top: 100px; left: 140px; z-index: 2;   background: #bbf7d0; }\n"
+}

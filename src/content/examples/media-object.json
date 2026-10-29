@@ -1,0 +1,54 @@
+{
+  "id": "media-object",
+  "title": "Media object",
+  "category": "Flexbox",
+  "level": "intermediate",
+  "summary": "Fixed image next to text that wraps: flex-shrink: 0 and min-width: 0.",
+  "concepts": [
+    "flex-shrink",
+    "flex",
+    "min-width",
+    "align-items",
+    "object-fit"
+  ],
+  "explanation": [
+    "The image must never shrink, so it gets flex-shrink: 0. The text column gets flex: 1 to take the rest.",
+    "Flex items default to min-width: auto, which stops them shrinking below their content. min-width: 0 on the text lets long words wrap or truncate instead of overflowing."
+  ],
+  "tryThis": [
+    "Remove flex-shrink: 0 and narrow the preview to 375px.",
+    "Change align-items to center."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "media",
+      "children": [
+        {
+          "tag": "img",
+          "cls": "thumb",
+          "attrs": {
+            "alt": "Placeholder"
+          }
+        },
+        {
+          "tag": "div",
+          "cls": "body",
+          "children": [
+            {
+              "tag": "p",
+              "cls": "title",
+              "text": "A flexible media object"
+            },
+            {
+              "tag": "p",
+              "cls": "text",
+              "text": "The image keeps its size while this text takes the remaining space and wraps onto as many lines as it needs."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".media {\n  display: flex;\n  align-items: flex-start;\n  gap: 16px;\n  max-width: 480px;\n  padding: 16px;\n}\n\n.thumb {\n  flex-shrink: 0;\n  width: 96px;\n  height: 96px;\n  object-fit: cover;\n  border-radius: 6px;\n}\n\n.body {\n  flex: 1;\n  min-width: 0;\n}\n\n.title {\n  margin: 0 0 4px;\n  font-weight: 600;\n}\n\n.text {\n  margin: 0;\n  color: #52525b;\n}\n"
+}

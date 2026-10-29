@@ -1,0 +1,67 @@
+{
+  "id": "mosaic-grid",
+  "title": "Mosaic with spanning tiles",
+  "category": "Grid",
+  "level": "intermediate",
+  "summary": "grid-column and grid-row span tiles over several cells; dense packing fills the gaps.",
+  "concepts": [
+    "grid-template-columns",
+    "grid-auto-rows",
+    "grid-auto-flow",
+    "grid-column",
+    "grid-row",
+    "gap"
+  ],
+  "explanation": [
+    "grid-column: span 2 makes a tile cover two columns; grid-row: span 2 makes it cover two rows. Spanning is how a grid gets a mosaic look without any absolute positioning.",
+    "By default the auto-placement cursor only moves forward, so a wide tile that does not fit leaves a hole. grid-auto-flow: dense lets later small tiles fill those holes, at the cost of reordering the visual."
+  ],
+  "tryThis": [
+    "Remove grid-auto-flow: dense and watch the gaps appear.",
+    "Change .hero to grid-column: span 3 to make it full width."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "grid",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "tile hero",
+          "text": "Hero"
+        },
+        {
+          "tag": "div",
+          "cls": "tile",
+          "text": "One"
+        },
+        {
+          "tag": "div",
+          "cls": "tile wide",
+          "text": "Wide"
+        },
+        {
+          "tag": "div",
+          "cls": "tile",
+          "text": "Four"
+        },
+        {
+          "tag": "div",
+          "cls": "tile",
+          "text": "Five"
+        },
+        {
+          "tag": "div",
+          "cls": "tile",
+          "text": "Six"
+        },
+        {
+          "tag": "div",
+          "cls": "tile",
+          "text": "Seven"
+        }
+      ]
+    }
+  ],
+  "css": ".grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  grid-auto-rows: 80px;\n  grid-auto-flow: dense;\n  gap: 8px;\n  padding: 12px;\n}\n\n.tile {\n  padding: 12px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n\n.hero {\n  grid-column: span 2;\n  grid-row: span 2;\n}\n\n.wide {\n  grid-column: span 2;\n}\n"
+}

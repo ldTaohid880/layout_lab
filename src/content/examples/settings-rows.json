@@ -1,0 +1,34 @@
+{
+  "id": "settings-rows",
+  "title": "Settings rows with a right-aligned action",
+  "category": "Grid",
+  "level": "intermediate",
+  "summary": "A three-column grid whose last column holds buttons pushed to the right with justify-self.",
+  "concepts": ["display", "grid-template-columns", "gap", "justify-self"],
+  "explanation": [
+    "Each row is three grid cells: a label, a value and an action. The third column is a fixed 120px, so every button lines up in the same column.",
+    "Buttons are only as wide as their text, so they would sit on the left of their column by default. justify-self: end moves each one to the column's right edge, without changing the column width."
+  ],
+  "tryThis": [
+    "Remove justify-self from .edit: the buttons hug the left of their column.",
+    "Change the third column to 80px and watch the labels and values shift."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "list",
+      "children": [
+        { "tag": "span", "cls": "key", "text": "Name" },
+        { "tag": "span", "cls": "val", "text": "Ada Lovelace" },
+        { "tag": "button", "cls": "edit", "text": "Edit" },
+        { "tag": "span", "cls": "key", "text": "Plan" },
+        { "tag": "span", "cls": "val", "text": "Team" },
+        { "tag": "button", "cls": "edit", "text": "Edit" },
+        { "tag": "span", "cls": "key", "text": "Region" },
+        { "tag": "span", "cls": "val", "text": "Europe" },
+        { "tag": "button", "cls": "edit", "text": "Edit" }
+      ]
+    }
+  ],
+  "css": ".list {\n  display: grid;\n  grid-template-columns: 120px 1fr 120px;\n  gap: 10px 12px;\n  padding: 12px;\n  max-width: 480px;\n}\n\n.key {\n  font-weight: 600;\n}\n\n.edit {\n  justify-self: end; /* right edge of the column */\n  padding: 4px 12px;\n  border: 0;\n  border-radius: 4px;\n  background: #3f3f46;\n  color: #fafafa;\n}\n"
+}

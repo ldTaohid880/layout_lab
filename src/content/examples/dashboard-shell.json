@@ -1,0 +1,60 @@
+{
+  "id": "dashboard-shell",
+  "title": "Dashboard shell with a sticky sidebar",
+  "category": "Grid",
+  "level": "hard",
+  "summary": "Named areas for the app frame, a sticky sidebar, and a card grid that adapts inside the main area.",
+  "concepts": [
+    "display",
+    "grid-template-columns",
+    "grid-template-rows",
+    "grid-template-areas",
+    "grid-area",
+    "position",
+    "top",
+    "align-self",
+    "min-width",
+    "gap"
+  ],
+  "explanation": [
+    "The shell is one grid with named areas: a top bar across both columns, then a sidebar and main side by side. Each child claims its area with grid-area, so the markup order does not matter.",
+    "The sidebar is position: sticky with top: 0 and align-self: start. Sticky keeps it in view while main scrolls, and align-self: start stops it stretching to the full height of its row. It only sticks while the page scrolls, so the preview box must be taller than the content to see it move.",
+    "main is a grid too, with repeat(auto-fit, minmax(160px, 1fr)) cards. min-width: 0 lets main shrink inside its 1fr column instead of pushing the sidebar off screen. A media query redraws the areas as one column on phones."
+  ],
+  "tryThis": [
+    "Remove align-self: start from .side: the sidebar stretches to the row height and its background fills the whole column.",
+    "Change the template to \"top top\" \"main side\" to move the sidebar to the right.",
+    "Remove min-width: 0 from .main and narrow the preview: the cards keep their minimum width and push past the frame."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "app",
+      "children": [
+        { "tag": "header", "cls": "top", "text": "Acme dashboard" },
+        {
+          "tag": "aside",
+          "cls": "side",
+          "children": [
+            { "tag": "ul", "cls": "menu", "children": [
+              { "tag": "li", "text": "Overview" },
+              { "tag": "li", "text": "Reports" },
+              { "tag": "li", "text": "Settings" }
+            ] }
+          ]
+        },
+        {
+          "tag": "main",
+          "cls": "main",
+          "children": [
+            { "tag": "div", "cls": "card", "text": "Revenue" },
+            { "tag": "div", "cls": "card", "text": "Users" },
+            { "tag": "div", "cls": "card", "text": "Churn" },
+            { "tag": "div", "cls": "card", "text": "Support" }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".app {\n  display: grid;\n  grid-template-columns: 200px 1fr;\n  grid-template-rows: auto 1fr;\n  grid-template-areas:\n    \"top top\"\n    \"side main\";\n  min-height: 360px;\n}\n\n.top {\n  grid-area: top;\n  padding: 12px 16px;\n  background: #18181b;\n  color: #fafafa;\n}\n\n.side {\n  grid-area: side;\n  position: sticky;\n  top: 0;\n  align-self: start;\n  padding: 12px;\n  background: #27272a;\n  color: #fafafa;\n}\n\n.menu {\n  margin: 0;\n  padding-left: 16px;\n}\n\n.main {\n  grid-area: main;\n  min-width: 0;\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));\n  gap: 12px;\n  padding: 16px;\n}\n\n.card {\n  min-height: 96px;\n  padding: 12px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n\n@media (max-width: 520px) {\n  .app {\n    grid-template-columns: 1fr;\n    grid-template-areas:\n      \"top\"\n      \"side\"\n      \"main\";\n  }\n}\n"
+}

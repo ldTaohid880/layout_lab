@@ -1,0 +1,45 @@
+{
+  "id": "overlay-dialog",
+  "title": "Dialog over a backdrop",
+  "category": "Positioning",
+  "level": "beginner",
+  "summary": "position: absolute with inset: 0 covers the parent; grid centers the dialog on top.",
+  "concepts": [
+    "position",
+    "inset",
+    "place-items"
+  ],
+  "explanation": [
+    "inset: 0 is shorthand for top, right, bottom and left set to 0. An absolutely positioned child with those four offsets stretches to cover its positioned parent exactly.",
+    "The backdrop is a grid, so place-items: center puts the dialog in the middle. Later siblings paint over earlier ones, which is why the backdrop is written after the page content."
+  ],
+  "tryThis": [
+    "Remove position: relative from .stage: the backdrop now covers the whole page instead.",
+    "Change the backdrop to place-items: start and see the dialog move to the corner."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "stage",
+      "children": [
+        {
+          "tag": "p",
+          "cls": "page",
+          "text": "Page content sits underneath. The backdrop covers all of it."
+        },
+        {
+          "tag": "div",
+          "cls": "backdrop",
+          "children": [
+            {
+              "tag": "div",
+              "cls": "dialog",
+              "text": "Dialog"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".stage {\n  position: relative;\n  min-height: 280px;\n  padding: 16px;\n  border: 2px dashed #a1a1aa;\n  overflow: hidden;\n}\n\n.page {\n  margin: 0;\n}\n\n.backdrop {\n  position: absolute;\n  inset: 0;\n  display: grid;\n  place-items: center;\n  background: rgb(24 24 27 / 0.5);\n}\n\n.dialog {\n  padding: 16px 24px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n"
+}

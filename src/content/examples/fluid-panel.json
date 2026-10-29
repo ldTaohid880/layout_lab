@@ -1,0 +1,48 @@
+{
+  "id": "fluid-panel",
+  "title": "Fluid panel with a max width",
+  "category": "Sizing & overflow",
+  "level": "beginner",
+  "summary": "width: 100% with max-width, centered by auto margins, and border-box so padding stays inside.",
+  "concepts": [
+    "box-sizing",
+    "width",
+    "max-width",
+    "margin",
+    "padding"
+  ],
+  "explanation": [
+    "width: 100% makes the panel as wide as its container, and max-width stops it growing past 480px on large screens. Together they make a fluid box with a ceiling.",
+    "box-sizing: border-box makes width include padding and border. Without it, width: 100% plus 24px of padding on each side overflows the container by 48px.",
+    "margin: 0 auto centers a block element that has a set width."
+  ],
+  "tryThis": [
+    "Remove box-sizing: border-box: the panel now sticks out past the dashed frame.",
+    "Drag the preview narrower than 480px and watch the panel shrink with it."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "frame",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "panel",
+          "children": [
+            {
+              "tag": "p",
+              "cls": "title",
+              "text": "Fluid panel"
+            },
+            {
+              "tag": "p",
+              "cls": "text",
+              "text": "This panel is as wide as the frame, up to 480px. The padding stays inside that width."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".frame {\n  padding: 12px;\n  border: 2px dashed #a1a1aa;\n}\n\n.panel {\n  box-sizing: border-box;\n  width: 100%;\n  max-width: 480px;\n  margin: 0 auto;\n  padding: 24px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n\n.title,\n.text {\n  margin: 0;\n}\n\n.title {\n  font-weight: 600;\n}\n\n.text {\n  margin-top: 8px;\n}\n"
+}

@@ -1,0 +1,93 @@
+{
+  "id": "equal-height-cards",
+  "title": "Equal-height cards",
+  "category": "Flexbox",
+  "level": "beginner",
+  "summary": "Flex items stretch to the tallest sibling; margin-top: auto pins the price to the bottom.",
+  "concepts": [
+    "display",
+    "align-items",
+    "flex",
+    "margin"
+  ],
+  "explanation": [
+    "align-items defaults to stretch, so every card in the row is as tall as the tallest one. You do not need to set any height.",
+    "Each card is itself a flex column. margin-top: auto on the price takes all the spare height above it, so prices line up along the bottom edge whatever the text length."
+  ],
+  "tryThis": [
+    "Set align-items: flex-start on .row: the cards shrink to their content and the prices no longer line up.",
+    "Remove margin-top: auto from .price and see it follow the text."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "row",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "card",
+          "children": [
+            {
+              "tag": "p",
+              "cls": "title",
+              "text": "Starter"
+            },
+            {
+              "tag": "p",
+              "cls": "text",
+              "text": "For side projects."
+            },
+            {
+              "tag": "p",
+              "cls": "price",
+              "text": "$0"
+            }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "card",
+          "children": [
+            {
+              "tag": "p",
+              "cls": "title",
+              "text": "Team"
+            },
+            {
+              "tag": "p",
+              "cls": "text",
+              "text": "For small teams who share one workspace, with shared templates and roles for everyone who joins."
+            },
+            {
+              "tag": "p",
+              "cls": "price",
+              "text": "$12"
+            }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "card",
+          "children": [
+            {
+              "tag": "p",
+              "cls": "title",
+              "text": "Business"
+            },
+            {
+              "tag": "p",
+              "cls": "text",
+              "text": "Everything in Team, plus audit logs."
+            },
+            {
+              "tag": "p",
+              "cls": "price",
+              "text": "$30"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".row {\n  display: flex;\n  gap: 12px;\n  padding: 12px;\n}\n\n.card {\n  flex: 1;\n  display: flex;\n  flex-direction: column;\n  padding: 16px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n\n.title,\n.text,\n.price {\n  margin: 0;\n}\n\n.title {\n  font-weight: 600;\n}\n\n.text {\n  margin-top: 8px;\n}\n\n.price {\n  margin-top: auto; /* push to the bottom */\n  padding-top: 12px;\n  font-weight: 700;\n}\n"
+}

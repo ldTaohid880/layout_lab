@@ -1,0 +1,28 @@
+{
+  "id": "toast-corner",
+  "title": "Toast pinned to a corner",
+  "category": "Positioning",
+  "level": "beginner",
+  "summary": "position: absolute with inset pins a notification to the bottom-right of its stage.",
+  "concepts": ["position", "inset", "z-index", "padding"],
+  "explanation": [
+    "The toast is absolute, so it leaves the flow and the content underneath does not move when it appears. inset: auto 16px 16px auto sets only the right and bottom offsets, and leaves top and left unset.",
+    "The offsets are measured from the nearest positioned ancestor, which is the stage here. position: fixed would pin the toast to the browser window instead, which is the right choice for a real app but would escape this preview box."
+  ],
+  "tryThis": [
+    "Change inset to auto auto 16px 16px to pin the toast to the bottom-left.",
+    "Remove position: relative from .stage: the toast jumps out to the whole preview.",
+    "Set z-index: -1 on .toast and see it slip behind the content."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "stage",
+      "children": [
+        { "tag": "p", "cls": "page", "text": "Page content keeps its place. The toast appears in the corner without pushing anything." },
+        { "tag": "div", "cls": "toast", "text": "Saved to drafts" }
+      ]
+    }
+  ],
+  "css": ".stage {\n  position: relative;\n  min-height: 240px;\n  padding: 16px;\n  border: 2px dashed #a1a1aa;\n}\n\n.page {\n  margin: 0;\n}\n\n.toast {\n  position: absolute;\n  inset: auto 16px 16px auto; /* right and bottom only */\n  z-index: 1;\n  padding: 10px 16px;\n  border-radius: 6px;\n  background: #18181b;\n  color: #fafafa;\n}\n"
+}

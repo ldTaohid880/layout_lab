@@ -1,0 +1,28 @@
+{
+  "id": "align-self-toolbar",
+  "title": "One item, its own alignment",
+  "category": "Flexbox",
+  "level": "beginner",
+  "summary": "align-self overrides align-items for a single flex item.",
+  "concepts": ["display", "align-items", "align-self", "gap"],
+  "explanation": [
+    "align-items sets the cross-axis alignment for every child of a flex container. align-self does the same for one child and wins over the container's setting.",
+    "Here the row is top-aligned, but the Save button alone is pushed to the bottom with align-self: flex-end. Tall and short siblings keep their own sizes."
+  ],
+  "tryThis": [
+    "Remove align-self from .save: it snaps back to the top.",
+    "Change align-items on .toolbar to center and watch every item move except the one with its own rule."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "toolbar",
+      "children": [
+        { "tag": "button", "cls": "btn", "text": "Back" },
+        { "tag": "div", "cls": "note", "text": "A taller note sits between the buttons." },
+        { "tag": "button", "cls": "btn save", "text": "Save" }
+      ]
+    }
+  ],
+  "css": ".toolbar {\n  display: flex;\n  align-items: flex-start;\n  gap: 12px;\n  min-height: 140px;\n  padding: 12px;\n  border: 2px dashed #a1a1aa;\n}\n\n.btn {\n  padding: 8px 14px;\n  border: 0;\n  border-radius: 6px;\n  background: #3f3f46;\n  color: #fafafa;\n}\n\n.note {\n  height: 80px;\n  padding: 8px 12px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n\n.save {\n  align-self: flex-end; /* only this item */\n  background: #f97316;\n}\n"
+}

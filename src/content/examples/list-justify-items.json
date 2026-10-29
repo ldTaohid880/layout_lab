@@ -1,0 +1,35 @@
+{
+  "id": "list-justify-items",
+  "title": "Aligning a grid's items inside their cells",
+  "category": "Grid",
+  "level": "intermediate",
+  "summary": "justify-items and align-items position each item inside its own cell, separate from the track sizes.",
+  "concepts": ["display", "grid-template-columns", "justify-items", "align-items", "gap"],
+  "explanation": [
+    "Columns size to their widest item here (auto), so the grid has no spare room to fill. justify-items: start then places each item at the left of its own cell, instead of stretching it across the cell.",
+    "align-items: center moves items to the middle of their row vertically. Together they set the default for every child, and a single child can still override them with justify-self or align-self."
+  ],
+  "tryThis": [
+    "Change justify-items to stretch: every item fills its cell and the text lines up at the left edge of each.",
+    "Change align-items to end: the short items drop to the bottom of their row.",
+    "Set grid-template-columns to 1fr 1fr 1fr: the columns now share the width and the justify-items change is easier to see."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "list",
+      "children": [
+        { "tag": "span", "cls": "cell", "text": "Name" },
+        { "tag": "span", "cls": "cell tall", "text": "Role" },
+        { "tag": "span", "cls": "cell", "text": "Status" },
+        { "tag": "span", "cls": "cell", "text": "Ada" },
+        { "tag": "span", "cls": "cell", "text": "Engineer and maintainer of the reporting pipeline" },
+        { "tag": "span", "cls": "cell", "text": "Active" },
+        { "tag": "span", "cls": "cell", "text": "Ken" },
+        { "tag": "span", "cls": "cell", "text": "Designer" },
+        { "tag": "span", "cls": "cell", "text": "Away" }
+      ]
+    }
+  ],
+  "css": ".list {\n  display: grid;\n  grid-template-columns: repeat(3, auto);\n  justify-items: start;   /* each item at the left of its cell */\n  align-items: center;    /* each item in the middle of its row */\n  gap: 8px 16px;\n  padding: 12px;\n  border: 2px dashed #a1a1aa;\n}\n\n.cell {\n  padding: 6px 10px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 4px;\n}\n\n.tall {\n  padding: 18px 10px;\n}\n"
+}

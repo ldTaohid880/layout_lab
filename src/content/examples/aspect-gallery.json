@@ -1,0 +1,72 @@
+{
+  "id": "aspect-gallery",
+  "title": "Square image gallery",
+  "category": "Sizing & overflow",
+  "level": "beginner",
+  "summary": "aspect-ratio and object-fit make any image fill a square tile without distortion.",
+  "concepts": [
+    "aspect-ratio",
+    "object-fit",
+    "grid-template-columns",
+    "width"
+  ],
+  "explanation": [
+    "aspect-ratio: 1 / 1 derives the height from the width, so each tile is square whatever the column width.",
+    "The images are 16:10, so object-fit: cover scales them to cover the square and crops the overflow, instead of stretching."
+  ],
+  "tryThis": [
+    "Change object-fit to contain.",
+    "Try aspect-ratio: 16 / 9."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "gallery",
+      "children": [
+        {
+          "tag": "img",
+          "cls": "photo",
+          "attrs": {
+            "alt": ""
+          }
+        },
+        {
+          "tag": "img",
+          "cls": "photo",
+          "attrs": {
+            "alt": ""
+          }
+        },
+        {
+          "tag": "img",
+          "cls": "photo",
+          "attrs": {
+            "alt": ""
+          }
+        },
+        {
+          "tag": "img",
+          "cls": "photo",
+          "attrs": {
+            "alt": ""
+          }
+        },
+        {
+          "tag": "img",
+          "cls": "photo",
+          "attrs": {
+            "alt": ""
+          }
+        },
+        {
+          "tag": "img",
+          "cls": "photo",
+          "attrs": {
+            "alt": ""
+          }
+        }
+      ]
+    }
+  ],
+  "css": ".gallery {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 8px;\n  padding: 12px;\n}\n\n.photo {\n  display: block;\n  width: 100%;\n  aspect-ratio: 1 / 1;\n  object-fit: cover;\n  border-radius: 4px;\n}\n"
+}

@@ -1,0 +1,48 @@
+{
+  "id": "modal-scrolling-body",
+  "title": "Dialog with a scrolling body",
+  "category": "Flexbox",
+  "level": "intermediate",
+  "summary": "Header and footer keep their size while the middle scrolls, using min-height: 0 on the flexible part.",
+  "concepts": ["display", "flex-direction", "flex", "min-height", "overflow", "height", "padding", "gap"],
+  "explanation": [
+    "The dialog is a flex column with a fixed height. The header and footer keep their content height, and the body gets flex: 1 to take whatever is left.",
+    "The body also needs min-height: 0. Flex items default to min-height: auto, so the body would grow to fit all its text and push the footer out of view. min-height: 0 lets it shrink, and overflow-y: auto then scrolls it."
+  ],
+  "tryThis": [
+    "Remove min-height: 0 from .body: the footer slides below the frame and the dialog stops scrolling.",
+    "Remove flex: 1 from .body: the body stops filling the space and the footer rises up beneath the header.",
+    "Add more paragraphs to .body and watch only the middle scroll."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "dialog",
+      "children": [
+        { "tag": "header", "cls": "head", "text": "Terms of service" },
+        {
+          "tag": "div",
+          "cls": "body",
+          "children": [
+            { "tag": "p", "text": "1. Use the service responsibly and keep your login details private." },
+            { "tag": "p", "text": "2. Projects you create belong to you. We store them only to run the service." },
+            { "tag": "p", "text": "3. Payments renew monthly until you cancel from the billing page." },
+            { "tag": "p", "text": "4. We may change these terms with 30 days notice by email." },
+            { "tag": "p", "text": "5. Either side may end the agreement at any time." },
+            { "tag": "p", "text": "6. The service is provided as is, without warranties of any kind." },
+            { "tag": "p", "text": "7. Disputes are settled under the law of the company's home country." }
+          ]
+        },
+        {
+          "tag": "footer",
+          "cls": "foot",
+          "children": [
+            { "tag": "button", "cls": "btn", "text": "Decline" },
+            { "tag": "button", "cls": "btn primary", "text": "Accept" }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".dialog {\n  display: flex;\n  flex-direction: column;\n  height: 300px;\n  max-width: 420px;\n  border: 1px solid #a1a1aa;\n  border-radius: 8px;\n  background: #fafafa;\n  overflow: hidden;\n}\n\n.head,\n.foot {\n  flex: 0 0 auto;\n  padding: 12px 16px;\n  background: #18181b;\n  color: #fafafa;\n}\n\n.body {\n  flex: 1;\n  min-height: 0; /* let the body shrink below its content */\n  overflow-y: auto;\n  padding: 12px 16px;\n}\n\n.body p {\n  margin: 0 0 10px;\n}\n\n.foot {\n  display: flex;\n  justify-content: flex-end;\n  gap: 8px;\n}\n\n.btn {\n  padding: 6px 12px;\n  border: 1px solid #a1a1aa;\n  border-radius: 4px;\n  background: #fff;\n}\n\n.primary {\n  border-color: #f97316;\n  background: #f97316;\n  color: #fff;\n}\n"
+}

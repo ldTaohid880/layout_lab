@@ -1,0 +1,35 @@
+{
+  "id": "grid-column-flow",
+  "title": "Filling a grid column by column",
+  "category": "Grid",
+  "level": "intermediate",
+  "summary": "grid-auto-flow: column fills each column top to bottom before moving right, the reverse of the default.",
+  "concepts": ["display", "grid-template-rows", "grid-auto-flow", "gap"],
+  "explanation": [
+    "By default auto-placement fills rows left to right. With grid-auto-flow: column the placement cursor runs down a column first, then moves right to the next one.",
+    "This needs a fixed number of rows, set with grid-template-rows. Without it the grid creates rows as needed, and the items all land in a single column that runs off the bottom."
+  ],
+  "tryThis": [
+    "Change grid-template-rows to repeat(4, 40px): each column now holds four items before it wraps to the next.",
+    "Change grid-auto-flow back to row: the same items fill left to right instead.",
+    "Remove grid-template-rows and watch every item stack in one long column."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "grid",
+      "children": [
+        { "tag": "div", "cls": "cell", "text": "A1" },
+        { "tag": "div", "cls": "cell", "text": "A2" },
+        { "tag": "div", "cls": "cell", "text": "A3" },
+        { "tag": "div", "cls": "cell", "text": "B1" },
+        { "tag": "div", "cls": "cell", "text": "B2" },
+        { "tag": "div", "cls": "cell", "text": "B3" },
+        { "tag": "div", "cls": "cell", "text": "C1" },
+        { "tag": "div", "cls": "cell", "text": "C2" },
+        { "tag": "div", "cls": "cell", "text": "C3" }
+      ]
+    }
+  ],
+  "css": ".grid {\n  display: grid;\n  grid-template-rows: repeat(3, 44px);\n  grid-auto-flow: column; /* fill down, then across */\n  gap: 8px;\n  padding: 12px;\n  overflow-x: auto;\n}\n\n.cell {\n  display: grid;\n  place-items: center;\n  width: 72px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n"
+}

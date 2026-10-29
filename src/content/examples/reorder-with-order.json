@@ -1,0 +1,28 @@
+{
+  "id": "reorder-with-order",
+  "title": "Reorder with order",
+  "category": "Flexbox",
+  "level": "intermediate",
+  "summary": "order moves flex items visually without touching the HTML.",
+  "concepts": ["display", "order", "flex", "gap"],
+  "explanation": [
+    "Flex items are laid out by order first, then by source position. Every item starts at order: 0, and lower numbers come first, so order: -1 moves an item to the front.",
+    "This only changes the visual order. Keyboard focus and screen readers still follow the HTML, so use it for layout tweaks, not to reorder content that people navigate in sequence."
+  ],
+  "tryThis": [
+    "Set .c to order: -2 so Preview comes first.",
+    "Remove order from .b: the cards return to HTML order."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "row",
+      "children": [
+        { "tag": "div", "cls": "card a", "text": "1 · Summary" },
+        { "tag": "div", "cls": "card b", "text": "2 · Form" },
+        { "tag": "div", "cls": "card c", "text": "3 · Preview" }
+      ]
+    }
+  ],
+  "css": ".row {\n  display: flex;\n  gap: 12px;\n  padding: 12px;\n}\n\n.card {\n  flex: 1;\n  padding: 24px 16px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n\n.b {\n  order: -1; /* jumps to the front */\n}\n"
+}

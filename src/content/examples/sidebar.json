@@ -1,0 +1,67 @@
+{
+  "id": "sidebar",
+  "title": "Sidebar + fluid content",
+  "category": "Grid",
+  "level": "beginner",
+  "summary": "A fixed sidebar and a flexible main column in two values.",
+  "concepts": [
+    "grid-template-columns",
+    "min-width",
+    "gap"
+  ],
+  "explanation": [
+    "grid-template-columns: 200px 1fr gives a fixed column and one that takes everything left. fr units share free space after fixed sizes are placed.",
+    "min-width: 0 on the content column lets wide content (code, long URLs) shrink or scroll instead of blowing the column out."
+  ],
+  "tryThis": [
+    "Change 200px to minmax(160px, 25%).",
+    "Swap the columns to 1fr 200px and add order: -1 to .content."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "layout",
+      "children": [
+        {
+          "tag": "section",
+          "cls": "sidebar",
+          "children": [
+            {
+              "tag": "ul",
+              "cls": "menu",
+              "children": [
+                {
+                  "tag": "li",
+                  "cls": "",
+                  "text": "Overview"
+                },
+                {
+                  "tag": "li",
+                  "cls": "",
+                  "text": "Settings"
+                },
+                {
+                  "tag": "li",
+                  "cls": "",
+                  "text": "Billing"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "main",
+          "cls": "content",
+          "children": [
+            {
+              "tag": "p",
+              "cls": "",
+              "text": "The content column takes all remaining width. Resize the preview to see it flex."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".layout {\n  display: grid;\n  grid-template-columns: 200px 1fr;\n  gap: 16px;\n  min-height: 320px;\n  padding: 12px;\n}\n\n.sidebar {\n  padding: 12px;\n  background: #18181b;\n  color: #fafafa;\n  border-radius: 6px;\n}\n\n.menu {\n  margin: 0;\n  padding-left: 16px;\n}\n\n.content {\n  min-width: 0;\n  padding: 12px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n\n@media (max-width: 520px) {\n  .layout {\n    grid-template-columns: 1fr;\n  }\n}\n"
+}

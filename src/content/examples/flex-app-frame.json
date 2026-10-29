@@ -1,0 +1,37 @@
+{
+  "id": "flex-app-frame",
+  "title": "App frame with flex only",
+  "category": "Flexbox",
+  "level": "intermediate",
+  "summary": "A column of header, body and footer, with a row of sidebar, content and aside in the middle.",
+  "concepts": ["display", "flex-direction", "flex", "flex-shrink", "min-width", "min-height", "gap"],
+  "explanation": [
+    "The page is a flex column at least 360px tall. The header and footer use flex-shrink: 0 so they keep their height, and the middle section takes the rest with flex: 1.",
+    "Inside the middle row, the sidebar and aside are flex: 0 0 120px, which fixes their width. The content uses flex: 1 and min-width: 0, so long content can shrink instead of forcing the row wider than the frame."
+  ],
+  "tryThis": [
+    "Remove min-width: 0 from .content and add a long word to it: the row overflows the frame.",
+    "Change the sidebar to flex: 1 0 120px: it now grows along with the content.",
+    "Remove flex: 1 from .middle: the body shrinks to its content and leaves an empty gap above the footer."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "page",
+      "children": [
+        { "tag": "header", "cls": "head", "text": "Header" },
+        {
+          "tag": "div",
+          "cls": "middle",
+          "children": [
+            { "tag": "nav", "cls": "side", "text": "Sidebar" },
+            { "tag": "main", "cls": "content", "text": "Content grows to fill the middle row and wraps as needed." },
+            { "tag": "aside", "cls": "extra", "text": "Aside" }
+          ]
+        },
+        { "tag": "footer", "cls": "foot", "text": "Footer" }
+      ]
+    }
+  ],
+  "css": ".page {\n  display: flex;\n  flex-direction: column;\n  min-height: 360px;\n  border: 2px dashed #a1a1aa;\n}\n\n.head,\n.foot {\n  flex-shrink: 0;\n  padding: 12px 16px;\n  background: #18181b;\n  color: #fafafa;\n}\n\n.middle {\n  display: flex;\n  flex: 1;\n  gap: 8px;\n  padding: 8px;\n}\n\n.side,\n.extra {\n  flex: 0 0 120px;\n  padding: 12px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n\n.content {\n  flex: 1;\n  min-width: 0;\n  padding: 12px;\n  background: #fafafa;\n  border: 1px solid #d4d4d8;\n  border-radius: 6px;\n}\n"
+}

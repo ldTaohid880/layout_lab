@@ -1,0 +1,28 @@
+{
+  "id": "figure-caption",
+  "title": "Image with a caption that fits the frame",
+  "category": "Sizing & overflow",
+  "level": "beginner",
+  "summary": "max-width: 100% and aspect-ratio keep an image responsive, and object-fit crops it instead of squashing it.",
+  "concepts": ["width", "max-width", "aspect-ratio", "object-fit", "margin"],
+  "explanation": [
+    "width: 100% makes the image as wide as its frame. aspect-ratio: 4 / 3 then sets its height from that width, so the frame has a stable shape before the picture loads and the caption below never jumps.",
+    "object-fit: cover fills the frame and crops the overflow, so the subject is not stretched. max-width: 100% on the caption stops long text pushing the frame wider than its container."
+  ],
+  "tryThis": [
+    "Change object-fit to contain: the whole image shows, with empty bands at the sides.",
+    "Remove aspect-ratio: the image falls back to its natural height and the frame changes shape.",
+    "Set aspect-ratio to 1 / 1 for a square crop."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "frame",
+      "children": [
+        { "tag": "img", "cls": "photo", "attrs": { "alt": "" } },
+        { "tag": "p", "cls": "caption", "text": "A caption that wraps onto more lines when the frame is narrow." }
+      ]
+    }
+  ],
+  "css": ".frame {\n  width: 100%;\n  max-width: 360px;\n  margin: 16px;\n  padding: 8px;\n  border: 1px solid #d4d4d8;\n  border-radius: 8px;\n  background: #fff;\n}\n\n.photo {\n  display: block;\n  width: 100%;\n  max-width: 100%;\n  aspect-ratio: 4 / 3;\n  object-fit: cover; /* crop, don't stretch */\n  border-radius: 6px;\n  background: #fed7aa;\n}\n\n.caption {\n  margin: 8px 0 0;\n  color: #52525b;\n}\n"
+}

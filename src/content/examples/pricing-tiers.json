@@ -1,0 +1,75 @@
+{
+  "id": "pricing-tiers",
+  "title": "Pricing tiers with a lifted featured plan",
+  "category": "Grid",
+  "level": "hard",
+  "summary": "Auto-fit columns of equal-height plans, with the featured one lifted above its neighbours on wide screens.",
+  "concepts": [
+    "display",
+    "grid-template-columns",
+    "gap",
+    "align-items",
+    "flex-direction",
+    "flex",
+    "position",
+    "z-index",
+    "margin",
+    "padding"
+  ],
+  "explanation": [
+    "repeat(auto-fit, minmax(200px, 1fr)) makes as many plan columns as fit. Each column is at least 200px and they share the rest equally, so the row reflows without a media query.",
+    "Each plan is a flex column with its feature list set to flex: 1. Plans stretch to the tallest one in the row, and the list grows to fill the gap, so the price and button line up along the bottom in every card.",
+    "On wide screens the featured plan gets a negative margin-top and position: relative with z-index: 1. It rises above its row neighbours without changing their size. z-index only works because the element is positioned, which is the common trap."
+  ],
+  "tryThis": [
+    "Remove position: relative from .featured: the lift stops working, and z-index is ignored.",
+    "Change align-items to flex-start on .pricing: the plans shrink to their content and their bottoms stop lining up.",
+    "Change auto-fit to auto-fill and narrow the preview: empty columns appear at the end of the row."
+  ],
+  "items": [
+    {
+      "tag": "section",
+      "cls": "pricing",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "tier",
+          "children": [
+            { "tag": "p", "cls": "name", "text": "Starter" },
+            { "tag": "p", "cls": "price", "text": "$0 / month" },
+            { "tag": "ul", "cls": "features", "children": [
+              { "tag": "li", "text": "1 project" },
+              { "tag": "li", "text": "Community support" }
+            ] }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "tier featured",
+          "children": [
+            { "tag": "p", "cls": "name", "text": "Team" },
+            { "tag": "p", "cls": "price", "text": "$12 / month" },
+            { "tag": "ul", "cls": "features", "children": [
+              { "tag": "li", "text": "Unlimited projects" },
+              { "tag": "li", "text": "Shared templates" },
+              { "tag": "li", "text": "Priority email support" }
+            ] }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "tier",
+          "children": [
+            { "tag": "p", "cls": "name", "text": "Business" },
+            { "tag": "p", "cls": "price", "text": "$30 / month" },
+            { "tag": "ul", "cls": "features", "children": [
+              { "tag": "li", "text": "Everything in Team" },
+              { "tag": "li", "text": "Audit logs" }
+            ] }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".pricing {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n  gap: 16px;\n  align-items: stretch;\n  padding: 16px;\n}\n\n.tier {\n  display: flex;\n  flex-direction: column;\n  padding: 20px;\n  background: #fafafa;\n  border: 1px solid #d4d4d8;\n  border-radius: 8px;\n}\n\n.name,\n.price {\n  margin: 0;\n}\n\n.name {\n  font-weight: 600;\n}\n\n.price {\n  margin-top: 8px;\n  font-size: 24px;\n  font-weight: 700;\n}\n\n.features {\n  flex: 1; /* grows so the bottoms line up */\n  margin: 16px 0 0;\n  padding-left: 18px;\n}\n\n.featured {\n  background: #18181b;\n  color: #fafafa;\n}\n\n@media (min-width: 720px) {\n  .featured {\n    position: relative;\n    z-index: 1;\n    margin-top: -12px;\n  }\n}\n"
+}

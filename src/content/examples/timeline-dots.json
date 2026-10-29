@@ -1,0 +1,41 @@
+{
+  "id": "timeline-dots",
+  "title": "Timeline with positioned dots",
+  "category": "Positioning",
+  "level": "intermediate",
+  "summary": "A vertical line on the list, with each dot absolutely placed on it at the start of its entry.",
+  "concepts": ["position", "top", "inset", "margin", "padding", "z-index"],
+  "explanation": [
+    "Each entry is position: relative, which makes it the box its dot is placed against. The dot is absolute with left: 0, so it sits at the entry's left edge, and top: 4px so it lines up with the first line of text.",
+    "The vertical line is the timeline's own left border on the list. Dots get z-index: 1 so they paint on top of the line, and a white outline so the line looks interrupted behind each one."
+  ],
+  "tryThis": [
+    "Remove position: relative from .entry: every dot jumps to the top-left corner of the timeline.",
+    "Change top: 4px to top: 20px: the dots now sit below the first line of each entry.",
+    "Remove z-index from .dot and check whether the line now covers it."
+  ],
+  "items": [
+    {
+      "tag": "ul",
+      "cls": "timeline",
+      "children": [
+        { "tag": "li", "cls": "entry", "children": [
+          { "tag": "span", "cls": "dot" },
+          { "tag": "p", "cls": "when", "text": "March 2026" },
+          { "tag": "p", "text": "Shipped the first public beta." }
+        ] },
+        { "tag": "li", "cls": "entry", "children": [
+          { "tag": "span", "cls": "dot" },
+          { "tag": "p", "cls": "when", "text": "June 2026" },
+          { "tag": "p", "text": "Added the flexbox and grid lab with live previews." }
+        ] },
+        { "tag": "li", "cls": "entry", "children": [
+          { "tag": "span", "cls": "dot" },
+          { "tag": "p", "cls": "when", "text": "October 2026" },
+          { "tag": "p", "text": "Launched guided examples and challenges." }
+        ] }
+      ]
+    }
+  ],
+  "css": ".timeline {\n  margin: 0;\n  padding: 16px 16px 16px 32px;\n  list-style: none;\n  border-left: 2px solid #a1a1aa;\n}\n\n.entry {\n  position: relative;\n  padding-bottom: 20px;\n}\n\n.dot {\n  position: absolute;\n  top: 4px;\n  left: -41px; /* centred on the line */\n  z-index: 1;\n  width: 14px;\n  height: 14px;\n  border: 3px solid #fafafa;\n  border-radius: 50%;\n  background: #f97316;\n}\n\n.when {\n  margin: 0 0 4px;\n  font-weight: 600;\n}\n\n.entry p {\n  margin-top: 0;\n}\n"
+}

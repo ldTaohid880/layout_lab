@@ -1,0 +1,65 @@
+{
+  "id": "card-grid",
+  "title": "Responsive card grid",
+  "category": "Grid",
+  "level": "beginner",
+  "summary": "repeat(auto-fill, minmax(140px, 1fr)): as many equal columns as fit.",
+  "concepts": [
+    "grid-template-columns",
+    "gap",
+    "grid-auto-rows"
+  ],
+  "explanation": [
+    "minmax(140px, 1fr) says a column is at least 140px and otherwise shares space equally. auto-fill creates as many such columns as the row can hold.",
+    "Unlike wrapping flex items, every column is the same width, including on the last row.",
+    "grid-auto-rows sets the height of the rows the grid creates for you."
+  ],
+  "tryThis": [
+    "Change auto-fill to auto-fit and delete cards until there are three: auto-fit stretches them.",
+    "Make one card span two columns with grid-column: span 2."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "grid",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "1"
+        },
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "2"
+        },
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "3"
+        },
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "4"
+        },
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "5"
+        },
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "6"
+        },
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "7"
+        }
+      ]
+    }
+  ],
+  "css": ".grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));\n  grid-auto-rows: 100px;\n  gap: 12px;\n  padding: 12px;\n}\n\n.card {\n  padding: 12px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n"
+}

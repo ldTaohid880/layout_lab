@@ -1,0 +1,29 @@
+{
+  "id": "corner-ribbon",
+  "title": "Corner ribbon on a card",
+  "category": "Positioning",
+  "level": "intermediate",
+  "summary": "An absolute tag pinned to the card's top-right corner, clipped by overflow: hidden.",
+  "concepts": ["position", "top", "overflow", "z-index", "padding", "margin"],
+  "explanation": [
+    "The card is position: relative, so the ribbon is placed against its corner. top: 0 and right: 0 pin it flush with the top-right edge, and the padding on the ribbon keeps its text clear of the border.",
+    "overflow: hidden clips anything that reaches past the card's rounded corners. The ribbon's own corner gets a radius, and the card clips the rest. z-index: 1 keeps the ribbon above the card's content."
+  ],
+  "tryThis": [
+    "Remove position: relative from .card: the ribbon jumps to the top-right of the preview.",
+    "Remove overflow: hidden and widen the ribbon with padding: the corner shape breaks out of the card.",
+    "Set top: 24px to drop the ribbon below the card's edge."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "card",
+      "children": [
+        { "tag": "span", "cls": "ribbon", "text": "New" },
+        { "tag": "p", "cls": "title", "text": "Starter plan" },
+        { "tag": "p", "cls": "text", "text": "Everything a small project needs, with monthly billing and email support." }
+      ]
+    }
+  ],
+  "css": ".card {\n  position: relative;\n  overflow: hidden; /* clip the ribbon to the corner */\n  max-width: 280px;\n  margin: 16px;\n  padding: 32px 16px 16px;\n  border: 1px solid #d4d4d8;\n  border-radius: 8px;\n  background: #fff;\n}\n\n.ribbon {\n  position: absolute;\n  top: 0;\n  right: 0;\n  z-index: 1;\n  padding: 4px 12px;\n  border-bottom-left-radius: 6px;\n  background: #f97316;\n  color: #fff;\n  font-size: 12px;\n  font-weight: 600;\n}\n\n.title,\n.text {\n  margin: 0;\n}\n\n.title {\n  font-weight: 600;\n}\n\n.text {\n  margin-top: 8px;\n  color: #52525b;\n}\n"
+}

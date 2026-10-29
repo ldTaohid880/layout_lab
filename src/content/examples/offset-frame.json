@@ -1,0 +1,28 @@
+{
+  "id": "offset-frame",
+  "title": "Photo with an offset backdrop",
+  "category": "Positioning",
+  "level": "intermediate",
+  "summary": "A decorative box behind the photo, offset with negative insets, and the photo lifted above it with z-index.",
+  "concepts": ["position", "inset", "z-index", "margin", "height"],
+  "explanation": [
+    "The frame is position: relative, so the backdrop and photo are placed inside it. The backdrop is absolute with inset: 16px -16px -16px 16px, so it hangs 16px past the frame on the right and bottom.",
+    "The photo is positioned too, and z-index: 1 lifts it above the backdrop. Both are positioned, so z-index applies; without position on the photo the backdrop would paint over it, since it comes later in the source."
+  ],
+  "tryThis": [
+    "Change the backdrop inset to 0 0 0 0: it now hides exactly behind the photo.",
+    "Remove z-index from .photo: the backdrop covers the photo.",
+    "Change the backdrop's background to a different colour and see the offset stand out more."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "frame",
+      "children": [
+        { "tag": "div", "cls": "backdrop" },
+        { "tag": "div", "cls": "photo", "text": "Photo" }
+      ]
+    }
+  ],
+  "css": ".frame {\n  position: relative;\n  width: 260px;\n  height: 180px;\n  margin: 16px 24px 24px 16px;\n}\n\n.backdrop {\n  position: absolute;\n  inset: 16px -16px -16px 16px; /* hangs out past the photo */\n  border-radius: 8px;\n  background: #fed7aa;\n}\n\n.photo {\n  position: relative;\n  z-index: 1;\n  display: grid;\n  place-items: center;\n  height: 100%;\n  border-radius: 8px;\n  background: #3f3f46;\n  color: #fafafa;\n}\n"
+}

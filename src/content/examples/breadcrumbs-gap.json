@@ -1,0 +1,31 @@
+{
+  "id": "breadcrumbs-gap",
+  "title": "Breadcrumbs with separators",
+  "category": "Flexbox",
+  "level": "beginner",
+  "summary": "A flex row with gap, where the separator is its own item so spacing stays even.",
+  "concepts": ["display", "align-items", "gap", "flex-shrink"],
+  "explanation": [
+    "Each crumb and each separator is a flex item, and gap puts the same space between every pair. Using a separator element, rather than a margin, keeps the spacing consistent when the crumbs change length.",
+    "align-items: center keeps the separators level with the text, even when a crumb is styled bigger. flex-shrink: 0 on the current page stops it squashing when the trail is long."
+  ],
+  "tryThis": [
+    "Change align-items to flex-start: the separators sit higher than the text.",
+    "Make the last crumb longer and narrow the preview: the earlier crumbs shrink, while the current page keeps its width.",
+    "Set gap to 0 and watch the separators butt against the words."
+  ],
+  "items": [
+    {
+      "tag": "nav",
+      "cls": "crumbs",
+      "children": [
+        { "tag": "a", "text": "Home", "attrs": { "href": "#" } },
+        { "tag": "span", "cls": "sep", "text": "/" },
+        { "tag": "a", "text": "Projects", "attrs": { "href": "#" } },
+        { "tag": "span", "cls": "sep", "text": "/" },
+        { "tag": "span", "cls": "here", "text": "Quarterly report" }
+      ]
+    }
+  ],
+  "css": ".crumbs {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  padding: 12px;\n  background: #f4f4f5;\n  border-radius: 6px;\n}\n\n.crumbs a {\n  color: #2563eb;\n  text-decoration: none;\n}\n\n.sep {\n  color: #a1a1aa;\n}\n\n.here {\n  flex-shrink: 0; /* keep the current page whole */\n  font-weight: 600;\n}\n"
+}

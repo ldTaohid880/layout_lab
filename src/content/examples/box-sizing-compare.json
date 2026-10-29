@@ -1,0 +1,28 @@
+{
+  "id": "box-sizing-compare",
+  "title": "content-box versus border-box",
+  "category": "Sizing & overflow",
+  "level": "beginner",
+  "summary": "The same width: 160px with padding gives two different outer sizes, depending on box-sizing.",
+  "concepts": ["box-sizing", "width", "padding", "margin"],
+  "explanation": [
+    "With the default content-box, width sets only the content. Padding and border are added outside it, so a box with width: 160px and 20px of padding on each side is 200px across.",
+    "With border-box, width includes padding and border. The same box stays 160px across and its content area shrinks to fit. Most layouts want this, which is why many stylesheets set it on everything."
+  ],
+  "tryThis": [
+    "Remove box-sizing: border-box from the right-hand box: it grows to 200px and no longer lines up with the left one.",
+    "Change padding to 40px on both boxes and compare how much the content area shrinks in each.",
+    "Add a 4px border to both and check whether they still match."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "compare",
+      "children": [
+        { "tag": "div", "cls": "box plain", "text": "content-box" },
+        { "tag": "div", "cls": "box tight", "text": "border-box" }
+      ]
+    }
+  ],
+  "css": ".compare {\n  display: flex;\n  gap: 16px;\n  padding: 12px;\n}\n\n.box {\n  width: 160px;\n  padding: 20px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n\n.plain {\n  box-sizing: content-box; /* width is the content only */\n}\n\n.tight {\n  box-sizing: border-box; /* width includes padding */\n}\n"
+}

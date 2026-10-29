@@ -1,0 +1,29 @@
+{
+  "id": "overlapping-avatars",
+  "title": "Overlapping avatar stack",
+  "category": "Positioning",
+  "level": "intermediate",
+  "summary": "Negative margins pull avatars over each other; z-index decides which one sits on top.",
+  "concepts": ["display", "position", "margin", "z-index"],
+  "explanation": [
+    "Each avatar after the first has a negative margin-left, so it slides under the one before it. The overlap is a layout effect, not a position, so the avatars stay in the normal flow.",
+    "position: relative on each avatar lets z-index apply. Without it, z-index is ignored on these static elements, and the later avatars would paint over the earlier ones by source order alone."
+  ],
+  "tryThis": [
+    "Set z-index: 2 on .a: the first avatar now sits on top of the second.",
+    "Change margin-left on .avatar to 0: the stack falls apart into a row."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "stack",
+      "children": [
+        { "tag": "span", "cls": "avatar a", "text": "AL" },
+        { "tag": "span", "cls": "avatar b", "text": "KM" },
+        { "tag": "span", "cls": "avatar c", "text": "JR" },
+        { "tag": "span", "cls": "avatar d", "text": "+4" }
+      ]
+    }
+  ],
+  "css": ".stack {\n  display: flex;\n  padding: 24px;\n}\n\n.avatar {\n  position: relative;\n  display: grid;\n  place-items: center;\n  width: 56px;\n  height: 56px;\n  margin-left: -16px; /* overlap the previous one */\n  border: 3px solid #fafafa;\n  border-radius: 50%;\n  background: #3f3f46;\n  color: #fafafa;\n  font-weight: 600;\n}\n\n.stack .avatar:first-child {\n  margin-left: 0;\n}\n\n.b { z-index: 3; background: #f97316; }\n.c { z-index: 2; background: #2563eb; }\n.d { z-index: 1; background: #16a34a; }\n"
+}

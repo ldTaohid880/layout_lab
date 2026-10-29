@@ -1,0 +1,33 @@
+{
+  "id": "chips-wrap",
+  "title": "Wrapping tags, centred per line",
+  "category": "Flexbox",
+  "level": "beginner",
+  "summary": "flex-wrap with justify-content: center keeps every line of tags centred, with gap on both axes.",
+  "concepts": ["display", "flex-wrap", "justify-content", "gap", "padding"],
+  "explanation": [
+    "flex-wrap: wrap lets tags move onto a new line when the row is full. Each line is then a separate flex line, and justify-content applies to each one.",
+    "justify-content: center centres every line, so a short last line does not hug the left edge. gap handles the spacing on both axes, which is why it replaces the old trick of margin on every tag."
+  ],
+  "tryThis": [
+    "Remove justify-content: center: the last line sticks to the left.",
+    "Change justify-content to space-between: the tags on each line spread to the edges.",
+    "Set gap to 4px and see how tight the lines get."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "chips",
+      "children": [
+        { "tag": "span", "cls": "chip", "text": "Design" },
+        { "tag": "span", "cls": "chip", "text": "Typography" },
+        { "tag": "span", "cls": "chip", "text": "Layout" },
+        { "tag": "span", "cls": "chip", "text": "Motion" },
+        { "tag": "span", "cls": "chip", "text": "Accessibility" },
+        { "tag": "span", "cls": "chip", "text": "Performance" },
+        { "tag": "span", "cls": "chip", "text": "Testing" }
+      ]
+    }
+  ],
+  "css": ".chips {\n  display: flex;\n  flex-wrap: wrap;\n  justify-content: center;\n  gap: 8px;\n  max-width: 320px;\n  padding: 12px;\n  border: 2px dashed #a1a1aa;\n}\n\n.chip {\n  padding: 4px 12px;\n  border: 1px solid #f97316;\n  border-radius: 999px;\n  background: #fed7aa;\n}\n"
+}

@@ -1,0 +1,33 @@
+{
+  "id": "center-grid",
+  "title": "Center with one grid line",
+  "category": "Grid",
+  "level": "beginner",
+  "summary": "place-items: center is the shortest centering recipe there is.",
+  "concepts": [
+    "display",
+    "place-items"
+  ],
+  "explanation": [
+    "place-items is shorthand for align-items and justify-items. On a grid container with a single cell, it centers the child in that cell, both ways.",
+    "Unlike the flexbox version, this also centers several children stacked on top of each other: each gets its own row."
+  ],
+  "tryThis": [
+    "Add a second child to .stage and see it stack.",
+    "Try place-items: end start."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "stage",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "Centered by grid"
+        }
+      ]
+    }
+  ],
+  "css": ".stage {\n  display: grid;\n  place-items: center;\n  min-height: 320px;\n  border: 2px dashed #a1a1aa;\n}\n\n.card {\n  padding: 24px 32px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n"
+}

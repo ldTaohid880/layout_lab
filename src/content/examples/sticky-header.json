@@ -1,0 +1,76 @@
+{
+  "id": "sticky-header",
+  "title": "Sticky header",
+  "category": "Positioning",
+  "level": "beginner",
+  "summary": "position: sticky with top: 0 inside a scrolling container.",
+  "concepts": [
+    "position",
+    "top",
+    "overflow",
+    "z-index"
+  ],
+  "explanation": [
+    "A sticky element behaves like a normal one until its scroll container scrolls it to the given offset, then it sticks there.",
+    "It needs an offset (top: 0) and it only sticks within its parent, so the parent must be taller than it.",
+    "If an ancestor between it and the scroller has overflow: hidden, sticky silently stops working."
+  ],
+  "tryThis": [
+    "Scroll the box in the preview.",
+    "Remove top: 0 and scroll again."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "scroller",
+      "children": [
+        {
+          "tag": "header",
+          "cls": "bar",
+          "text": "Sticky header"
+        },
+        {
+          "tag": "p",
+          "cls": "para",
+          "text": "Paragraph 1: scroll this box to see the header stick."
+        },
+        {
+          "tag": "p",
+          "cls": "para",
+          "text": "Paragraph 2: scroll this box to see the header stick."
+        },
+        {
+          "tag": "p",
+          "cls": "para",
+          "text": "Paragraph 3: scroll this box to see the header stick."
+        },
+        {
+          "tag": "p",
+          "cls": "para",
+          "text": "Paragraph 4: scroll this box to see the header stick."
+        },
+        {
+          "tag": "p",
+          "cls": "para",
+          "text": "Paragraph 5: scroll this box to see the header stick."
+        },
+        {
+          "tag": "p",
+          "cls": "para",
+          "text": "Paragraph 6: scroll this box to see the header stick."
+        },
+        {
+          "tag": "p",
+          "cls": "para",
+          "text": "Paragraph 7: scroll this box to see the header stick."
+        },
+        {
+          "tag": "p",
+          "cls": "para",
+          "text": "Paragraph 8: scroll this box to see the header stick."
+        }
+      ]
+    }
+  ],
+  "css": ".scroller {\n  height: 320px;\n  overflow-y: auto;\n  border: 2px dashed #a1a1aa;\n}\n\n.bar {\n  position: sticky;\n  top: 0;\n  z-index: 1;\n  padding: 12px 16px;\n  background: #18181b;\n  color: #fafafa;\n}\n\n.para {\n  margin: 16px;\n}\n"
+}

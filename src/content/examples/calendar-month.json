@@ -1,0 +1,44 @@
+{
+  "id": "calendar-month",
+  "title": "Calendar month grid",
+  "category": "Grid",
+  "level": "intermediate",
+  "summary": "Seven equal columns for the week, with grid-column placing the first day on the right weekday.",
+  "concepts": ["display", "grid-template-columns", "grid-column", "gap", "grid-auto-rows"],
+  "explanation": [
+    "repeat(7, 1fr) makes seven equal columns, one per weekday. Every day then auto-places into the next free cell, filling the month left to right, top to bottom.",
+    "The month rarely starts on Monday. grid-column: 3 on the first day puts it in the Wednesday column, and the rest of the days flow on from there. Set the column to match the real weekday and the calendar lines up without any extra markup."
+  ],
+  "tryThis": [
+    "Change the .start rule to grid-column: 1: the first day moves back to Monday.",
+    "Remove grid-auto-rows: every row shrinks to fit its content, so the rows no longer match.",
+    "Change repeat(7, 1fr) to repeat(5, 1fr) and watch the weekends wrap onto new rows."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "cal",
+      "children": [
+        { "tag": "div", "cls": "dow", "text": "Mon" },
+        { "tag": "div", "cls": "dow", "text": "Tue" },
+        { "tag": "div", "cls": "dow", "text": "Wed" },
+        { "tag": "div", "cls": "dow", "text": "Thu" },
+        { "tag": "div", "cls": "dow", "text": "Fri" },
+        { "tag": "div", "cls": "dow", "text": "Sat" },
+        { "tag": "div", "cls": "dow", "text": "Sun" },
+        { "tag": "div", "cls": "day start", "text": "1" },
+        { "tag": "div", "cls": "day", "text": "2" },
+        { "tag": "div", "cls": "day", "text": "3" },
+        { "tag": "div", "cls": "day", "text": "4" },
+        { "tag": "div", "cls": "day", "text": "5" },
+        { "tag": "div", "cls": "day", "text": "6" },
+        { "tag": "div", "cls": "day", "text": "7" },
+        { "tag": "div", "cls": "day", "text": "8" },
+        { "tag": "div", "cls": "day today", "text": "9" },
+        { "tag": "div", "cls": "day", "text": "10" },
+        { "tag": "div", "cls": "day", "text": "11" }
+      ]
+    }
+  ],
+  "css": ".cal {\n  display: grid;\n  grid-template-columns: repeat(7, 1fr);\n  grid-auto-rows: 44px;\n  gap: 4px;\n  max-width: 420px;\n  padding: 12px;\n  border: 1px solid #d4d4d8;\n  border-radius: 8px;\n}\n\n.dow {\n  align-self: end;\n  text-align: center;\n  font-size: 12px;\n  font-weight: 600;\n  color: #52525b;\n}\n\n.day {\n  display: grid;\n  place-items: center;\n  border: 1px solid #e4e4e7;\n  border-radius: 6px;\n  background: #fafafa;\n}\n\n.start {\n  grid-column: 3; /* the first day falls on Wednesday */\n}\n\n.today {\n  background: #f97316;\n  color: #fff;\n  border-color: #f97316;\n}\n"
+}

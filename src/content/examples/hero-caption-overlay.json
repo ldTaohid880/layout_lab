@@ -1,0 +1,28 @@
+{
+  "id": "hero-caption-overlay",
+  "title": "Caption over a hero image",
+  "category": "Positioning",
+  "level": "beginner",
+  "summary": "An absolute caption with inset: auto 0 0 0 sits across the bottom of a fixed-height image box.",
+  "concepts": ["position", "inset", "padding", "overflow", "height"],
+  "explanation": [
+    "The hero is a fixed-height box with position: relative and overflow: hidden. The image fills it and any extra is clipped, so the box never grows with its content.",
+    "The caption is absolute with inset: auto 0 0 0: no top offset, and zero offsets on the right, bottom and left. It stretches across the full width and sits on the bottom edge, over the image."
+  ],
+  "tryThis": [
+    "Remove overflow: hidden from .hero and make the caption text longer: the text can spill out the bottom.",
+    "Change inset to 0 0 0 0: the caption now covers the whole image.",
+    "Change the height of .hero to 120px and see the caption stay pinned to the bottom."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "hero",
+      "children": [
+        { "tag": "img", "cls": "photo", "attrs": { "alt": "" } },
+        { "tag": "div", "cls": "caption", "text": "Mountain trail, early morning" }
+      ]
+    }
+  ],
+  "css": ".hero {\n  position: relative;\n  height: 200px;\n  max-width: 420px;\n  overflow: hidden; /* clip the image to the box */\n  border-radius: 8px;\n  background: #3f3f46;\n}\n\n.photo {\n  display: block;\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  background: #fed7aa;\n}\n\n.caption {\n  position: absolute;\n  inset: auto 0 0 0; /* stretch along the bottom edge */\n  padding: 12px 16px;\n  background: rgb(24 24 27 / 0.7);\n  color: #fafafa;\n}\n"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "baseline-label-value",
+  "title": "Lining up text of different sizes",
+  "category": "Flexbox",
+  "level": "intermediate",
+  "summary": "align-items: baseline lines up the text inside items of different font sizes, where center would not.",
+  "concepts": ["display", "align-items", "align-self", "gap"],
+  "explanation": [
+    "Items with different font sizes look misaligned with align-items: center, because their boxes are centred, not their text. baseline lines up the first line of text in each item instead.",
+    "Baseline alignment is for text. It works well for a label next to a large value, and it is a good fit for form-like rows where the labels are small and the values are big."
+  ],
+  "tryThis": [
+    "Change align-items to center and compare how the small label sits against the value.",
+    "Set align-self: flex-end on .unit: it drops to the bottom edge, breaking the shared baseline.",
+    "Change the value's font size and see the baseline stay in place."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "row",
+      "children": [
+        { "tag": "span", "cls": "label", "text": "Total" },
+        { "tag": "span", "cls": "value", "text": "1,284" },
+        { "tag": "span", "cls": "unit", "text": "requests" }
+      ]
+    }
+  ],
+  "css": ".row {\n  display: flex;\n  align-items: baseline; /* align the text, not the boxes */\n  gap: 8px;\n  padding: 12px;\n  border: 2px dashed #a1a1aa;\n}\n\n.label {\n  font-size: 12px;\n  color: #52525b;\n  text-transform: uppercase;\n}\n\n.value {\n  font-size: 32px;\n  font-weight: 700;\n}\n\n.unit {\n  font-size: 14px;\n}\n"
+}

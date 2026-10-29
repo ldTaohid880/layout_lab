@@ -1,0 +1,34 @@
+{
+  "id": "badge",
+  "title": "Notification badge",
+  "category": "Positioning",
+  "level": "beginner",
+  "summary": "An absolute child placed relative to a position: relative parent.",
+  "concepts": [
+    "position",
+    "top",
+    "inset"
+  ],
+  "explanation": [
+    "position: absolute takes an element out of the flow and places it relative to its nearest positioned ancestor. position: relative on the avatar makes it that ancestor without moving it.",
+    "Negative offsets let the badge hang over the corner."
+  ],
+  "tryThis": [
+    "Remove position: relative from .avatar: the badge jumps to the page corner.",
+    "Replace top and right with inset: auto -6px -6px auto."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "avatar",
+      "children": [
+        {
+          "tag": "span",
+          "cls": "badge",
+          "text": "3"
+        }
+      ]
+    }
+  ],
+  "css": ".avatar {\n  position: relative;\n  display: grid;\n  place-items: center;\n  width: 64px;\n  height: 64px;\n  margin: 32px;\n  border-radius: 12px;\n  background: #3f3f46;\n}\n\n.badge {\n  position: absolute;\n  top: -6px;\n  right: -6px;\n  min-width: 22px;\n  padding: 2px 6px;\n  border-radius: 999px;\n  background: #f97316;\n  color: #fff;\n  font-size: 12px;\n  text-align: center;\n}\n"
+}

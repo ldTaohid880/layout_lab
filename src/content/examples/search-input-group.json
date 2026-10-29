@@ -1,0 +1,27 @@
+{
+  "id": "search-input-group",
+  "title": "Search bar with a growing field",
+  "category": "Flexbox",
+  "level": "beginner",
+  "summary": "flex-grow: 1 on the field fills the row, while the button keeps its size.",
+  "concepts": ["display", "flex-grow", "flex-shrink", "gap"],
+  "explanation": [
+    "The field has flex-grow: 1, so it takes all the free width after the button is placed. The button has flex-grow at its default of 0, so it never stretches.",
+    "flex-shrink: 0 on the button stops it squeezing when the container gets narrow. Without it the button's text can wrap or get clipped before the field gives up any space."
+  ],
+  "tryThis": [
+    "Narrow the preview to 280px and remove flex-shrink: 0 from .go.",
+    "Set flex-grow: 2 on .field: nothing changes visibly here, because there is only one growing item."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "bar",
+      "children": [
+        { "tag": "span", "cls": "field", "text": "Search the docs…" },
+        { "tag": "button", "cls": "go", "text": "Search" }
+      ]
+    }
+  ],
+  "css": ".bar {\n  display: flex;\n  gap: 8px;\n  max-width: 420px;\n  padding: 12px;\n  border: 2px dashed #a1a1aa;\n}\n\n.field {\n  flex-grow: 1;\n  padding: 8px 12px;\n  background: #fff;\n  border: 1px solid #a1a1aa;\n  border-radius: 6px;\n  color: #71717a;\n}\n\n.go {\n  flex-shrink: 0; /* keep the label whole */\n  padding: 8px 14px;\n  border: 0;\n  border-radius: 6px;\n  background: #f97316;\n  color: #fff;\n}\n"
+}

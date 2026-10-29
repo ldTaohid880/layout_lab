@@ -1,0 +1,28 @@
+{
+  "id": "code-block-scroll",
+  "title": "Code block that scrolls sideways",
+  "category": "Sizing & overflow",
+  "level": "intermediate",
+  "summary": "overflow-x: auto on the block, and min-width: 0 on its flex parent, so a long token scrolls instead of widening the page.",
+  "concepts": ["overflow", "min-width", "padding", "display", "flex"],
+  "explanation": [
+    "A long unbroken token does not wrap, so it runs past the edge of its box. overflow-x: auto gives the block its own scrollbar, so only the block scrolls and the page layout stays put.",
+    "The block sits in a flex row next to a label. Flex items default to min-width: auto, which lets the block grow to fit its content and push the label off screen. min-width: 0 stops that, so the block keeps the space it was given."
+  ],
+  "tryThis": [
+    "Remove overflow-x: auto from .code: the long token spills out of the frame.",
+    "Remove min-width: 0 from .code: the whole row grows wider than the frame.",
+    "Shorten the token to a few words and watch the scrollbar disappear."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "row",
+      "children": [
+        { "tag": "span", "cls": "label", "text": "Config" },
+        { "tag": "div", "cls": "code", "text": "const_reporting_pipeline_default_configuration_value_for_all_regions_without_any_spaces_at_all_in_this_long_identifier" }
+      ]
+    }
+  ],
+  "css": ".row {\n  display: flex;\n  gap: 12px;\n  max-width: 360px;\n  padding: 12px;\n  border: 2px dashed #a1a1aa;\n}\n\n.label {\n  flex-shrink: 0;\n  font-weight: 600;\n}\n\n.code {\n  flex: 1;\n  min-width: 0; /* let the block shrink below its content */\n  overflow-x: auto;\n  padding: 8px 10px;\n  background: #18181b;\n  color: #fafafa;\n  border-radius: 6px;\n  font-family: monospace;\n}\n"
+}

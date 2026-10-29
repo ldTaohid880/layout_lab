@@ -1,0 +1,67 @@
+{
+  "id": "kanban-board",
+  "title": "Kanban board with scrolling columns",
+  "category": "Flexbox",
+  "level": "hard",
+  "summary": "Fixed-width columns in a horizontal row, each scrolling on its own when its cards overflow.",
+  "concepts": [
+    "display",
+    "flex",
+    "flex-direction",
+    "gap",
+    "align-items",
+    "overflow",
+    "height",
+    "min-width",
+    "padding"
+  ],
+  "explanation": [
+    "The board is a flex row that scrolls sideways with overflow-x: auto. Each column is flex: 0 0 200px, so it keeps its width instead of shrinking to fit, and the row overflows the board.",
+    "Each column is also a flex column with a fixed height and overflow-y: auto. A column with many cards scrolls by itself while the others stay put. For that to work the column needs a definite height, and min-width: 0 stops long card titles from forcing it wider.",
+    "align-items: flex-start on the board keeps columns at their own height. Without it, short columns would stretch to match the longest one, and the background of each would look like a tall empty box."
+  ],
+  "tryThis": [
+    "Remove overflow-y: auto from .column: the cards spill out of the grey panel instead of scrolling.",
+    "Change flex to 1 1 200px: the columns now shrink to share the width and the board stops scrolling sideways.",
+    "Add more .task cards to Todo and watch only that column scroll."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "board",
+      "children": [
+        {
+          "tag": "section",
+          "cls": "column",
+          "children": [
+            { "tag": "p", "cls": "col-title", "text": "Todo" },
+            { "tag": "div", "cls": "task", "text": "Write onboarding guide" },
+            { "tag": "div", "cls": "task", "text": "Fix sticky header on Safari" },
+            { "tag": "div", "cls": "task", "text": "Audit colour contrast" },
+            { "tag": "div", "cls": "task", "text": "Draft release notes" },
+            { "tag": "div", "cls": "task", "text": "Review pricing copy" }
+          ]
+        },
+        {
+          "tag": "section",
+          "cls": "column",
+          "children": [
+            { "tag": "p", "cls": "col-title", "text": "Doing" },
+            { "tag": "div", "cls": "task", "text": "Build settings page" },
+            { "tag": "div", "cls": "task", "text": "Wire up CSV export" }
+          ]
+        },
+        {
+          "tag": "section",
+          "cls": "column",
+          "children": [
+            { "tag": "p", "cls": "col-title", "text": "Done" },
+            { "tag": "div", "cls": "task", "text": "Set up CI" },
+            { "tag": "div", "cls": "task", "text": "Design review" }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".board {\n  display: flex;\n  align-items: flex-start; /* columns keep their own height */\n  gap: 12px;\n  padding: 12px;\n  overflow-x: auto;\n}\n\n.column {\n  flex: 0 0 200px;\n  min-width: 0;\n  height: 280px;\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n  padding: 12px;\n  overflow-y: auto; /* scrolls on its own */\n  background: #f4f4f5;\n  border-radius: 8px;\n}\n\n.col-title {\n  margin: 0;\n  font-weight: 600;\n}\n\n.task {\n  flex-shrink: 0;\n  padding: 10px;\n  background: #fff;\n  border: 1px solid #d4d4d8;\n  border-radius: 6px;\n}\n"
+}

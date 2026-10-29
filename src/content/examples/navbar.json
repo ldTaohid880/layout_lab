@@ -1,0 +1,89 @@
+{
+  "id": "navbar",
+  "title": "Navigation bar",
+  "category": "Flexbox",
+  "level": "beginner",
+  "summary": "Logo left, links next to it, button pushed right with margin-left: auto.",
+  "concepts": [
+    "display",
+    "align-items",
+    "gap",
+    "margin"
+  ],
+  "explanation": [
+    "The nav is a flex row; align-items: center lines up items of different heights, and gap spaces them without margins on every child.",
+    "margin-left: auto on the last item soaks up all free space to its left, pushing it to the far edge. It is the flexbox way to split a row into groups.",
+    "The list is itself a flex container: flex layouts nest freely."
+  ],
+  "tryThis": [
+    "Move margin-left: auto from .cta to .links.",
+    "Shrink the preview to 375px and add flex-wrap: wrap to .nav."
+  ],
+  "items": [
+    {
+      "tag": "nav",
+      "cls": "nav",
+      "children": [
+        {
+          "tag": "span",
+          "cls": "logo",
+          "text": "Brand"
+        },
+        {
+          "tag": "ul",
+          "cls": "links",
+          "children": [
+            {
+              "tag": "li",
+              "cls": "",
+              "children": [
+                {
+                  "tag": "a",
+                  "cls": "",
+                  "text": "Docs",
+                  "attrs": {
+                    "href": "#"
+                  }
+                }
+              ]
+            },
+            {
+              "tag": "li",
+              "cls": "",
+              "children": [
+                {
+                  "tag": "a",
+                  "cls": "",
+                  "text": "Pricing",
+                  "attrs": {
+                    "href": "#"
+                  }
+                }
+              ]
+            },
+            {
+              "tag": "li",
+              "cls": "",
+              "children": [
+                {
+                  "tag": "a",
+                  "cls": "",
+                  "text": "Blog",
+                  "attrs": {
+                    "href": "#"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "button",
+          "cls": "cta",
+          "text": "Sign in"
+        }
+      ]
+    }
+  ],
+  "css": ".nav {\n  display: flex;\n  align-items: center;\n  gap: 24px;\n  padding: 12px 20px;\n  background: #18181b;\n  color: #fafafa;\n}\n\n.logo {\n  font-weight: 700;\n}\n\n.links {\n  display: flex;\n  gap: 16px;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n.links a {\n  color: inherit;\n  text-decoration: none;\n}\n\n.cta {\n  margin-left: auto; /* eats the free space */\n  padding: 6px 12px;\n  border: 0;\n  border-radius: 4px;\n  background: #f97316;\n  color: #fff;\n}\n"
+}

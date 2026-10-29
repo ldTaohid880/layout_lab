@@ -1,0 +1,29 @@
+{
+  "id": "segmented-control",
+  "title": "Segmented control with equal buttons",
+  "category": "Flexbox",
+  "level": "beginner",
+  "summary": "flex: 1 on each button shares the row equally, so the segments line up whatever their labels.",
+  "concepts": ["display", "flex", "gap", "padding"],
+  "explanation": [
+    "Each segment has flex: 1, so the row is shared out equally between them. Without it each button would be only as wide as its label, and the segments would be uneven.",
+    "flex: 1 is shorthand for flex: 1 1 0. The basis of 0 means the free space is split evenly, so a long label does not make its button wider than the others."
+  ],
+  "tryThis": [
+    "Remove flex: 1 from .seg: the buttons shrink to their labels and the control looks ragged.",
+    "Give the middle segment flex: 2: it becomes twice as wide as the others.",
+    "Add a fourth segment with a longer label and watch the others shrink to match."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "control",
+      "children": [
+        { "tag": "button", "cls": "seg", "text": "Day" },
+        { "tag": "button", "cls": "seg active", "text": "Week" },
+        { "tag": "button", "cls": "seg", "text": "Month" }
+      ]
+    }
+  ],
+  "css": ".control {\n  display: flex;\n  gap: 0;\n  max-width: 320px;\n  padding: 4px;\n  border: 1px solid #a1a1aa;\n  border-radius: 8px;\n  background: #f4f4f5;\n}\n\n.seg {\n  flex: 1; /* share the row equally */\n  padding: 8px 12px;\n  border: 0;\n  border-radius: 6px;\n  background: transparent;\n}\n\n.active {\n  background: #18181b;\n  color: #fafafa;\n}\n"
+}

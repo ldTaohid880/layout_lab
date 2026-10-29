@@ -1,0 +1,28 @@
+{
+  "id": "stack-with-gap",
+  "title": "Vertical stack with gap",
+  "category": "Flexbox",
+  "level": "beginner",
+  "summary": "A flex column with gap spaces items evenly, with no margins on the children.",
+  "concepts": ["display", "flex-direction", "gap"],
+  "explanation": [
+    "flex-direction: column turns the main axis vertical, so children stack top to bottom. Everything else about flexbox still applies.",
+    "gap puts space only between items. Margins on each child would also add space above the first and below the last, which is the usual reason spacing looks uneven."
+  ],
+  "tryThis": [
+    "Remove flex-direction: column: the items sit side by side.",
+    "Replace gap with margin-bottom: 12px on .item and see the extra space after the last one."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "stack",
+      "children": [
+        { "tag": "div", "cls": "item", "text": "Title" },
+        { "tag": "div", "cls": "item", "text": "Description" },
+        { "tag": "div", "cls": "item", "text": "Actions" }
+      ]
+    }
+  ],
+  "css": ".stack {\n  display: flex;\n  flex-direction: column;\n  gap: 12px; /* between items only */\n  max-width: 280px;\n  padding: 12px;\n  border: 2px dashed #a1a1aa;\n}\n\n.item {\n  padding: 10px 14px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n"
+}

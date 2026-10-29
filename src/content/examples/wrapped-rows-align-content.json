@@ -1,0 +1,32 @@
+{
+  "id": "wrapped-rows-align-content",
+  "title": "Packing wrapped rows in a tall box",
+  "category": "Flexbox",
+  "level": "intermediate",
+  "summary": "align-content spreads or packs the wrapped lines of a flex container that has spare height.",
+  "concepts": ["display", "flex-wrap", "align-content", "gap", "height"],
+  "explanation": [
+    "align-content works on the lines of a wrapping flex container, not on the items within a line. It only matters when the container is taller than its lines need, which is why this box has a fixed height.",
+    "align-content: space-between pushes the first line to the top and the last to the bottom, with the gaps between lines sharing the rest. flex-start packs them at the top instead, leaving the space empty below."
+  ],
+  "tryThis": [
+    "Change align-content to flex-start: all the lines pack together at the top.",
+    "Change align-content to center: the lines group in the middle.",
+    "Remove the fixed height: the container shrinks to fit the lines and align-content has no effect."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "box",
+      "children": [
+        { "tag": "span", "cls": "tag", "text": "Draft" },
+        { "tag": "span", "cls": "tag", "text": "Review" },
+        { "tag": "span", "cls": "tag", "text": "Approved" },
+        { "tag": "span", "cls": "tag", "text": "Scheduled" },
+        { "tag": "span", "cls": "tag", "text": "Published" },
+        { "tag": "span", "cls": "tag", "text": "Archived" }
+      ]
+    }
+  ],
+  "css": ".box {\n  display: flex;\n  flex-wrap: wrap;\n  align-content: space-between; /* spread the lines top to bottom */\n  gap: 8px;\n  height: 220px;\n  max-width: 300px;\n  padding: 12px;\n  border: 2px dashed #a1a1aa;\n}\n\n.tag {\n  padding: 4px 10px;\n  border: 1px solid #f97316;\n  border-radius: 999px;\n  background: #fed7aa;\n}\n"
+}

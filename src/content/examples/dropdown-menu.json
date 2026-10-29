@@ -1,0 +1,37 @@
+{
+  "id": "dropdown-menu",
+  "title": "Dropdown menu below a button",
+  "category": "Positioning",
+  "level": "intermediate",
+  "summary": "An absolute menu with top: 100% opens directly under its trigger, without pushing the content below it.",
+  "concepts": ["position", "top", "z-index", "margin", "padding"],
+  "explanation": [
+    "The wrapper is position: relative, so the menu is placed against it. top: 100% puts the menu's top edge at the bottom of the wrapper, which is just under the button.",
+    "The menu is absolute, so it floats above the content that follows. z-index: 1 keeps it on top of the cards below. The menu is always open here; a real one would toggle it on click."
+  ],
+  "tryThis": [
+    "Remove position: relative from .wrap: the menu jumps to the top-left of the preview.",
+    "Change top to 100% to 50%: the menu now overlaps the button.",
+    "Remove z-index from .menu and see whether the cards below cover it."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "wrap",
+      "children": [
+        { "tag": "button", "cls": "trigger", "text": "Options ▾" },
+        {
+          "tag": "ul",
+          "cls": "menu",
+          "children": [
+            { "tag": "li", "text": "Rename" },
+            { "tag": "li", "text": "Duplicate" },
+            { "tag": "li", "text": "Delete" }
+          ]
+        }
+      ]
+    },
+    { "tag": "div", "cls": "card", "text": "The content below the menu stays where it is." }
+  ],
+  "css": ".wrap {\n  position: relative;\n  display: inline-block;\n  margin: 12px;\n}\n\n.trigger {\n  padding: 8px 14px;\n  border: 1px solid #a1a1aa;\n  border-radius: 6px;\n  background: #fff;\n}\n\n.menu {\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 1;\n  min-width: 160px;\n  margin: 4px 0 0;\n  padding: 6px 0;\n  list-style: none;\n  background: #fff;\n  border: 1px solid #d4d4d8;\n  border-radius: 6px;\n}\n\n.menu li {\n  padding: 8px 14px;\n}\n\n.card {\n  margin: 12px;\n  padding: 12px;\n  background: #f4f4f5;\n  border-radius: 6px;\n}\n"
+}

@@ -1,0 +1,35 @@
+{
+  "id": "media-card-responsive",
+  "title": "Card that stacks on phones",
+  "category": "Flexbox",
+  "level": "intermediate",
+  "summary": "A row of image and text that switches to a column below 520px, with one media query changing flex-direction.",
+  "concepts": ["display", "flex-direction", "align-items", "flex", "flex-shrink", "gap"],
+  "explanation": [
+    "On wide screens the card is a row: the image keeps its size with flex-shrink: 0, and the text takes the rest with flex: 1. align-items: center keeps the image vertically centred against the text.",
+    "Below 520px a single media query switches flex-direction to column. The image now sits above the text, and align-items: stretch lets the text use the full card width. Nothing else in the markup changes."
+  ],
+  "tryThis": [
+    "Narrow the preview below 520px and watch the card stack.",
+    "Remove flex-shrink: 0 from .thumb and narrow the preview: the image squeezes.",
+    "Change align-items to flex-start on the wide layout: the image sits at the top of the text instead of its middle."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "card",
+      "children": [
+        { "tag": "img", "cls": "thumb", "attrs": { "alt": "" } },
+        {
+          "tag": "div",
+          "cls": "body",
+          "children": [
+            { "tag": "p", "cls": "title", "text": "Shared workspace" },
+            { "tag": "p", "cls": "text", "text": "Invite your team, share templates and keep every project in one place." }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".card {\n  display: flex;\n  align-items: center;\n  gap: 16px;\n  max-width: 480px;\n  padding: 16px;\n  border: 1px solid #d4d4d8;\n  border-radius: 8px;\n}\n\n.thumb {\n  flex-shrink: 0;\n  width: 120px;\n  height: 120px;\n  border-radius: 6px;\n  background: #fed7aa;\n  object-fit: cover;\n}\n\n.body {\n  flex: 1;\n  min-width: 0;\n}\n\n.title,\n.text {\n  margin: 0;\n}\n\n.title {\n  font-weight: 600;\n}\n\n.text {\n  margin-top: 6px;\n  color: #52525b;\n}\n\n@media (max-width: 520px) {\n  .card {\n    flex-direction: column;\n    align-items: stretch;\n  }\n}\n"
+}

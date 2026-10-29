@@ -1,0 +1,69 @@
+{
+  "id": "scroll-strip",
+  "title": "Horizontal scroll strip",
+  "category": "Sizing & overflow",
+  "level": "intermediate",
+  "summary": "Non-shrinking flex items in an overflow-x container, with scroll snapping.",
+  "concepts": [
+    "overflow",
+    "flex",
+    "flex-shrink"
+  ],
+  "explanation": [
+    "Flex items normally shrink to fit. flex: 0 0 160px turns that off, so the row becomes wider than its container.",
+    "overflow-x: auto then adds a scrollbar only when needed, and scroll-snap lines tiles up with the edge after each swipe."
+  ],
+  "tryThis": [
+    "Change flex to 1 1 160px.",
+    "Remove overflow-x: auto."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "strip",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "tile",
+          "text": "Tile 1"
+        },
+        {
+          "tag": "div",
+          "cls": "tile",
+          "text": "Tile 2"
+        },
+        {
+          "tag": "div",
+          "cls": "tile",
+          "text": "Tile 3"
+        },
+        {
+          "tag": "div",
+          "cls": "tile",
+          "text": "Tile 4"
+        },
+        {
+          "tag": "div",
+          "cls": "tile",
+          "text": "Tile 5"
+        },
+        {
+          "tag": "div",
+          "cls": "tile",
+          "text": "Tile 6"
+        },
+        {
+          "tag": "div",
+          "cls": "tile",
+          "text": "Tile 7"
+        },
+        {
+          "tag": "div",
+          "cls": "tile",
+          "text": "Tile 8"
+        }
+      ]
+    }
+  ],
+  "css": ".strip {\n  display: flex;\n  gap: 12px;\n  padding: 12px;\n  overflow-x: auto;\n  scroll-snap-type: x mandatory;\n}\n\n.tile {\n  flex: 0 0 160px;\n  height: 100px;\n  padding: 12px;\n  scroll-snap-align: start;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n"
+}

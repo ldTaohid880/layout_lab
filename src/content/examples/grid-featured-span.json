@@ -1,0 +1,32 @@
+{
+  "id": "grid-featured-span",
+  "title": "Featured card across the whole row",
+  "category": "Grid",
+  "level": "beginner",
+  "summary": "grid-column: 1 / -1 makes one item span every column, from the first line to the last.",
+  "concepts": ["display", "grid-template-columns", "grid-column", "gap"],
+  "explanation": [
+    "Grid lines are numbered from 1 at the start edge. The last line is -1, whatever the number of columns, so grid-column: 1 / -1 always runs from the first line to the last.",
+    "This works inside an auto-fit grid too. The featured card stays full width while the rest of the cards keep reflowing around it, so the layout still adapts to the preview width."
+  ],
+  "tryThis": [
+    "Change the featured card to grid-column: 1 / 3: it now spans two columns instead of the full row.",
+    "Remove grid-column from .featured and see it shrink back to one cell.",
+    "Narrow the preview and watch the cards reflow while the featured one keeps its full width."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "grid",
+      "children": [
+        { "tag": "div", "cls": "card featured", "text": "Featured: the new reports dashboard" },
+        { "tag": "div", "cls": "card", "text": "Card 1" },
+        { "tag": "div", "cls": "card", "text": "Card 2" },
+        { "tag": "div", "cls": "card", "text": "Card 3" },
+        { "tag": "div", "cls": "card", "text": "Card 4" },
+        { "tag": "div", "cls": "card", "text": "Card 5" }
+      ]
+    }
+  ],
+  "css": ".grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));\n  gap: 12px;\n  padding: 12px;\n}\n\n.card {\n  padding: 16px 12px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n\n.featured {\n  grid-column: 1 / -1; /* first line to last */\n  background: #18181b;\n  color: #fafafa;\n  border-color: #18181b;\n}\n"
+}

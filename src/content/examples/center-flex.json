@@ -1,0 +1,34 @@
+{
+  "id": "center-flex",
+  "title": "Center anything with flexbox",
+  "category": "Flexbox",
+  "level": "beginner",
+  "summary": "justify-content + align-items on the parent centers a child on both axes.",
+  "concepts": [
+    "display",
+    "justify-content",
+    "align-items"
+  ],
+  "explanation": [
+    "A flex container lays its children out along a main axis (a row by default). justify-content positions them along that axis; align-items positions them on the cross axis.",
+    "Both properties go on the parent, never on the child. The parent also needs height to center in: here min-height gives it room."
+  ],
+  "tryThis": [
+    "Change justify-content to flex-end or space-between.",
+    "Add flex-direction: column and notice the two properties swap roles."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "stage",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "Centered"
+        }
+      ]
+    }
+  ],
+  "css": ".stage {\n  display: flex;\n  justify-content: center; /* main axis */\n  align-items: center;     /* cross axis */\n  min-height: 320px;\n  border: 2px dashed #a1a1aa;\n}\n\n.card {\n  padding: 24px 32px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n"
+}

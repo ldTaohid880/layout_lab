@@ -1,0 +1,56 @@
+{
+  "id": "holy-grail",
+  "title": "Holy grail with grid areas",
+  "category": "Grid",
+  "level": "intermediate",
+  "summary": "Header, nav, main, aside and footer drawn as ASCII art with grid-template-areas.",
+  "concepts": [
+    "grid-template-areas",
+    "grid-area",
+    "grid-template-columns",
+    "grid-template-rows"
+  ],
+  "explanation": [
+    "grid-template-areas names cells; each child picks its spot with grid-area. The strings form a picture of the layout, so it reads like the result.",
+    "The rows are auto 1fr auto: header and footer take their content height and main takes the rest.",
+    "At narrow widths a media query redraws the picture as one column. The HTML order never changes."
+  ],
+  "tryThis": [
+    "Swap \"nav\" and \"aside\" in the areas to mirror the layout.",
+    "Set the preview to 375px to see the stacked version."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "page",
+      "children": [
+        {
+          "tag": "header",
+          "cls": "header",
+          "text": "Header"
+        },
+        {
+          "tag": "nav",
+          "cls": "nav",
+          "text": "Nav"
+        },
+        {
+          "tag": "main",
+          "cls": "main",
+          "text": "Main"
+        },
+        {
+          "tag": "section",
+          "cls": "aside",
+          "text": "Aside"
+        },
+        {
+          "tag": "footer",
+          "cls": "footer",
+          "text": "Footer"
+        }
+      ]
+    }
+  ],
+  "css": ".page {\n  display: grid;\n  grid-template-columns: 140px 1fr 140px;\n  grid-template-rows: auto 1fr auto;\n  grid-template-areas:\n    \"header header header\"\n    \"nav    main   aside\"\n    \"footer footer footer\";\n  gap: 8px;\n  min-height: 360px;\n}\n\n.header { grid-area: header; }\n.nav    { grid-area: nav; }\n.main   { grid-area: main; }\n.aside  { grid-area: aside; }\n.footer { grid-area: footer; }\n\n.header, .nav, .main, .aside, .footer {\n  padding: 12px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n\n@media (max-width: 600px) {\n  .page {\n    grid-template-columns: 1fr;\n    grid-template-areas: \"header\" \"nav\" \"main\" \"aside\" \"footer\";\n  }\n}\n"
+}
