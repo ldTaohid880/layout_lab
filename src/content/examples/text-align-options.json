@@ -1,0 +1,35 @@
+{
+  "id": "text-align-options",
+  "title": "Aligning text",
+  "category": "Typography",
+  "level": "beginner",
+  "summary": "start, center, end and justify on the same text, and why text-align does not move boxes.",
+  "concepts": ["text-align", "max-width"],
+  "explanation": [
+    "text-align lines up the text inside a box: start (left in English), center, end, or justify, which stretches the spaces so both edges are straight. Use start for paragraphs; center works for short headings and buttons, not for long text.",
+    "It aligns inline content only. It will not centre a box that has a width: that needs margin-inline: auto, flex or grid. People often put text-align: center on a card and wonder why the card stays left.",
+    "justify in a narrow column leaves big gaps between words, called rivers. Look at the fourth box."
+  ],
+  "tryThis": [
+    "Change .end's text-align to right, then add dir: rtl to it in Items: end follows the writing direction, right does not.",
+    "Add text-align: center to .grid: every box inherits it except those that set their own.",
+    "Narrow the grid's max-width to 400px and watch the justified box's gaps widen."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "grid",
+      "children": [
+        { "tag": "p", "cls": "box start", "text": "start: the ragged edge is on the right, which is easiest to read." },
+        { "tag": "p", "cls": "box center", "text": "center: fine for a short heading or a call to action." },
+        { "tag": "p", "cls": "box end", "text": "end: used for numbers, dates and captions on the far side." },
+        {
+          "tag": "p",
+          "cls": "box justify",
+          "text": "justify: both edges are straight, but a narrow column gets wide gaps between words."
+        }
+      ]
+    }
+  ],
+  "css": ".grid {\n  display: grid;\n  grid-template-columns: repeat(2, 1fr);\n  gap: 12px;\n  max-width: 560px;\n  padding: 24px;\n  font-family: system-ui, sans-serif;\n  line-height: 1.5;\n}\n\n.box {\n  margin: 0;\n  padding: 12px;\n  border: 1px solid #fdba74;\n  border-radius: 8px;\n}\n\n.start {\n  text-align: start;\n}\n\n.center {\n  text-align: center;\n}\n\n.end {\n  text-align: end;\n}\n\n.justify {\n  text-align: justify;\n}\n"
+}

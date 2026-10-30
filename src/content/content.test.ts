@@ -1,22 +1,63 @@
 import { lexer, parse } from 'css-tree'
 import { describe, expect, it } from 'vitest'
-import { CHALLENGES } from './challenges'
-import { DOCS, DOCS_BY_PROPERTY, searchDocs } from './docs'
-import { EXAMPLES } from './examples'
+import { CHALLENGES, CHALLENGE_FILES } from './challenges'
+import { CHALLENGE_ORDER } from './challenges/order'
+import { DOCS, DOCS_BY_PROPERTY, DOC_FILES, DOC_GROUPS, searchDocs } from './docs'
+import { DOC_ORDER } from './docs/order'
+import { EXAMPLES, EXAMPLES_BY_ID, EXAMPLE_MODULES } from './examples'
+import { EXAMPLE_PATH } from './examples/path'
 import { instantiate } from './instantiate'
 import manifestRaw from '../../public/references/manifest.json?raw'
 import { hashString, referenceKey, type ReferenceManifest } from './references'
-import { LEVELS, LEVEL_LABELS } from './types'
+import { LEVELS, LEVEL_LABELS, TRACKS } from './types'
 import { lintCss } from '@/features/editor/cssLint'
 import { collectElementClasses } from '@/features/tree/treeOps'
 import { itemsSchema } from '@/store/schema'
 
 describe('examples', () => {
-  it('has 51 examples with unique kebab-case ids', () => {
-    expect(EXAMPLES).toHaveLength(51)
+  it('has at least 55 examples with unique kebab-case ids', () => {
+    expect(EXAMPLES.length).toBeGreaterThanOrEqual(55)
     const ids = EXAMPLES.map((e) => e.id)
     expect(new Set(ids).size).toBe(ids.length)
     ids.forEach((id) => expect(id).toMatch(/^[a-z0-9]+(-[a-z0-9]+)*$/))
+  })
+
+  describe('learning path', () => {
+    const pathIds = EXAMPLE_PATH.flatMap((m) => m.examples)
+
+    it('places every example file exactly once', () => {
+      const missing = [...EXAMPLES_BY_ID.keys()].filter((id) => !pathIds.includes(id))
+      expect(missing, 'examples not in path.ts').toEqual([])
+      const repeated = pathIds.filter((id, i) => pathIds.indexOf(id) !== i)
+      expect(repeated, 'examples listed twice').toEqual([])
+    })
+
+    it('only names examples that exist', () => {
+      pathIds.forEach((id) => expect(EXAMPLES_BY_ID.has(id), id).toBe(true))
+    })
+
+    it('keeps each track in one block, in TRACKS order', () => {
+      const order = EXAMPLE_PATH.map((m) => TRACKS.indexOf(m.track))
+      order.forEach((i, m) => expect(i, EXAMPLE_PATH[m]!.id).toBeGreaterThanOrEqual(0))
+      expect(order).toEqual([...order].sort((a, b) => a - b))
+    })
+
+    it('has unique module ids and no empty modules', () => {
+      expect(new Set(EXAMPLE_PATH.map((m) => m.id)).size).toBe(EXAMPLE_PATH.length)
+      EXAMPLE_PATH.forEach((m) => expect(m.examples.length, m.id).toBeGreaterThan(0))
+    })
+
+    it('goes from beginner to hard inside each module', () => {
+      for (const module of EXAMPLE_MODULES) {
+        const ranks = module.lessons.map((l) => LEVELS.indexOf(l.example.level))
+        expect(ranks, module.id).toEqual([...ranks].sort((a, b) => a - b))
+      }
+    })
+
+    it('numbers lessons by module and position', () => {
+      expect(EXAMPLE_MODULES[0]!.lessons[0]!.number).toBe('1.1')
+      expect(EXAMPLE_MODULES[1]!.lessons[2]!.number).toBe('2.3')
+    })
   })
 
   describe.each(EXAMPLES.map((e) => [e.id, e] as const))('%s', (_id, example) => {
@@ -46,6 +87,24 @@ describe('docs', () => {
   it('covers at least 40 unique properties', () => {
     expect(DOCS.length).toBeGreaterThanOrEqual(40)
     expect(DOCS_BY_PROPERTY.size).toBe(DOCS.length)
+  })
+
+  it('lists every doc file exactly once, under its own group', () => {
+    const listed = DOC_GROUPS.flatMap((group) => DOC_ORDER[group])
+    const missing = [...DOC_FILES.keys()].filter((p) => !listed.includes(p))
+    expect(missing, 'docs not in docs/order.ts').toEqual([])
+    const repeated = listed.filter((p, i) => listed.indexOf(p) !== i)
+    expect(repeated, 'docs listed twice').toEqual([])
+    for (const group of DOC_GROUPS)
+      for (const property of DOC_ORDER[group]) {
+        expect(DOC_FILES.has(property), `docs/order.ts names a missing file: ${property}`).toBe(true)
+        expect(DOC_FILES.get(property)?.group, property).toBe(group)
+      }
+  })
+
+  it('names each file after its property', () => {
+    const files = Object.keys(import.meta.glob('./docs/*.json')).map((f) => f.slice('./docs/'.length, -5))
+    expect(files.sort()).toEqual(DOCS.map((d) => d.property).sort())
   })
 
   it('links related entries that exist', () => {
@@ -126,6 +185,20 @@ describe('challenges', () => {
   it('has unique ids', () => {
     expect(CHALLENGES.length).toBeGreaterThanOrEqual(11)
     expect(new Set(CHALLENGES.map((c) => c.id)).size).toBe(CHALLENGES.length)
+  })
+
+  it('lists every challenge file exactly once in order.ts', () => {
+    const missing = [...CHALLENGE_FILES.keys()].filter((id) => !CHALLENGE_ORDER.includes(id))
+    expect(missing, 'challenges not in challenges/order.ts').toEqual([])
+    const repeated = CHALLENGE_ORDER.filter((id, i) => CHALLENGE_ORDER.indexOf(id) !== i)
+    expect(repeated, 'challenges listed twice').toEqual([])
+    const unknown = CHALLENGE_ORDER.filter((id) => !CHALLENGE_FILES.has(id))
+    expect(unknown, 'challenges/order.ts names a missing file').toEqual([])
+  })
+
+  it('names each file after its id', () => {
+    const files = Object.keys(import.meta.glob('./challenges/*.json')).map((f) => f.slice('./challenges/'.length, -5))
+    expect(files.sort()).toEqual(CHALLENGES.map((c) => c.id).sort())
   })
 
   describe.each(CHALLENGES.map((c) => [c.id, c] as const))('%s', (_id, challenge) => {

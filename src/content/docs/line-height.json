@@ -1,0 +1,30 @@
+{
+  "property": "line-height",
+  "group": "Typography",
+  "appliesTo": "any element (inherited)",
+  "summary": "The height of each line of text, which sets the space between lines.",
+  "details": "A unitless number multiplies the element’s own font size, and children inherit the number, so it scales correctly for every size. Body text reads best around 1.4–1.6; large headings want less, around 1.1–1.2.",
+  "values": [
+    {
+      "value": "1.5",
+      "note": "Comfortable body text."
+    },
+    {
+      "value": "1.15",
+      "note": "Tight, for large headings."
+    },
+    {
+      "value": "normal",
+      "note": "Default: about 1.2, depends on the font."
+    },
+    {
+      "value": "24px",
+      "note": "Fixed: does not follow the font size."
+    }
+  ],
+  "gotcha": "A length (24px, 1.5em) is computed once and inherited as that length, so a larger heading inside gets cramped lines. Prefer the unitless number.",
+  "related": [
+    "font-size",
+    "max-width"
+  ]
+}

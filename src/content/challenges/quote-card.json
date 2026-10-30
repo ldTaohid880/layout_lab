@@ -1,0 +1,49 @@
+{
+  "id": "quote-card",
+  "title": "Quote card",
+  "level": "beginner",
+  "creative": true,
+  "summary": "Type design: a serif quotation with a giant decorative quote mark and a small-caps byline.",
+  "brief": [
+    "Style the quote as a card: a #fff7ed background, a 6px #f97316 bar down the left, 12px rounded corners and padding of 40px on top, 32px on the sides and 28px at the bottom.",
+    "A huge “ mark (Georgia, 96px, line-height 1, #fdba74) sits behind the text, 8px above the card’s top edge and 20px from its left edge. The quote is Georgia, 26px, italic, line-height 1.3, #431407, and is drawn over the mark.",
+    "The byline is 16px below: system-ui, 13px, semibold, uppercase, 0.15em letter-spacing, #c2410c, and starts with an em dash and a space that are not in the text."
+  ],
+  "concepts": [
+    "font-family",
+    "font-size",
+    "line-height",
+    "letter-spacing",
+    "text-transform",
+    "position"
+  ],
+  "hints": [
+    "The quote mark is not in the markup: it is .quote::before with content: \"“\". Give .quote position: relative and the mark position: absolute with top: -8px and left: 20px.",
+    "Absolutely positioned boxes paint over normal text. Give .quote-text position: relative too, and since it comes later in the page it is drawn on top of the mark.",
+    "The dash is .author::before { content: \"— \"; }. Uppercase and wide letter-spacing make the byline read like small caps."
+  ],
+  "items": [
+    {
+      "tag": "figure",
+      "cls": "quote",
+      "children": [
+        {
+          "tag": "blockquote",
+          "cls": "quote-text",
+          "text": "Make it work, make it right, make it fast."
+        },
+        {
+          "tag": "figcaption",
+          "cls": "author",
+          "text": "Kent Beck"
+        }
+      ]
+    }
+  ],
+  "css": ".quote {\n  width: 420px;\n  margin: 24px;\n}\n\n.quote-text {\n  margin: 0;\n}\n",
+  "solution": ".quote {\n  width: 420px;\n  margin: 24px;\n}\n\n.quote-text {\n  margin: 0;\n}\n\n/* ---- Solution ---- */\n.quote {\n  position: relative;\n  padding: 40px 32px 28px;\n  border-left: 6px solid #f97316;\n  border-radius: 12px;\n  background-color: #fff7ed;\n}\n\n.quote::before {\n  content: \"“\";\n  position: absolute;\n  top: -8px;\n  left: 20px;\n  color: #fdba74;\n  font-family: Georgia, serif;\n  font-size: 96px;\n  line-height: 1;\n}\n\n.quote-text {\n  position: relative;\n  color: #431407;\n  font-family: Georgia, \"Times New Roman\", serif;\n  font-size: 26px;\n  font-style: italic;\n  line-height: 1.3;\n}\n\n.author {\n  margin-top: 16px;\n  color: #c2410c;\n  font-family: system-ui, sans-serif;\n  font-size: 13px;\n  font-weight: 600;\n  letter-spacing: 0.15em;\n  text-transform: uppercase;\n}\n\n.author::before {\n  content: \"— \";\n}\n",
+  "solutionNotes": "Two fonts with clear jobs: a serif italic for the voice of the quote, a small, spaced-out sans for the label. The decorative mark lives in ::before, so the text stays clean for copying and screen readers. Positioned elements paint above unpositioned ones, so the mark would cover the quote; giving the quote position: relative puts it in the same layer, and being later in the page, it wins.",
+  "viewports": [
+    800
+  ]
+}

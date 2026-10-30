@@ -1,0 +1,30 @@
+{
+  "property": "white-space",
+  "group": "Typography",
+  "appliesTo": "any element (inherited)",
+  "summary": "Whether spaces collapse and whether text wraps.",
+  "details": "By default runs of spaces collapse to one and lines wrap at spaces. nowrap keeps everything on one line; pre keeps spaces and line breaks exactly as written, like code.",
+  "values": [
+    {
+      "value": "normal",
+      "note": "Default: collapse spaces, wrap lines."
+    },
+    {
+      "value": "nowrap",
+      "note": "Never wrap: stay on one line."
+    },
+    {
+      "value": "pre",
+      "note": "Keep spaces and line breaks; no wrapping."
+    },
+    {
+      "value": "pre-wrap",
+      "note": "Keep spaces and line breaks, but wrap long lines."
+    }
+  ],
+  "related": [
+    "text-overflow",
+    "overflow",
+    "overflow-wrap"
+  ]
+}

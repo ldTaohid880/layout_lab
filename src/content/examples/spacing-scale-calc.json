@@ -1,0 +1,59 @@
+{
+  "id": "spacing-scale-calc",
+  "title": "A spacing scale with calc()",
+  "category": "Cascade & variables",
+  "level": "intermediate",
+  "summary": "One --space unit multiplied with calc() sets every gap and padding, so changing one number rescales the page.",
+  "concepts": ["gap", "padding", "margin"],
+  "explanation": [
+    "--space: 4px is the base unit. Every spacing value is a multiple of it: calc(var(--space) * 4) is 16px. Consistent multiples are what make a layout feel tidy, and naming them stops random numbers like 13px creeping in.",
+    "Because the unit is a variable, a compact section only needs to redefine it. .compact sets --space: 2px, and everything inside shrinks to half: padding, gaps and margins together.",
+    "calc() needs spaces around + and - (calc(1px + 2px)); for * and / they are optional but help reading."
+  ],
+  "tryThis": [
+    "Change --space in .page to 6px: the whole page breathes more.",
+    "Remove the compact class from the second card in Items.",
+    "Write padding: calc(var(--space) * 2) calc(var(--space) * 6) on .tag: a wide, short pill."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "page",
+      "children": [
+        {
+          "tag": "article",
+          "cls": "card",
+          "children": [
+            { "tag": "h3", "cls": "title", "text": "Comfortable" },
+            { "tag": "p", "cls": "text", "text": "Spacing uses the page's 4px unit." },
+            {
+              "tag": "div",
+              "cls": "tags",
+              "children": [
+                { "tag": "span", "cls": "tag", "text": "css" },
+                { "tag": "span", "cls": "tag", "text": "calc" }
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "article",
+          "cls": "card compact",
+          "children": [
+            { "tag": "h3", "cls": "title", "text": "Compact" },
+            { "tag": "p", "cls": "text", "text": "Same rules, --space is 2px here." },
+            {
+              "tag": "div",
+              "cls": "tags",
+              "children": [
+                { "tag": "span", "cls": "tag", "text": "css" },
+                { "tag": "span", "cls": "tag", "text": "calc" }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".page {\n  --space: 4px;\n\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: calc(var(--space) * 4);\n  padding: calc(var(--space) * 6);\n  font-family: system-ui, sans-serif;\n}\n\n.compact {\n  --space: 2px;\n}\n\n.card {\n  padding: calc(var(--space) * 5);\n  border: 1px solid #e4e4e7;\n  border-radius: 10px;\n}\n\n.title {\n  margin: 0 0 calc(var(--space) * 2);\n}\n\n.text {\n  margin: 0 0 calc(var(--space) * 4);\n  color: #52525b;\n}\n\n.tags {\n  display: flex;\n  gap: calc(var(--space) * 2);\n}\n\n.tag {\n  padding: var(--space) calc(var(--space) * 3);\n  border-radius: 999px;\n  background-color: #ffedd5;\n}\n"
+}

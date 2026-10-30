@@ -1,0 +1,56 @@
+{
+  "id": "sunny-day",
+  "title": "Sunny day",
+  "level": "beginner",
+  "creative": true,
+  "summary": "CSS art: a sky gradient, a glowing sun, two clouds and a hill, all from plain boxes.",
+  "brief": [
+    "Draw the picture with CSS only. The scene is 480 × 300px with 16px rounded corners and a sky that fades from #38bdf8 at the top to #e0f2fe at the bottom. Anything that sticks out of the scene is cut off.",
+    "The sun is an 80px circle, 40px from the top and 60px from the right, with a soft glow: a 12px ring of rgb(250 204 21 / 0.35) and a blurred halo around it.",
+    "The clouds are pills (fully rounded): the first is 140 × 44px at 70px from the top and 50px from the left; the second is 100 × 32px at 130px from the top and 190px from the left.",
+    "The hill is a huge oval, 200px tall, that hangs 60px past both sides and 120px below the bottom, so only its top arc shows."
+  ],
+  "concepts": [
+    "position",
+    "top",
+    "border-radius",
+    "box-shadow",
+    "background-image",
+    "overflow"
+  ],
+  "hints": [
+    "Make .scene the positioning parent (position: relative) and hide what sticks out with overflow: hidden. Every shape inside is position: absolute.",
+    "A circle is border-radius: 50% on a square; a pill is border-radius: 999px. The sky is background-image: linear-gradient(#38bdf8, #e0f2fe).",
+    "The glow is two shadows separated by a comma: 0 0 0 12px rgb(250 204 21 / 0.35) for the ring and 0 0 40px 20px rgb(250 204 21 / 0.5) for the halo. The hill is left: -60px, right: -60px, bottom: -120px, height: 200px, border-radius: 50%."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "scene",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "sun"
+        },
+        {
+          "tag": "div",
+          "cls": "cloud cloud-one"
+        },
+        {
+          "tag": "div",
+          "cls": "cloud cloud-two"
+        },
+        {
+          "tag": "div",
+          "cls": "hill"
+        }
+      ]
+    }
+  ],
+  "css": ".scene {\n  width: 480px;\n  height: 300px;\n  margin: 24px;\n}\n\n.sun {\n  background-color: #facc15;\n}\n\n.cloud {\n  background-color: #ffffff;\n}\n\n.hill {\n  background-color: #4ade80;\n}\n",
+  "solution": ".scene {\n  width: 480px;\n  height: 300px;\n  margin: 24px;\n}\n\n.sun {\n  background-color: #facc15;\n}\n\n.cloud {\n  background-color: #ffffff;\n}\n\n.hill {\n  background-color: #4ade80;\n}\n\n/* ---- Solution ---- */\n.scene {\n  position: relative;\n  overflow: hidden;\n  border-radius: 16px;\n  background-image: linear-gradient(#38bdf8, #e0f2fe);\n}\n\n.sun {\n  position: absolute;\n  top: 40px;\n  right: 60px;\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n  box-shadow: 0 0 0 12px rgb(250 204 21 / 0.35), 0 0 40px 20px rgb(250 204 21 / 0.5);\n}\n\n.cloud {\n  position: absolute;\n  border-radius: 999px;\n}\n\n.cloud-one {\n  top: 70px;\n  left: 50px;\n  width: 140px;\n  height: 44px;\n}\n\n.cloud-two {\n  top: 130px;\n  left: 190px;\n  width: 100px;\n  height: 32px;\n}\n\n.hill {\n  position: absolute;\n  right: -60px;\n  bottom: -120px;\n  left: -60px;\n  height: 200px;\n  border-radius: 50%;\n}\n",
+  "solutionNotes": "Every shape is an empty div, so it has no size until you give it one, and it only lands where you want once it is absolutely positioned inside the relative scene. Rounding does the drawing: 50% turns a square into a circle and a wide box into an oval, 999px turns any box into a pill. The hill is the trick: an oval far bigger than the scene, pushed mostly off the bottom, and overflow: hidden on the scene trims it to a gentle curve. Shadows never take up space, so the glow can spread without moving anything.",
+  "viewports": [
+    800
+  ]
+}

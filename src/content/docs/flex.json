@@ -1,0 +1,30 @@
+{
+  "property": "flex",
+  "group": "Flex item",
+  "appliesTo": "flex items",
+  "summary": "Shorthand for flex-grow, flex-shrink and flex-basis.",
+  "details": "flex: 1 means 1 1 0%: grow, shrink, and start from zero, so siblings with flex: 1 end up equal. flex: auto starts from the content size instead.",
+  "values": [
+    {
+      "value": "1",
+      "note": "Grow and shrink; equal shares."
+    },
+    {
+      "value": "auto",
+      "note": "Grow and shrink from content size."
+    },
+    {
+      "value": "none",
+      "note": "Fixed at content size."
+    },
+    {
+      "value": "0 0 160px",
+      "note": "Exactly 160px, never grow or shrink."
+    }
+  ],
+  "related": [
+    "flex-grow",
+    "flex-shrink",
+    "flex-basis"
+  ]
+}

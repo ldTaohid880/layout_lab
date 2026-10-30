@@ -1,0 +1,32 @@
+{
+  "id": "variable-variants",
+  "title": "Component variants with variables",
+  "category": "Cascade & variables",
+  "level": "intermediate",
+  "summary": "One .btn rule reads --btn-bg and --btn-pad; .small, .danger and .ghost only change the variables.",
+  "concepts": ["padding", "background-color", "border", "color"],
+  "explanation": [
+    "The base .btn rule is written once in terms of variables: var(--btn-bg), var(--btn-fg), var(--btn-pad). Each variant class sets only the variables it needs. No variant repeats padding, border or radius declarations.",
+    "That keeps every variant in sync: change the border-radius in .btn and all of them follow. Combining classes also just works, since .small sets the size variables and .danger the colour ones, so a small danger button needs no extra rule.",
+    "The default values live on .btn itself, so a plain .btn looks right without any variant."
+  ],
+  "tryThis": [
+    "Change --btn-radius in .btn to 999px: every button becomes a pill.",
+    "Add a .large variant that sets --btn-pad: 14px 24px and use it on a button.",
+    "Give the third button both ghost and danger classes in Items: which variable wins depends on which rule comes later."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "row",
+      "children": [
+        { "tag": "button", "cls": "btn", "text": "Default" },
+        { "tag": "button", "cls": "btn small", "text": "Small" },
+        { "tag": "button", "cls": "btn danger", "text": "Delete" },
+        { "tag": "button", "cls": "btn small danger", "text": "Small delete" },
+        { "tag": "button", "cls": "btn ghost", "text": "Ghost" }
+      ]
+    }
+  ],
+  "css": ".row {\n  display: flex;\n  flex-wrap: wrap;\n  align-items: center;\n  gap: 12px;\n  padding: 24px;\n  font-family: system-ui, sans-serif;\n}\n\n.btn {\n  --btn-bg: #f97316;\n  --btn-fg: #ffffff;\n  --btn-line: #f97316;\n  --btn-pad: 10px 18px;\n  --btn-size: 16px;\n  --btn-radius: 8px;\n\n  padding: var(--btn-pad);\n  border: 2px solid var(--btn-line);\n  border-radius: var(--btn-radius);\n  background-color: var(--btn-bg);\n  color: var(--btn-fg);\n  font: inherit;\n  font-size: var(--btn-size);\n  cursor: pointer;\n}\n\n.small {\n  --btn-pad: 4px 10px;\n  --btn-size: 13px;\n}\n\n.danger {\n  --btn-bg: #dc2626;\n  --btn-line: #dc2626;\n}\n\n.ghost {\n  --btn-bg: transparent;\n  --btn-fg: #c2410c;\n}\n"
+}

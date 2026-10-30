@@ -1,0 +1,64 @@
+{
+  "id": "responsive-cards",
+  "title": "Responsive card grid",
+  "level": "intermediate",
+  "summary": "Three columns on a laptop, one on a phone.",
+  "brief": [
+    "At 800px wide the six cards form three equal columns. At 375px they stack in a single column.",
+    "Cards are 12px apart in both directions."
+  ],
+  "concepts": [
+    "grid-template-columns",
+    "gap"
+  ],
+  "hints": [
+    "Test both sizes with the 375 and Fit presets above the preview.",
+    "A media query works. So does repeat(auto-fill, minmax(…, 1fr)), with no media query at all.",
+    "grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) fits three 220px+ columns at 800px and one at 375px."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "grid",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "Card 1"
+        },
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "Card 2"
+        },
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "Card 3"
+        },
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "Card 4"
+        },
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "Card 5"
+        },
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "Card 6"
+        }
+      ]
+    }
+  ],
+  "css": ".grid {\n  padding: 12px;\n  border: 2px dashed #a1a1aa;\n}\n\n.card {\n  height: 80px;\n  padding: 12px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n",
+  "solution": ".grid {\n  padding: 12px;\n  border: 2px dashed #a1a1aa;\n}\n\n.card {\n  height: 80px;\n  padding: 12px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n\n/* ---- Solution ---- */\n.grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));\n  gap: 12px;\n}\n",
+  "solutionNotes": "auto-fill makes as many columns as fit at their minimum (220px) and then stretches them equally with 1fr. At 800px three fit; at 375px only one does.",
+  "viewports": [
+    800,
+    375
+  ]
+}

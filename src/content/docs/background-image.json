@@ -1,0 +1,36 @@
+{
+  "property": "background-image",
+  "group": "Colour & backgrounds",
+  "appliesTo": "any element",
+  "summary": "Images or gradients painted behind the content, above the background colour.",
+  "details": "Gradients are images: linear-gradient(), radial-gradient() and conic-gradient() need no file at all. You can stack several, separated by commas; the first one listed is painted on top.",
+  "values": [
+    {
+      "value": "linear-gradient(135deg, #f97316, #7c3aed)",
+      "note": "A diagonal orange-to-purple blend."
+    },
+    {
+      "value": "radial-gradient(circle, #fde68a, #f97316)",
+      "note": "Light in the middle, fading outwards."
+    },
+    {
+      "value": "repeating-linear-gradient(45deg, #fed7aa 0 10px, #fff 10px 20px)",
+      "note": "Diagonal stripes, 10px each."
+    },
+    {
+      "value": "linear-gradient(rgb(0 0 0 / 0.6), transparent), linear-gradient(#f97316, #7c3aed)",
+      "note": "Two layers: a dark fade over a gradient."
+    },
+    {
+      "value": "none",
+      "note": "Default."
+    }
+  ],
+  "gotcha": "A background image does not give the element any size. An empty div with only a background image is 0px tall; give it a height, an aspect-ratio or content.",
+  "related": [
+    "background-size",
+    "background-position",
+    "background-repeat",
+    "background-color"
+  ]
+}

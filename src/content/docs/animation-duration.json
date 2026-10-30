@@ -1,0 +1,25 @@
+{
+  "property": "animation-duration",
+  "group": "Motion",
+  "appliesTo": "any element with an animation",
+  "summary": "How long one cycle of an animation takes.",
+  "details": "Set it on its own to change the speed of an animation defined with the shorthand elsewhere, such as slowing a spinner.",
+  "values": [
+    {
+      "value": "600ms",
+      "note": "Fast."
+    },
+    {
+      "value": "2s",
+      "note": "Slow and calm."
+    },
+    {
+      "value": "0s",
+      "note": "Default: the animation does not run visibly."
+    }
+  ],
+  "related": [
+    "animation",
+    "animation-iteration-count"
+  ]
+}

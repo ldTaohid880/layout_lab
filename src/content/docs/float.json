@@ -1,0 +1,25 @@
+{
+  "property": "float",
+  "group": "Media",
+  "appliesTo": "elements in normal flow",
+  "summary": "Pushes a box to one side and lets text wrap around it.",
+  "details": "Floats are for wrapping text around images, not for page layout any more. They are ignored on flex and grid items.",
+  "values": [
+    {
+      "value": "left",
+      "note": "Float to the left; text wraps on the right."
+    },
+    {
+      "value": "right",
+      "note": "Float to the right."
+    },
+    {
+      "value": "none",
+      "note": "Default."
+    }
+  ],
+  "related": [
+    "display",
+    "overflow"
+  ]
+}

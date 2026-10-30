@@ -1,0 +1,69 @@
+{
+  "id": "named-container-widget",
+  "title": "A widget that asks a named container",
+  "category": "Responsive",
+  "level": "hard",
+  "summary": "container-name lets a @container query skip the nearest container and ask a specific one.",
+  "concepts": ["container-type", "container-name", "grid-template-columns"],
+  "explanation": [
+    "There are two kinds of query container here: each column (named column) and each stat widget (.stat, unnamed, never wider than 300px). A container query looks at ancestors only, and an unnamed one asks the nearest: for the stat list, that is the widget.",
+    "@container column (min-width: 360px) skips the widget and asks the container named column instead. The widget is capped at 300px, so by its own width it would never switch, but the wide column is over 360px, so its stats go into a row. The narrow column stays stacked.",
+    "Names let nested components each answer to the container that matters to them."
+  ],
+  "tryThis": [
+    "Remove the name from the query (@container (min-width: 360px)): it now asks the 300px widget, so neither switches.",
+    "Change the query to (min-width: 250px) without a name: now it asks the widget, and both may switch depending on the preview width.",
+    "Change grid-template-columns on .page to 1fr 1fr and narrow the preview: find where the second column drops below 360px."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "page",
+      "children": [
+        {
+          "tag": "aside",
+          "cls": "column",
+          "children": [
+            {
+              "tag": "div",
+              "cls": "stat",
+              "children": [
+                {
+                  "tag": "div",
+                  "cls": "stat-list",
+                  "children": [
+                    { "tag": "div", "cls": "figure", "text": "1,284" },
+                    { "tag": "div", "cls": "figure", "text": "312" },
+                    { "tag": "div", "cls": "figure", "text": "99.9%" }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "main",
+          "cls": "column",
+          "children": [
+            {
+              "tag": "div",
+              "cls": "stat",
+              "children": [
+                {
+                  "tag": "div",
+                  "cls": "stat-list",
+                  "children": [
+                    { "tag": "div", "cls": "figure", "text": "1,284" },
+                    { "tag": "div", "cls": "figure", "text": "312" },
+                    { "tag": "div", "cls": "figure", "text": "99.9%" }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".page {\n  display: grid;\n  grid-template-columns: 1fr 2fr;\n  gap: 16px;\n  align-items: start;\n  padding: 16px;\n  font-family: system-ui, sans-serif;\n}\n\n.column {\n  container-type: inline-size;\n  container-name: column;\n}\n\n.stat {\n  container-type: inline-size;\n  max-width: 300px;\n  padding: 12px;\n  border: 1px solid #f97316;\n  border-radius: 8px;\n  background-color: #fff7ed;\n}\n\n.stat-list {\n  display: grid;\n  gap: 8px;\n}\n\n.figure {\n  padding: 8px;\n  border-radius: 6px;\n  background-color: #fed7aa;\n  font-weight: 700;\n  text-align: center;\n}\n\n@container column (min-width: 360px) {\n  .stat-list {\n    grid-template-columns: repeat(3, 1fr);\n  }\n}\n"
+}

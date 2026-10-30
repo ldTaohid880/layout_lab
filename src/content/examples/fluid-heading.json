@@ -1,0 +1,33 @@
+{
+  "id": "fluid-heading",
+  "title": "Heading that scales with the screen",
+  "category": "Typography",
+  "level": "intermediate",
+  "summary": "font-size: clamp() grows a heading smoothly between a minimum and a maximum.",
+  "concepts": ["font-size", "line-height"],
+  "explanation": [
+    "clamp(min, preferred, max) picks the preferred value but never goes below min or above max. With a preferred value in vw (percent of the viewport width), the heading grows smoothly as the screen gets wider, with no media queries.",
+    "The rem bounds keep it readable on phones and stop it getting absurd on wide monitors. Mixing in rem (1rem + 3vw) also means the size still responds when the reader zooms.",
+    "Drag the preview width or switch between 375 and 1440 to watch it scale."
+  ],
+  "tryThis": [
+    "Switch the preview between 375 and 1440: the heading grows, the paragraph does not.",
+    "Change the max to 6rem and widen the preview.",
+    "Replace the clamp with a fixed 3rem: it is now too big on a phone."
+  ],
+  "items": [
+    {
+      "tag": "section",
+      "cls": "hero",
+      "children": [
+        { "tag": "h1", "cls": "hero-title", "text": "Build layouts you understand" },
+        {
+          "tag": "p",
+          "cls": "hero-text",
+          "text": "The heading scales with the viewport. This paragraph stays the same size."
+        }
+      ]
+    }
+  ],
+  "css": ".hero {\n  padding: 24px;\n  font-family: system-ui, sans-serif;\n}\n\n.hero-title {\n  margin: 0 0 12px;\n  font-size: clamp(1.75rem, 1rem + 3vw, 4rem);\n  line-height: 1.1;\n}\n\n.hero-text {\n  margin: 0;\n  font-size: 1rem;\n  color: #52525b;\n}\n"
+}

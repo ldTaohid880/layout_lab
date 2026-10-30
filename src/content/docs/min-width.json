@@ -1,0 +1,27 @@
+{
+  "property": "min-width",
+  "group": "Box & display",
+  "appliesTo": "non-inline elements",
+  "summary": "A floor for the width. Also controls how far flex and grid items can shrink.",
+  "details": "Flex and grid items default to min-width: auto, which means \"not smaller than my content\". Setting min-width: 0 lets them shrink so text can wrap or truncate.",
+  "values": [
+    {
+      "value": "0",
+      "note": "Lets flex/grid items shrink below their content."
+    },
+    {
+      "value": "200px",
+      "note": "Never narrower than 200px."
+    },
+    {
+      "value": "auto",
+      "note": "Default; content-based minimum for flex/grid items."
+    }
+  ],
+  "gotcha": "If a flex child overflows its parent, min-width: 0 on that child is usually the fix.",
+  "related": [
+    "width",
+    "max-width",
+    "flex-shrink"
+  ]
+}

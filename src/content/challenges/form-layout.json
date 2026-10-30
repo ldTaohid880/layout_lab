@@ -1,0 +1,95 @@
+{
+  "id": "form-layout",
+  "title": "Form layout",
+  "level": "intermediate",
+  "summary": "Labels in one column, fields in another, stacking on phones.",
+  "brief": [
+    "At 800px: a form whose labels sit in a 100px column on the left and whose fields fill the rest, each label lined up with its field. Rows are 12px apart and the two columns are 16px apart.",
+    "The Create account button sits in the field column, under the fields, at its natural width.",
+    "At 375px every label sits directly above its field and the button starts at the left edge."
+  ],
+  "concepts": [
+    "display",
+    "grid-template-columns",
+    "gap",
+    "align-items",
+    "grid-column",
+    "justify-self"
+  ],
+  "hints": [
+    "The labels and fields are siblings, alternating: label, field, label, field. That is a two-column grid filling row by row.",
+    "grid-template-columns: 100px 1fr on .form, with gap: 12px 16px and align-items: center so each label lines up with its field.",
+    "The button is a single child, so it lands in the label column. Send it to the second column with grid-column: 2, and stop it stretching with justify-self: start. For phones, one column, and grid-column: auto."
+  ],
+  "items": [
+    {
+      "tag": "form",
+      "cls": "form",
+      "children": [
+        {
+          "tag": "label",
+          "cls": "",
+          "text": "Name",
+          "attrs": {
+            "for": "name"
+          }
+        },
+        {
+          "tag": "input",
+          "cls": "field",
+          "attrs": {
+            "id": "name",
+            "type": "text",
+            "placeholder": "Ada Lovelace"
+          }
+        },
+        {
+          "tag": "label",
+          "cls": "",
+          "text": "Email",
+          "attrs": {
+            "for": "email"
+          }
+        },
+        {
+          "tag": "input",
+          "cls": "field",
+          "attrs": {
+            "id": "email",
+            "type": "email",
+            "placeholder": "ada@example.com"
+          }
+        },
+        {
+          "tag": "label",
+          "cls": "",
+          "text": "City",
+          "attrs": {
+            "for": "city"
+          }
+        },
+        {
+          "tag": "input",
+          "cls": "field",
+          "attrs": {
+            "id": "city",
+            "type": "text",
+            "placeholder": "London"
+          }
+        },
+        {
+          "tag": "button",
+          "cls": "submit",
+          "text": "Create account"
+        }
+      ]
+    }
+  ],
+  "css": ".form {\n  padding: 20px;\n  border: 2px dashed #a1a1aa;\n}\n\n.form label {\n  font-weight: 600;\n}\n\n.field {\n  box-sizing: border-box;\n  padding: 8px 10px;\n  border: 1px solid #a1a1aa;\n  border-radius: 4px;\n}\n\n.submit {\n  padding: 8px 16px;\n  border: 0;\n  border-radius: 4px;\n  background: #f97316;\n  color: #fff;\n}\n",
+  "solution": ".form {\n  padding: 20px;\n  border: 2px dashed #a1a1aa;\n}\n\n.form label {\n  font-weight: 600;\n}\n\n.field {\n  box-sizing: border-box;\n  padding: 8px 10px;\n  border: 1px solid #a1a1aa;\n  border-radius: 4px;\n}\n\n.submit {\n  padding: 8px 16px;\n  border: 0;\n  border-radius: 4px;\n  background: #f97316;\n  color: #fff;\n}\n\n/* ---- Solution ---- */\n.form {\n  display: grid;\n  grid-template-columns: 100px 1fr;\n  gap: 12px 16px;\n  align-items: center;\n}\n\n.submit {\n  grid-column: 2;\n  justify-self: start;\n}\n\n@media (max-width: 500px) {\n  .form {\n    grid-template-columns: 1fr;\n    gap: 6px;\n  }\n\n  .submit {\n    grid-column: auto;\n    margin-top: 6px;\n  }\n}\n",
+  "solutionNotes": "Grid places children row by row, so alternating label and field fall into two columns without any wrapper. The button is the odd child out: grid-column: 2 moves it under the fields, and justify-self: start keeps it at its natural width instead of stretching across the column. On phones a single column puts every label above its field; the button must drop grid-column: 2 too, or it would create a second, implicit column.",
+  "viewports": [
+    800,
+    375
+  ]
+}

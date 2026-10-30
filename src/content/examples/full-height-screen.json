@@ -1,0 +1,35 @@
+{
+  "id": "full-height-screen",
+  "title": "A screen-tall hero with dvh",
+  "category": "Responsive",
+  "level": "intermediate",
+  "summary": "min-height: 100dvh fills the visible screen, even when a phone's address bar shows and hides.",
+  "concepts": ["min-height", "display", "place-items"],
+  "explanation": [
+    "100vh is the height of the viewport, but on phones it is measured with the browser's toolbars hidden, so a 100vh section is taller than what you actually see and its bottom is cut off.",
+    "100dvh (dynamic viewport height) follows the toolbars as they appear and disappear. svh is the smallest size (toolbars shown) and lvh the largest. min-height rather than height lets the section grow if its content is taller.",
+    "body { margin: 0 } removes the browser's default 8px margin, which would otherwise add a scrollbar to a full-height section."
+  ],
+  "tryThis": [
+    "Remove the body rule: a scrollbar appears because 100dvh plus 16px of margin is too tall.",
+    "Change min-height to 50dvh.",
+    "Change min-height to height and add several paragraphs: the content overflows instead of the hero growing."
+  ],
+  "items": [
+    {
+      "tag": "section",
+      "cls": "hero",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "hero-inner",
+          "children": [
+            { "tag": "h1", "cls": "hero-title", "text": "Welcome" },
+            { "tag": "p", "text": "This section fills the visible screen." }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": "body {\n  margin: 0;\n}\n\n.hero {\n  display: grid;\n  place-items: center;\n  min-height: 100dvh;\n  background-image: linear-gradient(160deg, #fed7aa, #f97316);\n  font-family: system-ui, sans-serif;\n  text-align: center;\n}\n\n.hero-title {\n  margin: 0 0 8px;\n  font-size: 2.5rem;\n}\n"
+}

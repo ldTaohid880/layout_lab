@@ -2,46 +2,76 @@ import { ChevronRight, FilePlus2, Play } from 'lucide-react'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { LevelBadge } from '@/components/ui/level-badge'
-import { EXAMPLES } from '@/content/examples'
-import type { Example, ExampleCategory } from '@/content/types'
+import { ChipFilter, LevelFilter } from '@/components/ui/level-filter'
+import { EXAMPLE_MODULES, type PathLesson } from '@/content/examples'
+import { TRACKS, type Level, type Track } from '@/content/types'
 import { cn } from '@/lib/utils'
 import { useStudio } from '@/store/studioStore'
 
-const CATEGORIES: ExampleCategory[] = ['Flexbox', 'Grid', 'Positioning', 'Sizing & overflow']
+/**
+ * The examples as a numbered learning path (see src/content/examples/path.ts), grouped into
+ * tracks. The track and level filters hide rows and empty modules but never renumber, so "6.4"
+ * always names the same example.
+ */
+/** Tracks that have at least one module, in path order. */
+const PATH_TRACKS = TRACKS.filter((track) => EXAMPLE_MODULES.some((m) => m.track === track))
 
 export function ExamplesPanel() {
   const [openId, setOpenId] = useState<string | null>(null)
+  const [filter, setFilter] = useState<Level | 'all'>('all')
+  const [track, setTrack] = useState<Track | 'all'>('all')
+
+  const visible = EXAMPLE_MODULES.filter((m) => track === 'all' || m.track === track)
+    .map((module) => ({
+      module,
+      lessons: module.lessons.filter((l) => filter === 'all' || l.example.level === filter),
+    }))
+    .filter(({ lessons }) => lessons.length > 0)
 
   return (
     <div className="h-full overflow-auto" data-testid="examples-panel">
       <p className="border-b px-3 py-2 text-2xs text-muted-foreground">
-        Apply an example to load its elements and CSS, then experiment. Undo restores your sandbox.
+        A path through CSS, from layout to type, colour and motion. Apply an example to load its
+        elements and CSS, then experiment. Undo restores your sandbox.
       </p>
-      {CATEGORIES.map((category) => (
-        <section key={category} aria-labelledby={`examples-${category}`}>
-          <h3
-            id={`examples-${category}`}
-            className="sticky top-0 z-[1] border-b bg-surface px-3 py-1.5 text-2xs font-medium uppercase tracking-wider text-muted-foreground"
-          >
-            {category}
-          </h3>
-          <ul>
-            {EXAMPLES.filter((e) => e.category === category).map((example) => (
-              <ExampleItem
-                key={example.id}
-                example={example}
-                open={openId === example.id}
-                onToggle={() => setOpenId(openId === example.id ? null : example.id)}
-              />
-            ))}
-          </ul>
-        </section>
-      ))}
+      {PATH_TRACKS.length > 1 && <ChipFilter label="Filter by track" values={PATH_TRACKS} value={track} onChange={setTrack} />}
+      <LevelFilter value={filter} onChange={setFilter} />
+      {visible.map(({ module, lessons }, i) => {
+        const headingId = `examples-${module.id}`
+        const firstOfTrack = track === 'all' && PATH_TRACKS.length > 1 && visible[i - 1]?.module.track !== module.track
+        return (
+          <section key={module.id} aria-labelledby={headingId} data-testid="example-module">
+            {firstOfTrack && (
+              <h2 className="border-b bg-muted/60 px-3 py-2 text-xs font-semibold" data-testid="example-track">
+                {module.track}
+              </h2>
+            )}
+            <h3
+              id={headingId}
+              className="sticky top-0 z-[1] border-b bg-surface px-3 py-1.5 text-2xs font-medium uppercase tracking-wider text-muted-foreground"
+            >
+              {module.number} · {module.title}
+            </h3>
+            <p className="border-b px-3 py-1.5 text-2xs text-muted-foreground">{module.blurb}</p>
+            <ul>
+              {lessons.map((lesson) => (
+                <ExampleItem
+                  key={lesson.example.id}
+                  lesson={lesson}
+                  open={openId === lesson.example.id}
+                  onToggle={() => setOpenId(openId === lesson.example.id ? null : lesson.example.id)}
+                />
+              ))}
+            </ul>
+          </section>
+        )
+      })}
     </div>
   )
 }
 
-function ExampleItem({ example, open, onToggle }: { example: Example; open: boolean; onToggle: () => void }) {
+function ExampleItem({ lesson, open, onToggle }: { lesson: PathLesson; open: boolean; onToggle: () => void }) {
+  const { example, number } = lesson
   const applyExample = useStudio((s) => s.applyExample)
   const focusDoc = useStudio((s) => s.focusDoc)
   const bodyId = `example-${example.id}`
@@ -60,10 +90,13 @@ function ExampleItem({ example, open, onToggle }: { example: Example; open: bool
         />
         <span className="min-w-0 flex-1">
           <span className="flex items-baseline gap-2">
+            <span className="w-7 shrink-0 font-mono text-2xs text-muted-foreground" data-testid="lesson-number">
+              {number}
+            </span>
             <span className="text-xs font-medium">{example.title}</span>
             <LevelBadge level={example.level} />
           </span>
-          <span className="mt-0.5 block text-2xs text-muted-foreground">{example.summary}</span>
+          <span className="mt-0.5 block pl-9 text-2xs text-muted-foreground">{example.summary}</span>
         </span>
       </button>
 

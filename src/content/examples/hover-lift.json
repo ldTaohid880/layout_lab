@@ -1,0 +1,30 @@
+{
+  "id": "hover-lift",
+  "title": "Cards that lift on hover",
+  "category": "Motion",
+  "level": "beginner",
+  "summary": "transition on transform and box-shadow turns an instant hover change into a smooth lift.",
+  "concepts": ["transition", "transform", "box-shadow"],
+  "explanation": [
+    ":hover moves the card up 4px and deepens its shadow. Without a transition that change is instant; with one, the browser animates between the two states.",
+    "The transition sits on .card, not on .card:hover, so it applies in both directions: the card eases up when you hover and eases back when you leave.",
+    "Animating transform rather than top or margin is smoother, because moving with transform never makes the browser recalculate the layout."
+  ],
+  "tryThis": [
+    "Hover the cards in the preview.",
+    "Move the transition line into .card:hover: it now animates up but snaps back down.",
+    "Change 150ms to 600ms and ease-out to linear: slower and more mechanical."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "cards",
+      "children": [
+        { "tag": "article", "cls": "card", "text": "Hover me" },
+        { "tag": "article", "cls": "card", "text": "And me" },
+        { "tag": "article", "cls": "card", "text": "Me too" }
+      ]
+    }
+  ],
+  "css": ".cards {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 20px;\n  padding: 32px;\n  background-color: #f4f4f5;\n  font-family: system-ui, sans-serif;\n}\n\n.card {\n  padding: 32px 16px;\n  border-radius: 10px;\n  background-color: #ffffff;\n  box-shadow: 0 1px 3px rgb(0 0 0 / 0.12);\n  text-align: center;\n  transition: transform 150ms ease-out, box-shadow 150ms ease-out;\n}\n\n.card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 12px 24px rgb(0 0 0 / 0.15);\n}\n"
+}

@@ -1,0 +1,25 @@
+{
+  "property": "grid-row",
+  "group": "Grid item",
+  "appliesTo": "grid items",
+  "summary": "Which row lines the item starts and ends on.",
+  "details": "Works like grid-column on the other axis.",
+  "values": [
+    {
+      "value": "span 2",
+      "note": "Two rows tall."
+    },
+    {
+      "value": "1 / 3",
+      "note": "Rows 1 and 2."
+    },
+    {
+      "value": "auto",
+      "note": "Default."
+    }
+  ],
+  "related": [
+    "grid-column",
+    "grid-area"
+  ]
+}

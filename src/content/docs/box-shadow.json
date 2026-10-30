@@ -1,0 +1,35 @@
+{
+  "property": "box-shadow",
+  "group": "Borders & effects",
+  "appliesTo": "any element",
+  "summary": "Shadows around (or inside) the box, without affecting layout.",
+  "details": "Each shadow is x-offset, y-offset, blur, spread and colour. List several, comma-separated, to layer a tight shadow with a soft one for a natural look. inset draws the shadow inside the box, and a zero-blur shadow with spread acts as an extra border that takes no space.",
+  "values": [
+    {
+      "value": "0 1px 3px rgb(0 0 0 / 0.2)",
+      "note": "A subtle shadow for a resting card."
+    },
+    {
+      "value": "0 10px 30px rgb(0 0 0 / 0.15)",
+      "note": "Larger and softer: the element looks lifted."
+    },
+    {
+      "value": "0 1px 2px rgb(0 0 0 / 0.2), 0 8px 24px rgb(0 0 0 / 0.12)",
+      "note": "Two layers: tight contact plus soft depth."
+    },
+    {
+      "value": "inset 0 2px 4px rgb(0 0 0 / 0.15)",
+      "note": "Pressed in, like a text field."
+    },
+    {
+      "value": "0 0 0 3px #f97316",
+      "note": "No blur, 3px spread: a ring that takes no space."
+    }
+  ],
+  "gotcha": "Pure black shadows look harsh. Use black or a dark tint at low alpha (0.1–0.25) and let the blur do the work.",
+  "related": [
+    "border-radius",
+    "outline",
+    "filter"
+  ]
+}

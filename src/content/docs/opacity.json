@@ -1,0 +1,27 @@
+{
+  "property": "opacity",
+  "group": "Colour & backgrounds",
+  "appliesTo": "any element",
+  "summary": "Makes the whole element, children and all, partly transparent.",
+  "details": "opacity fades everything: background, border, text and every descendant, and a child cannot be more opaque than its parent. To fade only the background, use a colour with alpha instead.",
+  "values": [
+    {
+      "value": "1",
+      "note": "Default: fully opaque."
+    },
+    {
+      "value": "0.5",
+      "note": "Half transparent, text included."
+    },
+    {
+      "value": "0",
+      "note": "Invisible, but still takes up space and can be clicked."
+    }
+  ],
+  "gotcha": "Any opacity below 1 also creates a stacking context, so z-index inside the element can no longer mix with the rest of the page.",
+  "related": [
+    "background-color",
+    "color",
+    "z-index"
+  ]
+}

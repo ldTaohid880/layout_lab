@@ -1,0 +1,29 @@
+{
+  "id": "css-patterns",
+  "title": "Stripes and dots without images",
+  "category": "Colour & backgrounds",
+  "level": "intermediate",
+  "summary": "repeating-linear-gradient for stripes; a small radial-gradient tile repeated for dots.",
+  "concepts": ["background-image", "background-size", "background-repeat"],
+  "explanation": [
+    "Hard colour stops make a gradient change colour abruptly instead of blending: #fed7aa 0 10px, #fff 10px 20px is 10px of orange then 10px of white. repeating-linear-gradient repeats that band forever, giving stripes.",
+    "The dots are one radial-gradient: a 3px orange circle that turns transparent right after. background-size: 20px 20px makes that a 20px tile, and background-repeat (repeat, the default) tiles it across the box.",
+    "Both are plain backgrounds, so they scale and recolour without any image file."
+  ],
+  "tryThis": [
+    "Change 45deg to 90deg in .stripes for vertical stripes.",
+    "Change background-size in .dots to 12px 12px: a denser grid.",
+    "Set background-repeat: no-repeat on .dots: only one dot remains, in the top-left corner."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "patterns",
+      "children": [
+        { "tag": "div", "cls": "tile stripes", "text": "Stripes" },
+        { "tag": "div", "cls": "tile dots", "text": "Dots" }
+      ]
+    }
+  ],
+  "css": ".patterns {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 16px;\n  padding: 16px;\n  font-family: system-ui, sans-serif;\n}\n\n.tile {\n  display: grid;\n  place-items: center;\n  height: 160px;\n  border: 1px solid #f97316;\n  border-radius: 8px;\n  font-weight: 600;\n}\n\n.stripes {\n  background-image: repeating-linear-gradient(45deg, #fed7aa 0 10px, #ffffff 10px 20px);\n}\n\n.dots {\n  background-image: radial-gradient(circle, #f97316 3px, transparent 3.5px);\n  background-size: 20px 20px;\n  background-repeat: repeat;\n}\n"
+}

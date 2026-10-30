@@ -1,0 +1,26 @@
+{
+  "property": "column-gap",
+  "group": "Flex container",
+  "appliesTo": "flex, grid and multi-column containers",
+  "summary": "Space between columns only.",
+  "details": "The column half of gap: the space between items along a row of flex items, or between grid columns.",
+  "values": [
+    {
+      "value": "16px",
+      "note": "Space between columns."
+    },
+    {
+      "value": "0",
+      "note": "Columns touch."
+    },
+    {
+      "value": "1rem",
+      "note": "Scales with the root font size."
+    }
+  ],
+  "related": [
+    "gap",
+    "row-gap",
+    "justify-content"
+  ]
+}

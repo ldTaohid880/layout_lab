@@ -1,0 +1,36 @@
+{
+  "id": "readable-measure",
+  "title": "Readable paragraph width",
+  "category": "Typography",
+  "level": "beginner",
+  "summary": "max-width: 65ch and line-height: 1.6 turn a wall of text into something you can read.",
+  "concepts": ["max-width", "line-height", "font-family"],
+  "explanation": [
+    "Lines that run the full width of a wide screen are tiring: the eye loses its place jumping back to the start. Around 45–75 characters per line is comfortable, and the ch unit (the width of a \"0\") lets you say that directly: max-width: 65ch.",
+    "line-height: 1.6 adds air between lines. It is unitless, so it scales with whatever font size the text has.",
+    "font-family lists a font and a generic fallback; system-ui uses the operating system's own interface font, which needs no download."
+  ],
+  "tryThis": [
+    "Remove max-width from .prose and widen the preview: the lines get hard to follow.",
+    "Change line-height to 1.1, then to 2: find where it feels cramped and where it falls apart.",
+    "Change the font-family to Georgia, serif."
+  ],
+  "items": [
+    {
+      "tag": "article",
+      "cls": "prose",
+      "children": [
+        { "tag": "h2", "text": "Why measure matters" },
+        {
+          "tag": "p",
+          "text": "Typographers call the length of a line its measure. Too long, and readers lose their place when they jump back to the start of the next line. Too short, and the eye has to jump so often that reading becomes choppy."
+        },
+        {
+          "tag": "p",
+          "text": "Somewhere between forty-five and seventy-five characters is comfortable for most body text, which is why books and newspapers use columns instead of running text across the whole page."
+        }
+      ]
+    }
+  ],
+  "css": ".prose {\n  max-width: 65ch;\n  margin: 16px auto;\n  padding: 0 16px;\n  font-family: system-ui, sans-serif;\n  line-height: 1.6;\n  color: #27272a;\n}\n\n.prose h2 {\n  line-height: 1.2;\n}\n"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "center-with-translate",
+  "title": "Center with translate",
+  "category": "Positioning",
+  "level": "intermediate",
+  "summary": "top: 50% and left: 50% put the corner at the center; translate(-50%, -50%) pulls it back.",
+  "concepts": ["position", "top", "transform"],
+  "explanation": [
+    "An absolutely positioned box is placed by its top-left corner. top: 50% and left: 50% therefore put that corner at the middle of the stage, not the box's own middle.",
+    "translate(-50%, -50%) then moves the box back by half of its own width and height. Percentages in a translate refer to the element itself, which is what makes this work for a box of any size.",
+    "A transform changes only where the box is painted; it takes no part in layout. It also makes the element the containing block for any absolute or fixed descendants, which can surprise you later."
+  ],
+  "tryThis": [
+    "Delete the transform line: the box's corner sits at the center.",
+    "Add rotate(8deg) after translate(-50%, -50%): it still turns around its own center.",
+    "Remove position: relative from .stage: the box centers on the whole preview instead."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "stage",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "box",
+          "text": "Centered"
+        }
+      ]
+    }
+  ],
+  "css": ".stage {\n  position: relative;\n  height: 220px;\n  margin: 12px;\n  border: 2px dashed #a1a1aa;\n}\n\n.box {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  padding: 20px 28px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "ellipsis-in-flex-row",
+  "title": "Ellipsis inside a flex row",
+  "category": "Typography",
+  "level": "intermediate",
+  "summary": "Truncation in a flex item also needs min-width: 0, or the item refuses to shrink.",
+  "concepts": ["text-overflow", "min-width", "flex", "white-space"],
+  "explanation": [
+    "The name has the usual three truncation declarations, yet without min-width: 0 it would push the date out of the row. A flex item's default minimum width is its content's width, and with nowrap that is the whole unbroken line.",
+    "min-width: 0 lets the name shrink below its text, and flex: 1 makes it take the space the date does not need. Now overflow: hidden has something to clip, and the ellipsis appears.",
+    "This is the single most common 'my ellipsis does not work' bug."
+  ],
+  "tryThis": [
+    "Remove min-width: 0 from .name: the date gets pushed out of the row.",
+    "Delete text-overflow: ellipsis from .name: the text is still cut, but mid-letter with no …",
+    "Make .row 500px wide: no truncation is needed any more."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "row",
+      "children": [
+        { "tag": "span", "cls": "name", "text": "Re: Planning the offsite for the whole design and engineering team" },
+        { "tag": "span", "cls": "date", "text": "Oct 30" }
+      ]
+    }
+  ],
+  "css": ".row {\n  display: flex;\n  gap: 12px;\n  width: 280px;\n  margin: 16px;\n  padding: 10px 12px;\n  border: 1px solid #d4d4d8;\n  border-radius: 6px;\n  font-family: system-ui, sans-serif;\n}\n\n.name {\n  flex: 1;\n  min-width: 0;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n\n.date {\n  color: #71717a;\n}\n"
+}

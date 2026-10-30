@@ -1,0 +1,40 @@
+{
+  "id": "ellipsis-one-line",
+  "title": "Cut long text with …",
+  "category": "Typography",
+  "level": "beginner",
+  "summary": "white-space: nowrap, overflow: hidden and text-overflow: ellipsis, together.",
+  "concepts": ["text-overflow", "white-space", "overflow"],
+  "explanation": [
+    "Single-line truncation needs three declarations, and each does one job: white-space: nowrap keeps the text on one line, overflow: hidden clips what does not fit, and text-overflow: ellipsis draws … at the cut.",
+    "The box needs a width limit for any of this to happen; here the list is 240px wide.",
+    "The full text is still in the HTML. A title attribute is a common way to let people see it on hover."
+  ],
+  "tryThis": [
+    "Remove white-space: nowrap: the text wraps and there is nothing to cut.",
+    "Remove overflow: hidden: the text spills out and no ellipsis appears.",
+    "Widen .files to 400px: the shorter names fit and lose their …"
+  ],
+  "items": [
+    {
+      "tag": "ul",
+      "cls": "files",
+      "children": [
+        { "tag": "li", "cls": "file", "text": "notes.txt" },
+        {
+          "tag": "li",
+          "cls": "file",
+          "text": "quarterly-report-final-version-reviewed-by-legal.pdf",
+          "attrs": { "title": "quarterly-report-final-version-reviewed-by-legal.pdf" }
+        },
+        {
+          "tag": "li",
+          "cls": "file",
+          "text": "screenshot 2026-10-30 at 12.41.47 from the meeting.png",
+          "attrs": { "title": "screenshot 2026-10-30 at 12.41.47 from the meeting.png" }
+        }
+      ]
+    }
+  ],
+  "css": ".files {\n  width: 240px;\n  margin: 16px;\n  padding: 0;\n  list-style: none;\n  border: 1px solid #d4d4d8;\n  border-radius: 6px;\n  font-family: system-ui, sans-serif;\n}\n\n.file {\n  padding: 8px 12px;\n  border-bottom: 1px solid #e4e4e7;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n"
+}

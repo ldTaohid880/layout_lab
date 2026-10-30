@@ -26,7 +26,21 @@ export const LEVEL_LABELS: Record<Level, string> = {
   hard: 'Hard',
 }
 
-export type ExampleCategory = 'Flexbox' | 'Grid' | 'Positioning' | 'Sizing & overflow'
+/** The topic of an example. The Examples tab orders by the learning path (examples/path.ts) instead. */
+export type ExampleCategory = 'Flexbox' | 'Grid' | 'Positioning' | 'Sizing & overflow' | Exclude<Track, 'Layout'>
+
+/** The broad areas of CSS the examples path is split into, in path order. */
+export const TRACKS = [
+  'Layout',
+  'Typography',
+  'Colour & backgrounds',
+  'Borders & effects',
+  'Cascade & variables',
+  'Responsive',
+  'Motion',
+] as const
+
+export type Track = (typeof TRACKS)[number]
 
 export interface Example {
   /** Stable kebab-case id. */
@@ -54,6 +68,11 @@ export type DocGroup =
   | 'Grid item'
   | 'Positioning'
   | 'Media'
+  | 'Responsive'
+  | 'Typography'
+  | 'Colour & backgrounds'
+  | 'Borders & effects'
+  | 'Motion'
 
 export interface DocValue {
   value: string
@@ -99,4 +118,10 @@ export interface Challenge {
    * changes at, e.g. [800, 375] for a design that restacks on phones.
    */
   viewports: number[]
+  /** A drawing, poster or design rather than a layout drill. Shows a Creative badge and filter. */
+  creative?: true
 }
+
+export const CHALLENGE_KINDS = ['layout', 'creative'] as const
+export type ChallengeKind = (typeof CHALLENGE_KINDS)[number]
+export const CHALLENGE_KIND_LABELS: Record<ChallengeKind, string> = { layout: 'Layout', creative: 'Creative' }

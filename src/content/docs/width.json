@@ -1,0 +1,31 @@
+{
+  "property": "width",
+  "group": "Box & display",
+  "appliesTo": "non-inline elements",
+  "summary": "The width of the box (content box unless box-sizing says otherwise).",
+  "details": "Blocks default to auto, which fills the container. Percentages resolve against the containing block. Prefer max-width for readable, responsive boxes.",
+  "values": [
+    {
+      "value": "auto",
+      "note": "Default: blocks fill, others shrink to fit."
+    },
+    {
+      "value": "50%",
+      "note": "Half the containing block."
+    },
+    {
+      "value": "240px",
+      "note": "Fixed width."
+    },
+    {
+      "value": "fit-content",
+      "note": "As wide as the content, up to the container."
+    }
+  ],
+  "gotcha": "Ignored on display: inline elements.",
+  "related": [
+    "min-width",
+    "max-width",
+    "box-sizing"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "property": "animation",
+  "group": "Motion",
+  "appliesTo": "any element",
+  "summary": "Runs a @keyframes animation on the element, by name.",
+  "details": "Shorthand for the keyframes name, duration, timing function, delay, iteration count, direction and fill mode. The name refers to a @keyframes rule elsewhere in the CSS that lists the steps (from/to or percentages). Unlike a transition, it needs no state change to start.",
+  "values": [
+    {
+      "value": "fade-in 400ms ease-out",
+      "note": "Play @keyframes fade-in once when the element appears."
+    },
+    {
+      "value": "spin 1s linear infinite",
+      "note": "Loop @keyframes spin forever at constant speed."
+    },
+    {
+      "value": "pulse 1.2s ease-in-out infinite alternate",
+      "note": "Loop, playing forwards then backwards."
+    },
+    {
+      "value": "none",
+      "note": "Default."
+    }
+  ],
+  "gotcha": "The @keyframes rule must exist with exactly that name, or nothing happens. Respect people who ask for less motion: turn decorative animations off inside @media (prefers-reduced-motion: reduce).",
+  "related": [
+    "animation-duration",
+    "animation-iteration-count",
+    "animation-delay",
+    "transition"
+  ]
+}

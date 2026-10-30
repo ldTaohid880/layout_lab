@@ -1,0 +1,29 @@
+{
+  "property": "justify-self",
+  "group": "Grid item",
+  "appliesTo": "grid items, absolutely positioned boxes",
+  "summary": "Horizontal alignment of one item within its cell.",
+  "details": "Overrides the container's justify-items for this item.",
+  "values": [
+    {
+      "value": "start",
+      "note": "Left of the cell."
+    },
+    {
+      "value": "center",
+      "note": "Centered."
+    },
+    {
+      "value": "end",
+      "note": "Right of the cell."
+    },
+    {
+      "value": "stretch",
+      "note": "Fill the cell."
+    }
+  ],
+  "related": [
+    "justify-items",
+    "align-self"
+  ]
+}

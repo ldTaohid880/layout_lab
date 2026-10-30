@@ -1,0 +1,49 @@
+{
+  "id": "rounded-shapes",
+  "title": "Pills, circles and rounded cards",
+  "category": "Borders & effects",
+  "level": "beginner",
+  "summary": "border-radius makes pills (999px), circles (50%) and cards, and overflow: hidden clips their insides.",
+  "concepts": ["border-radius", "overflow"],
+  "explanation": [
+    "border-radius: 999px is a trick: any value bigger than half the height gives fully round ends, so the tags stay pills whatever their text length.",
+    "50% rounds each corner by half the box's own size, so a square becomes a circle. On a rectangle it would make an ellipse.",
+    "The card has rounded corners, but its coloured header would poke out of them without overflow: hidden on the card: rounding the parent does not clip the children."
+  ],
+  "tryThis": [
+    "Remove overflow: hidden from .card: the header's square corners show.",
+    "Change .avatar's width to 80px (height stays 48px): 50% now makes an ellipse.",
+    "Change .tag's radius to 6px: rounded rectangles instead of pills."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "demo",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "tags",
+          "children": [
+            { "tag": "span", "cls": "tag", "text": "CSS" },
+            { "tag": "span", "cls": "tag", "text": "Layout" },
+            { "tag": "span", "cls": "tag", "text": "A much longer tag" }
+          ]
+        },
+        { "tag": "div", "cls": "avatar", "text": "AL" },
+        {
+          "tag": "article",
+          "cls": "card",
+          "children": [
+            { "tag": "div", "cls": "card-head", "text": "Header" },
+            {
+              "tag": "p",
+              "cls": "card-body",
+              "text": "The corners clip the header because the card hides its overflow."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".demo {\n  display: grid;\n  gap: 16px;\n  justify-items: start;\n  padding: 16px;\n  font-family: system-ui, sans-serif;\n}\n\n.tags {\n  display: flex;\n  gap: 8px;\n}\n\n.tag {\n  padding: 4px 12px;\n  border-radius: 999px;\n  background-color: #fed7aa;\n  font-size: 0.875rem;\n}\n\n.avatar {\n  display: grid;\n  place-items: center;\n  width: 48px;\n  height: 48px;\n  border-radius: 50%;\n  background-color: #f97316;\n  color: #ffffff;\n  font-weight: 600;\n}\n\n.card {\n  width: 260px;\n  border: 1px solid #d4d4d8;\n  border-radius: 12px;\n  overflow: hidden;\n}\n\n.card-head {\n  padding: 10px 14px;\n  background-color: #f97316;\n  color: #ffffff;\n  font-weight: 600;\n}\n\n.card-body {\n  margin: 0;\n  padding: 12px 14px;\n}\n"
+}

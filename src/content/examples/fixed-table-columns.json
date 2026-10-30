@@ -1,0 +1,106 @@
+{
+  "id": "fixed-table-columns",
+  "title": "Table with fixed columns",
+  "category": "Sizing & overflow",
+  "level": "intermediate",
+  "summary": "table-layout: fixed keeps column widths whatever the cells contain.",
+  "concepts": ["table-layout", "width", "padding"],
+  "explanation": [
+    "By default (table-layout: auto) the browser measures every cell and lets the longest content decide each column's width, so one long value can reshape the whole table.",
+    "table-layout: fixed takes widths from the table's own width and the first row only. Here the name column is half the table and the other two share the rest, however long the text below is.",
+    "Fixed layout only applies when the table has a width other than auto, which is why .data has width: 100%."
+  ],
+  "tryThis": [
+    "Change table-layout: fixed to auto: the columns follow their content and the name column shrinks.",
+    "Change .name { width: 50% } to 30%: the other columns take the extra space equally.",
+    "Remove width: 100% from .data: the fixed layout has nothing to divide, so it behaves like auto."
+  ],
+  "items": [
+    {
+      "tag": "table",
+      "cls": "data",
+      "children": [
+        {
+          "tag": "thead",
+          "children": [
+            {
+              "tag": "tr",
+              "children": [
+                {
+                  "tag": "th",
+                  "cls": "name",
+                  "text": "Item"
+                },
+                {
+                  "tag": "th",
+                  "text": "Qty"
+                },
+                {
+                  "tag": "th",
+                  "text": "Price"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "tbody",
+          "children": [
+            {
+              "tag": "tr",
+              "children": [
+                {
+                  "tag": "td",
+                  "text": "Pen"
+                },
+                {
+                  "tag": "td",
+                  "text": "12"
+                },
+                {
+                  "tag": "td",
+                  "text": "$1.20"
+                }
+              ]
+            },
+            {
+              "tag": "tr",
+              "children": [
+                {
+                  "tag": "td",
+                  "text": "A notebook with a very long name that wraps inside its column"
+                },
+                {
+                  "tag": "td",
+                  "text": "3"
+                },
+                {
+                  "tag": "td",
+                  "text": "$14.00"
+                }
+              ]
+            },
+            {
+              "tag": "tr",
+              "children": [
+                {
+                  "tag": "td",
+                  "text": "Stapler"
+                },
+                {
+                  "tag": "td",
+                  "text": "1"
+                },
+                {
+                  "tag": "td",
+                  "text": "$8.50"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".data {\n  width: 100%;\n  table-layout: fixed;\n  border-collapse: collapse;\n}\n\n.name {\n  width: 50%;\n}\n\n.data th,\n.data td {\n  padding: 8px 12px;\n  border-bottom: 1px solid #fdba74;\n  text-align: left;\n}\n\n.data th {\n  background: #fed7aa;\n}\n"
+}

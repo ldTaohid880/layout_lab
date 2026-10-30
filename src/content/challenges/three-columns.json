@@ -1,0 +1,49 @@
+{
+  "id": "three-columns",
+  "title": "Three equal columns",
+  "level": "beginner",
+  "summary": "Equal widths, whatever the content, filling the container.",
+  "brief": [
+    "Put the three columns side by side, filling .cols from edge to edge, 16px apart.",
+    "They must be exactly the same width even though their text differs."
+  ],
+  "concepts": [
+    "grid-template-columns",
+    "flex",
+    "gap"
+  ],
+  "hints": [
+    "Columns sized by their content will not be equal. You need the container to share the space out.",
+    "With grid: three 1fr tracks. With flex: flex: 1 on each column.",
+    "display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px on .cols."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "cols",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "col",
+          "text": "One"
+        },
+        {
+          "tag": "div",
+          "cls": "col",
+          "text": "Two has a little more text in it"
+        },
+        {
+          "tag": "div",
+          "cls": "col",
+          "text": "Three"
+        }
+      ]
+    }
+  ],
+  "css": ".cols {\n  padding: 12px;\n  border: 2px dashed #a1a1aa;\n}\n\n.col {\n  padding: 16px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n",
+  "solution": ".cols {\n  padding: 12px;\n  border: 2px dashed #a1a1aa;\n}\n\n.col {\n  padding: 16px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n\n/* ---- Solution ---- */\n.cols {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 16px;\n}\n",
+  "solutionNotes": "1fr tracks share the space left after gaps equally. The flex equivalent is flex: 1 (a flex-basis of 0), so content length does not affect the share.",
+  "viewports": [
+    800
+  ]
+}

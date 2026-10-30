@@ -1,0 +1,24 @@
+{
+  "property": "outline-offset",
+  "group": "Borders & effects",
+  "appliesTo": "any element with an outline",
+  "summary": "The gap between the border edge and the outline.",
+  "details": "A small positive offset separates a focus ring from the element, so it stays visible against a background of the same colour.",
+  "values": [
+    {
+      "value": "2px",
+      "note": "A small gap, typical for focus rings."
+    },
+    {
+      "value": "0",
+      "note": "Default: the outline touches the border."
+    },
+    {
+      "value": "-4px",
+      "note": "Negative: the outline is drawn inside the box."
+    }
+  ],
+  "related": [
+    "outline"
+  ]
+}

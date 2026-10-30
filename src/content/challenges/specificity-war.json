@@ -1,0 +1,66 @@
+{
+  "id": "specificity-war",
+  "title": "Win the specificity war",
+  "level": "hard",
+  "summary": "The current-page link should be orange and bold, but an id selector keeps winning.",
+  "brief": [
+    "The \"Docs\" link has the class current, and the .current rule makes it orange (#ea580c) and bold (700). But it shows grey and regular like the others.",
+    "Make it orange and bold by adding one new rule. Do not edit or delete the existing rules, and do not use !important."
+  ],
+  "concepts": [
+    "color",
+    "font-weight"
+  ],
+  "hints": [
+    "Inspect the link: two rules set its colour. Which one is more specific?",
+    "#site-nav a contains an id. One id outweighs any number of classes, so .current, even placed later, cannot win.",
+    "Write a selector with the same id plus the class: #site-nav .current. It beats #site-nav a (an id and a class versus an id and an element)."
+  ],
+  "items": [
+    {
+      "tag": "header",
+      "cls": "site",
+      "children": [
+        {
+          "tag": "nav",
+          "cls": "",
+          "children": [
+            {
+              "tag": "a",
+              "cls": "",
+              "text": "Home",
+              "attrs": {
+                "href": "#"
+              }
+            },
+            {
+              "tag": "a",
+              "cls": "current",
+              "text": "Docs",
+              "attrs": {
+                "href": "#"
+              }
+            },
+            {
+              "tag": "a",
+              "cls": "",
+              "text": "Blog",
+              "attrs": {
+                "href": "#"
+              }
+            }
+          ],
+          "attrs": {
+            "id": "site-nav"
+          }
+        }
+      ]
+    }
+  ],
+  "css": ".site {\n  padding: 16px;\n  font-family: system-ui, sans-serif;\n}\n\n#site-nav {\n  display: flex;\n  gap: 20px;\n}\n\n#site-nav a {\n  color: #52525b;\n  font-weight: 400;\n  text-decoration: none;\n}\n\n.current {\n  color: #ea580c;\n  font-weight: 700;\n}\n",
+  "solution": ".site {\n  padding: 16px;\n  font-family: system-ui, sans-serif;\n}\n\n#site-nav {\n  display: flex;\n  gap: 20px;\n}\n\n#site-nav a {\n  color: #52525b;\n  font-weight: 400;\n  text-decoration: none;\n}\n\n.current {\n  color: #ea580c;\n  font-weight: 700;\n}\n\n/* ---- Solution ---- */\n#site-nav .current {\n  color: #ea580c;\n  font-weight: 700;\n}\n",
+  "solutionNotes": "Specificity is compared column by column: ids, then classes (and attributes and pseudo-classes), then elements. #site-nav a is (1, 0, 1); .current is (0, 1, 0), so it loses however late it appears. #site-nav .current is (1, 1, 0), which beats (1, 0, 1). The lasting lesson: ids in selectors make styles hard to override, which is why most style guides avoid them.",
+  "viewports": [
+    800
+  ]
+}

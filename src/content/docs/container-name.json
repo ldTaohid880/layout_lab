@@ -1,0 +1,24 @@
+{
+  "property": "container-name",
+  "group": "Responsive",
+  "appliesTo": "query containers (with container-type)",
+  "summary": "Names a query container, so @container rules can target that one specifically.",
+  "details": "An unnamed @container query looks at the nearest ancestor container. With a name, @container sidebar (min-width: 300px) skips any closer containers and asks the one called sidebar. The container-type is still needed.",
+  "values": [
+    {
+      "value": "sidebar",
+      "note": "Query it with @container sidebar (…)."
+    },
+    {
+      "value": "card main",
+      "note": "Two names; either one can be queried."
+    },
+    {
+      "value": "none",
+      "note": "Default: no name."
+    }
+  ],
+  "related": [
+    "container-type"
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "id": "sidebar-layout",
+  "title": "Sidebar layout",
+  "level": "intermediate",
+  "summary": "A 200px sidebar beside fluid content, stacking on phones.",
+  "brief": [
+    "At 800px: a 200px sidebar on the left, the content filling the rest of the row, 16px between them, both the same height.",
+    "At 375px the sidebar stacks above the content."
+  ],
+  "concepts": [
+    "grid-template-columns",
+    "gap",
+    "flex"
+  ],
+  "hints": [
+    "A fixed track and a flexible one: that is a two-column grid.",
+    "grid-template-columns: 200px 1fr. Grid items stretch to the row height by default.",
+    "For phones, a media query (max-width: 500px) that switches to a single 1fr column."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "layout",
+      "children": [
+        {
+          "tag": "section",
+          "cls": "sidebar",
+          "children": [
+            {
+              "tag": "ul",
+              "cls": "menu",
+              "children": [
+                {
+                  "tag": "li",
+                  "cls": "",
+                  "text": "Overview"
+                },
+                {
+                  "tag": "li",
+                  "cls": "",
+                  "text": "Settings"
+                },
+                {
+                  "tag": "li",
+                  "cls": "",
+                  "text": "Billing"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "main",
+          "cls": "content",
+          "text": "The content area takes all the remaining width."
+        }
+      ]
+    }
+  ],
+  "css": ".layout {\n  min-height: 300px;\n  border: 2px dashed #a1a1aa;\n}\n\n.sidebar {\n  padding: 12px;\n  background: #18181b;\n  color: #fafafa;\n}\n\n.menu {\n  margin: 0;\n  padding-left: 16px;\n}\n\n.content {\n  padding: 12px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n",
+  "solution": ".layout {\n  min-height: 300px;\n  border: 2px dashed #a1a1aa;\n}\n\n.sidebar {\n  padding: 12px;\n  background: #18181b;\n  color: #fafafa;\n}\n\n.menu {\n  margin: 0;\n  padding-left: 16px;\n}\n\n.content {\n  padding: 12px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n\n/* ---- Solution ---- */\n.layout {\n  display: grid;\n  grid-template-columns: 200px 1fr;\n  gap: 16px;\n}\n\n@media (max-width: 500px) {\n  .layout {\n    grid-template-columns: 1fr;\n  }\n}\n",
+  "solutionNotes": "The fr unit shares out the space left after fixed tracks and gaps. Grid items stretch in their row by default, so both columns are as tall as the taller one.",
+  "viewports": [
+    800,
+    375
+  ]
+}

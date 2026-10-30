@@ -1,0 +1,29 @@
+{
+  "property": "text-transform",
+  "group": "Typography",
+  "appliesTo": "any element (inherited)",
+  "summary": "Changes the case of the text as displayed, without changing the HTML.",
+  "details": "Screen readers and copy-paste see the original text, so write the words normally and style the case with CSS.",
+  "values": [
+    {
+      "value": "uppercase",
+      "note": "ALL CAPITALS."
+    },
+    {
+      "value": "capitalize",
+      "note": "First Letter Of Each Word."
+    },
+    {
+      "value": "lowercase",
+      "note": "all lower case."
+    },
+    {
+      "value": "none",
+      "note": "Default: as written."
+    }
+  ],
+  "related": [
+    "letter-spacing",
+    "font-size"
+  ]
+}

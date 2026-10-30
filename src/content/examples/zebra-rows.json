@@ -1,0 +1,33 @@
+{
+  "id": "zebra-rows",
+  "title": "Zebra stripes with :nth-child",
+  "category": "Cascade & variables",
+  "level": "beginner",
+  "summary": ":nth-child(even) shades every other row; :hover highlights the row under the pointer.",
+  "concepts": ["background-color", "cursor"],
+  "explanation": [
+    ":nth-child(even) matches the 2nd, 4th, 6th… child of its parent, so the stripes stay correct however many rows there are, with no extra classes in the HTML.",
+    "Pseudo-classes describe state as well as position. :hover applies while the pointer is over the row. It comes after the stripe rule and has the same specificity, so it wins on striped rows too.",
+    "Other useful patterns: :nth-child(3n) every third, :nth-child(-n + 3) the first three, :nth-child(odd) the others."
+  ],
+  "tryThis": [
+    "Change even to odd.",
+    "Change it to 3n: every third row is shaded.",
+    "Move the :hover rule above the :nth-child rule: hovering a shaded row no longer changes it, because now the stripe comes later."
+  ],
+  "items": [
+    {
+      "tag": "ul",
+      "cls": "rows",
+      "children": [
+        { "tag": "li", "cls": "item", "text": "Apples" },
+        { "tag": "li", "cls": "item", "text": "Bread" },
+        { "tag": "li", "cls": "item", "text": "Coffee" },
+        { "tag": "li", "cls": "item", "text": "Dates" },
+        { "tag": "li", "cls": "item", "text": "Eggs" },
+        { "tag": "li", "cls": "item", "text": "Flour" }
+      ]
+    }
+  ],
+  "css": ".rows {\n  max-width: 280px;\n  margin: 16px;\n  padding: 0;\n  list-style: none;\n  border: 1px solid #d4d4d8;\n  border-radius: 8px;\n  overflow: hidden;\n  font-family: system-ui, sans-serif;\n}\n\n.item {\n  padding: 8px 14px;\n  cursor: pointer;\n}\n\n.item:nth-child(even) {\n  background-color: #fff7ed;\n}\n\n.item:hover {\n  background-color: #fed7aa;\n}\n"
+}

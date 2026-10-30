@@ -1,0 +1,39 @@
+{
+  "id": "corner-badge",
+  "title": "Badge on the corner",
+  "level": "intermediate",
+  "summary": "Pin the badge so its centre sits on the avatar's top-right corner.",
+  "brief": [
+    "Take the badge out of the avatar's flow and place it so its centre sits exactly on the avatar's top-right corner, whatever the badge's size."
+  ],
+  "concepts": [
+    "position",
+    "top",
+    "inset"
+  ],
+  "hints": [
+    "An absolutely positioned element is placed against its nearest positioned ancestor.",
+    "position: relative on .avatar, position: absolute with top: 0 and right: 0 on .badge puts the badge in the corner.",
+    "To centre it on the corner instead, shift it by half its own size: transform: translate(50%, -50%)."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "avatar",
+      "text": "AB",
+      "children": [
+        {
+          "tag": "span",
+          "cls": "badge",
+          "text": "3"
+        }
+      ]
+    }
+  ],
+  "css": ".avatar {\n  display: grid;\n  place-items: center;\n  width: 64px;\n  height: 64px;\n  margin: 40px;\n  border-radius: 12px;\n  background: #3f3f46;\n  color: #fafafa;\n}\n\n.badge {\n  min-width: 22px;\n  padding: 2px 6px;\n  border-radius: 999px;\n  background: #f97316;\n  color: #fff;\n  font-size: 12px;\n  text-align: center;\n}\n",
+  "solution": ".avatar {\n  display: grid;\n  place-items: center;\n  width: 64px;\n  height: 64px;\n  margin: 40px;\n  border-radius: 12px;\n  background: #3f3f46;\n  color: #fafafa;\n}\n\n.badge {\n  min-width: 22px;\n  padding: 2px 6px;\n  border-radius: 999px;\n  background: #f97316;\n  color: #fff;\n  font-size: 12px;\n  text-align: center;\n}\n\n/* ---- Solution ---- */\n.avatar {\n  position: relative;\n}\n\n.badge {\n  position: absolute;\n  top: 0;\n  right: 0;\n  transform: translate(50%, -50%);\n}\n",
+  "solutionNotes": "position: relative makes the avatar the containing block without moving it. top: 0; right: 0 lines the badge's corner up with the avatar's; translate(50%, -50%) moves it by half its own width and height, so its centre lands on the corner at any size.",
+  "viewports": [
+    800
+  ]
+}

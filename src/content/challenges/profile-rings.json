@@ -1,0 +1,72 @@
+{
+  "id": "profile-rings",
+  "title": "Avatar ring and pill tags",
+  "level": "intermediate",
+  "summary": "A round avatar with a double ring, and pill-shaped tags, without changing any sizes.",
+  "brief": [
+    "Make the 64px avatar a circle. Around it draw a 3px white ring and, outside that, a 3px orange (#f97316) ring. The rings must not make the avatar any bigger or move anything.",
+    "Each tag becomes a pill: fully rounded ends, a 1px solid #f97316 border and a #fff7ed background."
+  ],
+  "concepts": [
+    "border-radius",
+    "box-shadow",
+    "border",
+    "outline"
+  ],
+  "hints": [
+    "A circle is border-radius: 50%; a pill is a radius bigger than half its height, such as 999px.",
+    "A border would add to the avatar’s size. A box-shadow with no offset and no blur, only a spread, draws a ring that takes no space.",
+    "box-shadow: 0 0 0 3px #ffffff, 0 0 0 6px #f97316. The second shadow is 6px so 3px of it shows outside the white one."
+  ],
+  "items": [
+    {
+      "tag": "header",
+      "cls": "profile",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "avatar",
+          "text": "AL"
+        },
+        {
+          "tag": "div",
+          "cls": "",
+          "children": [
+            {
+              "tag": "h2",
+              "cls": "name",
+              "text": "Ada Lovelace"
+            },
+            {
+              "tag": "div",
+              "cls": "tags",
+              "children": [
+                {
+                  "tag": "span",
+                  "cls": "tag",
+                  "text": "Maths"
+                },
+                {
+                  "tag": "span",
+                  "cls": "tag",
+                  "text": "Engines"
+                },
+                {
+                  "tag": "span",
+                  "cls": "tag",
+                  "text": "Poetry"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".profile {\n  display: flex;\n  align-items: center;\n  gap: 20px;\n  padding: 32px;\n  font-family: system-ui, sans-serif;\n}\n\n.avatar {\n  display: grid;\n  place-items: center;\n  width: 64px;\n  height: 64px;\n  background-color: #fdba74;\n  font-size: 1.5rem;\n  font-weight: 600;\n}\n\n.name {\n  margin: 0 0 8px;\n}\n\n.tags {\n  display: flex;\n  gap: 8px;\n}\n\n.tag {\n  padding: 2px 10px;\n  color: #9a3412;\n  font-size: 0.875rem;\n}\n",
+  "solution": ".profile {\n  display: flex;\n  align-items: center;\n  gap: 20px;\n  padding: 32px;\n  font-family: system-ui, sans-serif;\n}\n\n.avatar {\n  display: grid;\n  place-items: center;\n  width: 64px;\n  height: 64px;\n  background-color: #fdba74;\n  font-size: 1.5rem;\n  font-weight: 600;\n}\n\n.name {\n  margin: 0 0 8px;\n}\n\n.tags {\n  display: flex;\n  gap: 8px;\n}\n\n.tag {\n  padding: 2px 10px;\n  color: #9a3412;\n  font-size: 0.875rem;\n}\n\n/* ---- Solution ---- */\n.avatar {\n  border-radius: 50%;\n  box-shadow: 0 0 0 3px #ffffff, 0 0 0 6px #f97316;\n}\n\n.tag {\n  border: 1px solid #f97316;\n  border-radius: 999px;\n  background-color: #fff7ed;\n}\n",
+  "solutionNotes": "Shadows with a spread and no blur are solid rings, and because shadows are painted outside the layout they never change the avatar’s size or nudge its neighbours. They are listed top first, so the white ring sits over the wider orange one and only its outer 3px shows. A radius far larger than the tag’s height, such as 999px, gives fully round ends whatever the text length.",
+  "viewports": [
+    800
+  ]
+}

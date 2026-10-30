@@ -1,0 +1,41 @@
+{
+  "id": "line-height-compare",
+  "title": "Line height: tight, comfortable, loose",
+  "category": "Typography",
+  "level": "beginner",
+  "summary": "The same paragraph at line-height 1, 1.5 and 2, and why the number has no unit.",
+  "concepts": ["line-height", "font-size"],
+  "explanation": [
+    "line-height sets the height of each line box. At 1 the lines nearly touch and long text is tiring to read; around 1.5 is comfortable for body text; 2 starts to fall apart into separate lines. Headings usually want less (1.1 to 1.25) because their letters are big.",
+    "Write it without a unit. A unitless 1.5 means 1.5 times the element's own font size, and children recalculate it for their own size. line-height: 24px would be inherited as a fixed 24px, so a big heading inside would have its lines overlap."
+  ],
+  "tryThis": [
+    "Change the .loose font-size to 24px: its lines grow with it, because 2 is relative.",
+    "Set .tight to line-height: 16px and its font-size to 24px: the lines overlap.",
+    "Find the value between 1.4 and 1.7 that reads best to you."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "columns",
+      "children": [
+        {
+          "tag": "p",
+          "cls": "sample tight",
+          "text": "line-height: 1. Lines sit right on top of each other, so the eye struggles to find the start of the next one when the text runs long."
+        },
+        {
+          "tag": "p",
+          "cls": "sample normal",
+          "text": "line-height: 1.5. There is room between lines, so a paragraph reads smoothly. This is a good default for body text."
+        },
+        {
+          "tag": "p",
+          "cls": "sample loose",
+          "text": "line-height: 2. Lines drift apart and the paragraph stops looking like one block of thought."
+        }
+      ]
+    }
+  ],
+  "css": ".columns {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 16px;\n  padding: 24px;\n  font-family: system-ui, sans-serif;\n  font-size: 16px;\n}\n\n.sample {\n  margin: 0;\n  padding: 12px;\n  border-radius: 8px;\n  background-color: #fff7ed;\n}\n\n.tight {\n  line-height: 1;\n}\n\n.normal {\n  line-height: 1.5;\n}\n\n.loose {\n  line-height: 2;\n}\n"
+}

@@ -1,0 +1,118 @@
+{
+  "id": "tabular-numbers",
+  "title": "Numbers that line up",
+  "category": "Typography",
+  "level": "intermediate",
+  "summary": "font-variant-numeric: tabular-nums gives every digit the same width so prices and timers align.",
+  "concepts": ["font-family", "text-align", "font-weight"],
+  "explanation": [
+    "Many fonts have proportional figures: a 1 is narrower than an 8. That looks nice in a sentence but makes a column of prices wobble, and a ticking timer jiggle sideways. font-variant-numeric: tabular-nums switches to figures that all share one width, so with text-align: end the decimal points line up.",
+    "Fonts pick their own default. Some (such as Georgia, or Candara on Windows) are proportional, others (Segoe UI, the system font on Windows) are already tabular. So the left column asks for proportional-nums explicitly to show the difference, and the right column asks for tabular-nums so it never depends on the font.",
+    "The setting only works when the font contains both kinds of figures; most system and monospace fonts do."
+  ],
+  "tryThis": [
+    "Remove proportional-nums from .proportional: on Windows it may now line up too, because the default figures are already tabular.",
+    "Change .prices' font-family to Georgia, serif: its figures stay proportional whatever you ask for, because Georgia has only one kind.",
+    "Change the 1.11 cells to 11.11: the wobble in the left column gets bigger."
+  ],
+  "items": [
+    {
+      "tag": "table",
+      "cls": "prices",
+      "children": [
+        {
+          "tag": "thead",
+          "children": [
+            {
+              "tag": "tr",
+              "children": [
+                { "tag": "th", "text": "Item" },
+                {
+                  "tag": "th",
+                  "cls": "num",
+                  "text": "Proportional"
+                },
+                {
+                  "tag": "th",
+                  "cls": "num",
+                  "text": "Tabular"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "tbody",
+          "children": [
+            {
+              "tag": "tr",
+              "children": [
+                { "tag": "td", "text": "Coffee" },
+                {
+                  "tag": "td",
+                  "cls": "num proportional",
+                  "text": "1.11"
+                },
+                {
+                  "tag": "td",
+                  "cls": "num tabular",
+                  "text": "1.11"
+                }
+              ]
+            },
+            {
+              "tag": "tr",
+              "children": [
+                { "tag": "td", "text": "Lunch" },
+                {
+                  "tag": "td",
+                  "cls": "num proportional",
+                  "text": "18.80"
+                },
+                {
+                  "tag": "td",
+                  "cls": "num tabular",
+                  "text": "18.80"
+                }
+              ]
+            },
+            {
+              "tag": "tr",
+              "children": [
+                { "tag": "td", "text": "Taxi" },
+                {
+                  "tag": "td",
+                  "cls": "num proportional",
+                  "text": "11.17"
+                },
+                {
+                  "tag": "td",
+                  "cls": "num tabular",
+                  "text": "11.17"
+                }
+              ]
+            },
+            {
+              "tag": "tr",
+              "cls": "total",
+              "children": [
+                { "tag": "td", "text": "Total" },
+                {
+                  "tag": "td",
+                  "cls": "num proportional",
+                  "text": "31.08"
+                },
+                {
+                  "tag": "td",
+                  "cls": "num tabular",
+                  "text": "31.08"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".prices {\n  margin: 24px;\n  border-collapse: collapse;\n  font-family: system-ui, sans-serif;\n  font-size: 20px;\n}\n\n.prices th,\n.prices td {\n  padding: 8px 16px;\n  border-bottom: 1px solid #e4e4e7;\n  text-align: start;\n}\n\n.prices th {\n  font-size: 13px;\n  color: #71717a;\n}\n\n.prices .num {\n  text-align: end;\n}\n\n.proportional {\n  font-variant-numeric: proportional-nums;\n}\n\n.tabular {\n  font-variant-numeric: tabular-nums;\n}\n\n.total {\n  font-weight: 700;\n}\n"
+}

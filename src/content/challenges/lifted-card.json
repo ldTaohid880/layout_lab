@@ -1,0 +1,49 @@
+{
+  "id": "lifted-card",
+  "title": "Lift the card",
+  "level": "beginner",
+  "summary": "Rounded corners and a two-layer shadow make a flat box float.",
+  "brief": [
+    "Round the note’s corners by 12px.",
+    "Give it two shadows: a tight one (0 1px 3px, black at 12% opacity) and a soft one (0 8px 24px, black at 12% opacity)."
+  ],
+  "concepts": [
+    "border-radius",
+    "box-shadow"
+  ],
+  "hints": [
+    "Corners: border-radius. Shadows: box-shadow.",
+    "box-shadow takes a comma-separated list; each shadow is x, y, blur and colour.",
+    "box-shadow: 0 1px 3px rgb(0 0 0 / 0.12), 0 8px 24px rgb(0 0 0 / 0.12);"
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "desk",
+      "children": [
+        {
+          "tag": "article",
+          "cls": "note",
+          "children": [
+            {
+              "tag": "h3",
+              "cls": "",
+              "text": "Reminder"
+            },
+            {
+              "tag": "p",
+              "cls": "",
+              "text": "Water the plants before the weekend."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".desk {\n  padding: 40px;\n  background-color: #f4f4f5;\n  font-family: system-ui, sans-serif;\n}\n\n.note {\n  max-width: 320px;\n  padding: 20px;\n  background-color: #ffffff;\n}\n\n.note h3 {\n  margin: 0 0 6px;\n}\n\n.note p {\n  margin: 0;\n  color: #52525b;\n}\n",
+  "solution": ".desk {\n  padding: 40px;\n  background-color: #f4f4f5;\n  font-family: system-ui, sans-serif;\n}\n\n.note {\n  max-width: 320px;\n  padding: 20px;\n  background-color: #ffffff;\n}\n\n.note h3 {\n  margin: 0 0 6px;\n}\n\n.note p {\n  margin: 0;\n  color: #52525b;\n}\n\n/* ---- Solution ---- */\n.note {\n  border-radius: 12px;\n  box-shadow: 0 1px 3px rgb(0 0 0 / 0.12), 0 8px 24px rgb(0 0 0 / 0.12);\n}\n",
+  "solutionNotes": "Two shadows look more natural than one: the tight one anchors the card to the surface and the large, soft one gives it depth. Low-alpha black keeps them gentle. Shadows follow border-radius, so the rounded corners are shaded correctly, and neither property changes the card’s size.",
+  "viewports": [
+    800
+  ]
+}

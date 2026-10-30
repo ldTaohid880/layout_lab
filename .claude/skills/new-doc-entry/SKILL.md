@@ -1,6 +1,6 @@
 ---
 name: new-doc-entry
-description: "Add or extend a CSS property entry in Layout Lab Studio's Docs tab (src/content/docs.ts): summary, details, values with Try buttons, gotcha and related properties. Use this whenever the user wants to document a property, add a property to the docs, fix or improve a doc entry, or asks which properties are missing from the reference, even if they just say 'add docs for order' or 'document place-content'."
+description: "Add or extend a CSS property entry in Layout Lab Studio's Docs tab (one JSON file in src/content/docs/): summary, details, values with Try buttons, gotcha and related properties. Use this whenever the user wants to document a property, add a property to the docs, fix or improve a doc entry, or asks which properties are missing from the reference, even if they just say 'add docs for order' or 'document place-content'."
 ---
 
 # Add a docs entry to Layout Lab Studio
@@ -11,26 +11,32 @@ interactive, not just text.
 
 ## 1. Pick the property and check it is not there
 
-Search `src/content/docs.ts` for `property: '<name>'`. If it exists, edit it instead of adding a
-duplicate. Entries are grouped, in this order, under one of: `Box & display`, `Flex container`,
-`Flex item`, `Grid container`, `Grid item`, `Positioning`, `Media`. Put the new entry at the end of
-its group's section in the file.
+Look for `src/content/docs/<name>.json`. If it exists, edit it instead of adding a duplicate.
+Entries are grouped, in this order, under one of: `Box & display`, `Flex container`,
+`Flex item`, `Grid container`, `Grid item`, `Positioning`, `Media`, `Typography`,
+`Colour & backgrounds`, `Borders & effects`, `Responsive`, `Motion` (`DOC_GROUPS` in
+`src/content/docs/index.ts`).
 
 ## 2. Write the entry (type: `DocEntry` in `src/content/types.ts`)
 
-```ts
+Create `src/content/docs/<property>.json` (the file name must match `property`), then add the
+property to the end of its group's list in `DOC_ORDER` (`src/content/docs/order.ts`). That list sets
+the order of the Docs tab; a test fails if a file is missing from it, listed twice, or listed under
+a group other than its own `group`.
+
+```json
 {
-  property: 'order',
-  group: 'Flex item',
-  appliesTo: 'flex and grid items',
-  summary: 'One sentence: what it controls.',
-  details: 'How it behaves, in plain words, including the default.',
-  values: [
-    { value: '-1', note: 'Move to the front.' },
-    { value: '1', note: 'Move after items with 0.' },
+  "property": "order",
+  "group": "Flex item",
+  "appliesTo": "flex and grid items",
+  "summary": "One sentence: what it controls.",
+  "details": "How it behaves, in plain words, including the default.",
+  "values": [
+    { "value": "-1", "note": "Move to the front." },
+    { "value": "1", "note": "Move after items with 0." }
   ],
-  gotcha: 'The one mistake people make (optional, shown highlighted).',
-  related: ['flex-direction'],   // each must have its own entry
+  "gotcha": "The one mistake people make (optional, shown highlighted).",
+  "related": ["flex-direction"]
 }
 ```
 
@@ -41,7 +47,7 @@ its group's section in the file.
   container property on an item or the reverse.
 - **gotcha**: include one whenever there is a well-known trap (for example `justify-items` does
   nothing in flexbox; `z-index` cannot escape a stacking context).
-- **related**: properties that work together, each of which must already have an entry. Add the
+- **related**: properties that work together, each of which must have its own entry. Add the
   related entry first, or leave the link out.
 - Use the real CSS property name: the MDN link is built from it.
 
@@ -59,4 +65,4 @@ its group's section in the file.
 
 - The C: drive is full. Before npm/npx set `npm_config_cache=D:/Mine/layout_lab/.cache/npm` and
   `TMP`/`TEMP` to `D:/Mine/layout_lab/.cache/tmp`. Prefer `./node_modules/.bin/vitest|tsc`.
-- Edit with the Edit/Write tools: shell heredocs and `node -e` mangle backticks and `${...}`.
+- Write the JSON with the Write tool: shell heredocs can mangle the quotes and escapes.

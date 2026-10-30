@@ -1,0 +1,29 @@
+{
+  "property": "text-decoration",
+  "group": "Typography",
+  "appliesTo": "any element",
+  "summary": "Lines drawn under, over or through text.",
+  "details": "Shorthand for the line, its style, colour and thickness. Links are underlined by default; text-underline-offset moves the underline away from the letters.",
+  "values": [
+    {
+      "value": "none",
+      "note": "Remove the underline (e.g. on nav links)."
+    },
+    {
+      "value": "underline",
+      "note": "A plain underline."
+    },
+    {
+      "value": "underline dotted",
+      "note": "Dotted underline, often used for abbreviations."
+    },
+    {
+      "value": "line-through",
+      "note": "Strike through, e.g. an old price."
+    }
+  ],
+  "gotcha": "Removing the underline from links in body text makes them hard to spot. If you do, give links another clear signal such as colour plus weight.",
+  "related": [
+    "text-transform"
+  ]
+}

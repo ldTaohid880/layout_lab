@@ -1,0 +1,30 @@
+{
+  "property": "grid-column",
+  "group": "Grid item",
+  "appliesTo": "grid items",
+  "summary": "Which column lines the item starts and ends on.",
+  "details": "Lines are numbered from 1; negative numbers count from the end, so 1 / -1 spans the full explicit grid.",
+  "values": [
+    {
+      "value": "span 2",
+      "note": "Two columns wide."
+    },
+    {
+      "value": "1 / -1",
+      "note": "Full width."
+    },
+    {
+      "value": "2 / 4",
+      "note": "From line 2 to line 4."
+    },
+    {
+      "value": "auto",
+      "note": "Default: auto-placed."
+    }
+  ],
+  "related": [
+    "grid-row",
+    "grid-area",
+    "grid-template-columns"
+  ]
+}

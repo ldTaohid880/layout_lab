@@ -1,0 +1,39 @@
+{
+  "id": "center-the-card",
+  "title": "Center the card",
+  "level": "beginner",
+  "summary": "Put the card dead centre in its stage, both ways.",
+  "brief": [
+    "The card sits in the top-left corner of .stage. Move it to the exact centre, horizontally and vertically."
+  ],
+  "concepts": [
+    "display",
+    "justify-content",
+    "align-items",
+    "place-items"
+  ],
+  "hints": [
+    "Centering is the parent's job: style .stage, not .card.",
+    "Make .stage a flex or grid container.",
+    "display: flex with justify-content: center and align-items: center. Or display: grid with place-items: center."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "stage",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "card",
+          "text": "Center me"
+        }
+      ]
+    }
+  ],
+  "css": ".stage {\n  min-height: 320px;\n  border: 2px dashed #a1a1aa;\n}\n\n.card {\n  width: 160px;\n  padding: 24px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n",
+  "solution": ".stage {\n  min-height: 320px;\n  border: 2px dashed #a1a1aa;\n}\n\n.card {\n  width: 160px;\n  padding: 24px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n\n/* ---- Solution ---- */\n.stage {\n  display: grid;\n  place-items: center;\n}\n",
+  "solutionNotes": "place-items: center on a grid container centres the child in its cell on both axes. The flex version needs two properties: justify-content for the main axis and align-items for the cross axis.",
+  "viewports": [
+    800
+  ]
+}

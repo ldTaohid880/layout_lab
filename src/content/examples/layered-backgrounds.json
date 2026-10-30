@@ -1,0 +1,29 @@
+{
+  "id": "layered-backgrounds",
+  "title": "Layered backgrounds",
+  "category": "Colour & backgrounds",
+  "level": "intermediate",
+  "summary": "Several backgrounds in one declaration, each with its own size, position and repeat.",
+  "concepts": ["background-image", "background-position", "background-size", "background-repeat"],
+  "explanation": [
+    "background-image takes a comma-separated list, and the first layer is painted on top. Here a dark fade sits over a soft yellow spotlight, which sits over a purple-to-orange gradient.",
+    "background-position, background-size and background-repeat take lists too, matched up layer by layer: the spotlight is 260px wide, pinned to the top right, and drawn once; the other two layers fill the box.",
+    "The dark fade at the bottom is what keeps the white caption readable, whatever is behind it."
+  ],
+  "tryThis": [
+    "Remove the first layer (the dark fade) from background-image and from each list: the caption gets harder to read.",
+    "Change the spotlight's position from top right to center.",
+    "Change the spotlight's repeat from no-repeat to repeat."
+  ],
+  "items": [
+    {
+      "tag": "section",
+      "cls": "banner",
+      "children": [
+        { "tag": "h2", "cls": "banner-title", "text": "Evening release" },
+        { "tag": "p", "cls": "banner-text", "text": "Three background layers, one element." }
+      ]
+    }
+  ],
+  "css": ".banner {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-end;\n  height: 240px;\n  margin: 16px;\n  padding: 20px;\n  border-radius: 12px;\n  color: #ffffff;\n  font-family: system-ui, sans-serif;\n  background-image:\n    linear-gradient(transparent 40%, rgb(0 0 0 / 0.7)),\n    radial-gradient(circle, #fde68a, transparent 70%),\n    linear-gradient(135deg, #7c3aed, #ea580c);\n  background-size: 100% 100%, 260px 260px, 100% 100%;\n  background-position: center, top right, center;\n  background-repeat: no-repeat, no-repeat, no-repeat;\n}\n\n.banner-title {\n  margin: 0 0 4px;\n}\n\n.banner-text {\n  margin: 0;\n}\n"
+}

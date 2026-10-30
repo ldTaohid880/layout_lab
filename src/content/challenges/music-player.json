@@ -1,0 +1,116 @@
+{
+  "id": "music-player",
+  "title": "Music player",
+  "level": "hard",
+  "creative": true,
+  "summary": "Recreate a player card: gradient album art with a frosted label, a truncated title, progress bar and a round play button.",
+  "brief": [
+    "The card is dark (#18181b) with 20px rounded corners and white text. The album art is 260px tall with 14px corners, painted with a pink glow at 30% 30%, a violet glow at 70% 70% (each fading out by 50%) over a 135deg orange-to-violet gradient (#f97316 to #7c3aed).",
+    "A frosted label sits 12px inside the bottom of the art: 10px 12px padding, 10px corners, a 20% white background blurring what is behind it, extra bold text spaced 0.3em.",
+    "Below, 16px down: the title (16px, semibold) stays on one line and ends in an ellipsis; the artist is 13px #a1a1aa. Then, 16px down, a 4px round progress track (#3f3f46) filled 36% in orange, with the two times (11px grey, tabular digits) at either end 6px below it.",
+    "The controls row is 12px further down, centred, 24px apart: two #e4e4e7 skip buttons and a 56px orange play button with an orange glow and a white triangle drawn in CSS (16 × 18px, 19px from the top and 22px from the left)."
+  ],
+  "concepts": [
+    "background-image",
+    "filter",
+    "text-overflow",
+    "white-space",
+    "border-radius",
+    "box-shadow"
+  ],
+  "hints": [
+    "Work top to bottom. The art is position: relative so the label can be absolute with left, right and bottom at 12px. Several gradients go into one background-image, separated by commas; the first is drawn on top. The frosting is backdrop-filter: blur(10px).",
+    "The title needs white-space: nowrap, overflow: hidden and text-overflow: ellipsis. The progress track has overflow: hidden and the fill inside is width: 36%, height: 100%.",
+    "The triangle is .play::before with content: \"\", position: absolute and clip-path: polygon(0 0, 100% 50%, 0 100%); .play needs position: relative. The glow is box-shadow: 0 6px 16px rgb(249 115 22 / 0.45)."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "player",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "art",
+          "children": [
+            {
+              "tag": "span",
+              "cls": "art-label",
+              "text": "LO-FI NIGHTS"
+            }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "info",
+          "children": [
+            {
+              "tag": "p",
+              "cls": "track",
+              "text": "Midnight drive through an empty city by the sea"
+            },
+            {
+              "tag": "p",
+              "cls": "artist",
+              "text": "Harbour Lights"
+            }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "progress",
+          "children": [
+            {
+              "tag": "div",
+              "cls": "fill"
+            }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "times",
+          "children": [
+            {
+              "tag": "span",
+              "cls": "time",
+              "text": "1:24"
+            },
+            {
+              "tag": "span",
+              "cls": "time",
+              "text": "3:52"
+            }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "controls",
+          "children": [
+            {
+              "tag": "button",
+              "cls": "ctrl",
+              "text": "−15"
+            },
+            {
+              "tag": "button",
+              "cls": "play",
+              "attrs": {
+                "aria-label": "Play"
+              }
+            },
+            {
+              "tag": "button",
+              "cls": "ctrl",
+              "text": "+15"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".player {\n  width: 300px;\n  margin: 24px;\n  padding: 16px;\n  font-family: system-ui, sans-serif;\n}\n\n.player p {\n  margin: 0;\n}\n\n.ctrl {\n  border: 0;\n  background-color: transparent;\n  font: inherit;\n}\n",
+  "solution": ".player {\n  width: 300px;\n  margin: 24px;\n  padding: 16px;\n  font-family: system-ui, sans-serif;\n}\n\n.player p {\n  margin: 0;\n}\n\n.ctrl {\n  border: 0;\n  background-color: transparent;\n  font: inherit;\n}\n\n/* ---- Solution ---- */\n.player {\n  border-radius: 20px;\n  background-color: #18181b;\n  color: #ffffff;\n}\n\n.art {\n  position: relative;\n  height: 260px;\n  border-radius: 14px;\n  background-image:\n    radial-gradient(circle at 30% 30%, #f472b6, transparent 50%),\n    radial-gradient(circle at 70% 70%, #818cf8, transparent 50%),\n    linear-gradient(135deg, #f97316, #7c3aed);\n}\n\n.art-label {\n  position: absolute;\n  right: 12px;\n  bottom: 12px;\n  left: 12px;\n  padding: 10px 12px;\n  border-radius: 10px;\n  background-color: rgb(255 255 255 / 0.2);\n  backdrop-filter: blur(10px);\n  font-weight: 800;\n  letter-spacing: 0.3em;\n}\n\n.info {\n  margin-top: 16px;\n}\n\n.track {\n  overflow: hidden;\n  font-size: 16px;\n  font-weight: 600;\n  white-space: nowrap;\n  text-overflow: ellipsis;\n}\n\n.artist {\n  color: #a1a1aa;\n  font-size: 13px;\n}\n\n.progress {\n  height: 4px;\n  margin-top: 16px;\n  overflow: hidden;\n  border-radius: 999px;\n  background-color: #3f3f46;\n}\n\n.fill {\n  width: 36%;\n  height: 100%;\n  background-color: #f97316;\n}\n\n.times {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 6px;\n  color: #a1a1aa;\n  font-size: 11px;\n  font-variant-numeric: tabular-nums;\n}\n\n.controls {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 24px;\n  margin-top: 12px;\n}\n\n.ctrl {\n  color: #e4e4e7;\n}\n\n.play {\n  position: relative;\n  width: 56px;\n  height: 56px;\n  border: 0;\n  border-radius: 50%;\n  background-color: #f97316;\n  box-shadow: 0 6px 16px rgb(249 115 22 / 0.45);\n}\n\n.play::before {\n  content: \"\";\n  position: absolute;\n  top: 19px;\n  left: 22px;\n  width: 16px;\n  height: 18px;\n  background-color: #ffffff;\n  clip-path: polygon(0 0, 100% 50%, 0 100%);\n}\n",
+  "solutionNotes": "Nothing here is new on its own; the challenge is combining it. The art is a stack of gradients (the radial glows fade to transparent so the linear gradient shows between them), and backdrop-filter frosts only the label because only the label has a see-through background. The title truncates because all three properties are present: nowrap keeps one line, overflow hides the rest, text-overflow draws the dots. The progress bar is a track with a child whose width is the progress. The play icon is a pseudo-element clipped to a triangle, nudged right of centre so it looks centred, since a triangle’s visual weight sits on its flat side.",
+  "viewports": [
+    800
+  ]
+}

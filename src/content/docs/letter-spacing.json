@@ -1,0 +1,25 @@
+{
+  "property": "letter-spacing",
+  "group": "Typography",
+  "appliesTo": "any element (inherited)",
+  "summary": "Extra space between characters.",
+  "details": "Small positive spacing helps uppercase labels and small text read better; slight negative spacing can tighten large headings. Use em so it scales with the font size.",
+  "values": [
+    {
+      "value": "0.08em",
+      "note": "Open up uppercase labels."
+    },
+    {
+      "value": "-0.02em",
+      "note": "Tighten a big heading slightly."
+    },
+    {
+      "value": "normal",
+      "note": "Default."
+    }
+  ],
+  "related": [
+    "text-transform",
+    "font-size"
+  ]
+}

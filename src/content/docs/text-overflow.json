@@ -1,0 +1,23 @@
+{
+  "property": "text-overflow",
+  "group": "Typography",
+  "appliesTo": "block containers with clipped overflow",
+  "summary": "What to show where text is cut off: nothing, or an ellipsis.",
+  "details": "It only shows when text actually overflows its box and is clipped. The classic single-line truncation needs three declarations together: white-space: nowrap, overflow: hidden and text-overflow: ellipsis.",
+  "values": [
+    {
+      "value": "ellipsis",
+      "note": "Show … where the text is cut."
+    },
+    {
+      "value": "clip",
+      "note": "Default: cut the text off."
+    }
+  ],
+  "gotcha": "On its own it does nothing: the text must be kept on one line (white-space: nowrap) and clipped (overflow: hidden). In a flex item, also add min-width: 0 so the item can get narrower than its text.",
+  "related": [
+    "white-space",
+    "overflow",
+    "min-width"
+  ]
+}

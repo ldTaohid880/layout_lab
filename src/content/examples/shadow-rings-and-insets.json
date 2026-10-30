@@ -1,0 +1,37 @@
+{
+  "id": "shadow-rings-and-insets",
+  "title": "Rings and pressed-in fields",
+  "category": "Borders & effects",
+  "level": "intermediate",
+  "summary": "Spread shadows draw rings that take no space; inset shadows press a field into the page.",
+  "concepts": ["box-shadow", "border", "outline"],
+  "explanation": [
+    "A shadow with no offset and no blur but a spread (0 0 0 3px) is a solid ring around the box. Two of them, white then orange, make the double ring on the avatars. Unlike a border, shadows never change the element's size, so the avatars stay perfectly aligned.",
+    "inset moves a shadow inside the box. A small dark inset along the top makes the text field look recessed, like it has depth.",
+    "The ring trick is also a good alternative focus style when you want a soft, rounded glow."
+  ],
+  "tryThis": [
+    "Replace the avatar box-shadow with border: 3px solid #f97316: the selected avatar grows by 6px.",
+    "Remove inset from .field's shadow: it now looks raised instead of pressed in.",
+    "Swap the order of the two ring shadows on .selected: the orange ring is now hidden under the white one."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "panel",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "avatars",
+          "children": [
+            { "tag": "div", "cls": "avatar", "text": "A" },
+            { "tag": "div", "cls": "avatar selected", "text": "B" },
+            { "tag": "div", "cls": "avatar", "text": "C" }
+          ]
+        },
+        { "tag": "input", "cls": "field", "attrs": { "type": "text", "placeholder": "Search people" } }
+      ]
+    }
+  ],
+  "css": ".panel {\n  display: grid;\n  gap: 20px;\n  justify-items: start;\n  padding: 24px;\n  font-family: system-ui, sans-serif;\n}\n\n.avatars {\n  display: flex;\n  gap: 16px;\n}\n\n.avatar {\n  display: grid;\n  place-items: center;\n  width: 44px;\n  height: 44px;\n  border-radius: 50%;\n  background-color: #fdba74;\n  font-weight: 600;\n}\n\n.selected {\n  box-shadow: 0 0 0 3px #ffffff, 0 0 0 6px #f97316;\n}\n\n.field {\n  width: 260px;\n  padding: 10px 12px;\n  border: 1px solid #d4d4d8;\n  border-radius: 8px;\n  box-shadow: inset 0 2px 4px rgb(0 0 0 / 0.12);\n  font: inherit;\n}\n"
+}

@@ -1,0 +1,45 @@
+{
+  "id": "readable-caption",
+  "title": "Make the caption readable",
+  "level": "intermediate",
+  "summary": "Darken the bottom of a busy background so a white caption stands out.",
+  "brief": [
+    "The poster has a busy striped background, and its caption is hard to read. Keep the stripes, but lay a dark fade over them: transparent until 30% of the height, then down to black at 75% opacity (rgb(0 0 0 / 0.75)) at the bottom.",
+    "Make the caption text white (#ffffff).",
+    "Do it on .poster itself, with no extra elements."
+  ],
+  "concepts": [
+    "background-image",
+    "color",
+    "opacity"
+  ],
+  "hints": [
+    "An element can have several background images at once, separated by commas.",
+    "The first image in the list is painted on top. So the fade goes first, then the stripes.",
+    "background-image: linear-gradient(transparent 30%, rgb(0 0 0 / 0.75)), repeating-linear-gradient(…the existing stripes…). Do not use opacity: it would fade the text too."
+  ],
+  "items": [
+    {
+      "tag": "section",
+      "cls": "poster",
+      "children": [
+        {
+          "tag": "h2",
+          "cls": "",
+          "text": "Night market"
+        },
+        {
+          "tag": "p",
+          "cls": "",
+          "text": "Fridays, 6pm until late, on the old harbour."
+        }
+      ]
+    }
+  ],
+  "css": ".poster {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-end;\n  height: 220px;\n  margin: 16px;\n  padding: 20px;\n  border-radius: 12px;\n  font-family: system-ui, sans-serif;\n  background-image: repeating-linear-gradient(45deg, #fdba74 0 14px, #fef3c7 14px 28px);\n}\n\n.poster h2 {\n  margin: 0 0 4px;\n}\n\n.poster p {\n  margin: 0;\n}\n",
+  "solution": ".poster {\n  display: flex;\n  flex-direction: column;\n  justify-content: flex-end;\n  height: 220px;\n  margin: 16px;\n  padding: 20px;\n  border-radius: 12px;\n  font-family: system-ui, sans-serif;\n  background-image: repeating-linear-gradient(45deg, #fdba74 0 14px, #fef3c7 14px 28px);\n}\n\n.poster h2 {\n  margin: 0 0 4px;\n}\n\n.poster p {\n  margin: 0;\n}\n\n/* ---- Solution ---- */\n.poster {\n  background-image:\n    linear-gradient(transparent 30%, rgb(0 0 0 / 0.75)),\n    repeating-linear-gradient(45deg, #fdba74 0 14px, #fef3c7 14px 28px);\n  color: #ffffff;\n}\n",
+  "solutionNotes": "background-image accepts a list of layers, and the first one is painted on top. A gradient from transparent to a semi-transparent black darkens only the bottom of the poster, where the caption sits, while the stripes still show through above. opacity would be the wrong tool: it fades the whole element, text included.",
+  "viewports": [
+    800
+  ]
+}

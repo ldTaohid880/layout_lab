@@ -1,0 +1,34 @@
+{
+  "property": "overflow",
+  "group": "Box & display",
+  "appliesTo": "block containers, flex and grid containers",
+  "summary": "What happens to content that does not fit.",
+  "details": "Anything other than visible creates a scroll container (and a new block formatting context, which also contains floats).",
+  "values": [
+    {
+      "value": "visible",
+      "note": "Default: content spills out."
+    },
+    {
+      "value": "hidden",
+      "note": "Clips; no scrolling."
+    },
+    {
+      "value": "auto",
+      "note": "Scrollbars only when needed."
+    },
+    {
+      "value": "scroll",
+      "note": "Always shows scrollbars."
+    },
+    {
+      "value": "clip",
+      "note": "Clips without becoming a scroll container."
+    }
+  ],
+  "gotcha": "overflow: hidden on an ancestor breaks position: sticky inside it. Use clip instead.",
+  "related": [
+    "height",
+    "position"
+  ]
+}

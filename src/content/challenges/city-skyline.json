@@ -1,0 +1,70 @@
+{
+  "id": "city-skyline",
+  "title": "City skyline at night",
+  "level": "intermediate",
+  "creative": true,
+  "summary": "CSS art: towers of different heights standing on one baseline, lit windows from two gradients, and a crescent moon.",
+  "brief": [
+    "The sky is 520 × 300px with 16px corners, a gradient from #0f172a through #312e81 (at 70%) to #7c3aed at the bottom, and it clips anything that sticks out.",
+    "The moon is a crescent: a 56px circle with nothing but an inset shadow (-14px 8px, no blur, #fde68a), 28px from the top and 40px from the right.",
+    "The five towers stand on the bottom edge, 6px apart, filling the width with 16px of padding at each side. They share the width equally except the second, which is 1.4 times wider. Heights: 120, 190, 150, 230 and 100px. The tallest has 6px rounded top corners.",
+    "Windows: 6px lit squares (#fde68a) in a grid, made by laying vertical stripes of tower colour (8px solid, 6px gap) over horizontal stripes (10px tower colour, 6px lit)."
+  ],
+  "concepts": [
+    "align-items",
+    "flex",
+    "background-image",
+    "box-shadow",
+    "position",
+    "overflow"
+  ],
+  "hints": [
+    "Make .sky a flex container with align-items: flex-end: its child .city then sits on the bottom. .city is itself a flex row with align-items: flex-end, so towers of different heights share a baseline. flex: 1 on .city fills the width.",
+    "flex: 1 on every tower shares the width; .t2 gets flex: 1.4. The moon is position: absolute (the sky needs position: relative) with box-shadow: inset -14px 8px 0 #fde68a and no background.",
+    "Windows: background-image: repeating-linear-gradient(90deg, #1e293b 0 8px, transparent 8px 14px), repeating-linear-gradient(#1e293b 0 10px, #fde68a 10px 16px). The first layer covers the second except in its transparent gaps."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "sky",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "moon"
+        },
+        {
+          "tag": "div",
+          "cls": "city",
+          "children": [
+            {
+              "tag": "div",
+              "cls": "tower t1"
+            },
+            {
+              "tag": "div",
+              "cls": "tower t2"
+            },
+            {
+              "tag": "div",
+              "cls": "tower t3"
+            },
+            {
+              "tag": "div",
+              "cls": "tower t4"
+            },
+            {
+              "tag": "div",
+              "cls": "tower t5"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".sky {\n  width: 520px;\n  height: 300px;\n  margin: 24px;\n}\n\n.tower {\n  background-color: #1e293b;\n}\n",
+  "solution": ".sky {\n  width: 520px;\n  height: 300px;\n  margin: 24px;\n}\n\n.tower {\n  background-color: #1e293b;\n}\n\n/* ---- Solution ---- */\n.sky {\n  position: relative;\n  display: flex;\n  align-items: flex-end;\n  overflow: hidden;\n  border-radius: 16px;\n  background-image: linear-gradient(#0f172a, #312e81 70%, #7c3aed);\n}\n\n.moon {\n  position: absolute;\n  top: 28px;\n  right: 40px;\n  width: 56px;\n  height: 56px;\n  border-radius: 50%;\n  box-shadow: inset -14px 8px 0 #fde68a;\n}\n\n.city {\n  display: flex;\n  flex: 1;\n  align-items: flex-end;\n  gap: 6px;\n  padding: 0 16px;\n}\n\n.tower {\n  flex: 1;\n  background-image:\n    repeating-linear-gradient(90deg, #1e293b 0 8px, transparent 8px 14px),\n    repeating-linear-gradient(#1e293b 0 10px, #fde68a 10px 16px);\n}\n\n.t1 {\n  height: 120px;\n}\n\n.t2 {\n  flex: 1.4;\n  height: 190px;\n}\n\n.t3 {\n  height: 150px;\n}\n\n.t4 {\n  height: 230px;\n  border-radius: 6px 6px 0 0;\n}\n\n.t5 {\n  height: 100px;\n}\n",
+  "solutionNotes": "Flexbox does the layout twice: the sky pushes the city to its bottom edge, and the city lines the towers up on that edge with align-items: flex-end, so each tower only needs a height. flex: 1 shares the width, and 1.4 makes one tower wider in proportion. The art is all paint: an inset shadow on an empty circle draws only its edge on one side, which reads as a crescent; and two repeating gradients stacked on each other cut a grid of lit windows, because the top layer is transparent only in its gaps.",
+  "viewports": [
+    800
+  ]
+}

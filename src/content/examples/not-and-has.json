@@ -1,0 +1,98 @@
+{
+  "id": "not-and-has",
+  "title": ":not() and :has()",
+  "category": "Cascade & variables",
+  "level": "intermediate",
+  "summary": ":not(:last-child) adds separators between items; :has() styles a card based on what is inside it.",
+  "concepts": ["border", "grid-template-columns", "background-color"],
+  "explanation": [
+    ":not(X) matches everything X does not. .crumb:not(:last-child)::after puts a slash after every breadcrumb except the last, in one rule, with no extra rule to undo it. display: inline-block on the slash keeps the link's underline from running under it.",
+    ":has(X) is a parent selector: .card:has(.card-img) matches a card that contains an image, so only those cards switch to a two-column layout. Before :has() this needed a separate class added by hand.",
+    ":has() also works with states, as in .field:has(input:focus), which highlights the whole field group while its input is focused. Click into the input to see it."
+  ],
+  "tryThis": [
+    "Remove :not(:last-child): the last crumb also gets a slash.",
+    "Delete the img from the first card in Items: it drops back to one column.",
+    "Change :has(input:focus) to :has(input:placeholder-shown) and type in the box."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "page",
+      "children": [
+        {
+          "tag": "nav",
+          "cls": "crumbs",
+          "children": [
+            {
+              "tag": "a",
+              "cls": "crumb",
+              "text": "Home",
+              "attrs": { "href": "#" }
+            },
+            {
+              "tag": "a",
+              "cls": "crumb",
+              "text": "Docs",
+              "attrs": { "href": "#" }
+            },
+            { "tag": "span", "cls": "crumb", "text": "Selectors" }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "cards",
+          "children": [
+            {
+              "tag": "article",
+              "cls": "card",
+              "children": [
+                {
+                  "tag": "img",
+                  "cls": "card-img",
+                  "attrs": { "alt": "" }
+                },
+                {
+                  "tag": "p",
+                  "cls": "card-text",
+                  "text": "This card has an image, so :has() gives it two columns."
+                }
+              ]
+            },
+            {
+              "tag": "article",
+              "cls": "card",
+              "children": [
+                {
+                  "tag": "p",
+                  "cls": "card-text",
+                  "text": "No image here: one column."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "field",
+          "children": [
+            {
+              "tag": "label",
+              "text": "Search",
+              "attrs": { "for": "q" }
+            },
+            {
+              "tag": "input",
+              "attrs": {
+                "id": "q",
+                "type": "text",
+                "placeholder": "Type here"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".page {\n  display: grid;\n  gap: 16px;\n  padding: 24px;\n  font-family: system-ui, sans-serif;\n}\n\n.crumbs {\n  display: flex;\n  gap: 8px;\n}\n\n.crumb {\n  color: #c2410c;\n}\n\n.crumb:not(:last-child)::after {\n  content: \"/\";\n  display: inline-block;\n  margin-left: 8px;\n  color: #a1a1aa;\n}\n\n.cards {\n  display: grid;\n  gap: 12px;\n}\n\n.card {\n  display: grid;\n  gap: 12px;\n  padding: 12px;\n  border: 1px solid #e4e4e7;\n  border-radius: 10px;\n}\n\n.card:has(.card-img) {\n  display: grid;\n  grid-template-columns: 96px 1fr;\n  align-items: center;\n}\n\n.card-img {\n  width: 96px;\n  height: 64px;\n  border-radius: 6px;\n  object-fit: cover;\n}\n\n.card-text {\n  margin: 0;\n}\n\n.field {\n  display: grid;\n  gap: 6px;\n  padding: 12px;\n  border: 2px solid #e4e4e7;\n  border-radius: 10px;\n}\n\n.field:has(input:focus) {\n  border-color: #f97316;\n  background-color: #fff7ed;\n}\n\n.field input {\n  padding: 8px;\n  border: 1px solid #d4d4d8;\n  border-radius: 6px;\n  font: inherit;\n}\n"
+}

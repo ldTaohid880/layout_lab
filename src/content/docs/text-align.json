@@ -1,0 +1,30 @@
+{
+  "property": "text-align",
+  "group": "Typography",
+  "appliesTo": "block containers (inherited)",
+  "summary": "How lines of inline content sit inside their block.",
+  "details": "It aligns the inline content (text, inline and inline-block children) within each line, not the block itself. start and end follow the writing direction, so they flip for right-to-left text.",
+  "values": [
+    {
+      "value": "start",
+      "note": "Default: left in left-to-right text."
+    },
+    {
+      "value": "center",
+      "note": "Center each line."
+    },
+    {
+      "value": "end",
+      "note": "Right in left-to-right text, e.g. numbers in a table."
+    },
+    {
+      "value": "justify",
+      "note": "Stretch lines to both edges (can leave gaps on narrow columns)."
+    }
+  ],
+  "gotcha": "text-align: center does not center a block element such as a fixed-width card; it only centers what is inside. Use margin-inline: auto, or flex/grid on the parent.",
+  "related": [
+    "margin",
+    "justify-content"
+  ]
+}

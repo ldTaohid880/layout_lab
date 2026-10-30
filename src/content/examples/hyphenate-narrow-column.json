@@ -1,0 +1,45 @@
+{
+  "id": "hyphenate-narrow-column",
+  "title": "Long words in narrow columns",
+  "category": "Typography",
+  "level": "intermediate",
+  "summary": "No help, overflow-wrap: anywhere, and hyphens: auto with a fallback, side by side in 150px columns.",
+  "concepts": ["overflow-wrap", "width", "line-height"],
+  "explanation": [
+    "A word longer than its column sticks out of the box (first column). overflow-wrap: anywhere breaks it wherever it has to, with no hyphen (second column). It always works, which makes it right for URLs and codes, but in prose the break can land mid-syllable.",
+    "hyphens: auto lets the browser split words at syllables and add a hyphen, like a printed newspaper. It needs to know the language, so the element (or an ancestor) must have a lang attribute, and the browser must have a hyphenation dictionary for that language. Without either, it silently does nothing.",
+    "That is why the third column also sets overflow-wrap: break-word. When hyphenation works you see hyphens; when it does not, long words still break instead of sticking out."
+  ],
+  "tryThis": [
+    "Remove the lang attribute from the third column in Items: any hyphens disappear and only the fallback breaks remain.",
+    "Widen .col to 240px: fewer words need breaking.",
+    "Delete overflow-wrap: break-word from .hyphenated and compare with the first column."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "cols",
+      "children": [
+        {
+          "tag": "p",
+          "cls": "col",
+          "text": "No help: internationalisation and characteristically.",
+          "attrs": { "lang": "en" }
+        },
+        {
+          "tag": "p",
+          "cls": "col anywhere",
+          "text": "anywhere: internationalisation and characteristically.",
+          "attrs": { "lang": "en" }
+        },
+        {
+          "tag": "p",
+          "cls": "col hyphenated",
+          "text": "hyphens: internationalisation and characteristically.",
+          "attrs": { "lang": "en" }
+        }
+      ]
+    }
+  ],
+  "css": ".cols {\n  display: flex;\n  gap: 32px;\n  padding: 24px;\n  font-family: system-ui, sans-serif;\n  font-size: 18px;\n  line-height: 1.5;\n}\n\n.col {\n  width: 150px;\n  margin: 0;\n  padding: 12px;\n  border: 1px solid #fdba74;\n  border-radius: 8px;\n}\n\n.anywhere {\n  overflow-wrap: anywhere;\n}\n\n.hyphenated {\n  overflow-wrap: break-word;\n  hyphens: auto;\n}\n"
+}

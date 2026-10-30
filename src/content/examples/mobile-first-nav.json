@@ -1,0 +1,37 @@
+{
+  "id": "mobile-first-nav",
+  "title": "Mobile-first navigation",
+  "category": "Responsive",
+  "level": "beginner",
+  "summary": "Stacked links by default; one min-width media query turns them into a row on wider screens.",
+  "concepts": ["display", "flex-direction", "gap", "justify-content"],
+  "explanation": [
+    "Mobile-first means the plain rules describe the phone layout, and media queries add to it as the screen grows. Here the header and its links stack vertically by default.",
+    "@media (min-width: 600px) applies only when the viewport is at least 600px wide. Inside it, the header becomes a row with the logo pushed to one side and the links to the other.",
+    "Writing it this way keeps the phone CSS small and simple, and wider layouts are additions rather than overrides."
+  ],
+  "tryThis": [
+    "Switch the preview between 375 and 768: the layout changes at 600px.",
+    "Change 600px to 900px and try 768 again: it stays stacked.",
+    "Rewrite it desktop-first: put the row layout in the plain rules and use @media (max-width: 599px) for the stack."
+  ],
+  "items": [
+    {
+      "tag": "header",
+      "cls": "top",
+      "children": [
+        { "tag": "a", "cls": "logo", "text": "Layout Lab", "attrs": { "href": "#" } },
+        {
+          "tag": "nav",
+          "cls": "links",
+          "children": [
+            { "tag": "a", "text": "Docs", "attrs": { "href": "#" } },
+            { "tag": "a", "text": "Examples", "attrs": { "href": "#" } },
+            { "tag": "a", "text": "Challenges", "attrs": { "href": "#" } }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".top {\n  display: flex;\n  flex-direction: column;\n  gap: 12px;\n  padding: 16px;\n  background-color: #18181b;\n  font-family: system-ui, sans-serif;\n}\n\n.top a {\n  color: #fafafa;\n  text-decoration: none;\n}\n\n.logo {\n  font-weight: 700;\n}\n\n.links {\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n}\n\n@media (min-width: 600px) {\n  .top {\n    flex-direction: row;\n    justify-content: space-between;\n    align-items: center;\n  }\n\n  .links {\n    flex-direction: row;\n    gap: 20px;\n  }\n}\n"
+}

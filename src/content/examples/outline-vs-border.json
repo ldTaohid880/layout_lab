@@ -1,0 +1,54 @@
+{
+  "id": "outline-vs-border",
+  "title": "Outline does not move things",
+  "category": "Borders & effects",
+  "level": "beginner",
+  "summary": "A hover border pushes its neighbours; an outline (or a ring shadow) draws without taking space.",
+  "concepts": ["border", "outline", "box-shadow"],
+  "explanation": [
+    "A border is part of the box, so adding a 3px border on hover makes the box 6px bigger and shoves everything after it. Hover the first row: the tags jump.",
+    "outline is drawn outside the box and takes no space at all, so the second row stays perfectly still. Outlines follow border-radius in modern browsers.",
+    "If you do want a border on hover, reserve the space: give the normal state a transparent border of the same width, as the third row does, and only change its colour."
+  ],
+  "tryThis": [
+    "Hover a tag in each row and compare.",
+    "Change the outline width to 6px in the second row: still no movement.",
+    "Remove border: 3px solid transparent from .reserved: it jumps like the first row."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "rows",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "row",
+          "children": [
+            { "tag": "span", "cls": "tag grows", "text": "border" },
+            { "tag": "span", "cls": "tag grows", "text": "jumps" },
+            { "tag": "span", "cls": "tag grows", "text": "around" }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "row",
+          "children": [
+            { "tag": "span", "cls": "tag outlined", "text": "outline" },
+            { "tag": "span", "cls": "tag outlined", "text": "stays" },
+            { "tag": "span", "cls": "tag outlined", "text": "still" }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "row",
+          "children": [
+            { "tag": "span", "cls": "tag reserved", "text": "reserved" },
+            { "tag": "span", "cls": "tag reserved", "text": "border" },
+            { "tag": "span", "cls": "tag reserved", "text": "space" }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".rows {\n  display: grid;\n  gap: 20px;\n  padding: 24px;\n  font-family: system-ui, sans-serif;\n}\n\n.row {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n\n.tag {\n  padding: 6px 12px;\n  border-radius: 999px;\n  background-color: #ffedd5;\n  cursor: pointer;\n}\n\n.grows:hover {\n  border: 3px solid #ea580c;\n}\n\n.outlined:hover {\n  outline: 3px solid #ea580c;\n}\n\n.reserved {\n  border: 3px solid transparent;\n}\n\n.reserved:hover {\n  border-color: #ea580c;\n}\n"
+}

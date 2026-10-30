@@ -1,0 +1,29 @@
+{
+  "property": "background-repeat",
+  "group": "Colour & backgrounds",
+  "appliesTo": "any element with a background image",
+  "summary": "Whether a background image tiles.",
+  "details": "Images repeat in both directions by default, which is what makes small pattern tiles work and what makes a single photo tile unexpectedly.",
+  "values": [
+    {
+      "value": "no-repeat",
+      "note": "Draw it once."
+    },
+    {
+      "value": "repeat-x",
+      "note": "Tile horizontally only."
+    },
+    {
+      "value": "repeat",
+      "note": "Default: tile both ways."
+    },
+    {
+      "value": "space",
+      "note": "Tile without cropping, spacing the tiles out evenly."
+    }
+  ],
+  "related": [
+    "background-size",
+    "background-image"
+  ]
+}

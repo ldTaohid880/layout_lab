@@ -1,0 +1,29 @@
+{
+  "id": "eyebrow-label",
+  "title": "Small uppercase label",
+  "category": "Typography",
+  "level": "beginner",
+  "summary": "text-transform and letter-spacing make a small \"eyebrow\" label above a heading.",
+  "concepts": ["text-transform", "letter-spacing", "font-size"],
+  "explanation": [
+    "The label is written in normal case in the HTML and shown in capitals by text-transform: uppercase, so screen readers and copy-paste still get the real words.",
+    "Capitals set tightly look cramped, especially when small. letter-spacing: 0.08em opens them up; em keeps the spacing proportional to the font size.",
+    "Small, spaced, coloured capitals read as a label rather than as shouting."
+  ],
+  "tryThis": [
+    "Remove letter-spacing from .eyebrow: the capitals crowd together.",
+    "Change text-transform to none: the label loses its 'label' look.",
+    "Change letter-spacing to 0.3em: past a point it falls apart into separate letters."
+  ],
+  "items": [
+    {
+      "tag": "header",
+      "cls": "intro",
+      "children": [
+        { "tag": "p", "cls": "eyebrow", "text": "New in version 2" },
+        { "tag": "h2", "cls": "headline", "text": "Faster builds, smaller bundles" }
+      ]
+    }
+  ],
+  "css": ".intro {\n  padding: 24px;\n  font-family: system-ui, sans-serif;\n}\n\n.eyebrow {\n  margin: 0 0 4px;\n  font-size: 0.75rem;\n  font-weight: 600;\n  text-transform: uppercase;\n  letter-spacing: 0.08em;\n  color: #ea580c;\n}\n\n.headline {\n  margin: 0;\n  font-size: 1.75rem;\n  line-height: 1.2;\n}\n"
+}

@@ -1,0 +1,31 @@
+{
+  "property": "border-radius",
+  "group": "Borders & effects",
+  "appliesTo": "any element",
+  "summary": "Rounds the corners of the box, its background and its border.",
+  "details": "One value rounds every corner; four values go clockwise from top-left. 50% on a square makes a circle; a very large value such as 999px on a wider box makes a pill whatever its size.",
+  "values": [
+    {
+      "value": "8px",
+      "note": "Gently rounded corners."
+    },
+    {
+      "value": "50%",
+      "note": "A circle (on a square box) or an ellipse."
+    },
+    {
+      "value": "999px",
+      "note": "A pill: fully rounded ends at any width."
+    },
+    {
+      "value": "12px 12px 0 0",
+      "note": "Round the top corners only."
+    }
+  ],
+  "gotcha": "Rounded corners do not clip the children: an image or coloured header inside still pokes out of the corners. Add overflow: hidden to the rounded element.",
+  "related": [
+    "border",
+    "overflow",
+    "box-shadow"
+  ]
+}

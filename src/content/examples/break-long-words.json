@@ -1,0 +1,33 @@
+{
+  "id": "break-long-words",
+  "title": "Breaking long URLs",
+  "category": "Typography",
+  "level": "intermediate",
+  "summary": "overflow-wrap: anywhere keeps an unbroken URL inside a narrow card.",
+  "concepts": ["overflow-wrap", "white-space", "max-width"],
+  "explanation": [
+    "Text only wraps at spaces and hyphens. A long URL or identifier has neither, so it runs straight out of its box.",
+    "overflow-wrap: anywhere allows a break at any character when a word would otherwise overflow. Normal words are unaffected; only the one that does not fit is split.",
+    "white-space: pre-wrap on the address block keeps the line breaks that are written in the text, a handy companion for messages and code."
+  ],
+  "tryThis": [
+    "Remove overflow-wrap from .card: the URL escapes the card.",
+    "Change it to break-word: it looks the same here; the difference only shows inside flex and grid items.",
+    "Remove white-space: pre-wrap from .address: its two lines join into one."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "card",
+      "children": [
+        { "tag": "h3", "text": "Shared link" },
+        {
+          "tag": "p",
+          "text": "https://example.com/files/2026/10/30/a-very-long-path-with-no-spaces-at-all-so-it-cannot-wrap-normally.pdf"
+        },
+        { "tag": "p", "cls": "address", "text": "Layout Lab\n42 Grid Street" }
+      ]
+    }
+  ],
+  "css": ".card {\n  max-width: 240px;\n  margin: 16px;\n  padding: 12px 16px;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n  background: #fed7aa;\n  font-family: system-ui, sans-serif;\n  overflow-wrap: anywhere;\n}\n\n.card h3 {\n  margin: 0 0 8px;\n}\n\n.address {\n  white-space: pre-wrap;\n  color: #52525b;\n}\n"
+}

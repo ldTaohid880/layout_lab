@@ -1,0 +1,43 @@
+{
+  "id": "gradient-banner",
+  "title": "Gradient banner",
+  "level": "beginner",
+  "summary": "Colour a banner with a left-to-right gradient and white text.",
+  "brief": [
+    "The banner’s background runs from left to right, from #ea580c (orange) to #db2777 (pink).",
+    "All the text in the banner is white (#ffffff)."
+  ],
+  "concepts": [
+    "background-image",
+    "color"
+  ],
+  "hints": [
+    "A gradient is an image, not a colour, so background-color will not take it.",
+    "background-image: linear-gradient(…) with a direction and two colours. Left to right is 90deg (or to right).",
+    "color is inherited: set it once on .banner and the heading and paragraph follow."
+  ],
+  "items": [
+    {
+      "tag": "section",
+      "cls": "banner",
+      "children": [
+        {
+          "tag": "h2",
+          "cls": "",
+          "text": "Autumn sale"
+        },
+        {
+          "tag": "p",
+          "cls": "",
+          "text": "Everything 20% off until Sunday."
+        }
+      ]
+    }
+  ],
+  "css": ".banner {\n  margin: 16px;\n  padding: 32px 24px;\n  border-radius: 12px;\n  font-family: system-ui, sans-serif;\n}\n\n.banner h2 {\n  margin: 0 0 6px;\n  font-size: 1.75rem;\n}\n\n.banner p {\n  margin: 0;\n}\n",
+  "solution": ".banner {\n  margin: 16px;\n  padding: 32px 24px;\n  border-radius: 12px;\n  font-family: system-ui, sans-serif;\n}\n\n.banner h2 {\n  margin: 0 0 6px;\n  font-size: 1.75rem;\n}\n\n.banner p {\n  margin: 0;\n}\n\n/* ---- Solution ---- */\n.banner {\n  background-image: linear-gradient(90deg, #ea580c, #db2777);\n  color: #ffffff;\n}\n",
+  "solutionNotes": "Gradients are generated images, so they belong in background-image (or the background shorthand). The angle sets the direction: 90deg points to the right, so the first colour is on the left. Text colour is inherited, so one color on the banner covers both lines.",
+  "viewports": [
+    800
+  ]
+}

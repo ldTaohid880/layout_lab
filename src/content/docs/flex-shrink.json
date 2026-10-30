@@ -1,0 +1,21 @@
+{
+  "property": "flex-shrink",
+  "group": "Flex item",
+  "appliesTo": "flex items",
+  "summary": "How much the item gives up when space runs short.",
+  "details": "Shrinking is weighted by flex-basis, so bigger items shrink more. It never goes below min-width.",
+  "values": [
+    {
+      "value": "1",
+      "note": "Default: shrink as needed."
+    },
+    {
+      "value": "0",
+      "note": "Never shrink (icons, images)."
+    }
+  ],
+  "related": [
+    "flex",
+    "min-width"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "id": "pulse-badge",
+  "title": "A pulsing notification dot",
+  "category": "Motion",
+  "level": "intermediate",
+  "summary": "A ::after ring that scales up and fades out on a loop, behind a dot that stays still.",
+  "concepts": ["animation", "opacity", "transform", "position"],
+  "explanation": [
+    "The dot itself never moves. Its ::after is a copy of the dot, positioned exactly over it (inset: 0). @keyframes ping scales that copy to 2.5 times its size while fading opacity to 0, then the loop starts again, so a ring seems to radiate outwards.",
+    "Keeping the real dot still matters: the eye can still read the dot's position and colour while the ring draws attention.",
+    "Constant motion is distracting, so a real app would stop the pulse after a few runs (animation-iteration-count: 3) or once the user has seen it. The reduced-motion rule removes it entirely."
+  ],
+  "tryThis": [
+    "Change infinite to 3: the pulse stops after three rings.",
+    "Change scale(2.5) to scale(4).",
+    "Remove opacity: 0 from the to step: the ring grows but never fades."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "bar",
+      "children": [
+        {
+          "tag": "button",
+          "cls": "bell",
+          "text": "Inbox",
+          "children": [{ "tag": "span", "cls": "dot", "attrs": { "aria-label": "New messages" } }]
+        }
+      ]
+    }
+  ],
+  "css": "@keyframes ping {\n  to {\n    opacity: 0;\n    transform: scale(2.5);\n  }\n}\n\n.bar {\n  padding: 40px;\n  font-family: system-ui, sans-serif;\n}\n\n.bell {\n  position: relative;\n  padding: 10px 18px;\n  border: 1px solid #e4e4e7;\n  border-radius: 8px;\n  background-color: #ffffff;\n  font: inherit;\n}\n\n.dot {\n  position: absolute;\n  top: -4px;\n  right: -4px;\n  width: 12px;\n  height: 12px;\n  border-radius: 50%;\n  background-color: #ef4444;\n}\n\n.dot::after {\n  content: \"\";\n  position: absolute;\n  inset: 0;\n  border-radius: 50%;\n  background-color: #ef4444;\n  animation: ping 1.2s ease-out infinite;\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .dot::after {\n    animation: none;\n  }\n}\n"
+}

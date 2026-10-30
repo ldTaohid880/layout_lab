@@ -1,0 +1,26 @@
+{
+  "id": "typewriter-steps",
+  "title": "A typewriter with steps()",
+  "category": "Motion",
+  "level": "hard",
+  "summary": "steps(21) jumps the width one character at a time, with ch units and a blinking caret border.",
+  "concepts": ["animation", "transition-timing-function", "width", "white-space", "overflow"],
+  "explanation": [
+    "steps(n) is a timing function that jumps instead of gliding: the animation is cut into n equal jumps. The text is 21 characters, the width animates from 0 to 21ch, and with steps(21) each jump reveals exactly one character.",
+    "That only lines up in a monospace font, where every character is 1ch wide. white-space: nowrap keeps the text on one line and overflow: hidden hides what is not revealed yet.",
+    "The caret is the element's right border. A second animation, blink, toggles its colour with steps(1) so it switches on and off instead of fading. Two animations run at once, separated by a comma."
+  ],
+  "tryThis": [
+    "Change steps(21) to ease: the letters are sliced in half as the width glides.",
+    "Change the font to system-ui, sans-serif: the jumps stop matching the letters.",
+    "Press Apply here again to replay it."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "terminal",
+      "children": [{ "tag": "p", "cls": "typed", "text": "npm run dev -- --open" }]
+    }
+  ],
+  "css": "@keyframes type {\n  from {\n    width: 0;\n  }\n\n  to {\n    width: 21ch;\n  }\n}\n\n@keyframes blink {\n  50% {\n    border-right-color: transparent;\n  }\n}\n\n.terminal {\n  margin: 24px;\n  padding: 20px;\n  border-radius: 10px;\n  background-color: #18181b;\n}\n\n.typed {\n  width: 21ch;\n  margin: 0;\n  overflow: hidden;\n  border-right: 2px solid #fb923c;\n  color: #fafafa;\n  font-family: ui-monospace, Consolas, \"Courier New\", monospace;\n  font-size: 18px;\n  white-space: nowrap;\n  animation: type 2s steps(21) both, blink 800ms steps(1) infinite;\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .typed {\n    animation: none;\n  }\n}\n"
+}

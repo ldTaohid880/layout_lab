@@ -1,0 +1,25 @@
+{
+  "property": "order",
+  "group": "Flex item",
+  "appliesTo": "flex and grid items",
+  "summary": "Changes visual order without changing the HTML.",
+  "details": "Items are sorted by order (default 0), then by source order.",
+  "values": [
+    {
+      "value": "-1",
+      "note": "Move to the front."
+    },
+    {
+      "value": "0",
+      "note": "Default."
+    },
+    {
+      "value": "1",
+      "note": "Move after items with 0."
+    }
+  ],
+  "gotcha": "Screen readers and the Tab key still follow the HTML order.",
+  "related": [
+    "flex-direction"
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "id": "attribute-selectors",
+  "title": "Selecting by attribute",
+  "category": "Cascade & variables",
+  "level": "beginner",
+  "summary": "[data-status=\"done\"], [href^=\"https\"] and [type=\"email\"]: style elements by what they are, not by extra classes.",
+  "concepts": ["color", "background-color", "text-decoration"],
+  "explanation": [
+    "Square brackets select by attribute. [data-status=\"done\"] matches an exact value, so the task list is coloured from its data attributes alone and changing the data changes the look.",
+    "Operators match parts of a value: ^= starts with, $= ends with, *= contains. [href^=\"https://\"] catches every absolute link, [href$=\".pdf\"] every PDF.",
+    "An attribute selector has the same specificity as a class, so a later class rule can still override it."
+  ],
+  "tryThis": [
+    "Change the first task's data-status to done in Items: it turns green and gets struck through.",
+    "Add a fourth task with data-status: blocked and write a rule for it.",
+    "Change ^= to *= with \"example\": now any link containing example matches."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "stack",
+      "children": [
+        {
+          "tag": "ul",
+          "cls": "tasks",
+          "children": [
+            { "tag": "li", "cls": "task", "text": "Write the brief", "attrs": { "data-status": "todo" } },
+            { "tag": "li", "cls": "task", "text": "Draw the layout", "attrs": { "data-status": "doing" } },
+            { "tag": "li", "cls": "task", "text": "Pick the colours", "attrs": { "data-status": "done" } }
+          ]
+        },
+        {
+          "tag": "p",
+          "cls": "links",
+          "children": [
+            { "tag": "a", "text": "Settings", "attrs": { "href": "/settings" } },
+            { "tag": "a", "text": "Example site", "attrs": { "href": "https://example.com" } },
+            { "tag": "a", "text": "Price list", "attrs": { "href": "/prices.pdf" } }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".stack {\n  display: grid;\n  gap: 16px;\n  padding: 24px;\n  font-family: system-ui, sans-serif;\n}\n\n.tasks {\n  display: grid;\n  gap: 6px;\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n.task {\n  padding: 8px 12px;\n  border-radius: 6px;\n  background-color: #f4f4f5;\n}\n\n[data-status=\"doing\"] {\n  background-color: #ffedd5;\n}\n\n[data-status=\"done\"] {\n  background-color: #dcfce7;\n  color: #166534;\n  text-decoration: line-through;\n}\n\n.links {\n  display: flex;\n  gap: 16px;\n  margin: 0;\n}\n\n.links a {\n  color: #c2410c;\n}\n\n.links a[href^=\"https://\"]::after {\n  content: \" ↗\";\n}\n\n.links a[href$=\".pdf\"]::after {\n  content: \" (PDF)\";\n  color: #71717a;\n}\n"
+}

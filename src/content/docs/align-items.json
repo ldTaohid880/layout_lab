@@ -1,0 +1,34 @@
+{
+  "property": "align-items",
+  "group": "Flex container",
+  "appliesTo": "flex and grid containers",
+  "summary": "Aligns items on the cross axis (in grid: within their row).",
+  "details": "The default, stretch, makes items as tall as the line. Any other value makes them their content height.",
+  "values": [
+    {
+      "value": "stretch",
+      "note": "Default: fill the cross axis."
+    },
+    {
+      "value": "center",
+      "note": "Centered on the cross axis."
+    },
+    {
+      "value": "flex-start",
+      "note": "At the cross start."
+    },
+    {
+      "value": "flex-end",
+      "note": "At the cross end."
+    },
+    {
+      "value": "baseline",
+      "note": "First lines of text line up."
+    }
+  ],
+  "related": [
+    "align-self",
+    "justify-content",
+    "align-content"
+  ]
+}

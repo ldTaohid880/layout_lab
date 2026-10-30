@@ -1,0 +1,48 @@
+{
+  "id": "sticky-footer",
+  "title": "Footer at the bottom",
+  "level": "intermediate",
+  "summary": "Short page, footer still on the bottom edge of the window.",
+  "brief": [
+    "The page has little content, so the footer floats halfway up. Keep the header at the top and the footer on the bottom edge of the window, with main filling the space between."
+  ],
+  "concepts": [
+    "flex-direction",
+    "flex",
+    "min-height"
+  ],
+  "hints": [
+    "The page needs to be at least as tall as the window.",
+    "Make .page a flex column with min-height: 100vh.",
+    "flex: 1 on .main makes it grow into the leftover height."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "page",
+      "children": [
+        {
+          "tag": "header",
+          "cls": "header",
+          "text": "Header"
+        },
+        {
+          "tag": "main",
+          "cls": "main",
+          "text": "Not much content here."
+        },
+        {
+          "tag": "footer",
+          "cls": "footer",
+          "text": "Footer"
+        }
+      ]
+    }
+  ],
+  "css": "body {\n  margin: 0;\n}\n\n.header, .footer {\n  padding: 12px 16px;\n  background: #18181b;\n  color: #fafafa;\n}\n\n.main {\n  padding: 16px;\n}\n",
+  "solution": "body {\n  margin: 0;\n}\n\n.header, .footer {\n  padding: 12px 16px;\n  background: #18181b;\n  color: #fafafa;\n}\n\n.main {\n  padding: 16px;\n}\n\n/* ---- Solution ---- */\n.page {\n  display: flex;\n  flex-direction: column;\n  min-height: 100vh;\n}\n\n.main {\n  flex: 1;\n}\n",
+  "solutionNotes": "min-height: 100vh makes the page at least one window tall but lets it grow. In a flex column, flex: 1 on main gives it all the spare height, pushing the footer down.",
+  "viewports": [
+    800
+  ]
+}

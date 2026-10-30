@@ -1,0 +1,25 @@
+{
+  "property": "flex-grow",
+  "group": "Flex item",
+  "appliesTo": "flex items",
+  "summary": "How much of the free space the item takes, relative to siblings.",
+  "details": "Free space is split in proportion to grow values: 2 gets twice as much extra as 1.",
+  "values": [
+    {
+      "value": "0",
+      "note": "Default: do not grow."
+    },
+    {
+      "value": "1",
+      "note": "Take a share of free space."
+    },
+    {
+      "value": "2",
+      "note": "Take twice the share."
+    }
+  ],
+  "related": [
+    "flex",
+    "flex-shrink"
+  ]
+}

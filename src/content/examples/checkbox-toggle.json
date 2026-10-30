@@ -1,0 +1,45 @@
+{
+  "id": "checkbox-toggle",
+  "title": "A switch from a checkbox",
+  "category": "Cascade & variables",
+  "level": "hard",
+  "summary": "appearance: none, :checked and ::before turn a real checkbox into a switch, with no JavaScript.",
+  "concepts": ["border-radius", "background-color", "transform", "transition"],
+  "explanation": [
+    "appearance: none removes the browser's own checkbox drawing but keeps everything that makes it a checkbox: clicking, the Space key, the label, and the checked state screen readers announce. Then it is just a box you can style.",
+    "The knob is the input's ::before. :checked changes the track colour and slides the knob across with transform, and the transition animates it. The label's for attribute points at the input's id, so clicking the text toggles it too.",
+    "The sibling selector .switch:checked + .state shows a different word after the switch, which is how one control can restyle what comes next. It only works on elements that come after the input."
+  ],
+  "tryThis": [
+    "Click the switches and their labels, and press Tab then Space.",
+    "Remove appearance: none: the normal checkbox shows through.",
+    "Change the checked track colour to #16a34a and the knob move to translateX(16px)."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "settings",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "setting",
+          "children": [
+            { "tag": "input", "cls": "switch", "attrs": { "id": "wifi", "type": "checkbox" } },
+            { "tag": "span", "cls": "state" },
+            { "tag": "label", "text": "Wi-Fi", "attrs": { "for": "wifi" } }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "setting",
+          "children": [
+            { "tag": "input", "cls": "switch", "attrs": { "id": "sounds", "type": "checkbox" } },
+            { "tag": "span", "cls": "state" },
+            { "tag": "label", "text": "Sounds", "attrs": { "for": "sounds" } }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".settings {\n  display: grid;\n  gap: 12px;\n  padding: 24px;\n  font-family: system-ui, sans-serif;\n}\n\n.setting {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n}\n\n.switch {\n  position: relative;\n  width: 44px;\n  height: 24px;\n  margin: 0;\n  border-radius: 999px;\n  background-color: #d4d4d8;\n  cursor: pointer;\n  appearance: none;\n  transition: background-color 150ms ease;\n}\n\n.switch::before {\n  content: \"\";\n  position: absolute;\n  top: 3px;\n  left: 3px;\n  width: 18px;\n  height: 18px;\n  border-radius: 50%;\n  background-color: #ffffff;\n  box-shadow: 0 1px 2px rgb(0 0 0 / 0.3);\n  transition: transform 150ms ease;\n}\n\n.switch:checked {\n  background-color: #f97316;\n}\n\n.switch:checked::before {\n  transform: translateX(20px);\n}\n\n.switch:focus-visible {\n  outline: 2px solid #2563eb;\n  outline-offset: 2px;\n}\n\n.state {\n  width: 24px;\n  color: #71717a;\n  font-size: 12px;\n}\n\n.state::before {\n  content: \"Off\";\n}\n\n.switch:checked + .state::before {\n  content: \"On\";\n  color: #c2410c;\n}\n"
+}

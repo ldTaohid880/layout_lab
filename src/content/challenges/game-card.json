@@ -1,0 +1,118 @@
+{
+  "id": "game-card",
+  "title": "Make it a game card",
+  "level": "hard",
+  "creative": true,
+  "summary": "Open remix: turn a plain card into a collectible game card. The picture is one idea; your own design is welcome.",
+  "brief": [
+    "This one has no single right answer. The starter is a plain card; make it look like a collectible card from a game. The picture shows one way to do it, and the rest of this brief describes that version if you want to follow it (the Diff view only lines up if you do).",
+    "The card is dark (#1c1917) with a 4px border that is a gradient (#fbbf24 → #f97316 → #dc2626 at 160deg), 18px corners, 14px padding, a red glow and light text. A \"Legendary\" ribbon in amber pokes 8px out of the right edge 18px from the top, with a notch cut into its left end.",
+    "The art gets a 2px amber frame and 10px corners. The name is 22px with 12px above; the type line is amber, 12px, uppercase. The stats sit in a faint panel (6% white, 10px padding and corners, 8px between rows, 14px above): a 64px label column, then an 8px rounded bar filled with an orange-to-amber gradient to 85%, 40% and 70%. The flavour text is 12px, italic, centred and grey.",
+    "Ideas for your own take: a different element (ice, nature), a holographic gradient, a rarity badge, stats as numbers in circles."
+  ],
+  "concepts": [
+    "background-image",
+    "border",
+    "box-shadow",
+    "position",
+    "grid-template-columns",
+    "box-sizing"
+  ],
+  "hints": [
+    "A gradient border is a transparent border over two backgrounds: background-image: linear-gradient(#1c1917, #1c1917), linear-gradient(160deg, …) with background-origin: border-box and background-clip: padding-box, border-box.",
+    "The ribbon is position: absolute (so .card needs position: relative) with right: -8px. clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 10px 50%) cuts the notch. The art needs box-sizing: border-box so its frame does not make it wider than the card.",
+    "Give each stat row its value as a custom property, e.g. .attack { --value: 85%; }, and draw the fill as .bar::before with display: block and width: var(--value). Each row is a grid: grid-template-columns: 64px 1fr."
+  ],
+  "items": [
+    {
+      "tag": "article",
+      "cls": "card",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "ribbon",
+          "text": "Legendary"
+        },
+        {
+          "tag": "img",
+          "cls": "card-art",
+          "attrs": {
+            "alt": "Ember Fox artwork"
+          }
+        },
+        {
+          "tag": "h2",
+          "cls": "card-name",
+          "text": "Ember Fox"
+        },
+        {
+          "tag": "p",
+          "cls": "card-type",
+          "text": "Fire · Level 12"
+        },
+        {
+          "tag": "ul",
+          "cls": "stats",
+          "children": [
+            {
+              "tag": "li",
+              "cls": "stat attack",
+              "children": [
+                {
+                  "tag": "span",
+                  "cls": "stat-name",
+                  "text": "Attack"
+                },
+                {
+                  "tag": "span",
+                  "cls": "bar"
+                }
+              ]
+            },
+            {
+              "tag": "li",
+              "cls": "stat defence",
+              "children": [
+                {
+                  "tag": "span",
+                  "cls": "stat-name",
+                  "text": "Defence"
+                },
+                {
+                  "tag": "span",
+                  "cls": "bar"
+                }
+              ]
+            },
+            {
+              "tag": "li",
+              "cls": "stat speed",
+              "children": [
+                {
+                  "tag": "span",
+                  "cls": "stat-name",
+                  "text": "Speed"
+                },
+                {
+                  "tag": "span",
+                  "cls": "bar"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "p",
+          "cls": "flavour",
+          "text": "Quick, clever, and always a little too warm."
+        }
+      ]
+    }
+  ],
+  "css": ".card {\n  width: 260px;\n  margin: 24px;\n  padding: 16px;\n  border: 1px solid #d4d4d8;\n  font-family: system-ui, sans-serif;\n}\n\n.card-art {\n  display: block;\n  width: 100%;\n  height: 140px;\n  object-fit: cover;\n}\n\n.card p,\n.card h2,\n.stats {\n  margin: 0;\n}\n\n.stats {\n  padding: 0;\n  list-style: none;\n}\n",
+  "solution": ".card {\n  width: 260px;\n  margin: 24px;\n  padding: 16px;\n  border: 1px solid #d4d4d8;\n  font-family: system-ui, sans-serif;\n}\n\n.card-art {\n  display: block;\n  width: 100%;\n  height: 140px;\n  object-fit: cover;\n}\n\n.card p,\n.card h2,\n.stats {\n  margin: 0;\n}\n\n.stats {\n  padding: 0;\n  list-style: none;\n}\n\n/* ---- Solution ---- */\n.card {\n  position: relative;\n  padding: 14px;\n  border: 4px solid transparent;\n  border-radius: 18px;\n  background-image: linear-gradient(#1c1917, #1c1917), linear-gradient(160deg, #fbbf24, #f97316, #dc2626);\n  background-origin: border-box;\n  background-clip: padding-box, border-box;\n  box-shadow: 0 10px 30px rgb(220 38 38 / 0.35);\n  color: #fafaf9;\n}\n\n.ribbon {\n  position: absolute;\n  top: 18px;\n  right: -8px;\n  padding: 4px 16px 4px 22px;\n  background-color: #fbbf24;\n  color: #1c1917;\n  font-size: 11px;\n  font-weight: 800;\n  letter-spacing: 0.12em;\n  text-transform: uppercase;\n  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 10px 50%);\n}\n\n.card-art {\n  box-sizing: border-box;\n  border: 2px solid #fbbf24;\n  border-radius: 10px;\n}\n\n.card .card-name {\n  margin-top: 12px;\n  font-size: 22px;\n}\n\n.card-type {\n  color: #fbbf24;\n  font-size: 12px;\n  letter-spacing: 0.1em;\n  text-transform: uppercase;\n}\n\n.card .stats {\n  display: grid;\n  gap: 8px;\n  margin-top: 14px;\n  padding: 10px;\n  border-radius: 10px;\n  background-color: rgb(255 255 255 / 0.06);\n}\n\n.stat {\n  display: grid;\n  grid-template-columns: 64px 1fr;\n  align-items: center;\n  gap: 8px;\n  font-size: 12px;\n}\n\n.bar {\n  height: 8px;\n  overflow: hidden;\n  border-radius: 999px;\n  background-color: #44403c;\n}\n\n.bar::before {\n  content: \"\";\n  display: block;\n  width: var(--value);\n  height: 100%;\n  background-image: linear-gradient(90deg, #f97316, #fbbf24);\n}\n\n.attack {\n  --value: 85%;\n}\n\n.defence {\n  --value: 40%;\n}\n\n.speed {\n  --value: 70%;\n}\n\n.card .flavour {\n  margin-top: 12px;\n  color: #a8a29e;\n  font-size: 12px;\n  font-style: italic;\n  text-align: center;\n}\n",
+  "solutionNotes": "This version leans on three tricks. The gradient border is a transparent border over two background layers: a solid one clipped to the padding box and the gradient clipped to the border box, so the gradient only shows through the border. The ribbon is absolutely positioned past the card edge (the card does not clip it) and clip-path cuts a notch into its left end. The stat bars are data-driven: each row sets --value, which is inherited by its bar, and the bar’s ::before fills to that width, so changing one number changes one bar. Several rules start with .card because the starter resets margins with .card p and .card h2, which outrank a single class.",
+  "viewports": [
+    800
+  ]
+}

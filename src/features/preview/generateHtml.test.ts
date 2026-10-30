@@ -84,6 +84,25 @@ describe('generateBodyHtml', () => {
     expect(html).toMatch(/^<img src="data:image\/svg\+xml,[^"]+" alt="">$/)
   })
 
+  it('renders input as a void element with its form attributes and no children', () => {
+    const html = generateBodyHtml(
+      [node({ id: 'a', tag: 'input', text: 'ignored', attrs: { type: 'email', placeholder: 'you@example.com' } })],
+      { withIds: false },
+    )
+    expect(html).toBe('<input type="email" placeholder="you@example.com">')
+  })
+
+  it('keeps label, table and cell attributes but drops unknown ones', () => {
+    const html = generateBodyHtml(
+      [
+        node({ id: 'a', tag: 'label', attrs: { for: 'q', onclick: 'x()' }, text: 'Name' }),
+        node({ id: 'b', tag: 'td', attrs: { colspan: '2', rowspan: '3' } }),
+      ],
+      { withIds: false, pretty: false },
+    )
+    expect(html).toBe('<label for="q">Name</label><td colspan="2" rowspan="3"></td>')
+  })
+
   it('gives buttons type="button" by default', () => {
     expect(generateBodyHtml([node({ id: 'a', tag: 'button', text: 'Go' })], { withIds: false })).toBe(
       '<button type="button">Go</button>',

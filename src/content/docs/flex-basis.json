@@ -1,0 +1,29 @@
+{
+  "property": "flex-basis",
+  "group": "Flex item",
+  "appliesTo": "flex items",
+  "summary": "The starting size along the main axis, before growing or shrinking.",
+  "details": "auto uses the width (or height in a column), falling back to the content size.",
+  "values": [
+    {
+      "value": "auto",
+      "note": "Default: use width or content."
+    },
+    {
+      "value": "0",
+      "note": "Start from nothing; size comes from flex-grow."
+    },
+    {
+      "value": "200px",
+      "note": "Start at 200px."
+    },
+    {
+      "value": "50%",
+      "note": "Half the container."
+    }
+  ],
+  "related": [
+    "flex",
+    "width"
+  ]
+}

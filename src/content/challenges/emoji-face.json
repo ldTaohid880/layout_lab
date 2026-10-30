@@ -1,0 +1,65 @@
+{
+  "id": "emoji-face",
+  "title": "Emoji face",
+  "level": "intermediate",
+  "creative": true,
+  "summary": "CSS art: a shaded round face with eyes, rosy cheeks and a smile made from one border.",
+  "brief": [
+    "Centre a 200px round face in the stage. It is shaded with a radial gradient: #fef08a lit from 35% across and 30% down, through #facc15 at 60%, to #eab308 at the edge. It has a soft drop shadow and a slightly darker inner bottom edge.",
+    "The eyes are 20 × 30px ovals, 64px from the top of the face, 58px in from each side. The cheeks are 36 × 20px blurred pink ovals at 60% opacity, 110px from the top and 28px in from each side.",
+    "The smile is a single shape: a 100 × 50px box 96px from the top and 50px from the left, whose only visible part is an 8px #422006 bottom border curved into an arc."
+  ],
+  "concepts": [
+    "place-items",
+    "position",
+    "border-radius",
+    "background-image",
+    "filter",
+    "opacity"
+  ],
+  "hints": [
+    "display: grid and place-items: center on .stage centre the face. The face is position: relative so the features can be placed with absolute offsets inside it.",
+    "For the shading use background-image: radial-gradient(circle at 35% 30%, #fef08a, #facc15 60%, #eab308). Blur the cheeks with filter: blur(4px).",
+    "The smile: border-bottom: 8px solid #422006 with border-radius: 0 0 50px 50px. Rounding only the bottom corners bends the bottom border into a curve that thins out at the ends."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "stage",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "face",
+          "children": [
+            {
+              "tag": "div",
+              "cls": "eye eye-left"
+            },
+            {
+              "tag": "div",
+              "cls": "eye eye-right"
+            },
+            {
+              "tag": "div",
+              "cls": "blush blush-left"
+            },
+            {
+              "tag": "div",
+              "cls": "blush blush-right"
+            },
+            {
+              "tag": "div",
+              "cls": "smile"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".stage {\n  padding: 32px;\n}\n\n.eye {\n  background-color: #422006;\n}\n\n.blush {\n  background-color: #fb7185;\n}\n",
+  "solution": ".stage {\n  padding: 32px;\n}\n\n.eye {\n  background-color: #422006;\n}\n\n.blush {\n  background-color: #fb7185;\n}\n\n/* ---- Solution ---- */\n.stage {\n  display: grid;\n  place-items: center;\n}\n\n.face {\n  position: relative;\n  width: 200px;\n  height: 200px;\n  border-radius: 50%;\n  background-image: radial-gradient(circle at 35% 30%, #fef08a, #facc15 60%, #eab308);\n  box-shadow: inset 0 -8px 0 rgb(0 0 0 / 0.08), 0 8px 20px rgb(0 0 0 / 0.15);\n}\n\n.eye {\n  position: absolute;\n  top: 64px;\n  width: 20px;\n  height: 30px;\n  border-radius: 50%;\n}\n\n.eye-left {\n  left: 58px;\n}\n\n.eye-right {\n  right: 58px;\n}\n\n.blush {\n  position: absolute;\n  top: 110px;\n  width: 36px;\n  height: 20px;\n  border-radius: 50%;\n  opacity: 0.6;\n  filter: blur(4px);\n}\n\n.blush-left {\n  left: 28px;\n}\n\n.blush-right {\n  right: 28px;\n}\n\n.smile {\n  position: absolute;\n  top: 96px;\n  left: 50px;\n  width: 100px;\n  height: 50px;\n  border-bottom: 8px solid #422006;\n  border-radius: 0 0 50px 50px;\n}\n",
+  "solutionNotes": "The face is one element with layered paint: a radial gradient off-centre fakes a light source, an inset shadow darkens the bottom edge and an outer shadow lifts it off the page. Every feature is absolutely positioned inside it, and the pairs share a class for size and only differ in left or right, so they stay symmetrical. The smile is the clever part: a box with only a bottom border, whose bottom corners are rounded by half its width, bends that border into an arc that tapers where the invisible side borders would be.",
+  "viewports": [
+    800
+  ]
+}

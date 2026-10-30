@@ -1,0 +1,25 @@
+{
+  "property": "grid-auto-flow",
+  "group": "Grid container",
+  "appliesTo": "grid containers",
+  "summary": "How items without an explicit position are placed.",
+  "details": "dense back-fills holes left by spanning items, at the cost of visual order matching source order.",
+  "values": [
+    {
+      "value": "row",
+      "note": "Default: fill each row, then the next."
+    },
+    {
+      "value": "column",
+      "note": "Fill each column, then the next."
+    },
+    {
+      "value": "row dense",
+      "note": "Back-fill gaps."
+    }
+  ],
+  "related": [
+    "grid-auto-rows",
+    "grid-column"
+  ]
+}

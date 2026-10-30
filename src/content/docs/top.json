@@ -1,0 +1,30 @@
+{
+  "property": "top",
+  "group": "Positioning",
+  "appliesTo": "positioned elements",
+  "summary": "Offset from the top edge of the containing block (right, bottom and left work the same).",
+  "details": "Setting both top and bottom on an absolute element stretches it between them.",
+  "values": [
+    {
+      "value": "0",
+      "note": "Flush with the top."
+    },
+    {
+      "value": "-6px",
+      "note": "Hangs 6px above."
+    },
+    {
+      "value": "50%",
+      "note": "Half way down."
+    },
+    {
+      "value": "auto",
+      "note": "Default."
+    }
+  ],
+  "gotcha": "No effect on position: static elements.",
+  "related": [
+    "position",
+    "inset"
+  ]
+}

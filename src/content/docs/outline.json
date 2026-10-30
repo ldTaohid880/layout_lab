@@ -1,0 +1,27 @@
+{
+  "property": "outline",
+  "group": "Borders & effects",
+  "appliesTo": "any element",
+  "summary": "A line drawn outside the border that takes up no space.",
+  "details": "Unlike border, an outline never changes the layout, which is why browsers use it to show keyboard focus. It follows border-radius in modern browsers.",
+  "values": [
+    {
+      "value": "2px solid #2563eb",
+      "note": "A clear blue ring."
+    },
+    {
+      "value": "2px dashed currentColor",
+      "note": "Dashed, in the text colour."
+    },
+    {
+      "value": "none",
+      "note": "No outline."
+    }
+  ],
+  "gotcha": "Never remove the focus outline (outline: none) without putting another visible focus style in its place: keyboard users would lose track of where they are. Style :focus-visible instead.",
+  "related": [
+    "outline-offset",
+    "border",
+    "box-shadow"
+  ]
+}

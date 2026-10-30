@@ -1,0 +1,37 @@
+{
+  "id": "drop-cap",
+  "title": "A drop cap and a lead paragraph",
+  "category": "Typography",
+  "level": "intermediate",
+  "summary": "::first-letter floated into a big drop cap, and ::first-line in small caps to open an article.",
+  "concepts": ["float", "font-size", "line-height", "text-transform"],
+  "explanation": [
+    "::first-letter selects the first letter of a block, with no extra markup. Floating it left lets the next lines wrap around it, and a big font-size with line-height: 1 makes it span about three lines.",
+    "::first-line selects whatever ends up on the first line at the current width, so it changes as the column narrows. Here it is uppercase with a little letter-spacing, a classic magazine opening.",
+    "Only the first paragraph gets the effect because the selectors use .lead, not p."
+  ],
+  "tryThis": [
+    "Change the drop cap's font-size to 72px and adjust its line-height until it lines up with three lines.",
+    "Remove float: left: the letter becomes a giant first character on its own line.",
+    "Narrow the article to 300px and see how ::first-line follows the new first line."
+  ],
+  "items": [
+    {
+      "tag": "article",
+      "cls": "article",
+      "children": [
+        {
+          "tag": "p",
+          "cls": "lead",
+          "text": "Once the layout was done, the team turned to the words. A page that is easy to read keeps its lines short, its spacing generous and its openings inviting, and a drop cap is one of the oldest ways to invite a reader in."
+        },
+        {
+          "tag": "p",
+          "cls": "body",
+          "text": "The second paragraph is normal text. Only the lead paragraph gets the drop cap, because the selector names its class."
+        }
+      ]
+    }
+  ],
+  "css": ".article {\n  max-width: 520px;\n  padding: 24px;\n  font-family: Georgia, \"Times New Roman\", serif;\n  font-size: 18px;\n  line-height: 1.6;\n  color: #27272a;\n}\n\n.lead::first-letter {\n  float: left;\n  margin: 6px 10px 0 0;\n  font-size: 64px;\n  line-height: 0.85;\n  font-weight: 700;\n  color: #c2410c;\n}\n\n.lead::first-line {\n  text-transform: uppercase;\n  letter-spacing: 0.05em;\n}\n\n.body {\n  margin-bottom: 0;\n}\n"
+}

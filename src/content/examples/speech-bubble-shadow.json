@@ -1,0 +1,37 @@
+{
+  "id": "speech-bubble-shadow",
+  "title": "A speech bubble with a real shadow",
+  "category": "Borders & effects",
+  "level": "hard",
+  "summary": "A ::after tail made from a rotated square, and filter: drop-shadow so one shadow follows the whole shape.",
+  "concepts": ["filter", "box-shadow", "position", "transform"],
+  "explanation": [
+    "The tail is a ::after pseudo-element: a small square in the bubble's colour, positioned at the bottom edge and rotated 45 degrees so only a triangle pokes out. No extra markup is needed.",
+    "box-shadow is always the shape of the box, so on the first bubble the tail has no shadow and the shadow ends in a straight line under it. filter: drop-shadow() works on the painted pixels instead, so on the second bubble one shadow traces the bubble and the tail together.",
+    "drop-shadow takes no spread value and no inset, and it is applied to the bubble including its pseudo-elements. That is why it goes on .bubble, not on ::after."
+  ],
+  "tryThis": [
+    "Remove the transform from .bubble::after: the tail becomes a square sticking out.",
+    "Move the tail to the left side: set left: -8px, top: 20px and remove bottom.",
+    "Give the second bubble a box-shadow as well and compare the two shadows on the tail."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "chat",
+      "children": [
+        {
+          "tag": "p",
+          "cls": "bubble boxed",
+          "text": "box-shadow: the tail has no shadow."
+        },
+        {
+          "tag": "p",
+          "cls": "bubble dropped",
+          "text": "drop-shadow: one shadow for the whole shape."
+        }
+      ]
+    }
+  ],
+  "css": ".chat {\n  display: flex;\n  gap: 40px;\n  padding: 32px 32px 48px;\n  font-family: system-ui, sans-serif;\n}\n\n.bubble {\n  position: relative;\n  max-width: 220px;\n  margin: 0;\n  padding: 14px 16px;\n  border-radius: 12px;\n  background-color: #ffffff;\n  line-height: 1.4;\n}\n\n.bubble::after {\n  content: \"\";\n  position: absolute;\n  bottom: -8px;\n  left: 28px;\n  width: 18px;\n  height: 18px;\n  background-color: #ffffff;\n  transform: rotate(45deg);\n}\n\n.boxed {\n  box-shadow: 0 6px 10px rgb(0 0 0 / 0.35);\n}\n\n.dropped {\n  filter: drop-shadow(0 6px 5px rgb(0 0 0 / 0.35));\n}\n"
+}

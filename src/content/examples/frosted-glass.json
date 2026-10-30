@@ -1,0 +1,37 @@
+{
+  "id": "frosted-glass",
+  "title": "Frosted glass with backdrop-filter",
+  "category": "Borders & effects",
+  "level": "intermediate",
+  "summary": "backdrop-filter blurs whatever is behind a translucent panel; filter blurs the element itself.",
+  "concepts": ["filter", "background-color", "border", "position"],
+  "explanation": [
+    "filter changes the element and its content. backdrop-filter changes what can be seen through the element: here a blur of the colourful shapes behind the panel. The panel needs a see-through background (rgb with an alpha), or there is nothing to see through.",
+    "A thin, semi-transparent white border and a soft shadow sell the glass edge. The panel is positioned over the shapes so they overlap.",
+    "Blur is expensive for the browser to draw, so use it on a few panels, not on a long scrolling list."
+  ],
+  "tryThis": [
+    "Change blur(12px) to blur(2px) and then to blur(30px).",
+    "Make the background fully opaque (rgb(255 255 255 / 1)): the blur is hidden behind it.",
+    "Replace backdrop-filter with filter: blur(12px): now the panel's own text is blurred."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "scene",
+      "children": [
+        { "tag": "div", "cls": "blob blob-a" },
+        { "tag": "div", "cls": "blob blob-b" },
+        {
+          "tag": "div",
+          "cls": "glass",
+          "children": [
+            { "tag": "h3", "cls": "glass-title", "text": "Now playing" },
+            { "tag": "p", "cls": "glass-text", "text": "The shapes behind are blurred, not the text." }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".scene {\n  position: relative;\n  height: 260px;\n  margin: 16px;\n  overflow: hidden;\n  border-radius: 16px;\n  background-color: #fff7ed;\n  font-family: system-ui, sans-serif;\n}\n\n.blob {\n  position: absolute;\n  width: 160px;\n  height: 160px;\n  border-radius: 50%;\n}\n\n.blob-a {\n  top: 20px;\n  left: 40px;\n  background-color: #f97316;\n}\n\n.blob-b {\n  right: 60px;\n  bottom: 10px;\n  background-color: #ec4899;\n}\n\n.glass {\n  position: absolute;\n  inset: 60px 80px;\n  padding: 20px;\n  border: 1px solid rgb(255 255 255 / 0.5);\n  border-radius: 14px;\n  background-color: rgb(255 255 255 / 0.35);\n  box-shadow: 0 8px 24px rgb(0 0 0 / 0.12);\n  backdrop-filter: blur(12px);\n}\n\n.glass-title {\n  margin: 0 0 6px;\n}\n\n.glass-text {\n  margin: 0;\n}\n"
+}

@@ -1,0 +1,26 @@
+{
+  "property": "flex-wrap",
+  "group": "Flex container",
+  "appliesTo": "flex containers",
+  "summary": "Whether items may move onto new lines.",
+  "details": "Without wrapping, items shrink (and then overflow) to stay on one line.",
+  "values": [
+    {
+      "value": "nowrap",
+      "note": "Default: one line."
+    },
+    {
+      "value": "wrap",
+      "note": "Extra items start a new line."
+    },
+    {
+      "value": "wrap-reverse",
+      "note": "New lines go above."
+    }
+  ],
+  "related": [
+    "flex-basis",
+    "align-content",
+    "gap"
+  ]
+}

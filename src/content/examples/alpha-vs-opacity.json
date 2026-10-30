@@ -1,0 +1,43 @@
+{
+  "id": "alpha-vs-opacity",
+  "title": "opacity versus a see-through background",
+  "category": "Colour & backgrounds",
+  "level": "beginner",
+  "summary": "opacity fades the text too; a background colour with alpha fades only the background.",
+  "concepts": ["opacity", "background-color", "background-image"],
+  "explanation": [
+    "Both panels sit on the same gradient and both let it show through. The left one uses opacity: 0.6, which fades the whole element: background, border and the text inside.",
+    "The right one keeps opacity at 1 and gives the background colour an alpha channel instead: rgb(255 255 255 / 0.6). Only the white fill is see-through; the text stays crisp.",
+    "Reach for an alpha colour when you want a frosted panel; use opacity when the whole thing should fade, such as a disabled button."
+  ],
+  "tryThis": [
+    "Change opacity on .faded to 0.2: the text almost disappears.",
+    "Change the alpha in .tinted to 0.9, then to 0.2.",
+    "Give .faded's paragraph opacity: 1: it cannot become more opaque than its parent."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "backdrop",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "panel faded",
+          "children": [
+            { "tag": "h3", "text": "opacity: 0.6" },
+            { "tag": "p", "text": "Everything fades, including this text." }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "panel tinted",
+          "children": [
+            { "tag": "h3", "text": "Alpha background" },
+            { "tag": "p", "text": "Only the white fill is see-through." }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".backdrop {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 16px;\n  padding: 24px;\n  background-image: linear-gradient(135deg, #f97316, #7c3aed);\n  font-family: system-ui, sans-serif;\n}\n\n.panel {\n  padding: 16px;\n  border-radius: 8px;\n  color: #18181b;\n}\n\n.panel h3 {\n  margin: 0 0 4px;\n}\n\n.panel p {\n  margin: 0;\n}\n\n.faded {\n  background-color: #ffffff;\n  opacity: 0.6;\n}\n\n.tinted {\n  background-color: rgb(255 255 255 / 0.6);\n}\n"
+}

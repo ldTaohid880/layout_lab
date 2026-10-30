@@ -1,0 +1,20 @@
+{
+  "id": "reduced-motion",
+  "title": "Respecting reduced motion",
+  "category": "Motion",
+  "level": "intermediate",
+  "summary": "prefers-reduced-motion swaps a sliding banner for a simple fade for people who ask for less motion.",
+  "concepts": ["animation", "transition", "opacity"],
+  "explanation": [
+    "Some people get dizzy or distracted by movement on screen and turn on a 'reduce motion' setting in their operating system. CSS can read it with @media (prefers-reduced-motion: reduce).",
+    "Here the banner normally slides in from the side. Under reduced motion it uses a different keyframes rule that only fades, so the information still appears gently but nothing travels across the screen.",
+    "Turning motion off is not always the goal: keep feedback that helps (a fade, a colour change) and drop movement that is only decoration."
+  ],
+  "tryThis": [
+    "Turn on 'reduce motion' in your system settings (Windows: Settings › Accessibility › Visual effects › Animation effects off) and re-apply the example.",
+    "Change the slide distance from -40px to -200px.",
+    "Inside the media query, set animation: none: the banner simply appears."
+  ],
+  "items": [{ "tag": "div", "cls": "banner", "text": "New: dark mode is here." }],
+  "css": "@keyframes slide-in {\n  from {\n    opacity: 0;\n    transform: translateX(-40px);\n  }\n\n  to {\n    opacity: 1;\n    transform: translateX(0);\n  }\n}\n\n@keyframes fade {\n  from {\n    opacity: 0;\n  }\n\n  to {\n    opacity: 1;\n  }\n}\n\n.banner {\n  margin: 24px;\n  padding: 14px 18px;\n  border-radius: 8px;\n  background-color: #18181b;\n  color: #fafafa;\n  font-family: system-ui, sans-serif;\n  animation: slide-in 600ms ease-out;\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .banner {\n    animation: fade 600ms ease-out;\n  }\n}\n"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "low-specificity-where",
+  "title": "Easy-to-override defaults with :where()",
+  "category": "Cascade & variables",
+  "level": "hard",
+  "summary": ":where() adds zero specificity, so base styles never win a fight they should lose.",
+  "concepts": ["color", "margin"],
+  "explanation": [
+    "Base styles written as .prose h2 have the specificity of a class plus an element. Any later component rule with just one class, like .accent, loses to them, which leads to ever-longer selectors and !important.",
+    "Wrapped in :where(), the same selector matches the same elements but counts as zero specificity. Now a single class overrides it, as you would expect: the second heading turns orange.",
+    ":is() looks the same but takes the specificity of its most specific argument, so it does not help here."
+  ],
+  "tryThis": [
+    "Change :where(.prose h2) back to .prose h2: the .accent heading loses its orange.",
+    "Replace :where with :is: the same thing happens.",
+    "Wrap the paragraph rule in :where() too, then give a paragraph a class to restyle it."
+  ],
+  "items": [
+    {
+      "tag": "article",
+      "cls": "prose",
+      "children": [
+        { "tag": "h2", "text": "A default heading" },
+        { "tag": "p", "text": "Base styles for article content, kept at zero specificity." },
+        { "tag": "h2", "cls": "accent", "text": "An accent heading" },
+        { "tag": "p", "text": "One class is enough to override the base style." }
+      ]
+    }
+  ],
+  "css": ".prose {\n  max-width: 60ch;\n  padding: 16px;\n  font-family: system-ui, sans-serif;\n}\n\n:where(.prose h2) {\n  margin: 16px 0 4px;\n  color: #27272a;\n}\n\n:where(.prose p) {\n  margin: 0 0 8px;\n  color: #52525b;\n}\n\n.accent {\n  color: #ea580c;\n}\n"
+}

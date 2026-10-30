@@ -1,0 +1,57 @@
+{
+  "id": "typeset-article",
+  "title": "Typeset the article",
+  "level": "beginner",
+  "summary": "Turn browser-default text into a readable article.",
+  "brief": [
+    "Use the system interface font (system-ui, with sans-serif as fallback) for the whole article.",
+    "Keep lines short enough to read: the article is at most 60ch wide and centered in the page.",
+    "The title is 2rem with a line-height of 1.15. The intro paragraph (.lede) is 1.25rem. Body paragraphs have a line-height of 1.6."
+  ],
+  "concepts": [
+    "font-family",
+    "max-width",
+    "font-size",
+    "line-height",
+    "margin"
+  ],
+  "hints": [
+    "Set the font once on .article: every child inherits font-family.",
+    "max-width: 60ch on .article, and margin-inline: auto (or margin: 0 auto) to center it.",
+    "font-size and line-height on the title (.article h1) and on .lede; line-height: 1.6 on .article p. Use a unitless line-height so it follows each element’s size."
+  ],
+  "items": [
+    {
+      "tag": "article",
+      "cls": "article",
+      "children": [
+        {
+          "tag": "h1",
+          "cls": "",
+          "text": "The quiet craft of typesetting"
+        },
+        {
+          "tag": "p",
+          "cls": "lede",
+          "text": "Most readers never notice good typography. They just find the text easy to read."
+        },
+        {
+          "tag": "p",
+          "cls": "",
+          "text": "A comfortable line length, generous spacing between lines and a clear difference between headings and body text do most of the work. None of it needs a special font."
+        },
+        {
+          "tag": "p",
+          "cls": "",
+          "text": "The browser defaults are a starting point, not a design: long lines across the whole window, a serif font and tight lines. A few declarations change that."
+        }
+      ]
+    }
+  ],
+  "css": ".article {\n  padding: 16px;\n  color: #27272a;\n}\n\n.article p {\n  margin: 0 0 12px;\n}\n",
+  "solution": ".article {\n  padding: 16px;\n  color: #27272a;\n}\n\n.article p {\n  margin: 0 0 12px;\n}\n\n/* ---- Solution ---- */\n.article {\n  max-width: 60ch;\n  margin: 0 auto;\n  font-family: system-ui, sans-serif;\n}\n\n.article h1 {\n  font-size: 2rem;\n  line-height: 1.15;\n}\n\n.lede {\n  font-size: 1.25rem;\n}\n\n.article p {\n  line-height: 1.6;\n}\n",
+  "solutionNotes": "font-family is inherited, so setting it on the article styles every heading and paragraph inside. The ch unit is the width of a \"0\" in the current font, so 60ch gives roughly 60–75 characters per line whatever the font size. Unitless line-height values are multiplied by each element’s own font size, which keeps the large title tight and the body text airy.",
+  "viewports": [
+    800
+  ]
+}

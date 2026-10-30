@@ -1,0 +1,35 @@
+{
+  "property": "position",
+  "group": "Positioning",
+  "appliesTo": "any element",
+  "summary": "How offsets (top, left…) apply and what the box is positioned against.",
+  "details": "relative nudges the box but keeps its space and becomes the anchor for absolute children. absolute leaves the flow and is placed against the nearest positioned ancestor. fixed is placed against the viewport. sticky is normal until scrolled to its offset.",
+  "values": [
+    {
+      "value": "static",
+      "note": "Default: offsets and z-index ignored."
+    },
+    {
+      "value": "relative",
+      "note": "Offset from its normal place; anchor for children."
+    },
+    {
+      "value": "absolute",
+      "note": "Out of flow; placed against positioned ancestor."
+    },
+    {
+      "value": "fixed",
+      "note": "Out of flow; placed against the viewport."
+    },
+    {
+      "value": "sticky",
+      "note": "Sticks at its offset while scrolling."
+    }
+  ],
+  "gotcha": "A transform or filter on an ancestor becomes the containing block for fixed children.",
+  "related": [
+    "top",
+    "inset",
+    "z-index"
+  ]
+}

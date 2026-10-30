@@ -1,0 +1,57 @@
+{
+  "id": "unbreakable-text",
+  "title": "Tame the long word",
+  "level": "hard",
+  "summary": "A long unbroken string blows the layout out on a phone. Contain it.",
+  "brief": [
+    "At 375px the long identifier in the text pushes past the right edge of .media.",
+    "Make everything fit inside .media at 375px, while the thumbnail stays 80px wide next to the text."
+  ],
+  "concepts": [
+    "min-width",
+    "flex-shrink",
+    "overflow"
+  ],
+  "hints": [
+    "Set the preview to 375px. Select .media and look at the overflow note in the Layout tab.",
+    "Flex items will not shrink below their min-content width, and an unbroken word is very wide min-content.",
+    "Allow the word to break with overflow-wrap: anywhere on .body (and min-width: 0 lets the item shrink)."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "media",
+      "children": [
+        {
+          "tag": "img",
+          "cls": "thumb",
+          "attrs": {
+            "alt": ""
+          }
+        },
+        {
+          "tag": "div",
+          "cls": "body",
+          "children": [
+            {
+              "tag": "p",
+              "cls": "title",
+              "text": "Build failed"
+            },
+            {
+              "tag": "p",
+              "cls": "text",
+              "text": "Missing module averyveryverylongidentifier_without_any_break_opportunities_0123456789 in the bundle."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".media {\n  display: flex;\n  gap: 16px;\n  padding: 12px;\n  border: 2px dashed #a1a1aa;\n}\n\n.thumb {\n  width: 80px;\n  height: 80px;\n  object-fit: cover;\n  border-radius: 6px;\n}\n\n.title {\n  margin: 0 0 4px;\n  font-weight: 600;\n}\n\n.text {\n  margin: 0;\n}\n",
+  "solution": ".media {\n  display: flex;\n  gap: 16px;\n  padding: 12px;\n  border: 2px dashed #a1a1aa;\n}\n\n.thumb {\n  width: 80px;\n  height: 80px;\n  object-fit: cover;\n  border-radius: 6px;\n}\n\n.title {\n  margin: 0 0 4px;\n  font-weight: 600;\n}\n\n.text {\n  margin: 0;\n}\n\n/* ---- Solution ---- */\n.body {\n  min-width: 0;\n  overflow-wrap: anywhere;\n}\n",
+  "solutionNotes": "A flex item's default min-width: auto is its min-content width, here the whole unbroken identifier. overflow-wrap: anywhere lets the word break (and shrinks its min-content); min-width: 0 is the general fix that lets the item shrink at all.",
+  "viewports": [
+    375
+  ]
+}

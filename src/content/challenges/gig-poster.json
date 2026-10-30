@@ -1,0 +1,59 @@
+{
+  "id": "gig-poster",
+  "title": "Gig poster",
+  "level": "beginner",
+  "creative": true,
+  "summary": "Poster design: a huge stacked title, a spaced-out kicker, ruled date line and a ticket pill.",
+  "brief": [
+    "Turn the plain text into a gig poster. The poster has a #1e1b4b (deep indigo) background, #fef3c7 (cream) text, 4px rounded corners, and everything is centred.",
+    "The kicker on top is 13px, uppercase, #fbbf24 (amber) and spaced out by 0.3em. The title is 72px, weight 900, uppercase, with a line-height of 0.9 and -0.02em letter-spacing, and 16px above and below it.",
+    "The date line has a 2px amber line above and below it, 10px of padding top and bottom, and weight 600. The price is an amber pill (6px 14px padding) with indigo bold text, 16px below the date."
+  ],
+  "concepts": [
+    "font-size",
+    "line-height",
+    "letter-spacing",
+    "text-transform",
+    "text-align",
+    "background-color"
+  ],
+  "hints": [
+    "Start with the poster: background-color, color and text-align: center on .poster are inherited by all the text inside.",
+    "Big display type wants a tight line-height (below 1) and slightly negative letter-spacing; small labels want the opposite, wide letter-spacing.",
+    "The price only hugs its text if it is not a full-width block: display: inline-block, then padding, border-radius: 999px and its own colours. Its margin-top needs inline-block too."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "poster",
+      "children": [
+        {
+          "tag": "p",
+          "cls": "kicker",
+          "text": "Live at the Harbour Hall"
+        },
+        {
+          "tag": "h1",
+          "cls": "title",
+          "text": "Night Owls"
+        },
+        {
+          "tag": "p",
+          "cls": "date",
+          "text": "Fri 14 Nov · Doors 8pm"
+        },
+        {
+          "tag": "p",
+          "cls": "price",
+          "text": "Tickets £18"
+        }
+      ]
+    }
+  ],
+  "css": ".poster {\n  width: 360px;\n  margin: 24px;\n  padding: 32px;\n  font-family: system-ui, sans-serif;\n}\n\n.poster p,\n.poster h1 {\n  margin: 0;\n}\n",
+  "solution": ".poster {\n  width: 360px;\n  margin: 24px;\n  padding: 32px;\n  font-family: system-ui, sans-serif;\n}\n\n.poster p,\n.poster h1 {\n  margin: 0;\n}\n\n/* ---- Solution ---- */\n.poster {\n  border-radius: 4px;\n  background-color: #1e1b4b;\n  color: #fef3c7;\n  text-align: center;\n}\n\n.kicker {\n  color: #fbbf24;\n  font-size: 13px;\n  letter-spacing: 0.3em;\n  text-transform: uppercase;\n}\n\n.poster .title {\n  margin: 16px 0;\n  font-size: 72px;\n  font-weight: 900;\n  line-height: 0.9;\n  letter-spacing: -0.02em;\n  text-transform: uppercase;\n}\n\n.date {\n  padding: 10px 0;\n  border-top: 2px solid #fbbf24;\n  border-bottom: 2px solid #fbbf24;\n  font-weight: 600;\n}\n\n.poster .price {\n  display: inline-block;\n  margin-top: 16px;\n  padding: 6px 14px;\n  border-radius: 999px;\n  background-color: #fbbf24;\n  color: #1e1b4b;\n  font-weight: 700;\n}\n",
+  "solutionNotes": "Hierarchy comes from contrast in size, weight and spacing, not from more colours: one huge, heavy, tightly packed title against small, widely spaced labels. line-height: 0.9 pulls the two title lines together so they read as one block. The title and price rules start with .poster because the starter resets margins with .poster h1 and .poster p, which are more specific than a single class; without the extra class the 16px margins would lose.",
+  "viewports": [
+    800
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "id": "toolbar",
+  "title": "Build a toolbar",
+  "level": "beginner",
+  "summary": "Logo, links and a button on one row, with the button pushed right.",
+  "brief": [
+    "Lay the bar out on a single row: the logo on the left, then the links, and the Sign in button against the right edge.",
+    "The three links sit side by side, 16px apart."
+  ],
+  "concepts": [
+    "display",
+    "gap",
+    "margin",
+    "align-items"
+  ],
+  "hints": [
+    "The bar and the list both need to lay their children out in a row.",
+    "display: flex on .bar and on .links. gap spaces the links.",
+    "margin-left: auto on .cta soaks up the free space and pushes it to the end."
+  ],
+  "items": [
+    {
+      "tag": "nav",
+      "cls": "bar",
+      "children": [
+        {
+          "tag": "span",
+          "cls": "logo",
+          "text": "Brand"
+        },
+        {
+          "tag": "ul",
+          "cls": "links",
+          "children": [
+            {
+              "tag": "li",
+              "cls": "link",
+              "text": "Docs"
+            },
+            {
+              "tag": "li",
+              "cls": "link",
+              "text": "Pricing"
+            },
+            {
+              "tag": "li",
+              "cls": "link",
+              "text": "Blog"
+            }
+          ]
+        },
+        {
+          "tag": "button",
+          "cls": "cta",
+          "text": "Sign in"
+        }
+      ]
+    }
+  ],
+  "css": ".bar {\n  padding: 12px 20px;\n  background: #18181b;\n  color: #fafafa;\n}\n\n.logo {\n  font-weight: 700;\n}\n\n.links {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n.cta {\n  padding: 6px 12px;\n  border: 0;\n  border-radius: 4px;\n  background: #f97316;\n  color: #fff;\n}\n",
+  "solution": ".bar {\n  padding: 12px 20px;\n  background: #18181b;\n  color: #fafafa;\n}\n\n.logo {\n  font-weight: 700;\n}\n\n.links {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n.cta {\n  padding: 6px 12px;\n  border: 0;\n  border-radius: 4px;\n  background: #f97316;\n  color: #fff;\n}\n\n/* ---- Solution ---- */\n.bar {\n  display: flex;\n  align-items: center;\n  gap: 24px;\n}\n\n.links {\n  display: flex;\n  gap: 16px;\n}\n\n.cta {\n  margin-left: auto;\n}\n",
+  "solutionNotes": "Both the bar and the list are flex rows; flex layouts nest freely. An auto margin on a flex item takes all the free space on that side, so margin-left: auto pushes the button to the end.",
+  "viewports": [
+    800
+  ]
+}

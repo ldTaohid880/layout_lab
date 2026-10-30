@@ -1,0 +1,35 @@
+{
+  "property": "transform",
+  "group": "Positioning",
+  "appliesTo": "any element except plain inline boxes",
+  "summary": "Moves, scales or rotates an element visually without changing the layout.",
+  "details": "The element keeps the space it had in the flow; only its painted result moves. Any transform other than none also makes the element the containing block for fixed and absolute descendants and creates a stacking context.",
+  "values": [
+    {
+      "value": "translateY(-4px)",
+      "note": "Lift 4px without moving neighbours."
+    },
+    {
+      "value": "translate(-50%, -50%)",
+      "note": "Shift back by half its own size (for centering)."
+    },
+    {
+      "value": "scale(1.05)",
+      "note": "Grow 5% from the center."
+    },
+    {
+      "value": "rotate(45deg)",
+      "note": "Turn clockwise by 45 degrees."
+    },
+    {
+      "value": "none",
+      "note": "Default."
+    }
+  ],
+  "gotcha": "Because a transform creates a stacking context and a containing block, adding one to a parent can suddenly change where position: fixed children appear and which z-index wins.",
+  "related": [
+    "position",
+    "z-index",
+    "isolation"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "property": "overflow-wrap",
+  "group": "Typography",
+  "appliesTo": "any element (inherited)",
+  "summary": "Whether a word too long for its line may be broken.",
+  "details": "Long URLs, hashes and identifiers have no spaces, so by default they push out of their box. anywhere lets the browser break them at any point, and also lets the box shrink below the word’s width.",
+  "values": [
+    {
+      "value": "normal",
+      "note": "Default: only break at spaces and hyphens."
+    },
+    {
+      "value": "anywhere",
+      "note": "Break long words; also reduces min-content width."
+    },
+    {
+      "value": "break-word",
+      "note": "Break long words, but keep min-content width."
+    }
+  ],
+  "gotcha": "break-word does not help a flex or grid item shrink, because its min-content width still counts the whole word. anywhere does.",
+  "related": [
+    "white-space",
+    "min-width",
+    "text-overflow"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "property": "container-type",
+  "group": "Box & display",
+  "appliesTo": "any element that should be queried",
+  "summary": "Turns an element into a query container, so its descendants can respond to its size.",
+  "details": "Media queries look at the viewport; container queries look at the nearest ancestor with a container-type. Write @container (min-width: 400px) { … } in your CSS and the rules apply when that container is wide enough, wherever the component is placed.",
+  "values": [
+    {
+      "value": "inline-size",
+      "note": "Query the width (the usual choice)."
+    },
+    {
+      "value": "size",
+      "note": "Query width and height; the box can no longer size itself from its content."
+    },
+    {
+      "value": "normal",
+      "note": "Default: not a query container."
+    }
+  ],
+  "gotcha": "The container gets size containment, so it cannot grow to fit its children along the queried axis. Give it a width from its parent (a grid track, a flex item or an explicit width).",
+  "related": [
+    "container-name",
+    "width",
+    "grid-template-columns"
+  ]
+}

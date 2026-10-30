@@ -1,0 +1,31 @@
+{
+  "property": "border",
+  "group": "Borders & effects",
+  "appliesTo": "any element",
+  "summary": "A line around the padding box: width, style and colour in one shorthand.",
+  "details": "The style is required; without it there is no border at all. Leave out the colour and the border uses currentColor. border-top, border-bottom and friends set one side only, which is how dividers and underlines are usually made.",
+  "values": [
+    {
+      "value": "1px solid #d4d4d8",
+      "note": "A thin light-grey line: the everyday card border."
+    },
+    {
+      "value": "2px dashed #f97316",
+      "note": "Dashed, e.g. for a drop zone."
+    },
+    {
+      "value": "3px double",
+      "note": "Two lines; colour follows the text."
+    },
+    {
+      "value": "none",
+      "note": "Default: no border."
+    }
+  ],
+  "gotcha": "A border adds to the element’s size unless box-sizing is border-box. To draw a line without changing the layout, use outline or an inset box-shadow instead.",
+  "related": [
+    "border-radius",
+    "outline",
+    "box-sizing"
+  ]
+}

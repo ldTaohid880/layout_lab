@@ -1,6 +1,8 @@
 import { expect, test, type Page } from '@playwright/test'
-import { CHALLENGES } from '../src/content/challenges'
+import { loadChallenges } from '../src/content/challenges/node'
 import { LEVEL_LABELS } from '../src/content/types'
+
+const CHALLENGES = loadChallenges()
 
 async function frameOf(page: Page, testId: string) {
   const handle = await page.getByTestId(testId).elementHandle()
@@ -162,11 +164,34 @@ test('level filter narrows the challenge list and badges show the level', async 
   await expect(list.locator('li')).toHaveCount(CHALLENGES.length)
 })
 
+test('kind filter shows only creative challenges, which carry a Creative badge', async ({ page }) => {
+  await page.getByRole('tab', { name: 'Challenges' }).click()
+  const list = page.getByTestId('challenge-list')
+  const kinds = list.getByRole('radiogroup', { name: 'Filter by kind' })
+  const creative = CHALLENGES.filter((c) => c.creative).length
+
+  await expect(list.getByTestId('creative-badge')).toHaveCount(creative)
+
+  await kinds.getByRole('radio', { name: 'Creative' }).click()
+  await expect(list.locator('li')).toHaveCount(creative)
+  await expect(list.getByRole('button', { name: /Sunny day/ })).toBeVisible()
+  await expect(list.getByRole('button', { name: /Center the card/ })).toHaveCount(0)
+
+  // Combines with the level filter.
+  await list.getByRole('radiogroup', { name: 'Filter by level' }).getByRole('radio', { name: 'Hard' }).click()
+  await expect(list.locator('li')).toHaveCount(CHALLENGES.filter((c) => c.creative && c.level === 'hard').length)
+
+  await kinds.getByRole('radio', { name: 'Layout' }).click()
+  await expect(list.getByTestId('creative-badge')).toHaveCount(0)
+})
+
 test('list thumbnails load; the reference dialog shows each width and returns focus', async ({ page }) => {
   await page.getByRole('tab', { name: 'Challenges' }).click()
 
   const thumbs = page.getByTestId('challenge-list').locator('img')
   await expect(thumbs).toHaveCount(CHALLENGES.length)
+  // Thumbnails are lazy, so the ones far down the list only load once scrolled to.
+  for (const thumb of await thumbs.all()) await thumb.scrollIntoViewIfNeeded()
   await expect
     .poll(() => thumbs.evaluateAll((imgs) => imgs.filter((i) => !(i as HTMLImageElement).naturalWidth).length))
     .toBe(0)

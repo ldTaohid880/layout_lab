@@ -1,0 +1,101 @@
+{
+  "id": "credit-card",
+  "title": "Credit card",
+  "level": "hard",
+  "creative": true,
+  "summary": "Recreate a bank card: exact card proportions, layered glows, a gold chip, spaced numbers and a blended logo.",
+  "brief": [
+    "The card is 340px wide with the real card proportion (aspect-ratio 1.586), 24px padding included in that size, 16px corners and white text. Its chip, number and footer are spread from top to bottom.",
+    "Background, top layer first: a white glow (25%) in the top right corner fading out by 40%, a pink glow (rgb(236 72 153 / 0.5)) in the bottom left fading out by 50%, over a 135deg gradient from #1e1b4b to #4338ca. Shadow: 0 16px 32px rgb(67 56 202 / 0.35).",
+    "The chip is a 44 × 32px gold gradient (#fde68a to #d97706, 135deg) with 6px corners and a 1px rgb(0 0 0 / 0.2) border. The number is monospace, 20px, letter-spacing 0.12em, word-spacing 0.4em.",
+    "Footer: holder and expiry (label over value, 2px apart; labels uppercase, 0.1em spacing, 70% opacity; values 14px semibold) aligned to the bottom, 24px apart, and the logo pushed to the far right: two 32px circles overlapping by 12px, the second blended with screen so only the overlap mixes."
+  ],
+  "concepts": [
+    "aspect-ratio",
+    "box-sizing",
+    "align-content",
+    "background-image",
+    "margin",
+    "isolation"
+  ],
+  "hints": [
+    "width: 340px with aspect-ratio: 1.586 sets the height. box-sizing: border-box keeps the padding inside that size. Make the card a grid with align-content: space-between to spread its three children vertically.",
+    "Layer the glows: radial-gradient(circle at 100% 0, rgb(255 255 255 / 0.25), transparent 40%), radial-gradient(circle at 0 100%, rgb(236 72 153 / 0.5), transparent 50%), linear-gradient(135deg, #1e1b4b, #4338ca).",
+    "The footer is flex with align-items: flex-end; margin-left: auto on .brand pushes it right. The second circle gets margin-left: -12px and mix-blend-mode: screen; isolation: isolate on .brand stops it blending with the card behind."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "card",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "chip"
+        },
+        {
+          "tag": "p",
+          "cls": "number",
+          "text": "4921 8830 1294 5571"
+        },
+        {
+          "tag": "div",
+          "cls": "card-footer",
+          "children": [
+            {
+              "tag": "div",
+              "cls": "holder",
+              "children": [
+                {
+                  "tag": "span",
+                  "cls": "small",
+                  "text": "Card holder"
+                },
+                {
+                  "tag": "span",
+                  "cls": "value",
+                  "text": "Ada Lovelace"
+                }
+              ]
+            },
+            {
+              "tag": "div",
+              "cls": "expiry",
+              "children": [
+                {
+                  "tag": "span",
+                  "cls": "small",
+                  "text": "Expires"
+                },
+                {
+                  "tag": "span",
+                  "cls": "value",
+                  "text": "09/29"
+                }
+              ]
+            },
+            {
+              "tag": "div",
+              "cls": "brand",
+              "children": [
+                {
+                  "tag": "span",
+                  "cls": "circle c1"
+                },
+                {
+                  "tag": "span",
+                  "cls": "circle c2"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".card {\n  margin: 24px;\n  font-family: system-ui, sans-serif;\n}\n\n.number {\n  margin: 0;\n}\n\n.small {\n  font-size: 10px;\n}\n\n.c1 {\n  background-color: #ef4444;\n}\n\n.c2 {\n  background-color: #f59e0b;\n}\n",
+  "solution": ".card {\n  margin: 24px;\n  font-family: system-ui, sans-serif;\n}\n\n.number {\n  margin: 0;\n}\n\n.small {\n  font-size: 10px;\n}\n\n.c1 {\n  background-color: #ef4444;\n}\n\n.c2 {\n  background-color: #f59e0b;\n}\n\n/* ---- Solution ---- */\n.card {\n  display: grid;\n  align-content: space-between;\n  box-sizing: border-box;\n  width: 340px;\n  aspect-ratio: 1.586;\n  padding: 24px;\n  border-radius: 16px;\n  background-image:\n    radial-gradient(circle at 100% 0, rgb(255 255 255 / 0.25), transparent 40%),\n    radial-gradient(circle at 0 100%, rgb(236 72 153 / 0.5), transparent 50%),\n    linear-gradient(135deg, #1e1b4b, #4338ca);\n  box-shadow: 0 16px 32px rgb(67 56 202 / 0.35);\n  color: #ffffff;\n}\n\n.chip {\n  width: 44px;\n  height: 32px;\n  border: 1px solid rgb(0 0 0 / 0.2);\n  border-radius: 6px;\n  background-image: linear-gradient(135deg, #fde68a, #d97706);\n}\n\n.number {\n  font-family: ui-monospace, Consolas, monospace;\n  font-size: 20px;\n  letter-spacing: 0.12em;\n  word-spacing: 0.4em;\n}\n\n.card-footer {\n  display: flex;\n  align-items: flex-end;\n  gap: 24px;\n}\n\n.holder,\n.expiry {\n  display: grid;\n  gap: 2px;\n}\n\n.small {\n  letter-spacing: 0.1em;\n  text-transform: uppercase;\n  opacity: 0.7;\n}\n\n.value {\n  font-size: 14px;\n  font-weight: 600;\n}\n\n.brand {\n  display: flex;\n  margin-left: auto;\n  isolation: isolate;\n}\n\n.circle {\n  width: 32px;\n  height: 32px;\n  border-radius: 50%;\n}\n\n.c2 {\n  margin-left: -12px;\n  mix-blend-mode: screen;\n}\n",
+  "solutionNotes": "aspect-ratio gives the card its real proportions from a width alone, and box-sizing: border-box keeps the padding inside it. A grid with align-content: space-between spreads three rows to the top, middle and bottom without measuring anything. In the footer, margin-left: auto on the logo eats all the free space and pushes it to the far edge. The blend is the subtle part: mix-blend-mode mixes with everything painted behind, including the card gradient, so the whole second circle would change colour; isolation: isolate on .brand gives the logo its own group, so the circle only blends where it overlaps the first one.",
+  "viewports": [
+    800
+  ]
+}

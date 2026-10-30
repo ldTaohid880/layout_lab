@@ -49,11 +49,25 @@ PW_CHANNEL=chromium npm run e2e
   invalid values) and blue dotted **layout hints** for valid CSS that does nothing here, such as
   `gap` without `display: flex|grid`, `top` or `z-index` on a static element, sticky without an
   offset, `width` on an inline element, or a class no element has.
-- **Examples (left tab):** 51 guided layouts (centering, nav bar, holy grail, card grid, sticky
-  header, stacking contexts, dialog over a backdrop, mosaic grid…). **Apply here** replaces the sandbox's elements and CSS; **Open in new
+- **Examples (left tab):** 123 guided examples in a numbered learning path, split into **tracks**:
+  Layout (nine modules, from Box & sizing through Flexbox, Grid, Positioning, Stacking and
+  Overflow to Real layouts), Typography (readable text, typographic details such as link underlines, list markers,
+  drop caps and tabular numbers, taming long text), Colour &
+  backgrounds (contrast, transparency, gradients, patterns, layered backgrounds), Borders &
+  effects (rounded shapes, dividers, shadows, outlines, cursors, focus rings, filters,
+  gradient borders, frosted glass, `clip-path`, blend modes, `drop-shadow`) and Cascade & variables
+  (specificity, `:nth-child`, sibling selectors, states, inheritance, `:where()`,
+  `::before`/`::after`, attribute selectors, `:not()`, `:has()`, form states, a CSS-only switch,
+  custom properties for themes, variants and spacing scales) and Responsive (mobile-first media queries, fluid `clamp()` spacing, `dvh`,
+  `object-position` crops, named container queries) and Motion (transitions, timing functions,
+  `@keyframes`, loaders, `prefers-reduced-motion`, and motion in components: growing
+  underlines, sliding captions, skeleton shimmers, pulsing badges, staggered lists, a `steps()`
+  typewriter). Every module goes
+  Beginner → Hard and lessons are numbered like `2.3`. Track and level filters above the list hide
+  the rest without renumbering. **Apply here** replaces the sandbox's elements and CSS; **Open in new
   sandbox** keeps the current one. The toast's **Undo** restores what was there. Property chips open
   the matching docs entry.
-- **Docs (left tab):** searchable reference for 41 layout properties with values, gotchas and
+- **Docs (left tab):** searchable reference for 83 CSS properties (layout, typography, colour, borders and effects, responsive, motion) with values, gotchas and
   related links. Select an element with a class in Items, then each value's **Try** button writes
   `property: value` into that class's rule (editing the rule in place if it exists).
 - **Preview (right):** `Fit` or a fixed viewport (375 / 768 / 1024 / 1440), drag either edge of
@@ -75,9 +89,12 @@ PW_CHANNEL=chromium npm run e2e
   settings or grid tracks, plus an **Axes** list that spells out which way each axis points; for items, their flex sizing or the grid lines they landed on. It also
   shows what an absolute element is positioned against, whether the element creates a stacking
   context (and why), which context it paints in, and how far content overflows.
-- **Challenges (left tab):** 11 layout problems ranked **Beginner / Intermediate / Hard**, from
-  "center the card" to the holy grail, a stacking-context puzzle and a dashboard grid. A
-  filter above the list narrows it by level (Examples carry the same level badges). Clicking a
+- **Challenges (left tab):** 36 problems (layout, typography, colour, effects, the cascade and responsive design) ranked **Beginner / Intermediate / Hard**, from
+  "center the card" to the holy grail, a stacking-context puzzle and a dashboard grid, plus twelve
+  **Creative** ones: CSS art (a sunny day, an emoji face, a traffic light, a night skyline, a
+  polaroid wall), type designs (a gig poster, a quote card), recreated UI (a boarding pass, a music
+  player, a weather widget, a credit card), and an open remix that turns a plain card into a game card. Filters above the list narrow
+  it by kind (Layout / Creative) and by level (Examples carry the same level badges). Clicking a
   row opens the challenge to *read* (brief, level, reference picture). **Start challenge**, top
   right of that view, creates its own sandbox (named `Challenge: …`; your other sandboxes are
   untouched). Hints, the solution and Reset only appear once it is started. If you switch to another
@@ -160,7 +177,7 @@ Key decisions:
 ```
 src/
   types/            shared types: tree, sandbox, preview postMessage protocol
-  content/          examples/ (one JSON file per example), docs.ts, challenges.ts (typed data), references.ts, instantiate.ts,
+  content/          examples/, docs/, challenges/ (one JSON file per entry, plus an order file), references.ts, instantiate.ts,
                     content.test.ts
   store/            Zustand store, zod schema, defaults (starter sandbox)
   lib/              small hooks/utilities (debounce, media query, theme, ids)
@@ -203,9 +220,14 @@ Build the tree with the `el(tag, classes, textOrChildren, attrs)` helper:
 }
 ```
 
-**Doc entry:** add an object to `DOCS` in [src/content/docs.ts](src/content/docs.ts) with
+Then add its id to the right module in [src/content/examples/path.ts](src/content/examples/path.ts),
+after the last example of the same level. That list sets the order and numbering of the Examples
+tab; a test fails if an example is missing from it or a module's levels go backwards.
+
+**Doc entry:** add `<property>.json` to [src/content/docs/](src/content/docs/) with
 `property`, `group`, `appliesTo`, `summary`, `details`, `values` (`{ value, note }`; each gets a
-Try button), an optional `gotcha`, and `related` property names.
+Try button), an optional `gotcha`, and `related` property names. Then list the property under its
+group in [src/content/docs/order.ts](src/content/docs/order.ts), which sets the Docs tab order.
 
 Then run `npm run test`. [content.test.ts](src/content/content.test.ts) checks that ids are unique,
 every example tree passes the storage schema, every example's CSS has no errors, warnings *or
@@ -217,18 +239,19 @@ its property.
 In Claude Code, the project skill `new-challenge` (`.claude/skills/new-challenge/`) follows this recipe
 step by step. By hand:
 
-Add an object to `CHALLENGES` in [src/content/challenges.ts](src/content/challenges.ts):
+Add `<id>.json` to [src/content/challenges/](src/content/challenges/) and its id to
+[src/content/challenges/order.ts](src/content/challenges/order.ts) (the order within each level):
 
 - `id`, `title`, `summary`, and a `level`: `'beginner'`, `'intermediate'` or `'hard'`. Rough guide:
   beginner is one layout idea, intermediate combines two or adds a phone layout, hard needs a
   subtle mechanism (stacking contexts, nested grids, min-content).
 - `brief`: the task in short paragraphs, giving the sizes a learner needs (e.g. "a 220px sidebar
   and 16px gaps"), because the reference picture shows the look but not the numbers.
-- `items`: the starter tree, built with `el(tag, classes, textOrChildren, attrs)`.
+- `items`: the starter tree, as plain nodes (`tag`, `cls`, `text`, `attrs`, `children`).
 - `css`: starter CSS with cosmetics only; the layout is the learner's job.
 - `hints`: nudge first, near-answer last. `concepts`: properties that must exist in the docs.
-- `solution`: the full stylesheet (the `solve(starter, layout)` helper appends the layout part to
-  the starter) and `solutionNotes` explaining why it works.
+- `solution`: the full stylesheet (the starter, a `/* ---- Solution ---- */` line, then the layout
+  part) and `solutionNotes` explaining why it works.
 - `viewports`: the widths of the reference pictures, widest first, e.g. `[800, 375]` for a
   design that restacks on phones.
 

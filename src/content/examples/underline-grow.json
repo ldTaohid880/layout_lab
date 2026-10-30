@@ -1,0 +1,30 @@
+{
+  "id": "underline-grow",
+  "title": "An underline that grows",
+  "category": "Motion",
+  "level": "intermediate",
+  "summary": "A ::after bar scaled from 0 to 1 with transform-origin decides which side the underline grows from.",
+  "concepts": ["transform", "transition", "position"],
+  "explanation": [
+    "Each link has a ::after bar positioned along its bottom edge. At rest it is transform: scaleX(0), so it has no width on screen; on hover it scales to 1. Animating transform is smooth because the browser does not have to redo the layout, unlike animating width.",
+    "transform-origin says where the scale starts. left grows it from the left, center from the middle, right from the right. The three links differ only in that one line.",
+    ":focus-visible is in the same selector as :hover, so keyboard users get the same underline."
+  ],
+  "tryThis": [
+    "Hover each link.",
+    "Change the first link's transform-origin to right: it grows the other way.",
+    "Replace scaleX(0) with scaleX(0.2): a short bar shows at rest and grows on hover."
+  ],
+  "items": [
+    {
+      "tag": "nav",
+      "cls": "nav",
+      "children": [
+        { "tag": "a", "cls": "link from-left", "text": "From the left", "attrs": { "href": "#" } },
+        { "tag": "a", "cls": "link from-center", "text": "From the middle", "attrs": { "href": "#" } },
+        { "tag": "a", "cls": "link from-right", "text": "From the right", "attrs": { "href": "#" } }
+      ]
+    }
+  ],
+  "css": ".nav {\n  display: flex;\n  gap: 32px;\n  padding: 32px;\n  font-family: system-ui, sans-serif;\n  font-size: 18px;\n}\n\n.link {\n  position: relative;\n  padding-bottom: 4px;\n  color: #18181b;\n  text-decoration: none;\n}\n\n.link::after {\n  content: \"\";\n  position: absolute;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  height: 2px;\n  background-color: #f97316;\n  transform: scaleX(0);\n  transition: transform 250ms ease;\n}\n\n.link:hover::after,\n.link:focus-visible::after {\n  transform: scaleX(1);\n}\n\n.from-left::after {\n  transform-origin: left;\n}\n\n.from-center::after {\n  transform-origin: center;\n}\n\n.from-right::after {\n  transform-origin: right;\n}\n"
+}

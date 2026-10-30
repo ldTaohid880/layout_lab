@@ -1,0 +1,30 @@
+{
+  "id": "shadow-elevation",
+  "title": "A shadow elevation scale",
+  "category": "Borders & effects",
+  "level": "beginner",
+  "summary": "Three box-shadows, from resting to floating, each layered from a tight and a soft shadow.",
+  "concepts": ["box-shadow", "border-radius"],
+  "explanation": [
+    "Shadows suggest how far an element floats above the page. A small, sharp shadow sits close; a large, blurred, offset one floats high. Reuse a few levels instead of inventing a new shadow each time.",
+    "Each level here is two shadows, comma-separated: a tight one that anchors the card and a soft one for depth. Real shadows look like that, so the result feels more natural than one big blur.",
+    "Low-alpha black (rgb(0 0 0 / 0.1)) keeps the shadows soft; pure black looks like a smudge."
+  ],
+  "tryThis": [
+    "Change the colour in .high's second shadow to rgb(0 0 0 / 0.6): harsh.",
+    "Remove the first (tight) shadow from .mid: it looks blurrier and less grounded.",
+    "Add a spread: change .low to 0 0 0 4px #fed7aa. Zero blur and a spread make a ring."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "levels",
+      "children": [
+        { "tag": "div", "cls": "card low", "text": "Low" },
+        { "tag": "div", "cls": "card mid", "text": "Mid" },
+        { "tag": "div", "cls": "card high", "text": "High" }
+      ]
+    }
+  ],
+  "css": ".levels {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 32px;\n  padding: 32px;\n  background-color: #f4f4f5;\n  font-family: system-ui, sans-serif;\n}\n\n.card {\n  display: grid;\n  place-items: center;\n  height: 100px;\n  border-radius: 10px;\n  background-color: #ffffff;\n  font-weight: 600;\n}\n\n.low {\n  box-shadow: 0 1px 2px rgb(0 0 0 / 0.15);\n}\n\n.mid {\n  box-shadow: 0 1px 3px rgb(0 0 0 / 0.12), 0 6px 16px rgb(0 0 0 / 0.1);\n}\n\n.high {\n  box-shadow: 0 2px 4px rgb(0 0 0 / 0.1), 0 20px 40px rgb(0 0 0 / 0.18);\n}\n"
+}

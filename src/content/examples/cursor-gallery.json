@@ -1,0 +1,33 @@
+{
+  "id": "cursor-gallery",
+  "title": "Cursors that explain the action",
+  "category": "Borders & effects",
+  "level": "beginner",
+  "summary": "pointer, grab, help, text, move and not-allowed: hover each tile to see what the cursor promises.",
+  "concepts": ["cursor"],
+  "explanation": [
+    "cursor changes the mouse pointer while it is over an element. It is a promise about what will happen: pointer (the hand) says click me, grab says you can drag, not-allowed says this is disabled.",
+    "Buttons do not get the hand by default in every browser, so many designs add cursor: pointer to them. Do not put it on things that are not clickable: a hand over plain text makes people click and get nothing.",
+    "Touch screens have no cursor, so it can never be the only clue. Pair it with a visible style, like the striped background on the disabled tile."
+  ],
+  "tryThis": [
+    "Hover every tile in the preview.",
+    "Change .grab to cursor: grabbing, the closed hand shown while dragging.",
+    "Try cursor: zoom-in, wait and crosshair on any tile."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "tiles",
+      "children": [
+        { "tag": "div", "cls": "tile pointer", "text": "pointer" },
+        { "tag": "div", "cls": "tile grab", "text": "grab" },
+        { "tag": "div", "cls": "tile help", "text": "help" },
+        { "tag": "div", "cls": "tile text", "text": "text" },
+        { "tag": "div", "cls": "tile move", "text": "move" },
+        { "tag": "div", "cls": "tile blocked", "text": "not-allowed" }
+      ]
+    }
+  ],
+  "css": ".tiles {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 12px;\n  padding: 24px;\n  font-family: system-ui, sans-serif;\n}\n\n.tile {\n  display: grid;\n  place-items: center;\n  height: 72px;\n  border: 1px solid #fdba74;\n  border-radius: 8px;\n  background-color: #fff7ed;\n  font-weight: 600;\n}\n\n.pointer {\n  cursor: pointer;\n}\n\n.grab {\n  cursor: grab;\n}\n\n.help {\n  cursor: help;\n}\n\n.text {\n  cursor: text;\n}\n\n.move {\n  cursor: move;\n}\n\n.blocked {\n  border-color: #d4d4d8;\n  background-image: repeating-linear-gradient(45deg, #f4f4f5 0 8px, #e4e4e7 8px 16px);\n  color: #71717a;\n  cursor: not-allowed;\n}\n"
+}

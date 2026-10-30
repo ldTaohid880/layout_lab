@@ -1,0 +1,51 @@
+{
+  "id": "current-color-icons",
+  "title": "Borders and icons that follow the text colour",
+  "category": "Colour & backgrounds",
+  "level": "intermediate",
+  "summary": "currentColor reuses the color value, so one declaration recolours the whole button.",
+  "concepts": ["color", "background-color"],
+  "explanation": [
+    "currentColor is a keyword meaning \"whatever color is on this element\". Here the button's border, its dot icon (background-color: currentColor) and its text all follow a single color declaration.",
+    "The variants .danger and .success only change color; everything else updates with it. Without currentColor you would repeat each colour three times and risk them drifting apart.",
+    "Borders already default to currentColor when you leave the colour out: border: 2px solid uses the text colour."
+  ],
+  "tryThis": [
+    "Change color in .danger to #2563eb: border, dot and text all turn blue.",
+    "Remove currentColor from the border declaration in .button: it still matches, because that is the default.",
+    "Give .dot a fixed background-color: #000: now it no longer follows the variant."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "buttons",
+      "children": [
+        {
+          "tag": "button",
+          "cls": "button",
+          "children": [
+            { "tag": "span", "cls": "dot" },
+            { "tag": "span", "text": "Default" }
+          ]
+        },
+        {
+          "tag": "button",
+          "cls": "button danger",
+          "children": [
+            { "tag": "span", "cls": "dot" },
+            { "tag": "span", "text": "Delete" }
+          ]
+        },
+        {
+          "tag": "button",
+          "cls": "button success",
+          "children": [
+            { "tag": "span", "cls": "dot" },
+            { "tag": "span", "text": "Saved" }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".buttons {\n  display: flex;\n  gap: 12px;\n  padding: 16px;\n  font-family: system-ui, sans-serif;\n}\n\n.button {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  padding: 8px 14px;\n  border: 2px solid currentColor;\n  border-radius: 999px;\n  background-color: transparent;\n  color: #3f3f46;\n  font: inherit;\n}\n\n.dot {\n  width: 10px;\n  height: 10px;\n  border-radius: 50%;\n  background-color: currentColor;\n}\n\n.danger {\n  color: #dc2626;\n}\n\n.success {\n  color: #16a34a;\n}\n"
+}

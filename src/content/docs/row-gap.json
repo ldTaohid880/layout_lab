@@ -1,0 +1,27 @@
+{
+  "property": "row-gap",
+  "group": "Flex container",
+  "appliesTo": "flex, grid and multi-column containers",
+  "summary": "Space between rows only.",
+  "details": "The row half of gap. Use it when rows and columns need different spacing, or to change one without restating the other in a media query.",
+  "values": [
+    {
+      "value": "16px",
+      "note": "Space between rows."
+    },
+    {
+      "value": "0",
+      "note": "Rows touch."
+    },
+    {
+      "value": "2em",
+      "note": "Scales with the font size."
+    }
+  ],
+  "gotcha": "In a flex container, row-gap only shows when items wrap (flex-wrap: wrap): a single line has no space between rows.",
+  "related": [
+    "gap",
+    "column-gap",
+    "flex-wrap"
+  ]
+}

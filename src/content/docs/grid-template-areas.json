@@ -1,0 +1,25 @@
+{
+  "property": "grid-template-areas",
+  "group": "Grid container",
+  "appliesTo": "grid containers",
+  "summary": "Names cells with an ASCII-art picture of the layout.",
+  "details": "Each string is a row, each word a cell; repeat a name to span. A dot (.) is an empty cell. Areas must be rectangles.",
+  "values": [
+    {
+      "value": "\"header header\" \"nav main\"",
+      "note": "Header across two columns."
+    },
+    {
+      "value": "\"a b\" \"c d\"",
+      "note": "Four named cells."
+    },
+    {
+      "value": "none",
+      "note": "Default."
+    }
+  ],
+  "related": [
+    "grid-area",
+    "grid-template-columns"
+  ]
+}

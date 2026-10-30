@@ -1,0 +1,36 @@
+{
+  "id": "hover-reveal-caption",
+  "title": "A caption that slides up",
+  "category": "Motion",
+  "level": "intermediate",
+  "summary": "overflow: hidden plus a translated caption: on hover the caption slides in and the image zooms slightly.",
+  "concepts": ["transition", "transform", "overflow", "opacity"],
+  "explanation": [
+    "The caption is absolutely positioned at the bottom of the card and pushed down by its own height with translateY(100%). overflow: hidden on the card clips it, so at rest it is out of sight. Hovering the card sets translateY(0) and the transition slides it in.",
+    "The selector is .card:hover .caption: hovering the parent changes the child. The image scales a little at the same time, and overflow: hidden keeps the zoom inside the rounded corners.",
+    "Hover does not exist on touch screens, so information that only appears on hover is lost there. :focus-within on the card shows it to keyboard users, but for important text keep it visible."
+  ],
+  "tryThis": [
+    "Hover the card.",
+    "Remove overflow: hidden from .card: the hidden caption shows below the card and the zoomed image spills out.",
+    "Swap the slide for a fade: give .caption opacity: 0 instead of the transform, opacity: 1 on hover, and transition opacity instead of transform."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "stage",
+      "children": [
+        {
+          "tag": "figure",
+          "cls": "card",
+          "attrs": { "tabindex": "0" },
+          "children": [
+            { "tag": "img", "cls": "photo", "attrs": { "alt": "Placeholder photo" } },
+            { "tag": "figcaption", "cls": "caption", "text": "Harbour at dawn · 2024" }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".stage {\n  padding: 32px;\n  font-family: system-ui, sans-serif;\n}\n\n.card {\n  position: relative;\n  width: 280px;\n  height: 190px;\n  margin: 0;\n  overflow: hidden;\n  border-radius: 12px;\n}\n\n.photo {\n  display: block;\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  transition: transform 400ms ease;\n}\n\n.caption {\n  position: absolute;\n  right: 0;\n  bottom: 0;\n  left: 0;\n  padding: 12px 16px;\n  background-color: rgb(0 0 0 / 0.65);\n  color: #ffffff;\n  transform: translateY(100%);\n  transition: transform 250ms ease-out;\n}\n\n.card:hover .photo,\n.card:focus-within .photo {\n  transform: scale(1.06);\n}\n\n.card:hover .caption,\n.card:focus-within .caption {\n  transform: translateY(0);\n}\n"
+}

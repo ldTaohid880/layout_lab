@@ -1,0 +1,31 @@
+{
+  "property": "place-content",
+  "group": "Flex container",
+  "appliesTo": "flex containers, grid containers",
+  "summary": "Shorthand for align-content and justify-content.",
+  "details": "One value sets both; two values set align-content first, then justify-content. place-content: center centers the whole block of tracks (or wrapped flex lines) in the container.",
+  "values": [
+    {
+      "value": "center",
+      "note": "Center on both axes."
+    },
+    {
+      "value": "start end",
+      "note": "align-content: start, justify-content: end."
+    },
+    {
+      "value": "space-between",
+      "note": "Spread out on both axes."
+    },
+    {
+      "value": "stretch",
+      "note": "Default: lines or tracks share the space."
+    }
+  ],
+  "gotcha": "It moves the tracks, not the items inside them: for aligning items inside their cells use place-items. It also does nothing unless the container is taller or wider than its content.",
+  "related": [
+    "align-content",
+    "justify-content",
+    "place-items"
+  ]
+}

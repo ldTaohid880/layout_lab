@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test'
+import { EXAMPLE_PATH } from '../src/content/examples/path'
 
 async function previewFrame(page: Page) {
   const handle = await page.getByTestId('preview-frame').elementHandle()
@@ -28,6 +29,41 @@ test('apply an example, see it in the preview, then undo', async ({ page }) => {
   await expect(restored.locator('.box')).toHaveCount(1)
   await expect(restored.locator('.grid')).toHaveCount(0)
   await expect(page.locator('.cm-content')).toContainText('.item')
+})
+
+test('examples form a numbered path, and the level filter hides rows without renumbering', async ({ page }) => {
+  await page.getByRole('tab', { name: 'Examples' }).click()
+  const panel = page.getByTestId('examples-panel')
+  const modules = panel.getByTestId('example-module')
+  const numbers = panel.getByTestId('lesson-number')
+  const total = EXAMPLE_PATH.reduce((n, m) => n + m.examples.length, 0)
+
+  await expect(modules).toHaveCount(EXAMPLE_PATH.length)
+  await expect(modules.first().getByRole('heading', { level: 3 })).toHaveText('1 · Box & sizing')
+  await expect(numbers.first()).toHaveText('1.1')
+  await expect(numbers).toHaveCount(total)
+
+  const filter = panel.getByRole('radiogroup', { name: 'Filter by level' })
+  await filter.getByRole('radio', { name: 'Hard' }).click()
+  await expect(panel.locator('[data-level="beginner"], [data-level="intermediate"]')).toHaveCount(0)
+  await expect(modules).not.toHaveCount(EXAMPLE_PATH.length)
+  // Kanban board keeps its path number when the filter hides everything before it.
+  const module = EXAMPLE_PATH.findIndex((m) => m.examples.includes('kanban-board'))
+  const kanban = panel.getByRole('button', { name: /Kanban board/ })
+  await expect(kanban.getByTestId('lesson-number')).toHaveText(
+    `${module + 1}.${EXAMPLE_PATH[module]!.examples.indexOf('kanban-board') + 1}`,
+  )
+
+  await filter.getByRole('radio', { name: 'All' }).click()
+  const tracks = panel.getByRole('radiogroup', { name: 'Filter by track' })
+  await tracks.getByRole('radio', { name: 'Typography' }).click()
+  await expect(modules.first().getByRole('heading', { level: 3 })).toContainText('Readable text')
+  await expect(panel.locator('[data-testid="lesson-number"]', { hasText: /^1\./ })).toHaveCount(0)
+  await tracks.getByRole('radio', { name: 'All' }).click()
+  await expect(panel.getByTestId('example-track').first()).toHaveText('Layout')
+
+  await filter.getByRole('radio', { name: 'All' }).click()
+  await expect(numbers).toHaveCount(total)
 })
 
 test('concept chips open the docs entry', async ({ page }) => {

@@ -1,0 +1,21 @@
+{
+  "property": "isolation",
+  "group": "Positioning",
+  "appliesTo": "any element",
+  "summary": "Creates a stacking context without any other side effect.",
+  "details": "Contains the z-index of everything inside, so a component's internal layers can never fight the rest of the page.",
+  "values": [
+    {
+      "value": "isolate",
+      "note": "New stacking context."
+    },
+    {
+      "value": "auto",
+      "note": "Default."
+    }
+  ],
+  "related": [
+    "z-index",
+    "transform"
+  ]
+}

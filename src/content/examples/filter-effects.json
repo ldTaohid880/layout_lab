@@ -1,0 +1,31 @@
+{
+  "id": "filter-effects",
+  "title": "Filters: greyscale, blur and brightness",
+  "category": "Borders & effects",
+  "level": "intermediate",
+  "summary": "filter changes how an element is rendered; hover a tile to remove its filter.",
+  "concepts": ["filter", "cursor"],
+  "explanation": [
+    "filter takes the element as painted, children included, and applies effects to it: grayscale() drains the colour, blur() softens, brightness() darkens or lightens. Several can be chained with spaces.",
+    "Each tile here starts filtered and drops its filter on :hover, a common pattern for galleries and logos. Hover over them in the preview.",
+    "The last tile uses drop-shadow(), which follows the visible shape. On a rounded tile it looks like box-shadow; on a transparent image it would hug the outline."
+  ],
+  "tryThis": [
+    "Hover each tile in the preview.",
+    "Chain two filters on .grey: grayscale(1) brightness(1.2).",
+    "Change blur(3px) to blur(10px): even the label becomes unreadable, because the filter applies to the children too."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "gallery",
+      "children": [
+        { "tag": "div", "cls": "tile grey", "text": "grayscale" },
+        { "tag": "div", "cls": "tile blurry", "text": "blur" },
+        { "tag": "div", "cls": "tile dim", "text": "brightness" },
+        { "tag": "div", "cls": "tile lifted", "text": "drop-shadow" }
+      ]
+    }
+  ],
+  "css": ".gallery {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));\n  gap: 16px;\n  padding: 16px;\n  font-family: system-ui, sans-serif;\n}\n\n.tile {\n  display: grid;\n  place-items: center;\n  height: 120px;\n  border-radius: 10px;\n  background-image: linear-gradient(135deg, #f97316, #db2777, #7c3aed);\n  color: #ffffff;\n  font-weight: 600;\n  cursor: pointer;\n}\n\n.grey {\n  filter: grayscale(1);\n}\n\n.blurry {\n  filter: blur(3px);\n}\n\n.dim {\n  filter: brightness(0.5);\n}\n\n.lifted {\n  filter: drop-shadow(0 8px 8px rgb(0 0 0 / 0.35));\n}\n\n.tile:hover {\n  filter: none;\n}\n"
+}

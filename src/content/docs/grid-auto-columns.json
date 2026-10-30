@@ -1,0 +1,30 @@
+{
+  "property": "grid-auto-columns",
+  "group": "Grid container",
+  "appliesTo": "grid containers",
+  "summary": "Sizes the columns the grid creates on its own.",
+  "details": "Columns beyond those in grid-template-columns are implicit: they appear when an item is placed past the last explicit column, or when grid-auto-flow: column adds one per item.",
+  "values": [
+    {
+      "value": "auto",
+      "note": "Default: sized by content."
+    },
+    {
+      "value": "1fr",
+      "note": "Each extra column shares the free space."
+    },
+    {
+      "value": "120px",
+      "note": "Each extra column is 120px wide."
+    },
+    {
+      "value": "minmax(100px, auto)",
+      "note": "At least 100px, growing with content."
+    }
+  ],
+  "related": [
+    "grid-template-columns",
+    "grid-auto-flow",
+    "grid-auto-rows"
+  ]
+}

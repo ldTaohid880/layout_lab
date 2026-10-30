@@ -1,0 +1,37 @@
+{
+  "id": "borders-and-dividers",
+  "title": "Borders and dividers",
+  "category": "Borders & effects",
+  "level": "beginner",
+  "summary": "One-sided borders make dividers; border styles make a dashed drop zone.",
+  "concepts": ["border", "padding"],
+  "explanation": [
+    "border is shorthand for width, style and colour; the style is the part people forget, and without it nothing is drawn.",
+    "border-bottom draws a single side, which is how list dividers are made. :last-child removes the line under the final row so it does not double up with the box's own border.",
+    "Border styles go beyond solid: dashed suits a drop zone, and the 2px width with padding inside gives the dashes room."
+  ],
+  "tryThis": [
+    "Remove the word solid from .row's border-bottom: the dividers disappear.",
+    "Change .drop's border style to dotted, then to double with a 4px width.",
+    "Delete the .row:last-child rule: the last row gets a line against the box border."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "stack",
+      "children": [
+        {
+          "tag": "ul",
+          "cls": "list",
+          "children": [
+            { "tag": "li", "cls": "row", "text": "Account" },
+            { "tag": "li", "cls": "row", "text": "Notifications" },
+            { "tag": "li", "cls": "row", "text": "Billing" }
+          ]
+        },
+        { "tag": "div", "cls": "drop", "text": "Drop files here" }
+      ]
+    }
+  ],
+  "css": ".stack {\n  display: grid;\n  gap: 16px;\n  max-width: 320px;\n  padding: 16px;\n  font-family: system-ui, sans-serif;\n}\n\n.list {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n  border: 1px solid #d4d4d8;\n  border-radius: 8px;\n}\n\n.row {\n  padding: 10px 14px;\n  border-bottom: 1px solid #e4e4e7;\n}\n\n.row:last-child {\n  border-bottom: none;\n}\n\n.drop {\n  padding: 32px 16px;\n  border: 2px dashed #f97316;\n  border-radius: 8px;\n  color: #9a3412;\n  text-align: center;\n}\n"
+}

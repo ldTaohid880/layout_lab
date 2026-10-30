@@ -1,0 +1,31 @@
+{
+  "property": "grid-template-rows",
+  "group": "Grid container",
+  "appliesTo": "grid containers",
+  "summary": "Defines the row tracks.",
+  "details": "Rows beyond those listed are created automatically and sized by grid-auto-rows.",
+  "values": [
+    {
+      "value": "auto 1fr auto",
+      "note": "Header, stretchy body, footer."
+    },
+    {
+      "value": "repeat(2, 120px)",
+      "note": "Two 120px rows."
+    },
+    {
+      "value": "none",
+      "note": "Default: all rows implicit."
+    },
+    {
+      "value": "subgrid",
+      "note": "Share the parent grid’s rows (the element must be a grid item spanning them)."
+    }
+  ],
+  "gotcha": "subgrid needs the element to be a grid item of another grid, and its rows are the ones it spans: pair it with grid-row: span N.",
+  "related": [
+    "grid-template-columns",
+    "grid-auto-rows",
+    "grid-row"
+  ]
+}

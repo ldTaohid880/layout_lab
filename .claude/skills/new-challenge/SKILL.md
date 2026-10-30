@@ -1,6 +1,6 @@
 ---
 name: new-challenge
-description: "Add a new practice challenge (beginner, intermediate or hard) to Layout Lab Studio: starter tree and CSS, brief, hints, solution, reference pictures and tests, in src/content/challenges.ts. Use this whenever the user wants to add, write, draft, extend or review a challenge or practice layout, even if they only say 'add a challenge for pricing cards', 'make a hard one about sticky sidebars', 'another practice layout', or pick something from the challenge backlog (pricing cards, modal over page, form layout, sticky article, chat layout, kanban board)."
+description: "Add a new practice challenge (beginner, intermediate or hard) to Layout Lab Studio: starter tree and CSS, brief, hints, solution, reference pictures and tests, as one JSON file in src/content/challenges/. Use this whenever the user wants to add, write, draft, extend or review a challenge or practice layout, even if they only say 'add a challenge for pricing cards', 'make a hard one about sticky sidebars', 'another practice layout', or pick something from the challenge backlog (pricing cards, modal over page, form layout, sticky article, chat layout, kanban board)."
 ---
 
 # Add a challenge to Layout Lab Studio
@@ -23,33 +23,49 @@ the user already gave. Levels:
 ## 2. Read before writing
 
 - `src/content/types.ts`: the `Challenge` type (every field is documented there).
-- Two existing challenges of a similar level in `src/content/challenges.ts` (and its `solve()`
-  helper and `BOX` constant at the top). Copy their shape, not their content.
+- Two existing challenges of a similar level in `src/content/challenges/` (one JSON file each).
+  Copy their shape, not their content.
 - README.md, section "Adding a challenge".
 - `src/types/tree.ts`: `TAG_NAMES`, the only tags a tree may use.
 
 ## 3. Design it
 
-- **Tree (`items`)**: build with `el(tag, classes, textOrChildren, attrs)` from `./instantiate`. A node
-  that needs both text and children is an object literal: `{ tag, cls, text, children }`. If the layout
-  truly needs a tag that is missing, add it to `TAG_NAMES` (src/types/tree.ts) and `TAG_HINTS`
-  (src/features/tree/tags.ts); say so in your summary. Class names must be valid CSS identifiers.
+Create one file per challenge: `src/content/challenges/<id>.json`. The file name must match `id`.
+Then add the id to `CHALLENGE_ORDER` in `src/content/challenges/order.ts`, after the last challenge
+of the same level; that list sets the order within each level of the Challenges tab, and a test
+fails if a file is missing from it or listed twice.
+
+- **Tree (`items`)**: plain nodes: `tag` (one of `src/types/tree.ts`), optional `cls`
+  (space-separated), `text`, `attrs` and `children`. If the layout truly needs a tag that is
+  missing, add it to `TAG_NAMES` (src/types/tree.ts) and `TAG_HINTS` (src/features/tree/tags.ts);
+  say so in your summary. Class names must be valid CSS identifiers.
 - **Starter CSS (`css`)**: cosmetics only (colours, padding, borders, fonts). Anything that *is* the
   lesson (`display`, `position`, `grid-*`, `flex-*`, `gap`, `z-index`) belongs in the solution.
-  Reuse `BOX` for coloured boxes. Add `body { margin: 0 }` when the layout uses viewport heights, or
-  the default 8px body margin skews every measurement.
-- **Solution**: `solution: solve(starterCss, layoutCss)`. The helper appends the layout under a
-  `/* ---- Solution ---- */` marker, and the panel splits on that marker to show only the new part.
+  For coloured boxes copy the look from a nearby file (`background: #fed7aa; border: 1px solid
+  #f97316; border-radius: 6px`). Add `body { margin: 0 }` when the layout uses viewport heights, or
+  the default 8px body margin skews every measurement. CSS is a JSON string: escape newlines as
+  `\n` and quotes as `\"`.
+- **Solution**: the starter CSS in full, then `\n/* ---- Solution ---- */\n`, then the layout CSS.
+  The panel splits on that marker to show only the new part.
 - **Brief**: states every number the picture cannot show: sizes, gaps, the width where the layout
   changes, which items span. The picture shows the look but not the numbers.
 - **Hints** (at least 2, aim for 3): nudge, then the mechanism, then nearly the answer (name the
-  properties). **Concepts**: properties that exist in `src/content/docs.ts`.
+  properties). **Concepts**: properties that have a file in `src/content/docs/`.
 - **`viewports`**: widths of the reference pictures, widest first, each 320 to 1600. Typical:
   `[800]`, `[800, 375]`, `[1024, 375]`. Use phone media queries at 600px or less, so the 375 picture
   shows the phone layout and the wider one the desktop layout.
 - **`solutionNotes`**: why it works, including the gotcha that makes it hard.
 - Keep it deterministic and offline: no remote image URLs, no animation, no randomness. The
-  reference pictures are generated from the solution and must reproduce exactly.
+  reference pictures are generated from the solution and must reproduce exactly. So the result
+  must be visible in a still picture: motion (transitions, keyframes) and `:hover`/`:focus` states
+  cannot be challenges; teach them as examples instead.
+- **Creative challenges** (`creative: true`: CSS art, posters, recreated UI designs, open remixes)
+  get a Creative badge and their own filter chip. Their starter sets only the palette and fonts;
+  the drawing is the lesson. Draw pictures with gradients, shapes, borders and `clip-path`, never
+  image files, and use system fonts only (the preview allows no web fonts). An open remix still
+  ships one reference solution; its brief says the picture is one possible answer.
+- Fonts: only system fonts are available (the preview CSP allows `data:` fonts only), so use
+  `system-ui`, generic families and named system fonts such as Georgia.
 
 ## 4. Rules the tests enforce (and why they matter)
 
@@ -88,6 +104,5 @@ added: title, level, tags added (if any), and the widths. Keep the summary short
 - The C: drive is full. Before any npm/npx command set `npm_config_cache=D:/Mine/layout_lab/.cache/npm`
   and `TMP`/`TEMP` to `D:/Mine/layout_lab/.cache/tmp`. Prefer `./node_modules/.bin/tsc|vitest|playwright`.
 - Prettier is not a dependency: `npx --yes prettier --write <files>` (config in `.prettierrc`).
-- Edit content files with the Edit/Write tools. Shell heredocs and `node -e` mangle backticks and
-  `${...}`, which these files are full of.
+- Write the JSON with the Write tool: shell heredocs can mangle the quotes and `\n` escapes.
 - Dev server: port 5180 (`.claude/launch.json`). E2E starts its own on 5181 using installed Chrome.

@@ -1,0 +1,29 @@
+{
+  "id": "gradient-hero",
+  "title": "Gradient hero",
+  "category": "Colour & backgrounds",
+  "level": "beginner",
+  "summary": "linear-gradient() as a background image: a colourful banner with no image file.",
+  "concepts": ["background-image", "color", "padding"],
+  "explanation": [
+    "A gradient is an image the browser draws for you, so it goes in background-image (or the background shorthand), not background-color.",
+    "linear-gradient(135deg, …) runs diagonally from the top-left. List two or more colours; the browser blends between them. Optional stop positions (#f97316 0%, #db2777 50%) control where each colour sits.",
+    "White text needs a gradient that stays dark enough everywhere, not just in the middle."
+  ],
+  "tryThis": [
+    "Change 135deg to 90deg (left to right) and to 180deg (top to bottom).",
+    "Add a third colour: linear-gradient(135deg, #f97316, #db2777, #7c3aed).",
+    "Swap linear-gradient for radial-gradient(circle at top left, #f97316, #7c3aed)."
+  ],
+  "items": [
+    {
+      "tag": "section",
+      "cls": "hero",
+      "children": [
+        { "tag": "h1", "cls": "hero-title", "text": "Ship faster" },
+        { "tag": "p", "cls": "hero-text", "text": "A banner coloured entirely with CSS." }
+      ]
+    }
+  ],
+  "css": ".hero {\n  margin: 16px;\n  padding: 48px 24px;\n  border-radius: 12px;\n  background-image: linear-gradient(135deg, #ea580c, #7c3aed);\n  color: #ffffff;\n  font-family: system-ui, sans-serif;\n}\n\n.hero-title {\n  margin: 0 0 8px;\n  font-size: 2.25rem;\n}\n\n.hero-text {\n  margin: 0;\n  font-size: 1.125rem;\n}\n"
+}

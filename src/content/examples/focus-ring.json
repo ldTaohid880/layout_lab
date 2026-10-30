@@ -1,0 +1,30 @@
+{
+  "id": "focus-ring",
+  "title": "A visible focus ring",
+  "category": "Borders & effects",
+  "level": "intermediate",
+  "summary": "outline with outline-offset on :focus-visible: a clear ring for keyboard users that shifts nothing.",
+  "concepts": ["outline", "outline-offset", "cursor"],
+  "explanation": [
+    "Keyboard users need to see which control has focus. outline is ideal: it takes no space, so drawing it never moves anything, and outline-offset leaves a gap so the ring stands out even against a button of the same colour.",
+    ":focus-visible shows the ring when the browser judges it helpful (keyboard navigation) but not after a mouse click. Click into the preview and press Tab to move between the buttons.",
+    "The last button has the .demo-focus class, which applies the same ring permanently so you can see it without tabbing. cursor: pointer tells mouse users the buttons are clickable."
+  ],
+  "tryThis": [
+    "Click in the preview and press Tab: the ring moves from button to button.",
+    "Change outline-offset to 0, then to 6px.",
+    "Replace outline with border: 3px solid: the button grows and its neighbours move."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "actions",
+      "children": [
+        { "tag": "button", "cls": "btn", "text": "Save" },
+        { "tag": "button", "cls": "btn", "text": "Preview" },
+        { "tag": "button", "cls": "btn demo-focus", "text": "Publish" }
+      ]
+    }
+  ],
+  "css": ".actions {\n  display: flex;\n  gap: 12px;\n  padding: 24px;\n}\n\n.btn {\n  padding: 8px 16px;\n  border: 0;\n  border-radius: 6px;\n  background-color: #f97316;\n  color: #ffffff;\n  font: inherit;\n  font-family: system-ui, sans-serif;\n  cursor: pointer;\n}\n\n.btn:focus-visible,\n.demo-focus {\n  outline: 3px solid #2563eb;\n  outline-offset: 3px;\n}\n"
+}

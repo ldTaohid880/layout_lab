@@ -1,0 +1,178 @@
+{
+  "id": "dashboard-grid",
+  "title": "Dashboard grid",
+  "level": "hard",
+  "summary": "Top bar, sidebar and a board of cards where some span two columns or rows.",
+  "brief": [
+    "At 1024px wide: the top bar spans the full width. Under it, a 220px sidebar sits beside the board, and both reach the bottom of the page.",
+    "The board is a grid of three equal columns with 16px between cards. The Revenue card spans two columns; the Activity card spans two rows.",
+    "At 375px wide everything stacks in a single column."
+  ],
+  "concepts": [
+    "grid-template-areas",
+    "grid-template-columns",
+    "grid-column",
+    "grid-row",
+    "grid-auto-rows",
+    "gap"
+  ],
+  "hints": [
+    "Two grids, one inside the other: .dashboard frames the page (top bar, sidebar, board), and .board lays out the cards.",
+    "A card covers more than one track with span: grid-column: span 2 on the wide card, grid-row: span 2 on the tall one.",
+    "Rows need a height to span: grid-auto-rows: minmax(120px, auto) on .board. For phones, a media query that sets one column, and resets the spans (grid-column: auto; grid-row: auto)."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "dashboard",
+      "children": [
+        {
+          "tag": "header",
+          "cls": "topbar",
+          "text": "Dashboard"
+        },
+        {
+          "tag": "aside",
+          "cls": "sidebar",
+          "children": [
+            {
+              "tag": "ul",
+              "cls": "menu",
+              "children": [
+                {
+                  "tag": "li",
+                  "cls": "",
+                  "text": "Overview"
+                },
+                {
+                  "tag": "li",
+                  "cls": "",
+                  "text": "Reports"
+                },
+                {
+                  "tag": "li",
+                  "cls": "",
+                  "text": "Customers"
+                },
+                {
+                  "tag": "li",
+                  "cls": "",
+                  "text": "Settings"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "main",
+          "cls": "board",
+          "children": [
+            {
+              "tag": "section",
+              "cls": "card card--wide",
+              "children": [
+                {
+                  "tag": "h2",
+                  "cls": "",
+                  "text": "Revenue"
+                },
+                {
+                  "tag": "p",
+                  "cls": "",
+                  "text": "$48,200 this month"
+                }
+              ]
+            },
+            {
+              "tag": "section",
+              "cls": "card",
+              "children": [
+                {
+                  "tag": "h2",
+                  "cls": "",
+                  "text": "Users"
+                },
+                {
+                  "tag": "p",
+                  "cls": "",
+                  "text": "1,284 active"
+                }
+              ]
+            },
+            {
+              "tag": "section",
+              "cls": "card",
+              "children": [
+                {
+                  "tag": "h2",
+                  "cls": "",
+                  "text": "Orders"
+                },
+                {
+                  "tag": "p",
+                  "cls": "",
+                  "text": "312 today"
+                }
+              ]
+            },
+            {
+              "tag": "section",
+              "cls": "card card--tall",
+              "children": [
+                {
+                  "tag": "h2",
+                  "cls": "",
+                  "text": "Activity"
+                },
+                {
+                  "tag": "p",
+                  "cls": "",
+                  "text": "Latest events"
+                }
+              ]
+            },
+            {
+              "tag": "section",
+              "cls": "card",
+              "children": [
+                {
+                  "tag": "h2",
+                  "cls": "",
+                  "text": "Errors"
+                },
+                {
+                  "tag": "p",
+                  "cls": "",
+                  "text": "3 open"
+                }
+              ]
+            },
+            {
+              "tag": "section",
+              "cls": "card",
+              "children": [
+                {
+                  "tag": "h2",
+                  "cls": "",
+                  "text": "Uptime"
+                },
+                {
+                  "tag": "p",
+                  "cls": "",
+                  "text": "99.98%"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": "body {\n  margin: 0;\n}\n\n.topbar {\n  padding: 14px 20px;\n  background: #18181b;\n  color: #fafafa;\n  font-weight: 600;\n}\n\n.sidebar {\n  padding: 16px;\n  background: #27272a;\n  color: #e4e4e7;\n}\n\n.menu {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n.menu li {\n  padding: 6px 0;\n}\n\n.board {\n  padding: 16px;\n  background: #f4f4f5;\n}\n\n.card {\n  padding: 16px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n\n.card h2 {\n  margin: 0 0 4px;\n  font-size: 14px;\n}\n\n.card p {\n  margin: 0;\n  color: #52525b;\n}\n",
+  "solution": "body {\n  margin: 0;\n}\n\n.topbar {\n  padding: 14px 20px;\n  background: #18181b;\n  color: #fafafa;\n  font-weight: 600;\n}\n\n.sidebar {\n  padding: 16px;\n  background: #27272a;\n  color: #e4e4e7;\n}\n\n.menu {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n.menu li {\n  padding: 6px 0;\n}\n\n.board {\n  padding: 16px;\n  background: #f4f4f5;\n}\n\n.card {\n  padding: 16px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n\n.card h2 {\n  margin: 0 0 4px;\n  font-size: 14px;\n}\n\n.card p {\n  margin: 0;\n  color: #52525b;\n}\n\n/* ---- Solution ---- */\n.dashboard {\n  display: grid;\n  grid-template-columns: 220px 1fr;\n  grid-template-rows: auto 1fr;\n  grid-template-areas:\n    \"topbar  topbar\"\n    \"sidebar board\";\n  min-height: 100vh;\n}\n\n.topbar  { grid-area: topbar; }\n.sidebar { grid-area: sidebar; }\n\n.board {\n  grid-area: board;\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  grid-auto-rows: minmax(120px, auto);\n  align-content: start;\n  gap: 16px;\n}\n\n.card--wide { grid-column: span 2; }\n.card--tall { grid-row: span 2; }\n\n@media (max-width: 600px) {\n  .dashboard {\n    grid-template-columns: 1fr;\n    grid-template-rows: none;\n    grid-template-areas: \"topbar\" \"sidebar\" \"board\";\n  }\n\n  .board {\n    grid-template-columns: 1fr;\n  }\n\n  .card--wide { grid-column: auto; }\n  .card--tall { grid-row: auto; }\n}\n",
+  "solutionNotes": "The page is a two-column grid whose areas are drawn as a picture; the board is a second, independent grid for the cards. span 2 makes an item cover two tracks (the 16px gap between them is included in its size). The spanning cards would create extra implicit tracks on a phone, so the media query resets grid-column and grid-row as well as the column count.",
+  "viewports": [
+    1024,
+    375
+  ]
+}

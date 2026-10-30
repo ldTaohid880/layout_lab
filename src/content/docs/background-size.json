@@ -1,0 +1,30 @@
+{
+  "property": "background-size",
+  "group": "Colour & backgrounds",
+  "appliesTo": "any element with a background image",
+  "summary": "How big each background image is drawn.",
+  "details": "cover scales the image until it fills the box and crops the rest; contain scales it until it fits entirely, leaving gaps. Explicit sizes are used for patterns that repeat.",
+  "values": [
+    {
+      "value": "cover",
+      "note": "Fill the box, crop the overflow."
+    },
+    {
+      "value": "contain",
+      "note": "Fit inside the box, maybe with gaps."
+    },
+    {
+      "value": "40px 40px",
+      "note": "A 40px tile, repeated (good for patterns)."
+    },
+    {
+      "value": "auto",
+      "note": "Default: the image’s natural size; gradients fill the box."
+    }
+  ],
+  "related": [
+    "background-image",
+    "background-position",
+    "object-fit"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "traffic-light",
+  "title": "Traffic light",
+  "level": "beginner",
+  "creative": true,
+  "summary": "CSS art: a rounded housing with three stacked lamps, the green one glowing, on a pole.",
+  "brief": [
+    "Draw a traffic light, centred horizontally in the street. The housing is 80px wide with 16px of padding above and below the lamps and 20px rounded corners.",
+    "The three lamps are 48px circles stacked vertically, centred, 12px apart. Red and amber are switched off: 30% opacity. Green is on: full colour with a glow (0 0 24px 6px in rgb(34 197 94 / 0.7)).",
+    "Under the housing, a 16 × 120px pole, also centred."
+  ],
+  "concepts": [
+    "flex-direction",
+    "align-items",
+    "gap",
+    "border-radius",
+    "opacity",
+    "box-shadow"
+  ],
+  "hints": [
+    "The empty lamps and pole need a width and height before you can see them. A circle is a square with border-radius: 50%.",
+    "Stack the lamps with display: flex and flex-direction: column on .light; gap spaces them and align-items: center centres them. To centre the housing and pole in the street, make .street a grid with justify-items: center.",
+    "Dim two lamps in one rule: .red, .amber { opacity: 0.3; }. The glow is box-shadow: 0 0 24px 6px rgb(34 197 94 / 0.7) on .green."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "street",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "light",
+          "children": [
+            {
+              "tag": "div",
+              "cls": "lamp red"
+            },
+            {
+              "tag": "div",
+              "cls": "lamp amber"
+            },
+            {
+              "tag": "div",
+              "cls": "lamp green"
+            }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "pole"
+        }
+      ]
+    }
+  ],
+  "css": ".street {\n  padding: 24px;\n}\n\n.light {\n  background-color: #27272a;\n}\n\n.pole {\n  background-color: #3f3f46;\n}\n\n.red {\n  background-color: #ef4444;\n}\n\n.amber {\n  background-color: #f59e0b;\n}\n\n.green {\n  background-color: #22c55e;\n}\n",
+  "solution": ".street {\n  padding: 24px;\n}\n\n.light {\n  background-color: #27272a;\n}\n\n.pole {\n  background-color: #3f3f46;\n}\n\n.red {\n  background-color: #ef4444;\n}\n\n.amber {\n  background-color: #f59e0b;\n}\n\n.green {\n  background-color: #22c55e;\n}\n\n/* ---- Solution ---- */\n.street {\n  display: grid;\n  justify-items: center;\n}\n\n.light {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  gap: 12px;\n  width: 80px;\n  padding: 16px 0;\n  border-radius: 20px;\n}\n\n.lamp {\n  width: 48px;\n  height: 48px;\n  border-radius: 50%;\n}\n\n.red,\n.amber {\n  opacity: 0.3;\n}\n\n.green {\n  box-shadow: 0 0 24px 6px rgb(34 197 94 / 0.7);\n}\n\n.pole {\n  width: 16px;\n  height: 120px;\n}\n",
+  "solutionNotes": "A column flex container does the stacking: gap spaces the lamps and align-items: center lines them up in the middle of the 80px housing. The street is a one-column grid, and justify-items: center centres both the housing and the pole under it. \"Off\" is just opacity, and \"on\" is a coloured box-shadow with blur and spread, which glows without changing the lamp’s size or moving anything.",
+  "viewports": [
+    800
+  ]
+}

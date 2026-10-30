@@ -1,0 +1,25 @@
+{
+  "property": "grid-auto-rows",
+  "group": "Grid container",
+  "appliesTo": "grid containers",
+  "summary": "The size of rows the grid creates implicitly.",
+  "details": "minmax(100px, auto) gives rows that are at least 100px but grow with content.",
+  "values": [
+    {
+      "value": "auto",
+      "note": "Default: content height."
+    },
+    {
+      "value": "100px",
+      "note": "Every implicit row is 100px."
+    },
+    {
+      "value": "minmax(100px, auto)",
+      "note": "At least 100px."
+    }
+  ],
+  "related": [
+    "grid-template-rows",
+    "grid-auto-flow"
+  ]
+}

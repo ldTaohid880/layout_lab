@@ -1,5 +1,193 @@
 # Changelog
 
+## Challenges and docs as JSON (2026-10-30)
+
+### Changed
+- **Challenges and docs are one JSON file each**, like examples: `src/content/challenges/<id>.json`
+  and `src/content/docs/<property>.json` (replacing `challenges.ts` and `docs.ts`). Each folder's
+  `index.ts` loads its files with `import.meta.glob`; `order.ts` sets the tab order
+  (`CHALLENGE_ORDER`, and `DOC_ORDER` by group). Solutions are written out in full (no `solve()`
+  or `BOX`). Content is unchanged, so the reference pictures are still current.
+- Playwright code (`e2e/challenges.spec.ts`, `scripts/capture-references.ts`) reads challenges
+  through `loadChallenges()` in `src/content/challenges/node.ts`, since `import.meta.glob` is
+  Vite-only.
+- Content tests check that every file is in its order list exactly once and named after its id.
+
+## More creative challenges (2026-10-30)
+
+### Added
+- **Six more creative challenges (36 total, 12 creative):** Traffic light and Quote card
+  (beginner), City skyline at night and Weather widget (intermediate), Polaroid wall and Credit
+  card (hard). They cover column flex, decorative `::before` marks, flex baselines with gradient
+  windows and an inset-shadow crescent, layered icons, rotated overlapping photos with `z-index`,
+  and `aspect-ratio` with `isolation` for a blended logo.
+
+## Creative challenges (2026-10-30)
+
+### Added
+- **Six creative challenges (30 total)**, marked `creative: true`: Sunny day and Gig poster
+  (beginner), Boarding pass and Emoji face (intermediate), Music player and Make it a game card
+  (hard). The game card is an open remix: the picture is one possible answer.
+- A **Creative** badge on those challenges and a Layout / Creative filter above the challenge list,
+  combined with the level filter.
+
+### Fixed
+- The thumbnail e2e test scrolls each lazy thumbnail into view, so it keeps working as the list grows.
+
+## 30 more examples (2026-10-30)
+
+### Added
+- **Examples (123 total)** across four tracks, with four new modules:
+  - **Typography:** font stacks and weights, line height compared, aligning text (Readable
+    text); link underlines, styled list markers with `::marker`, a drop cap with
+    `::first-letter`, numbers that line up with `font-variant-numeric` (new module "Typographic
+    details"); long words with `overflow-wrap` and `hyphens` (Taming long text).
+  - **Borders & effects:** outline versus border, cursors (Borders & effects); a gradient
+    border, frosted glass with `backdrop-filter`, `clip-path` shapes, blend modes, and a speech
+    bubble whose `drop-shadow` follows its tail (new module "Shapes & surfaces").
+  - **Cascade & variables:** `::before`/`::after`, attribute selectors, `nth-child` formulas,
+    `:not()` and `:has()`, form states (`:focus-within`, `:user-invalid`), a switch made from a
+    checkbox (new module "Selector toolkit"); component variants and a `calc()` spacing scale
+    with custom properties (Custom properties).
+  - **Motion:** a button that presses in (Transitions & animations); a growing underline, a
+    sliding caption, a skeleton shimmer, a pulsing badge, a staggered list and a `steps()`
+    typewriter (new module "Motion in components").
+- Module numbers after each new module shift by one; lesson numbers come from the path.
+
+## Motion track (2026-10-30)
+
+### Added
+- **Docs (83 total):** `transition`, `transition-duration`, `transition-timing-function`,
+  `animation`, `animation-duration`, `animation-iteration-count`, `animation-delay` (group Motion).
+- **Examples (93 total), module 17 "Transitions & animations":** cards that lift on hover,
+  timing functions compared side by side, fade-in with `@keyframes` (and the `backwards` fill
+  mode), a spinner and staggered bouncing dots, and `prefers-reduced-motion`.
+- No challenges: reference pictures are still images and cannot show motion.
+
+This completes the six planned tracks: Typography, Colour & backgrounds, Borders & effects,
+Cascade & variables, Responsive and Motion.
+
+## Responsive track (2026-10-30)
+
+### Added
+- **Docs (76 total):** `object-position`, `container-name` (group Responsive); `container-type`
+  now links to `container-name`.
+- **Examples (88 total), module 16 "Responsive design":** mobile-first navigation with one
+  `min-width` query, fluid spacing with `clamp()`, a screen-tall hero with `100dvh`, choosing an
+  image crop with `object-position`, and a widget that asks a named container (`@container column`).
+- **Challenge (24 total):** Responsive header (intermediate), pictured at 800 and 375.
+
+## Cascade & variables track (2026-10-30)
+
+### Added
+- **Examples (83 total), modules 14 "Selectors & the cascade" and 15 "Custom properties":** which
+  rule wins (specificity, then order), zebra rows with `:nth-child`, dividers with the `+`
+  combinator, hover/active/focus/disabled states, inheritance and `inherit`, zero-specificity
+  defaults with `:where()`, and light/dark themes with custom properties.
+- **Challenges (23 total):** Zebra table (beginner), Theme it with variables (intermediate), Win
+  the specificity war (hard: an id selector beats a later class).
+- No new doc entries: this track is about selectors and the cascade rather than properties.
+
+## Borders & effects track (2026-10-30)
+
+### Added
+- **Docs (74 total):** `border`, `border-radius`, `outline`, `outline-offset`, `box-shadow`,
+  `filter`, `cursor` (group Borders & effects).
+- **Examples (76 total), module 13 "Borders & effects":** pills, circles and rounded cards (with
+  `overflow: hidden` clipping), borders and dividers, a two-layer shadow elevation scale, a
+  `:focus-visible` ring with `outline-offset`, spread-shadow rings and inset fields, and filters
+  that clear on hover.
+- **Challenges (20 total):** Lift the card (beginner), Avatar ring and pill tags (intermediate:
+  rings drawn with spread shadows so nothing changes size).
+
+## Colour & backgrounds track (2026-10-30)
+
+### Added
+- **Docs (67 total):** `color`, `background-color`, `background-image`, `background-size`,
+  `background-position`, `background-repeat`, `opacity` (group Colour & backgrounds).
+- **Examples (70 total), module 12 "Colour & backgrounds":** text on a coloured background and
+  contrast, `opacity` versus an alpha background, a gradient hero, `currentColor` borders and icons,
+  stripes and dots with gradients, and layered backgrounds with per-layer size, position and repeat.
+- **Challenges (18 total):** Gradient banner (beginner), Make the caption readable (intermediate:
+  a dark fade layered over a busy background).
+
+## Beyond layout: tracks, and the Typography track (2026-10-30)
+
+### Added
+- **Tracks** on the Examples path (`track` on each module in `path.ts`, `TRACKS` in `types.ts`):
+  Layout today, then Typography, with Colour & backgrounds, Borders & effects, Cascade & variables,
+  Responsive and Motion planned. The Examples tab has a track filter above the level filter and a
+  heading per track; module numbers keep counting across tracks.
+- **Typography docs (60 total):** `font-family`, `font-size`, `font-weight`, `line-height`,
+  `letter-spacing`, `text-align`, `text-transform`, `text-decoration`, `white-space`,
+  `text-overflow`, `overflow-wrap`. New doc groups for the coming tracks.
+- **Typography examples (64 total):** readable line length, a type scale, an uppercase label,
+  inline text styles, a pull quote, a fluid heading with `clamp()`, single-line ellipsis, ellipsis
+  in a flex row, breaking long URLs.
+- **Typography challenges (16 total):** Typeset the article (beginner), Truncate the subjects
+  (intermediate).
+- **Tags (36 total):** `blockquote`, `strong`, `em`, `small`, `code`, `hr` (void).
+
+### Changed
+- `LevelFilter` is built on a generic `ChipFilter` (`components/ui/level-filter.tsx`).
+- The examples count test is now a minimum, and a test checks tracks appear in `TRACKS` order.
+- Content skills list the new groups and tracks; challenges must be visible in a still picture.
+
+## Examples as a learning path (2026-10-30)
+
+### Changed
+- **Examples tab** is a numbered path of nine modules (Box & sizing, Flexbox basics, Flex sizing,
+  Grid basics, Grid placement, Positioning, Layers & stacking, Overflow & scrolling, Real layouts),
+  each going Beginner → Hard, instead of four categories sorted by file name. Lessons are numbered
+  (`2.3`) and each module has a one-line blurb. The order lives in `src/content/examples/path.ts`.
+- **Level filter** on the Examples tab (the Challenges one, moved to
+  `components/ui/level-filter.tsx`). Filtering hides rows and empty modules but keeps the numbers.
+- `category` stays on each example but no longer drives the list.
+
+### Tests
+- Content: every example is on the path exactly once, path ids exist, levels never go backwards
+  within a module, numbering.
+- E2E: module headings and numbers, the Hard filter, and that numbers survive filtering.
+
+## Four modern-layout examples (2026-10-30)
+
+### Added
+- **Examples (55 total):** a card that responds to its container (`@container`, `container-type`),
+  cards that share rows with `subgrid`, centering with `translate(-50%, -50%)`, and a table with
+  fixed columns (`table-layout: fixed`). The first two are `hard`.
+- **Docs (49 total):** `table-layout`; `grid-template-rows` gained a `subgrid` value and a gotcha.
+- Content test now expects 55 examples.
+
+## Three more challenges (2026-10-30)
+
+### Added
+- **Challenges (14 total), all intermediate:** a form layout (labels and fields in a two-column
+  grid, `grid-column`, stacking on phones), a chat window (column flex, a scrolling message list,
+  `align-self`) and an article with sticky contents (`position: sticky` with `align-items: start`).
+  Reference pictures at 800 and 375 (form, article) and 800 (chat).
+
+## Twelve more tags (2026-10-30)
+
+### Added
+- **Tags (29 total):** `h1`, `ol`, `figure`, `figcaption`, `form`, `label`, `input`, `table`,
+  `thead`, `tbody`, `tr`, `th`, `td`. `input` is a void element like `img`.
+- **Attributes:** `placeholder`, `for`, `name`, `value`, `colspan` and `rowspan` are now accepted
+  (event handlers, `style` and generic `src` still are not).
+- Forms cannot submit: the preview iframe has no `allow-forms`.
+
+### Notes
+- Table tags must be nested properly (`table > tr > td`). The browser's parser drops a stray `td`
+  inside a `div`, and that element then has no `data-ll-id`, so it cannot be selected.
+
+## Modern layout docs (2026-10-30)
+
+### Added
+- **Docs (48 total):** `container-type` (container queries), `max-height`, `row-gap`, `column-gap`,
+  `place-content`, `grid-auto-columns` and `transform` (with its stacking-context and
+  containing-block side effects).
+- `grid-template-columns` gained `repeat(auto-fit, …)`, `minmax(0, 1fr)` and `subgrid` values, plus
+  a subgrid gotcha. `gap` and `isolation` now link to the new entries.
+
 ## Ten more examples (2026-10-29)
 
 ### Added

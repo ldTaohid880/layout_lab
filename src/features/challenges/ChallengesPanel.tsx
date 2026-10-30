@@ -3,10 +3,18 @@ import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { LevelBadge } from '@/components/ui/level-badge'
+import { ChipFilter, LevelFilter } from '@/components/ui/level-filter'
 import { CHALLENGES, CHALLENGES_BY_ID } from '@/content/challenges'
 import { instantiate } from '@/content/instantiate'
-import { LEVELS, LEVEL_LABELS, type Challenge, type Level } from '@/content/types'
-import { cn } from '@/lib/utils'
+import {
+  CHALLENGE_KINDS,
+  CHALLENGE_KIND_LABELS,
+  LEVELS,
+  LEVEL_LABELS,
+  type Challenge,
+  type ChallengeKind,
+  type Level,
+} from '@/content/types'
 import { useActiveSandbox, useStudio } from '@/store/studioStore'
 import { ReferenceGallery, ReferenceThumb } from './Reference'
 
@@ -36,7 +44,10 @@ function ChallengeList({ onOpen }: { onOpen: (id: string) => void }) {
   const sandboxes = useStudio((s) => s.sandboxes)
   const started = new Set(Object.values(sandboxes).map((s) => s.challengeId))
   const [filter, setFilter] = useState<Level | 'all'>('all')
-  const levels = filter === 'all' ? LEVELS : LEVELS.filter((l) => l === filter)
+  const [kind, setKind] = useState<ChallengeKind | 'all'>('all')
+  const shown = CHALLENGES.filter((c) => kind === 'all' || kindOf(c) === kind)
+  // Levels with nothing left after the kind filter are left out instead of showing an empty heading.
+  const levels = LEVELS.filter((l) => (filter === 'all' || l === filter) && shown.some((c) => c.level === l))
 
   return (
     <div className="h-full overflow-auto" data-testid="challenge-list">
@@ -44,6 +55,13 @@ function ChallengeList({ onOpen }: { onOpen: (id: string) => void }) {
         Each challenge opens in its own sandbox. Style the starter to match the reference picture; compare with the
         target in the preview.
       </p>
+      <ChipFilter
+        label="Filter by kind"
+        values={CHALLENGE_KINDS}
+        value={kind}
+        onChange={setKind}
+        format={(k) => CHALLENGE_KIND_LABELS[k]}
+      />
       <LevelFilter value={filter} onChange={setFilter} />
       {levels.map((level) => (
         <section key={level} aria-labelledby={`challenges-${level}`}>
@@ -54,26 +72,29 @@ function ChallengeList({ onOpen }: { onOpen: (id: string) => void }) {
             {LEVEL_LABELS[level]}
           </h3>
           <ul>
-            {CHALLENGES.filter((c) => c.level === level).map((challenge) => (
-              <li key={challenge.id} className="border-b">
-                <button
-                  type="button"
-                  onClick={() => onOpen(challenge.id)}
-                  className="flex w-full items-start gap-2 px-3 py-2 text-left hover:bg-muted/60"
-                >
-                  <ReferenceThumb challenge={challenge} />
-                  <span className="min-w-0 flex-1">
-                    <span className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5">
-                      <span className="text-xs font-medium">{challenge.title}</span>
-                      <LevelBadge level={challenge.level} />
-                      {started.has(challenge.id) && <InProgress />}
+            {shown
+              .filter((c) => c.level === level)
+              .map((challenge) => (
+                <li key={challenge.id} className="border-b">
+                  <button
+                    type="button"
+                    onClick={() => onOpen(challenge.id)}
+                    className="flex w-full items-start gap-2 px-3 py-2 text-left hover:bg-muted/60"
+                  >
+                    <ReferenceThumb challenge={challenge} />
+                    <span className="min-w-0 flex-1">
+                      <span className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5">
+                        <span className="text-xs font-medium">{challenge.title}</span>
+                        <LevelBadge level={challenge.level} />
+                        {challenge.creative && <CreativeBadge />}
+                        {started.has(challenge.id) && <InProgress />}
+                      </span>
+                      <span className="mt-0.5 block text-2xs text-muted-foreground">{challenge.summary}</span>
                     </span>
-                    <span className="mt-0.5 block text-2xs text-muted-foreground">{challenge.summary}</span>
-                  </span>
-                  <ChevronRight aria-hidden className="mt-1 size-3.5 shrink-0 text-muted-foreground" />
-                </button>
-              </li>
-            ))}
+                    <ChevronRight aria-hidden className="mt-1 size-3.5 shrink-0 text-muted-foreground" />
+                  </button>
+                </li>
+              ))}
           </ul>
         </section>
       ))}
@@ -81,26 +102,19 @@ function ChallengeList({ onOpen }: { onOpen: (id: string) => void }) {
   )
 }
 
-function LevelFilter({ value, onChange }: { value: Level | 'all'; onChange: (value: Level | 'all') => void }) {
-  const options: (Level | 'all')[] = ['all', ...LEVELS]
+function kindOf(challenge: Challenge): ChallengeKind {
+  return challenge.creative ? 'creative' : 'layout'
+}
+
+/** Marks drawings, posters and designs, as opposed to layout drills. */
+function CreativeBadge() {
   return (
-    <div role="radiogroup" aria-label="Filter by level" className="flex flex-wrap gap-1 border-b px-3 py-2">
-      {options.map((option) => (
-        <button
-          key={option}
-          type="button"
-          role="radio"
-          aria-checked={value === option}
-          onClick={() => onChange(option)}
-          className={cn(
-            'rounded-full border px-2 py-0.5 text-2xs text-muted-foreground hover:text-foreground',
-            value === option && 'border-primary bg-primary/10 text-primary hover:text-primary',
-          )}
-        >
-          {option === 'all' ? 'All' : LEVEL_LABELS[option]}
-        </button>
-      ))}
-    </div>
+    <span
+      className="shrink-0 rounded bg-violet-500/15 px-1.5 py-px text-2xs font-medium text-violet-700 dark:text-violet-300"
+      data-testid="creative-badge"
+    >
+      Creative
+    </span>
   )
 }
 
@@ -148,6 +162,7 @@ function ChallengeView({ challenge, onBrowse }: { challenge: Challenge; onBrowse
           <div className="flex items-baseline gap-2">
             <h2 className="text-sm font-semibold">{challenge.title}</h2>
             <LevelBadge level={challenge.level} />
+            {challenge.creative && <CreativeBadge />}
           </div>
           <div className="mt-1.5 space-y-1.5 leading-relaxed text-foreground/90">
             {challenge.brief.map((p) => (

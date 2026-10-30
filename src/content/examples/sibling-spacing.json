@@ -1,0 +1,31 @@
+{
+  "id": "sibling-spacing",
+  "title": "Spacing between siblings only",
+  "category": "Cascade & variables",
+  "level": "beginner",
+  "summary": "The + combinator puts a divider between items, never before the first or after the last.",
+  "concepts": ["margin", "border", "padding"],
+  "explanation": [
+    ".step + .step matches a .step that comes directly after another .step, which is every one except the first. A top border on those draws a line between neighbours only, with no stray line at either end.",
+    ":first-child and :last-child are the other way to do this: style everything, then undo it on the end item. The + combinator avoids the undo.",
+    "For plain spacing in a flex or grid container, gap does the same job; the sibling trick still matters for dividers and for normal block flow."
+  ],
+  "tryThis": [
+    "Change .step + .step to just .step: a line appears above the first item too.",
+    "Use .step:not(:first-child) instead of .step + .step: the same result, a different selector.",
+    "Add .step:last-child { font-weight: 600; } to bold the last step."
+  ],
+  "items": [
+    {
+      "tag": "ol",
+      "cls": "steps",
+      "children": [
+        { "tag": "li", "cls": "step", "text": "Install the package" },
+        { "tag": "li", "cls": "step", "text": "Add your API key" },
+        { "tag": "li", "cls": "step", "text": "Run the first build" },
+        { "tag": "li", "cls": "step", "text": "Deploy" }
+      ]
+    }
+  ],
+  "css": ".steps {\n  max-width: 320px;\n  margin: 16px;\n  padding: 8px 16px 8px 36px;\n  border: 1px solid #d4d4d8;\n  border-radius: 8px;\n  font-family: system-ui, sans-serif;\n}\n\n.step {\n  padding: 10px 0;\n}\n\n.step + .step {\n  border-top: 1px solid #e4e4e7;\n}\n"
+}

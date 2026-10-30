@@ -1,0 +1,29 @@
+{
+  "property": "align-content",
+  "group": "Flex container",
+  "appliesTo": "multi-line flex containers, grid containers",
+  "summary": "Distributes the lines of a wrapping flex container (or grid tracks) on the cross axis.",
+  "details": "With a single line of flex items it has no effect: use align-items for that.",
+  "values": [
+    {
+      "value": "stretch",
+      "note": "Default: lines share the space."
+    },
+    {
+      "value": "flex-start",
+      "note": "Lines packed at the start."
+    },
+    {
+      "value": "center",
+      "note": "Lines packed in the middle."
+    },
+    {
+      "value": "space-between",
+      "note": "Lines spread out."
+    }
+  ],
+  "related": [
+    "flex-wrap",
+    "align-items"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "id": "theme-variables",
+  "title": "Light and dark themes with variables",
+  "category": "Cascade & variables",
+  "level": "intermediate",
+  "summary": "Custom properties (--bg, --fg…) set once and overridden under [data-theme=\"dark\"].",
+  "concepts": ["color", "background-color", "border"],
+  "explanation": [
+    "A custom property is any name starting with --. Set it on an element (here .card) and use it with var(--name) anywhere inside. Custom properties inherit like color does.",
+    "The dark card has data-theme=\"dark\". The [data-theme=\"dark\"] rule redefines the same variables, so every var() inside that card picks up the dark values. The component's own rules never mention colours directly.",
+    "var(--name, fallback) takes a second value used when the variable is not set; --muted has none here, so try removing it."
+  ],
+  "tryThis": [
+    "Change --accent in .card to #2563eb: both cards' buttons turn blue.",
+    "Change data-theme on the second card to light in Items (or delete the attribute): it becomes a light card.",
+    "Write color: var(--missing, #dc2626) on .card-text: the fallback is used."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "cards",
+      "children": [
+        {
+          "tag": "article",
+          "cls": "card",
+          "children": [
+            { "tag": "h3", "cls": "card-title", "text": "Light" },
+            { "tag": "p", "cls": "card-text", "text": "Uses the default variables." },
+            { "tag": "button", "cls": "card-btn", "text": "Open" }
+          ]
+        },
+        {
+          "tag": "article",
+          "cls": "card",
+          "attrs": { "data-theme": "dark" },
+          "children": [
+            { "tag": "h3", "cls": "card-title", "text": "Dark" },
+            { "tag": "p", "cls": "card-text", "text": "Same rules, different variables." },
+            { "tag": "button", "cls": "card-btn", "text": "Open" }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".cards {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 16px;\n  padding: 16px;\n  font-family: system-ui, sans-serif;\n}\n\n.card {\n  --bg: #ffffff;\n  --fg: #18181b;\n  --muted: #71717a;\n  --line: #e4e4e7;\n  --accent: #f97316;\n\n  padding: 16px;\n  border: 1px solid var(--line);\n  border-radius: 10px;\n  background-color: var(--bg);\n  color: var(--fg);\n}\n\n.card[data-theme=\"dark\"] {\n  --bg: #18181b;\n  --fg: #fafafa;\n  --muted: #a1a1aa;\n  --line: #3f3f46;\n  --accent: #fb923c;\n}\n\n.card-title {\n  margin: 0 0 4px;\n}\n\n.card-text {\n  margin: 0 0 12px;\n  color: var(--muted);\n}\n\n.card-btn {\n  padding: 6px 12px;\n  border: 0;\n  border-radius: 6px;\n  background-color: var(--accent);\n  color: #18181b;\n  font: inherit;\n}\n"
+}

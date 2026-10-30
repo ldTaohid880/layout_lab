@@ -1,0 +1,26 @@
+{
+  "id": "button-press",
+  "title": "A button that presses in",
+  "category": "Motion",
+  "level": "beginner",
+  "summary": "Transition transform and box-shadow together so :hover raises the button and :active pushes it down.",
+  "concepts": ["transition", "transform", "box-shadow"],
+  "explanation": [
+    "The transition is declared once on .btn, listing the properties to animate: transform and box-shadow over 120ms. Every state then only says where to end up. :hover moves it up 2px with a bigger shadow, :active moves it down 1px with almost no shadow, so it feels like a physical key.",
+    "Short durations (100 to 200ms) suit buttons: long enough to see, short enough never to slow anyone down.",
+    "List specific properties instead of transition: all. all also animates things you did not mean to, such as a colour change from a theme switch, and can make the page feel sluggish."
+  ],
+  "tryThis": [
+    "Hover the button, then press and hold it.",
+    "Change 120ms to 600ms: the press feels slow and mushy.",
+    "Remove box-shadow from the transition list: the shadow jumps while the button glides."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "stage",
+      "children": [{ "tag": "button", "cls": "btn", "text": "Press me" }]
+    }
+  ],
+  "css": ".stage {\n  padding: 48px;\n  font-family: system-ui, sans-serif;\n}\n\n.btn {\n  padding: 12px 24px;\n  border: 0;\n  border-radius: 10px;\n  background-color: #f97316;\n  color: #ffffff;\n  font: inherit;\n  font-weight: 600;\n  box-shadow: 0 3px 0 #c2410c;\n  cursor: pointer;\n  transition: transform 120ms ease-out, box-shadow 120ms ease-out;\n}\n\n.btn:hover {\n  transform: translateY(-2px);\n  box-shadow: 0 5px 0 #c2410c;\n}\n\n.btn:active {\n  transform: translateY(2px);\n  box-shadow: 0 1px 0 #c2410c;\n}\n"
+}

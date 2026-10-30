@@ -1,0 +1,87 @@
+{
+  "id": "container-query-card",
+  "title": "Card that responds to its container",
+  "category": "Sizing & overflow",
+  "level": "hard",
+  "summary": "@container: the same card stacks in a narrow slot and goes sideways in a wide one.",
+  "concepts": ["container-type", "grid-template-columns", "gap"],
+  "explanation": [
+    "A media query asks how wide the window is. A container query asks how wide the card's own slot is. container-type: inline-size on .slot makes it a query container, and @container (min-width: 300px) then applies only to elements inside the slot that is at least that wide.",
+    "Both slots hold the identical card. The narrow slot (one share of the page) keeps it stacked; the wide slot (two shares) switches it to a thumbnail beside the text. That is how a component can work in a sidebar and in a main column without knowing where it is.",
+    "The query styles the container's descendants, never the container itself, which is why the card sits inside the slot instead of being the slot."
+  ],
+  "tryThis": [
+    "Change 300px to 500px: the wide slot drops back to the stacked card.",
+    "Change grid-template-columns on .page to 1fr 1fr: both slots become equally wide, so both cards make the same choice.",
+    "Remove container-type: inline-size from .slot: the @container rule stops applying anywhere."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "page",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "slot",
+          "children": [
+            {
+              "tag": "article",
+              "cls": "card",
+              "children": [
+                {
+                  "tag": "div",
+                  "cls": "thumb"
+                },
+                {
+                  "tag": "div",
+                  "cls": "body",
+                  "children": [
+                    {
+                      "tag": "h3",
+                      "text": "Narrow slot"
+                    },
+                    {
+                      "tag": "p",
+                      "text": "The same card, stacked."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "slot",
+          "children": [
+            {
+              "tag": "article",
+              "cls": "card",
+              "children": [
+                {
+                  "tag": "div",
+                  "cls": "thumb"
+                },
+                {
+                  "tag": "div",
+                  "cls": "body",
+                  "children": [
+                    {
+                      "tag": "h3",
+                      "text": "Wide slot"
+                    },
+                    {
+                      "tag": "p",
+                      "text": "The same card, thumbnail beside the text."
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".page {\n  display: grid;\n  grid-template-columns: 1fr 2fr;\n  gap: 16px;\n  align-items: start;\n  padding: 12px;\n}\n\n.slot {\n  container-type: inline-size;\n}\n\n.card {\n  display: grid;\n  gap: 10px;\n  padding: 12px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n\n.thumb {\n  height: 60px;\n  background: #fdba74;\n  border-radius: 4px;\n}\n\n.body h3 {\n  margin: 0 0 4px;\n}\n\n.body p {\n  margin: 0;\n}\n\n@container (min-width: 300px) {\n  .card {\n    grid-template-columns: 80px 1fr;\n    align-items: center;\n  }\n\n  .thumb {\n    height: 80px;\n  }\n}\n"
+}

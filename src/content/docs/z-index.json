@@ -1,0 +1,30 @@
+{
+  "property": "z-index",
+  "group": "Positioning",
+  "appliesTo": "positioned elements, flex and grid items",
+  "summary": "Paint order within the current stacking context.",
+  "details": "Higher values paint on top, but only against siblings in the same stacking context. A parent that forms a context (opacity, transform, isolation, or position with a z-index) caps all its children.",
+  "values": [
+    {
+      "value": "1",
+      "note": "Above siblings at auto/0."
+    },
+    {
+      "value": "10",
+      "note": "Higher."
+    },
+    {
+      "value": "-1",
+      "note": "Below siblings, above the context background."
+    },
+    {
+      "value": "auto",
+      "note": "Default: no new context."
+    }
+  ],
+  "gotcha": "z-index: 9999 cannot escape a parent stacking context. Fix the parent, not the number.",
+  "related": [
+    "position",
+    "isolation"
+  ]
+}

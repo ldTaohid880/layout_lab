@@ -1,0 +1,29 @@
+{
+  "id": "interactive-states",
+  "title": "Hover, active, focus and disabled",
+  "category": "Cascade & variables",
+  "level": "intermediate",
+  "summary": "One button styled through its states with :hover, :active, :focus-visible and an aria-disabled selector.",
+  "concepts": ["background-color", "cursor", "outline", "transform"],
+  "explanation": [
+    "Each state is a pseudo-class on the same selector: :hover while the pointer is over it, :active while it is pressed, :focus-visible when it has keyboard focus. Order matters when two apply at once: :active comes after :hover so a pressed button shows its pressed look.",
+    "The disabled look uses an attribute selector, [aria-disabled=\"true\"]. It has the same specificity as a pseudo-class, and it is listed last, so its grey wins over the hover colour.",
+    "Hover, press and Tab through the buttons in the preview to see each state."
+  ],
+  "tryThis": [
+    "Hover and press the first button; press Tab to see the focus ring.",
+    "Move the :hover rule below :active: pressing no longer looks different while hovering.",
+    "Remove the cursor: not-allowed line, then hover the disabled button."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "row",
+      "children": [
+        { "tag": "button", "cls": "btn", "text": "Save" },
+        { "tag": "button", "cls": "btn", "text": "Disabled", "attrs": { "aria-disabled": "true" } }
+      ]
+    }
+  ],
+  "css": ".row {\n  display: flex;\n  gap: 12px;\n  padding: 24px;\n  font-family: system-ui, sans-serif;\n}\n\n.btn {\n  padding: 8px 16px;\n  border: 0;\n  border-radius: 6px;\n  background-color: #f97316;\n  color: #ffffff;\n  font: inherit;\n  cursor: pointer;\n}\n\n.btn:hover {\n  background-color: #ea580c;\n}\n\n.btn:active {\n  background-color: #c2410c;\n  transform: translateY(1px);\n}\n\n.btn:focus-visible {\n  outline: 3px solid #2563eb;\n  outline-offset: 2px;\n}\n\n.btn[aria-disabled=\"true\"] {\n  background-color: #d4d4d8;\n  color: #71717a;\n  cursor: not-allowed;\n}\n"
+}

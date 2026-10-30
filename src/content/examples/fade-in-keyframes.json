@@ -1,0 +1,29 @@
+{
+  "id": "fade-in-keyframes",
+  "title": "Fade in with @keyframes",
+  "category": "Motion",
+  "level": "intermediate",
+  "summary": "A @keyframes rule describes the steps; animation plays them once when the element appears.",
+  "concepts": ["animation", "opacity", "transform"],
+  "explanation": [
+    "@keyframes fade-up names an animation and lists its steps: from (invisible, 12px lower) to (visible, in place). The animation property on .notice plays it once over 500ms when the element is rendered. No hover or state change is needed.",
+    "backwards (the fill mode) applies the from step during the delay, so the second notice stays hidden until its turn instead of flashing first.",
+    "Editing CSS swaps the styles without reloading the preview, so the animation does not replay. Press Apply here again (or change an element in Items) to rebuild the preview and watch it from the start."
+  ],
+  "tryThis": [
+    "Change 500ms to 2s to watch it slowly.",
+    "Change translateY(12px) to scale(0.9): it grows in instead of rising.",
+    "Remove backwards from the second notice: it shows briefly before its animation starts."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "stack",
+      "children": [
+        { "tag": "p", "cls": "notice", "text": "Saved. Your changes are live." },
+        { "tag": "p", "cls": "notice later", "text": "This one starts 300ms later." }
+      ]
+    }
+  ],
+  "css": "@keyframes fade-up {\n  from {\n    opacity: 0;\n    transform: translateY(12px);\n  }\n\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n.stack {\n  display: grid;\n  gap: 12px;\n  padding: 24px;\n  font-family: system-ui, sans-serif;\n}\n\n.notice {\n  margin: 0;\n  padding: 12px 16px;\n  border-radius: 8px;\n  background-color: #fed7aa;\n  animation: fade-up 500ms ease-out;\n}\n\n.later {\n  animation: fade-up 500ms ease-out 300ms backwards;\n}\n"
+}

@@ -1,0 +1,24 @@
+{
+  "property": "min-height",
+  "group": "Box & display",
+  "appliesTo": "non-inline elements",
+  "summary": "A floor for the height; the box can still grow with content.",
+  "details": "Safer than height when you want \"at least this tall\": content never overflows.",
+  "values": [
+    {
+      "value": "100vh",
+      "note": "At least the viewport height."
+    },
+    {
+      "value": "320px",
+      "note": "At least 320px."
+    },
+    {
+      "value": "0",
+      "note": "Lets flex/grid items in a column shrink."
+    }
+  ],
+  "related": [
+    "height"
+  ]
+}

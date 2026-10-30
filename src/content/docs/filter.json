@@ -1,0 +1,35 @@
+{
+  "property": "filter",
+  "group": "Borders & effects",
+  "appliesTo": "any element",
+  "summary": "Graphic effects on the rendered element: blur, greyscale, brightness and more.",
+  "details": "Filters apply to the element and everything inside it, after it is painted. Several can be chained, separated by spaces. drop-shadow() follows the visible shape (such as a transparent image) where box-shadow follows the box.",
+  "values": [
+    {
+      "value": "grayscale(1)",
+      "note": "Fully black and white."
+    },
+    {
+      "value": "blur(4px)",
+      "note": "Blurred by 4px."
+    },
+    {
+      "value": "brightness(0.7)",
+      "note": "Darker by 30%."
+    },
+    {
+      "value": "drop-shadow(0 4px 6px rgb(0 0 0 / 0.3))",
+      "note": "A shadow that follows the shape, not the box."
+    },
+    {
+      "value": "none",
+      "note": "Default."
+    }
+  ],
+  "gotcha": "A filter other than none creates a stacking context and a containing block for fixed and absolute children, just like transform.",
+  "related": [
+    "box-shadow",
+    "opacity",
+    "transform"
+  ]
+}

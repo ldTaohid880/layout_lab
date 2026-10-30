@@ -1,0 +1,39 @@
+{
+  "property": "display",
+  "group": "Box & display",
+  "appliesTo": "any element",
+  "summary": "Chooses the layout an element takes part in and the one it gives its children.",
+  "details": "The outer type (block, inline) decides how the element sits among its siblings; the inner type (flow, flex, grid) decides how its children are laid out. display: flex is block outside, flex inside.",
+  "values": [
+    {
+      "value": "block",
+      "note": "Full-width box on its own line."
+    },
+    {
+      "value": "inline",
+      "note": "Flows with text; width and height are ignored."
+    },
+    {
+      "value": "inline-block",
+      "note": "Flows with text but respects width and height."
+    },
+    {
+      "value": "flex",
+      "note": "Children become flex items on one axis."
+    },
+    {
+      "value": "grid",
+      "note": "Children are placed on a two-dimensional grid."
+    },
+    {
+      "value": "none",
+      "note": "Removed from layout entirely."
+    }
+  ],
+  "gotcha": "Flex and grid properties (gap, justify-content…) do nothing until the parent has display: flex or grid.",
+  "related": [
+    "box-sizing",
+    "flex-direction",
+    "grid-template-columns"
+  ]
+}

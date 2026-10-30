@@ -1,0 +1,25 @@
+{
+  "property": "inset",
+  "group": "Positioning",
+  "appliesTo": "positioned elements",
+  "summary": "Shorthand for top, right, bottom and left.",
+  "details": "inset: 0 on an absolute child covers its positioned parent exactly: handy for overlays.",
+  "values": [
+    {
+      "value": "0",
+      "note": "Cover the containing block."
+    },
+    {
+      "value": "12px",
+      "note": "12px in from every edge."
+    },
+    {
+      "value": "auto -6px -6px auto",
+      "note": "Bottom-right corner, hanging out."
+    }
+  ],
+  "related": [
+    "top",
+    "position"
+  ]
+}

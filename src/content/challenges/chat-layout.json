@@ -1,0 +1,109 @@
+{
+  "id": "chat-layout",
+  "title": "Chat window",
+  "level": "intermediate",
+  "summary": "Header, a scrolling message list and a composer pinned to the bottom.",
+  "brief": [
+    "A chat box 360px tall. The header sits on top and the composer (a text field and a Send button) is always visible at the bottom, however many messages there are.",
+    "The messages fill the space between them and scroll when they do not fit. They stack vertically with 8px between them. Your own messages (the orange ones) sit on the right; the others on the left; none is wider than 70% of the list.",
+    "In the composer the field takes all the space the Send button does not need, with 8px between them."
+  ],
+  "concepts": [
+    "display",
+    "flex-direction",
+    "flex",
+    "overflow",
+    "gap",
+    "align-self",
+    "max-width"
+  ],
+  "hints": [
+    "Three rows stacked top to bottom: the chat box is a column flex container with a fixed height.",
+    "Give the message list flex: 1 so it takes the leftover height. It is itself a column of messages: display: flex, flex-direction: column, gap: 8px.",
+    "overflow-y: auto on the message list makes it scroll (and lets it shrink below its content). align-self: flex-end pushes your own messages right. The composer is a row: display: flex, with flex: 1 on the field."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "chat",
+      "children": [
+        {
+          "tag": "header",
+          "cls": "top",
+          "text": "Support"
+        },
+        {
+          "tag": "div",
+          "cls": "messages",
+          "children": [
+            {
+              "tag": "p",
+              "cls": "msg",
+              "text": "Hi, how can we help?"
+            },
+            {
+              "tag": "p",
+              "cls": "msg msg--me",
+              "text": "My order has not arrived yet."
+            },
+            {
+              "tag": "p",
+              "cls": "msg",
+              "text": "Sorry about that. Can you share the order number?"
+            },
+            {
+              "tag": "p",
+              "cls": "msg msg--me",
+              "text": "It is 48213."
+            },
+            {
+              "tag": "p",
+              "cls": "msg",
+              "text": "Thanks. It left the warehouse this morning."
+            },
+            {
+              "tag": "p",
+              "cls": "msg msg--me",
+              "text": "Great, when will it get here?"
+            },
+            {
+              "tag": "p",
+              "cls": "msg",
+              "text": "Tomorrow before noon. We will send a tracking link."
+            },
+            {
+              "tag": "p",
+              "cls": "msg msg--me",
+              "text": "Perfect, thank you!"
+            }
+          ]
+        },
+        {
+          "tag": "form",
+          "cls": "composer",
+          "children": [
+            {
+              "tag": "input",
+              "cls": "field",
+              "attrs": {
+                "type": "text",
+                "placeholder": "Type a message"
+              }
+            },
+            {
+              "tag": "button",
+              "cls": "send",
+              "text": "Send"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".chat {\n  max-width: 420px;\n  border: 1px solid #d4d4d8;\n  border-radius: 8px;\n}\n\n.top {\n  padding: 12px 16px;\n  border-radius: 7px 7px 0 0;\n  background: #18181b;\n  color: #fafafa;\n  font-weight: 600;\n}\n\n.messages {\n  padding: 12px;\n}\n\n.msg {\n  margin: 0;\n  padding: 8px 12px;\n  border-radius: 12px;\n  background: #e4e4e7;\n}\n\n.msg--me {\n  background: #fed7aa;\n}\n\n.composer {\n  padding: 10px;\n  border-top: 1px solid #d4d4d8;\n}\n\n.field {\n  padding: 8px 10px;\n  border: 1px solid #a1a1aa;\n  border-radius: 4px;\n}\n\n.send {\n  padding: 8px 14px;\n  border: 0;\n  border-radius: 4px;\n  background: #f97316;\n  color: #fff;\n}\n",
+  "solution": ".chat {\n  max-width: 420px;\n  border: 1px solid #d4d4d8;\n  border-radius: 8px;\n}\n\n.top {\n  padding: 12px 16px;\n  border-radius: 7px 7px 0 0;\n  background: #18181b;\n  color: #fafafa;\n  font-weight: 600;\n}\n\n.messages {\n  padding: 12px;\n}\n\n.msg {\n  margin: 0;\n  padding: 8px 12px;\n  border-radius: 12px;\n  background: #e4e4e7;\n}\n\n.msg--me {\n  background: #fed7aa;\n}\n\n.composer {\n  padding: 10px;\n  border-top: 1px solid #d4d4d8;\n}\n\n.field {\n  padding: 8px 10px;\n  border: 1px solid #a1a1aa;\n  border-radius: 4px;\n}\n\n.send {\n  padding: 8px 14px;\n  border: 0;\n  border-radius: 4px;\n  background: #f97316;\n  color: #fff;\n}\n\n/* ---- Solution ---- */\n.chat {\n  display: flex;\n  flex-direction: column;\n  height: 360px;\n}\n\n.messages {\n  flex: 1;\n  overflow-y: auto;\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n}\n\n.msg {\n  max-width: 70%;\n  align-self: flex-start;\n}\n\n.msg--me {\n  align-self: flex-end;\n}\n\n.composer {\n  display: flex;\n  gap: 8px;\n}\n\n.field {\n  flex: 1;\n}\n",
+  "solutionNotes": "The chat box is a column flex container, and flex: 1 gives the list all the height the header and composer leave. A flex item will not shrink below its content by default, so without overflow-y: auto the list would push the composer out of the box; any overflow value other than visible lets it shrink and scroll instead. Inside the list, a column flex container lets align-self place each message on its own side and max-width cap its width.",
+  "viewports": [
+    800
+  ]
+}

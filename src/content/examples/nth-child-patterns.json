@@ -1,0 +1,40 @@
+{
+  "id": "nth-child-patterns",
+  "title": "nth-child formulas",
+  "category": "Cascade & variables",
+  "level": "intermediate",
+  "summary": ":nth-child(3n), (n + 4), (-n + 3) and :nth-last-child pick items by position with a formula.",
+  "concepts": ["background-color", "color", "grid-template-columns"],
+  "explanation": [
+    ":nth-child(An + B) matches the items whose position fits the formula for n = 0, 1, 2… Positions start at 1. 3n is every third item (3, 6, 9), n + 4 is the fourth onwards, and -n + 3 is the first three only.",
+    ":nth-last-child counts from the end, so :nth-last-child(-n + 2) is the last two. The grid has twelve tiles and each rule paints one pattern; change the formulas and watch which tiles light up.",
+    "nth-child counts every sibling, whatever its type or class. If you mix element types and only want to count paragraphs, :nth-of-type counts just siblings of the same tag.",
+    "Look at tile 12: the last rule makes it white, but its text stays orange. .tile:nth-child(n + 4):nth-child(even) has two pseudo-classes, so it is more specific than .tile:nth-last-child(-n + 2), and for color the more specific rule wins wherever it comes in the file."
+  ],
+  "tryThis": [
+    "Change 3n to 2n + 1: the odd tiles get the border.",
+    "Change n + 4 to n + 7: only tiles 8, 10 and 12 keep the orange text.",
+    "Change -n + 3 in the first rule to 4n + 1: the first tile of each row turns orange."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "grid",
+      "children": [
+        { "tag": "div", "cls": "tile", "text": "1" },
+        { "tag": "div", "cls": "tile", "text": "2" },
+        { "tag": "div", "cls": "tile", "text": "3" },
+        { "tag": "div", "cls": "tile", "text": "4" },
+        { "tag": "div", "cls": "tile", "text": "5" },
+        { "tag": "div", "cls": "tile", "text": "6" },
+        { "tag": "div", "cls": "tile", "text": "7" },
+        { "tag": "div", "cls": "tile", "text": "8" },
+        { "tag": "div", "cls": "tile", "text": "9" },
+        { "tag": "div", "cls": "tile", "text": "10" },
+        { "tag": "div", "cls": "tile", "text": "11" },
+        { "tag": "div", "cls": "tile", "text": "12" }
+      ]
+    }
+  ],
+  "css": ".grid {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 8px;\n  padding: 24px;\n  font-family: system-ui, sans-serif;\n}\n\n.tile {\n  display: grid;\n  place-items: center;\n  height: 56px;\n  border: 3px solid transparent;\n  border-radius: 8px;\n  background-color: #f4f4f5;\n  font-weight: 600;\n}\n\n/* the first three */\n.tile:nth-child(-n + 3) {\n  background-color: #fdba74;\n}\n\n/* every third */\n.tile:nth-child(3n) {\n  border-color: #18181b;\n}\n\n/* the fourth onwards, but only even ones */\n.tile:nth-child(n + 4):nth-child(even) {\n  color: #c2410c;\n}\n\n/* the last two */\n.tile:nth-last-child(-n + 2) {\n  background-color: #18181b;\n  color: #ffffff;\n}\n"
+}

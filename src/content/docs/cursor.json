@@ -1,0 +1,32 @@
+{
+  "property": "cursor",
+  "group": "Borders & effects",
+  "appliesTo": "any element (inherited)",
+  "summary": "The mouse pointer shown over the element.",
+  "details": "Buttons show the default arrow in most browsers; links show a hand. Change it to match what will happen: pointer for clickable things, not-allowed for disabled ones, text for editable text.",
+  "values": [
+    {
+      "value": "pointer",
+      "note": "A hand: this is clickable."
+    },
+    {
+      "value": "not-allowed",
+      "note": "A no-entry sign: disabled."
+    },
+    {
+      "value": "grab",
+      "note": "An open hand: this can be dragged."
+    },
+    {
+      "value": "help",
+      "note": "An arrow with a question mark."
+    },
+    {
+      "value": "auto",
+      "note": "Default: the browser decides."
+    }
+  ],
+  "related": [
+    "outline"
+  ]
+}

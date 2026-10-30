@@ -1,0 +1,29 @@
+{
+  "id": "which-rule-wins",
+  "title": "Which rule wins?",
+  "category": "Cascade & variables",
+  "level": "beginner",
+  "summary": "Specificity first, then source order: four rules fight over one button's colour.",
+  "concepts": ["color", "background-color"],
+  "explanation": [
+    "When several rules set the same property on an element, the browser picks one. First it compares specificity: an id beats any number of classes, a class beats any number of element names. Only when specificity is equal does the later rule win.",
+    "The first button matches button (an element, the weakest), .btn and .btn.primary (two classes). Two classes win, so it is orange, even though the plain .btn rule comes later in the file.",
+    "The second button has only .btn. Two rules of equal specificity set its background (.btn appears twice), so the later one wins: grey, not blue."
+  ],
+  "tryThis": [
+    "Move the .btn.primary rule to the very top of the CSS: it still wins, because specificity beats order.",
+    "Swap the order of the two .btn rules: the second button turns blue.",
+    "Add an id to the first button in Items (e.g. id: save) and a rule #save { background-color: #16a34a; }: the id beats both classes."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "row",
+      "children": [
+        { "tag": "button", "cls": "btn primary", "text": "Primary" },
+        { "tag": "button", "cls": "btn", "text": "Plain" }
+      ]
+    }
+  ],
+  "css": ".row {\n  display: flex;\n  gap: 12px;\n  padding: 24px;\n}\n\nbutton {\n  padding: 8px 16px;\n  border: 0;\n  border-radius: 6px;\n  background-color: #18181b;\n  color: #ffffff;\n  font: inherit;\n  font-family: system-ui, sans-serif;\n}\n\n.btn.primary {\n  background-color: #ea580c;\n}\n\n.btn {\n  background-color: #2563eb;\n}\n\n.btn {\n  background-color: #71717a;\n}\n"
+}

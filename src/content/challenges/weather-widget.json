@@ -1,0 +1,146 @@
+{
+  "id": "weather-widget",
+  "title": "Weather widget",
+  "level": "intermediate",
+  "creative": true,
+  "summary": "Recreate a widget: a gradient card, a sun peeking behind a cloud, a big light temperature and a four-day row.",
+  "brief": [
+    "The card has 20px corners, white text, a 160deg gradient from #38bdf8 to #6366f1 and a soft indigo shadow (0 12px 30px rgb(99 102 241 / 0.35)).",
+    "Top row (icon and reading), vertically centred and 16px apart. The icon is an 80 × 64px area: a 44px yellow (#fde047) glowing sun in its top right corner (4px in from the right), and in front of it a white cloud: a 64 × 30px pill on the bottom left with a 30px bump 14px from its left, 12px above its bottom.",
+    "The temperature is 56px with weight 200 and line-height 1; the line under it is 13px at 85% opacity.",
+    "The forecast is 20px below: four equal columns 8px apart. Each day is a tile with a 18% white background, 12px corners, 10px padding above and below, its name over its temperature (semibold), centred, 4px apart."
+  ],
+  "concepts": [
+    "background-image",
+    "align-items",
+    "grid-template-columns",
+    "position",
+    "border-radius",
+    "opacity"
+  ],
+  "hints": [
+    "The top row is flex with align-items: center. Inside .icon (position: relative) the sun and the cloud are position: absolute, and the cloud comes later in the page, so it is drawn in front of the sun.",
+    "The cloud’s bump is .cloud::before: a 30px white circle, absolutely positioned with bottom: 12px and left: 14px inside the cloud (which is already positioned).",
+    "The forecast is display: grid with grid-template-columns: repeat(4, 1fr). Each .day is a small grid with justify-items: center. A see-through tile is background-color: rgb(255 255 255 / 0.18)."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "weather",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "now",
+          "children": [
+            {
+              "tag": "div",
+              "cls": "icon",
+              "children": [
+                {
+                  "tag": "div",
+                  "cls": "sun"
+                },
+                {
+                  "tag": "div",
+                  "cls": "cloud"
+                }
+              ]
+            },
+            {
+              "tag": "div",
+              "cls": "reading",
+              "children": [
+                {
+                  "tag": "p",
+                  "cls": "temp",
+                  "text": "18°"
+                },
+                {
+                  "tag": "p",
+                  "cls": "desc",
+                  "text": "Partly cloudy · Leeds"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "ul",
+          "cls": "forecast",
+          "children": [
+            {
+              "tag": "li",
+              "cls": "day",
+              "children": [
+                {
+                  "tag": "span",
+                  "cls": "day-name",
+                  "text": "Tue"
+                },
+                {
+                  "tag": "span",
+                  "cls": "day-temp",
+                  "text": "16°"
+                }
+              ]
+            },
+            {
+              "tag": "li",
+              "cls": "day",
+              "children": [
+                {
+                  "tag": "span",
+                  "cls": "day-name",
+                  "text": "Wed"
+                },
+                {
+                  "tag": "span",
+                  "cls": "day-temp",
+                  "text": "14°"
+                }
+              ]
+            },
+            {
+              "tag": "li",
+              "cls": "day",
+              "children": [
+                {
+                  "tag": "span",
+                  "cls": "day-name",
+                  "text": "Thu"
+                },
+                {
+                  "tag": "span",
+                  "cls": "day-temp",
+                  "text": "19°"
+                }
+              ]
+            },
+            {
+              "tag": "li",
+              "cls": "day",
+              "children": [
+                {
+                  "tag": "span",
+                  "cls": "day-name",
+                  "text": "Fri"
+                },
+                {
+                  "tag": "span",
+                  "cls": "day-temp",
+                  "text": "21°"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".weather {\n  width: 340px;\n  margin: 24px;\n  padding: 20px;\n  font-family: system-ui, sans-serif;\n}\n\n.weather p {\n  margin: 0;\n}\n\n.forecast {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n",
+  "solution": ".weather {\n  width: 340px;\n  margin: 24px;\n  padding: 20px;\n  font-family: system-ui, sans-serif;\n}\n\n.weather p {\n  margin: 0;\n}\n\n.forecast {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n/* ---- Solution ---- */\n.weather {\n  border-radius: 20px;\n  background-image: linear-gradient(160deg, #38bdf8, #6366f1);\n  box-shadow: 0 12px 30px rgb(99 102 241 / 0.35);\n  color: #ffffff;\n}\n\n.now {\n  display: flex;\n  align-items: center;\n  gap: 16px;\n}\n\n.icon {\n  position: relative;\n  width: 80px;\n  height: 64px;\n}\n\n.sun {\n  position: absolute;\n  top: 0;\n  right: 4px;\n  width: 44px;\n  height: 44px;\n  border-radius: 50%;\n  background-color: #fde047;\n  box-shadow: 0 0 20px rgb(253 224 71 / 0.8);\n}\n\n.cloud {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 64px;\n  height: 30px;\n  border-radius: 999px;\n  background-color: #ffffff;\n}\n\n.cloud::before {\n  content: \"\";\n  position: absolute;\n  bottom: 12px;\n  left: 14px;\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  background-color: #ffffff;\n}\n\n.temp {\n  font-size: 56px;\n  font-weight: 200;\n  line-height: 1;\n}\n\n.desc {\n  font-size: 13px;\n  opacity: 0.85;\n}\n\n.forecast {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 8px;\n  margin-top: 20px;\n}\n\n.day {\n  display: grid;\n  justify-items: center;\n  gap: 4px;\n  padding: 10px 0;\n  border-radius: 12px;\n  background-color: rgb(255 255 255 / 0.18);\n  font-size: 13px;\n}\n\n.day-temp {\n  font-weight: 600;\n}\n",
+  "solutionNotes": "Three small systems: a flex row for the icon and reading, a 4-column grid for the forecast, and an absolutely positioned drawing inside a fixed-size icon box. Paint order does the layering in the icon: both shapes are positioned, so the later one (the cloud) is drawn over the sun without any z-index, and the cloud’s ::before bump belongs to the cloud so it is in front too. Thin weights at huge sizes look elegant; the translucent white tiles pick up the gradient behind them instead of hiding it.",
+  "viewports": [
+    800
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "id": "focus-within-form",
+  "title": "Form states: focus-within, valid, invalid",
+  "category": "Cascade & variables",
+  "level": "intermediate",
+  "summary": ":focus-within lights up the active row; :user-invalid and :placeholder-shown react to what was typed.",
+  "concepts": ["border", "outline", "color"],
+  "explanation": [
+    ":focus-within matches an element when it or anything inside it has focus. The whole row, label included, highlights while you type in its input, which :focus alone cannot do because a label never gets focus.",
+    "An email input knows when its text is not an email. :user-invalid matches only after the person has typed and left the field, so the form does not shout at them before they start (:invalid would be red immediately).",
+    ":placeholder-shown is true while the field is empty, so the hint under the input hides as soon as there is text."
+  ],
+  "tryThis": [
+    "Click into each field and press Tab between them.",
+    "Type abc into the email field and press Tab: it turns red. Then type a real address.",
+    "Change :user-invalid to :invalid: the empty email field is not red, but abc is red while you are still typing."
+  ],
+  "items": [
+    {
+      "tag": "form",
+      "cls": "form",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "row",
+          "children": [
+            { "tag": "label", "text": "Name", "attrs": { "for": "name" } },
+            { "tag": "input", "cls": "input", "attrs": { "id": "name", "type": "text", "placeholder": "Ada Lovelace" } }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "row",
+          "children": [
+            { "tag": "label", "text": "Email", "attrs": { "for": "email" } },
+            {
+              "tag": "input",
+              "cls": "input",
+              "attrs": { "id": "email", "type": "email", "placeholder": "ada@example.com" }
+            },
+            { "tag": "small", "cls": "hint", "text": "We never share it." }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".form {\n  display: grid;\n  gap: 12px;\n  max-width: 360px;\n  padding: 24px;\n  font-family: system-ui, sans-serif;\n}\n\n.row {\n  display: grid;\n  gap: 6px;\n  padding: 12px;\n  border-left: 4px solid transparent;\n  border-radius: 6px;\n}\n\n.row:focus-within {\n  border-left-color: #f97316;\n  background-color: #fff7ed;\n}\n\n.input {\n  padding: 8px 10px;\n  border: 1px solid #d4d4d8;\n  border-radius: 6px;\n  font: inherit;\n}\n\n.input:focus {\n  outline: 2px solid #f97316;\n  outline-offset: 1px;\n}\n\n.input:user-invalid {\n  border-color: #dc2626;\n  color: #b91c1c;\n}\n\n.hint {\n  display: none;\n  color: #71717a;\n}\n\n.input:placeholder-shown + .hint {\n  display: block;\n}\n"
+}

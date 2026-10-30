@@ -1,0 +1,80 @@
+{
+  "id": "responsive-header",
+  "title": "Responsive header",
+  "level": "intermediate",
+  "summary": "A stacked, centred header on phones that becomes one row on wider screens.",
+  "brief": [
+    "Write it mobile-first. By default (phones): the brand, the links and the Sign up button stack vertically, centred, 12px apart. The links themselves sit in a centred row, 16px apart.",
+    "From 600px wide upwards: everything is one row, vertically centred. The brand is on the left, the button on the right, and the links sit between them with 24px between each link."
+  ],
+  "concepts": [
+    "display",
+    "flex-direction",
+    "align-items",
+    "justify-content",
+    "gap"
+  ],
+  "hints": [
+    "Start with the phone layout as plain rules: .masthead as a column flex container, centred with align-items: center. .links is a row flex container.",
+    "Then add @media (min-width: 600px) { … } and, inside it, switch .masthead to a row.",
+    "In the media query: flex-direction: row and justify-content: space-between on .masthead, and gap: 24px on .links."
+  ],
+  "items": [
+    {
+      "tag": "header",
+      "cls": "masthead",
+      "children": [
+        {
+          "tag": "a",
+          "cls": "brand",
+          "text": "Northwind",
+          "attrs": {
+            "href": "#"
+          }
+        },
+        {
+          "tag": "nav",
+          "cls": "links",
+          "children": [
+            {
+              "tag": "a",
+              "cls": "",
+              "text": "Product",
+              "attrs": {
+                "href": "#"
+              }
+            },
+            {
+              "tag": "a",
+              "cls": "",
+              "text": "Pricing",
+              "attrs": {
+                "href": "#"
+              }
+            },
+            {
+              "tag": "a",
+              "cls": "",
+              "text": "Blog",
+              "attrs": {
+                "href": "#"
+              }
+            }
+          ]
+        },
+        {
+          "tag": "button",
+          "cls": "signup",
+          "text": "Sign up"
+        }
+      ]
+    }
+  ],
+  "css": ".masthead {\n  padding: 16px;\n  background-color: #18181b;\n  font-family: system-ui, sans-serif;\n}\n\n.masthead a {\n  color: #fafafa;\n  text-decoration: none;\n}\n\n.brand {\n  font-weight: 700;\n  font-size: 1.125rem;\n}\n\n.signup {\n  padding: 8px 14px;\n  border: 0;\n  border-radius: 6px;\n  background-color: #f97316;\n  color: #ffffff;\n  font: inherit;\n}\n",
+  "solution": ".masthead {\n  padding: 16px;\n  background-color: #18181b;\n  font-family: system-ui, sans-serif;\n}\n\n.masthead a {\n  color: #fafafa;\n  text-decoration: none;\n}\n\n.brand {\n  font-weight: 700;\n  font-size: 1.125rem;\n}\n\n.signup {\n  padding: 8px 14px;\n  border: 0;\n  border-radius: 6px;\n  background-color: #f97316;\n  color: #ffffff;\n  font: inherit;\n}\n\n/* ---- Solution ---- */\n.masthead {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  gap: 12px;\n}\n\n.links {\n  display: flex;\n  gap: 16px;\n}\n\n@media (min-width: 600px) {\n  .masthead {\n    flex-direction: row;\n    justify-content: space-between;\n  }\n\n  .links {\n    gap: 24px;\n  }\n}\n",
+  "solutionNotes": "The plain rules describe the phone: a centred column. The min-width media query only kicks in on wider screens and changes just what differs: the direction (which turns align-items: center into vertical centring, since the cross axis is now vertical) and the spacing. justify-content: space-between pushes the brand and button to the ends with the links in the middle. Mobile-first keeps the small-screen CSS simple and makes wider layouts additions rather than overrides.",
+  "viewports": [
+    800,
+    375
+  ]
+}

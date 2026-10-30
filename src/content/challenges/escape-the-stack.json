@@ -1,0 +1,50 @@
+{
+  "id": "escape-the-stack",
+  "title": "Bring B to the front",
+  "level": "hard",
+  "summary": "z-index: 999 loses to 3. Fix it without touching either number.",
+  "brief": [
+    "B has z-index: 999 and A has z-index: 3, yet A is painted over B.",
+    "Make B appear above A where they overlap, but keep A's and B's z-index values exactly as they are."
+  ],
+  "concepts": [
+    "z-index",
+    "position",
+    "isolation"
+  ],
+  "hints": [
+    "Select B and open the Layout tab: which stacking context does it paint in?",
+    ".group creates a stacking context (position: relative with a z-index). Everything inside it, B included, is painted at the group's level: 1.",
+    "Raise the group above A (z-index: 4), or stop it creating a context at all (z-index: auto)."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "scene",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "layer a",
+          "text": "A · z-index 3"
+        },
+        {
+          "tag": "div",
+          "cls": "group",
+          "children": [
+            {
+              "tag": "div",
+              "cls": "layer b",
+              "text": "B · z-index 999"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".scene {\n  position: relative;\n  height: 240px;\n  margin: 16px;\n}\n\n.layer {\n  position: absolute;\n  width: 160px;\n  height: 100px;\n  padding: 8px;\n  border: 1px solid #18181b;\n  border-radius: 6px;\n}\n\n.a {\n  top: 0;\n  left: 0;\n  z-index: 3;\n  background: #fed7aa;\n}\n\n.group {\n  position: relative;\n  z-index: 1;\n}\n\n.b {\n  top: 40px;\n  left: 60px;\n  z-index: 999;\n  background: #bfdbfe;\n}\n",
+  "solution": ".scene {\n  position: relative;\n  height: 240px;\n  margin: 16px;\n}\n\n.layer {\n  position: absolute;\n  width: 160px;\n  height: 100px;\n  padding: 8px;\n  border: 1px solid #18181b;\n  border-radius: 6px;\n}\n\n.a {\n  top: 0;\n  left: 0;\n  z-index: 3;\n  background: #fed7aa;\n}\n\n.group {\n  position: relative;\n  z-index: 1;\n}\n\n.b {\n  top: 40px;\n  left: 60px;\n  z-index: 999;\n  background: #bfdbfe;\n}\n\n/* ---- Solution ---- */\n.group {\n  z-index: auto; /* no stacking context: B now competes with A directly */\n}\n",
+  "solutionNotes": "z-index only compares elements inside the same stacking context. .group (relative, z-index 1) formed a context painted at level 1, below A at 3, and B's 999 only counted inside it. Without the group's z-index there is no context, so B's 999 competes with A's 3 directly.",
+  "viewports": [
+    800
+  ]
+}

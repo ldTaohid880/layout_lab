@@ -1,0 +1,121 @@
+{
+  "id": "sticky-article",
+  "title": "Article with sticky contents",
+  "level": "intermediate",
+  "summary": "A contents box that stays in view while a long article scrolls.",
+  "brief": [
+    "At 800px: the contents box on the left is 200px wide, the article fills the rest, 24px between them. Both start at the top of the row.",
+    "When you scroll the page, the contents box stays 16px below the top of the window while the article scrolls past. (The picture shows the top of the page; check the stickiness by scrolling the preview.)",
+    "At 375px the contents box sits above the article, full width, and scrolls away with the page."
+  ],
+  "concepts": [
+    "grid-template-columns",
+    "gap",
+    "align-items",
+    "position",
+    "top"
+  ],
+  "hints": [
+    "Start with the two columns: a 200px track and a 1fr track.",
+    "position: sticky with top: 16px keeps the box in view. But a sticky element can only move within its parent, so the box must not be stretched to the full height of the row.",
+    "Add align-items: start to the grid so the contents box is only as tall as its content. On phones, one column and position: static."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "page",
+      "children": [
+        {
+          "tag": "aside",
+          "cls": "toc",
+          "children": [
+            {
+              "tag": "h3",
+              "cls": "",
+              "text": "Contents"
+            },
+            {
+              "tag": "ul",
+              "cls": "",
+              "children": [
+                {
+                  "tag": "li",
+                  "cls": "",
+                  "text": "Introduction"
+                },
+                {
+                  "tag": "li",
+                  "cls": "",
+                  "text": "Layout"
+                },
+                {
+                  "tag": "li",
+                  "cls": "",
+                  "text": "Wrap-up"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "article",
+          "cls": "post",
+          "children": [
+            {
+              "tag": "h1",
+              "cls": "",
+              "text": "How layout works"
+            },
+            {
+              "tag": "p",
+              "cls": "",
+              "text": "A browser lays out a page by sizing every box, placing it among its siblings and then painting it. Each step follows rules, and most surprises come from rules we did not know were there."
+            },
+            {
+              "tag": "p",
+              "cls": "",
+              "text": "Normal flow stacks blocks vertically and lets inline content wrap inside them. Flexbox and grid replace that behaviour for the children of one element, giving us control along one or two axes."
+            },
+            {
+              "tag": "p",
+              "cls": "",
+              "text": "Positioning takes an element out of that flow, or nudges it relative to where it would have been. Sticky positioning sits between the two: it behaves normally until a scroll threshold is reached."
+            },
+            {
+              "tag": "p",
+              "cls": "",
+              "text": "A sticky element can only travel inside its parent box. That is why a sidebar that stretches to the full height of its row has nowhere to go, and why align-items matters here."
+            },
+            {
+              "tag": "p",
+              "cls": "",
+              "text": "Stacking order decides what is painted on top when boxes overlap. Most of the time the order of the markup is enough, and z-index is only needed for the exceptions."
+            },
+            {
+              "tag": "p",
+              "cls": "",
+              "text": "Overflow decides what happens when content is larger than its box. It can be shown anyway, clipped, or scrolled, and a scrolling box becomes the reference that sticky elements inside it measure against."
+            },
+            {
+              "tag": "p",
+              "cls": "",
+              "text": "Sizing works from the outside in and the inside out at once: a box can take the width its parent offers, or the width its content asks for, and min and max values keep both within bounds."
+            },
+            {
+              "tag": "p",
+              "cls": "",
+              "text": "Responsive design adds one more input: the width of the viewport. A media query lets the same markup rearrange itself into columns on a desktop and a single stack on a phone."
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".page {\n  padding: 16px;\n}\n\n.toc {\n  padding: 12px 16px;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n  background: #fed7aa;\n}\n\n.toc ul {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n.post h1 {\n  margin: 0 0 12px;\n}\n\n.post p {\n  margin: 0 0 12px;\n  line-height: 1.5;\n}\n",
+  "solution": ".page {\n  padding: 16px;\n}\n\n.toc {\n  padding: 12px 16px;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n  background: #fed7aa;\n}\n\n.toc ul {\n  margin: 0;\n  padding: 0;\n  list-style: none;\n}\n\n.post h1 {\n  margin: 0 0 12px;\n}\n\n.post p {\n  margin: 0 0 12px;\n  line-height: 1.5;\n}\n\n/* ---- Solution ---- */\n.page {\n  display: grid;\n  grid-template-columns: 200px 1fr;\n  gap: 24px;\n  align-items: start;\n}\n\n.toc {\n  position: sticky;\n  top: 16px;\n}\n\n@media (max-width: 600px) {\n  .page {\n    grid-template-columns: 1fr;\n  }\n\n  .toc {\n    position: static;\n  }\n}\n",
+  "solutionNotes": "A sticky element moves only within its containing block. By default a grid item stretches to the height of its row, so the contents box would fill the whole column and have no room to slide. align-items: start shrinks it to its content, leaving the rest of the column as the space it travels through. On phones the box sits above the article and sticking would only cover the text, so it goes back to static.",
+  "viewports": [
+    800,
+    375
+  ]
+}

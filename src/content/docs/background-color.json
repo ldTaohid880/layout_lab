@@ -1,0 +1,31 @@
+{
+  "property": "background-color",
+  "group": "Colour & backgrounds",
+  "appliesTo": "any element",
+  "summary": "A solid colour painted behind the content and padding.",
+  "details": "It fills the border box by default, so it shows under a dashed border too. A colour with an alpha channel (rgb(0 0 0 / 0.5)) lets whatever is behind show through, without making the content transparent.",
+  "values": [
+    {
+      "value": "#fed7aa",
+      "note": "A solid light orange."
+    },
+    {
+      "value": "rgb(0 0 0 / 0.5)",
+      "note": "Half-transparent black: the text stays fully opaque."
+    },
+    {
+      "value": "transparent",
+      "note": "Default: nothing painted."
+    },
+    {
+      "value": "currentColor",
+      "note": "Use the element’s text colour."
+    }
+  ],
+  "gotcha": "Check contrast: text on a coloured background should be easy to read. A light grey on white or white on orange often fails accessibility guidelines.",
+  "related": [
+    "color",
+    "background-image",
+    "opacity"
+  ]
+}

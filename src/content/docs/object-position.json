@@ -1,0 +1,31 @@
+{
+  "property": "object-position",
+  "group": "Responsive",
+  "appliesTo": "images and other replaced elements",
+  "summary": "Which part of an image stays visible when object-fit crops it.",
+  "details": "With object-fit: cover, the image fills its frame and the overflow is cut off. object-position chooses the anchor, like background-position does for backgrounds, so you can keep a subject in view as the frame changes shape across screen sizes.",
+  "values": [
+    {
+      "value": "center",
+      "note": "Default: crop evenly from all sides."
+    },
+    {
+      "value": "right",
+      "note": "Keep the right edge in view."
+    },
+    {
+      "value": "top",
+      "note": "Keep the top, crop the bottom (good for portraits)."
+    },
+    {
+      "value": "75% 30%",
+      "note": "Keep the point 75% across and 30% down in view."
+    }
+  ],
+  "gotcha": "It only has a visible effect when the image is cropped or letterboxed, so pair it with object-fit: cover (or contain) and a frame of a different shape.",
+  "related": [
+    "object-fit",
+    "aspect-ratio",
+    "background-position"
+  ]
+}

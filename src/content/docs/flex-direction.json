@@ -1,0 +1,31 @@
+{
+  "property": "flex-direction",
+  "group": "Flex container",
+  "appliesTo": "flex containers",
+  "summary": "Which way the main axis runs.",
+  "details": "justify-content follows the main axis and align-items the cross axis, so switching to column swaps what they do.",
+  "values": [
+    {
+      "value": "row",
+      "note": "Default: left to right (in LTR)."
+    },
+    {
+      "value": "column",
+      "note": "Top to bottom."
+    },
+    {
+      "value": "row-reverse",
+      "note": "Right to left; visual only."
+    },
+    {
+      "value": "column-reverse",
+      "note": "Bottom to top; visual only."
+    }
+  ],
+  "gotcha": "Reverse values change visual order but not tab order. Keyboard users still go in HTML order.",
+  "related": [
+    "justify-content",
+    "align-items",
+    "flex-wrap"
+  ]
+}

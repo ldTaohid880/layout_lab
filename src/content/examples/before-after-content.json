@@ -1,0 +1,39 @@
+{
+  "id": "before-after-content",
+  "title": "Decorations with ::before and ::after",
+  "category": "Cascade & variables",
+  "level": "beginner",
+  "summary": "Pseudo-elements add a required asterisk, an external-link arrow and quote marks without touching the markup.",
+  "concepts": ["color", "font-size"],
+  "explanation": [
+    "::before and ::after create an extra box inside the element, before or after its content. They only appear when they have a content property, even an empty one (content: \"\").",
+    "Here they add decoration that belongs to the style, not the text: a red asterisk after required labels, an arrow after links that leave the site, and curly quotes around a quotation. Change the CSS and every one updates.",
+    "Screen readers may or may not read generated content, so never put important information only in content. The word required is also in the label's aria attribute here."
+  ],
+  "tryThis": [
+    "Change the asterisk to \" (required)\" in .required::after.",
+    "Remove content from .external::after: the arrow disappears even though the rest of the rule is still there.",
+    "Change the quote marks to « and »."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "stack",
+      "children": [
+        { "tag": "label", "cls": "required", "text": "Email", "attrs": { "aria-label": "Email, required" } },
+        { "tag": "label", "text": "Nickname" },
+        {
+          "tag": "p",
+          "cls": "links",
+          "children": [
+            { "tag": "a", "text": "Our docs", "attrs": { "href": "#" } },
+            { "tag": "span", "text": " · " },
+            { "tag": "a", "cls": "external", "text": "MDN", "attrs": { "href": "#" } }
+          ]
+        },
+        { "tag": "blockquote", "cls": "quote", "text": "Make it work, make it right, make it fast." }
+      ]
+    }
+  ],
+  "css": ".stack {\n  display: grid;\n  gap: 12px;\n  justify-items: start;\n  padding: 24px;\n  font-family: system-ui, sans-serif;\n  font-size: 17px;\n}\n\n.required::after {\n  content: \" *\";\n  color: #dc2626;\n  font-weight: 700;\n}\n\n.links {\n  margin: 0;\n}\n\n.links a {\n  color: #c2410c;\n}\n\n.external::after {\n  content: \" ↗\";\n  font-size: 0.8em;\n}\n\n.quote {\n  margin: 0;\n  font-style: italic;\n}\n\n.quote::before {\n  content: \"“\";\n  color: #f97316;\n}\n\n.quote::after {\n  content: \"”\";\n  color: #f97316;\n}\n"
+}

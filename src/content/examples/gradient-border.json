@@ -1,0 +1,35 @@
+{
+  "id": "gradient-border",
+  "title": "A gradient border",
+  "category": "Borders & effects",
+  "level": "intermediate",
+  "summary": "border-color cannot be a gradient, but two layered backgrounds with background-clip can fake one.",
+  "concepts": ["border", "background-image", "border-radius"],
+  "explanation": [
+    "A border colour must be a single colour, so border: 2px solid linear-gradient(…) is invalid. The trick is to make the border transparent and paint the gradient underneath it.",
+    "The card has two background layers. The first is a plain white gradient clipped to padding-box: it fills the inside only. The second is the orange-to-pink gradient clipped to border-box: it fills everything, and it only shows through where the transparent border is.",
+    "Because it is one element, border-radius rounds both layers together, which the older trick of nesting two boxes struggles with."
+  ],
+  "tryThis": [
+    "Change the border width to 6px: the gradient ring gets thicker.",
+    "Swap the order of the two background layers: the gradient now covers the whole card.",
+    "Change the white layer to #18181b and the text colour to white for a dark card."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "stage",
+      "children": [
+        {
+          "tag": "article",
+          "cls": "card",
+          "children": [
+            { "tag": "h3", "cls": "card-title", "text": "Pro plan" },
+            { "tag": "p", "cls": "card-text", "text": "The border is a gradient, rounded with the card." }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".stage {\n  padding: 32px;\n  font-family: system-ui, sans-serif;\n}\n\n.card {\n  max-width: 320px;\n  padding: 20px;\n  border: 3px solid transparent;\n  border-radius: 16px;\n  background-image: linear-gradient(#ffffff, #ffffff), linear-gradient(135deg, #f97316, #ec4899);\n  background-origin: border-box;\n  background-clip: padding-box, border-box;\n}\n\n.card-title {\n  margin: 0 0 6px;\n}\n\n.card-text {\n  margin: 0;\n  color: #52525b;\n}\n"
+}

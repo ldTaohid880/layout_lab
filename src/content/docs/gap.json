@@ -1,0 +1,27 @@
+{
+  "property": "gap",
+  "group": "Flex container",
+  "appliesTo": "flex, grid and multi-column containers",
+  "summary": "Space between items, never at the outer edges.",
+  "details": "Shorthand for row-gap and column-gap. Replaces the old trick of margins on every child.",
+  "values": [
+    {
+      "value": "12px",
+      "note": "Same gap both ways."
+    },
+    {
+      "value": "24px 8px",
+      "note": "Row gap, then column gap."
+    },
+    {
+      "value": "0",
+      "note": "No gap."
+    }
+  ],
+  "related": [
+    "margin",
+    "justify-content",
+    "row-gap",
+    "column-gap"
+  ]
+}

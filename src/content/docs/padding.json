@@ -1,0 +1,25 @@
+{
+  "property": "padding",
+  "group": "Box & display",
+  "appliesTo": "any element",
+  "summary": "Space inside the border, around the content.",
+  "details": "Padding is part of the background area and, with box-sizing: border-box, part of the width.",
+  "values": [
+    {
+      "value": "16px",
+      "note": "All four sides."
+    },
+    {
+      "value": "8px 16px",
+      "note": "Vertical then horizontal."
+    },
+    {
+      "value": "0",
+      "note": "No padding."
+    }
+  ],
+  "related": [
+    "margin",
+    "box-sizing"
+  ]
+}

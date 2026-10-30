@@ -1,0 +1,38 @@
+{
+  "property": "justify-content",
+  "group": "Flex container",
+  "appliesTo": "flex and grid containers",
+  "summary": "Distributes free space along the main axis.",
+  "details": "Only free space is distributed: if items grow to fill the line (flex: 1), there is none left and justify-content has nothing to do.",
+  "values": [
+    {
+      "value": "flex-start",
+      "note": "Default: packed at the start."
+    },
+    {
+      "value": "center",
+      "note": "Packed in the middle."
+    },
+    {
+      "value": "flex-end",
+      "note": "Packed at the end."
+    },
+    {
+      "value": "space-between",
+      "note": "First and last at the edges, equal gaps between."
+    },
+    {
+      "value": "space-around",
+      "note": "Equal space around each item."
+    },
+    {
+      "value": "space-evenly",
+      "note": "Equal space everywhere, edges included."
+    }
+  ],
+  "related": [
+    "align-items",
+    "gap",
+    "flex-direction"
+  ]
+}

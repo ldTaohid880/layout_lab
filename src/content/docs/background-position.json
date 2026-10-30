@@ -1,0 +1,30 @@
+{
+  "property": "background-position",
+  "group": "Colour & backgrounds",
+  "appliesTo": "any element with a background image",
+  "summary": "Where the background image sits inside the box.",
+  "details": "Keywords, lengths or percentages, horizontal first. It matters most with cover, where it decides which part of the image survives the crop.",
+  "values": [
+    {
+      "value": "center",
+      "note": "Centered both ways."
+    },
+    {
+      "value": "top right",
+      "note": "Pinned to the top-right corner."
+    },
+    {
+      "value": "20% 80%",
+      "note": "A point 20% across and 80% down lines up with the same point of the box."
+    },
+    {
+      "value": "0 0",
+      "note": "Default: top-left."
+    }
+  ],
+  "related": [
+    "background-size",
+    "background-image",
+    "object-fit"
+  ]
+}

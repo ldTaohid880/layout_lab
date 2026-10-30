@@ -1,0 +1,33 @@
+{
+  "property": "align-self",
+  "group": "Flex item",
+  "appliesTo": "flex and grid items",
+  "summary": "Overrides the parent's align-items for this one item.",
+  "details": "Useful for a single item that should not stretch, or should sit at the bottom.",
+  "values": [
+    {
+      "value": "auto",
+      "note": "Default: follow align-items."
+    },
+    {
+      "value": "center",
+      "note": "Center on the cross axis."
+    },
+    {
+      "value": "flex-start",
+      "note": "Cross start."
+    },
+    {
+      "value": "flex-end",
+      "note": "Cross end."
+    },
+    {
+      "value": "stretch",
+      "note": "Fill the cross axis."
+    }
+  ],
+  "related": [
+    "align-items",
+    "justify-self"
+  ]
+}

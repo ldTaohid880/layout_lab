@@ -1,0 +1,29 @@
+{
+  "property": "object-fit",
+  "group": "Media",
+  "appliesTo": "images and other replaced elements",
+  "summary": "How an image fills a box with a different aspect ratio.",
+  "details": "Like background-size, but for <img>. object-position chooses which part stays visible.",
+  "values": [
+    {
+      "value": "fill",
+      "note": "Default: stretch, distorting."
+    },
+    {
+      "value": "cover",
+      "note": "Fill the box, crop the rest."
+    },
+    {
+      "value": "contain",
+      "note": "Fit inside, letterboxing."
+    },
+    {
+      "value": "none",
+      "note": "Natural size, cropped."
+    }
+  ],
+  "related": [
+    "aspect-ratio",
+    "width"
+  ]
+}

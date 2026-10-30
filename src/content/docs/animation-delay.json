@@ -1,0 +1,25 @@
+{
+  "property": "animation-delay",
+  "group": "Motion",
+  "appliesTo": "any element with an animation",
+  "summary": "How long to wait before an animation starts.",
+  "details": "Giving siblings increasing delays staggers them, so a row of dots or a list of items animates one after another. A negative delay starts the animation part-way through its cycle.",
+  "values": [
+    {
+      "value": "150ms",
+      "note": "Start a little later than the others."
+    },
+    {
+      "value": "0s",
+      "note": "Default: start immediately."
+    },
+    {
+      "value": "-500ms",
+      "note": "Start as if it had already been running for 0.5s."
+    }
+  ],
+  "related": [
+    "animation",
+    "transition"
+  ]
+}

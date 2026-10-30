@@ -1,0 +1,31 @@
+{
+  "id": "staggered-list",
+  "title": "A staggered list entrance",
+  "category": "Motion",
+  "level": "intermediate",
+  "summary": "One slide-in animation, delayed a little more for each item with :nth-child and a --i variable.",
+  "concepts": ["animation", "animation-delay", "opacity", "transform"],
+  "explanation": [
+    "Every row plays the same @keyframes slide-in. What makes them cascade is the delay: each row sets a variable --i (0, 1, 2, 3) with :nth-child, and the delay is calc(var(--i) * 80ms), so the rows start 80ms apart.",
+    "The fill mode both keeps each row at its from step (invisible) while it waits, and at its to step when it is done. Without it, the waiting rows would flash in place first.",
+    "The animation runs when the preview is built. Press Apply here again to replay it, since editing CSS does not rebuild the preview."
+  ],
+  "tryThis": [
+    "Change 80ms to 250ms for a slower cascade.",
+    "Remove both from the animation: the later rows appear, vanish, then slide in.",
+    "Change translateX(-16px) to translateY(12px): they rise instead."
+  ],
+  "items": [
+    {
+      "tag": "ul",
+      "cls": "list",
+      "children": [
+        { "tag": "li", "cls": "row", "text": "Invoice #1042 paid" },
+        { "tag": "li", "cls": "row", "text": "New comment on Homepage" },
+        { "tag": "li", "cls": "row", "text": "Deploy finished" },
+        { "tag": "li", "cls": "row", "text": "Ana joined the team" }
+      ]
+    }
+  ],
+  "css": "@keyframes slide-in {\n  from {\n    opacity: 0;\n    transform: translateX(-16px);\n  }\n\n  to {\n    opacity: 1;\n    transform: translateX(0);\n  }\n}\n\n.list {\n  display: grid;\n  gap: 8px;\n  max-width: 360px;\n  margin: 24px;\n  padding: 0;\n  list-style: none;\n  font-family: system-ui, sans-serif;\n}\n\n.row {\n  --i: 0;\n\n  padding: 12px 16px;\n  border-radius: 8px;\n  background-color: #fff7ed;\n  animation: slide-in 400ms ease-out both;\n  animation-delay: calc(var(--i) * 80ms);\n}\n\n.row:nth-child(2) {\n  --i: 1;\n}\n\n.row:nth-child(3) {\n  --i: 2;\n}\n\n.row:nth-child(4) {\n  --i: 3;\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .row {\n    animation: none;\n  }\n}\n"
+}

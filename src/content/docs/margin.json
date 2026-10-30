@@ -1,0 +1,30 @@
+{
+  "property": "margin",
+  "group": "Box & display",
+  "appliesTo": "any element",
+  "summary": "Space outside the border. auto margins absorb free space.",
+  "details": "Vertical margins between blocks collapse into the larger one. In flex and grid there is no collapsing, and an auto margin pushes the item away from its neighbours.",
+  "values": [
+    {
+      "value": "0 auto",
+      "note": "Centers a block that has a width."
+    },
+    {
+      "value": "16px",
+      "note": "All four sides."
+    },
+    {
+      "value": "0",
+      "note": "Removes margins."
+    },
+    {
+      "value": "auto",
+      "note": "In flex/grid: soaks up free space on all sides."
+    }
+  ],
+  "gotcha": "Use margin-left: auto on a flex item to push it (and everything after it) to the end.",
+  "related": [
+    "padding",
+    "gap"
+  ]
+}

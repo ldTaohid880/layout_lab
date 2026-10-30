@@ -1,0 +1,29 @@
+{
+  "property": "transition-duration",
+  "group": "Motion",
+  "appliesTo": "any element",
+  "summary": "How long a transition takes.",
+  "details": "In seconds (s) or milliseconds (ms). Small interface changes feel best between about 100ms and 300ms; longer ones start to feel sluggish.",
+  "values": [
+    {
+      "value": "150ms",
+      "note": "Snappy: hovers and presses."
+    },
+    {
+      "value": "300ms",
+      "note": "Noticeable: panels and fades."
+    },
+    {
+      "value": "1s",
+      "note": "Slow: usually only for emphasis."
+    },
+    {
+      "value": "0s",
+      "note": "Default: no animation."
+    }
+  ],
+  "related": [
+    "transition",
+    "transition-timing-function"
+  ]
+}

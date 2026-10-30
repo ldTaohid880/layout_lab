@@ -1,0 +1,22 @@
+{
+  "property": "table-layout",
+  "group": "Box & display",
+  "appliesTo": "table elements",
+  "summary": "How a table sizes its columns.",
+  "details": "auto lets the content of every cell decide the column widths. fixed takes them from the table width and the cells of the first row only, so the columns stay put whatever the content is.",
+  "values": [
+    {
+      "value": "auto",
+      "note": "Default: content decides the widths."
+    },
+    {
+      "value": "fixed",
+      "note": "Widths come from the table and the first row."
+    }
+  ],
+  "gotcha": "fixed does nothing unless the table has a width other than auto, for example width: 100%.",
+  "related": [
+    "width",
+    "padding"
+  ]
+}

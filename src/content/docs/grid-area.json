@@ -1,0 +1,25 @@
+{
+  "property": "grid-area",
+  "group": "Grid item",
+  "appliesTo": "grid items",
+  "summary": "Puts the item in a named area (or sets row and column lines at once).",
+  "details": "The name must match one in the parent's grid-template-areas.",
+  "values": [
+    {
+      "value": "header",
+      "note": "The area named \"header\"."
+    },
+    {
+      "value": "main",
+      "note": "The area named \"main\"."
+    },
+    {
+      "value": "1 / 1 / 3 / 3",
+      "note": "row-start / col-start / row-end / col-end."
+    }
+  ],
+  "related": [
+    "grid-template-areas",
+    "grid-column"
+  ]
+}

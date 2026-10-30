@@ -1,0 +1,44 @@
+{
+  "property": "grid-template-columns",
+  "group": "Grid container",
+  "appliesTo": "grid containers",
+  "summary": "Defines the column tracks.",
+  "details": "Mix fixed lengths, fr units (shares of free space), minmax() and repeat(). repeat(auto-fill, minmax(140px, 1fr)) gives responsive columns without media queries.",
+  "values": [
+    {
+      "value": "1fr 1fr",
+      "note": "Two equal columns."
+    },
+    {
+      "value": "200px 1fr",
+      "note": "Fixed sidebar, fluid main."
+    },
+    {
+      "value": "repeat(3, 1fr)",
+      "note": "Three equal columns."
+    },
+    {
+      "value": "repeat(auto-fill, minmax(140px, 1fr))",
+      "note": "As many 140px+ columns as fit; empty tracks stay."
+    },
+    {
+      "value": "repeat(auto-fit, minmax(140px, 1fr))",
+      "note": "Like auto-fill, but empty tracks collapse so items stretch."
+    },
+    {
+      "value": "minmax(0, 1fr) 2fr",
+      "note": "First column may shrink below its content."
+    },
+    {
+      "value": "subgrid",
+      "note": "Use the parent grid’s columns (the element must itself be a grid item)."
+    }
+  ],
+  "gotcha": "1fr has an automatic minimum of its content. Use minmax(0, 1fr) to let a column shrink further. subgrid only works on a grid that is itself placed in another grid, and it spans the parent tracks the item occupies.",
+  "related": [
+    "grid-template-rows",
+    "gap",
+    "grid-column",
+    "grid-auto-columns"
+  ]
+}

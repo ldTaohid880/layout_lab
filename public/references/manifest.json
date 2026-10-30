@@ -35,5 +35,83 @@
   "dashboard-grid": {
     "375": "g8nlau12jd",
     "1024": "13gi83vt51b"
+  },
+  "form-layout": {
+    "375": "nzzjf8hrd3",
+    "800": "1wcrqopoq0k"
+  },
+  "chat-layout": {
+    "800": "17zpo7j604k"
+  },
+  "sticky-article": {
+    "375": "20y31jfvdcc",
+    "800": "ky7d0aqc1h"
+  },
+  "typeset-article": {
+    "800": "clg61ugzl8"
+  },
+  "truncate-subjects": {
+    "800": "w3lfcvzthw"
+  },
+  "gradient-banner": {
+    "800": "lhts0s99k1"
+  },
+  "readable-caption": {
+    "800": "1j1lhh08k8r"
+  },
+  "lifted-card": {
+    "800": "4jx7czczwc"
+  },
+  "profile-rings": {
+    "800": "22ibeiclxvc"
+  },
+  "zebra-table": {
+    "800": "u7c8ry64vc"
+  },
+  "theme-tiles": {
+    "800": "1qp1teuebvp"
+  },
+  "specificity-war": {
+    "800": "23y74eqkjsr"
+  },
+  "responsive-header": {
+    "375": "29l3yfj1sfw",
+    "800": "2bquv1uxnhm"
+  },
+  "sunny-day": {
+    "800": "1nmb4jxoi75"
+  },
+  "gig-poster": {
+    "800": "14sytlpytom"
+  },
+  "boarding-pass": {
+    "800": "26hyfdxtf7i"
+  },
+  "emoji-face": {
+    "800": "lvqze9q57p"
+  },
+  "music-player": {
+    "800": "12kswai0w6l"
+  },
+  "game-card": {
+    "800": "17rsw6g73f3"
+  },
+  "traffic-light": {
+    "800": "1pjfvcwm147"
+  },
+  "quote-card": {
+    "800": "33vyxkq10e"
+  },
+  "city-skyline": {
+    "800": "kxkrubol88"
+  },
+  "weather-widget": {
+    "800": "2gfruafvyey"
+  },
+  "polaroid-wall": {
+    "800": "1p108e5cf8w"
+  },
+  "credit-card": {
+    "800": "1m6w97ppanl"
   }
 }

@@ -1,0 +1,47 @@
+{
+  "id": "link-underlines",
+  "title": "Styling link underlines",
+  "category": "Typography",
+  "level": "intermediate",
+  "summary": "Thicker, offset underlines with text-decoration, a clear hover, and a visited-safe colour.",
+  "concepts": ["text-decoration", "color", "outline"],
+  "explanation": [
+    "Links are underlined by default and that is good: colour alone is not enough for people who cannot tell the colours apart. Instead of removing the line, style it. text-decoration-thickness makes it heavier and text-underline-offset moves it down so it clears letters like g and y.",
+    "text-decoration-color can differ from the text, so the line is a soft orange at rest and darkens on hover. Keep the hover change obvious, and give keyboard users the same cue with :focus-visible.",
+    "The nav links drop the underline because their position already says they are links, and they get one back on hover."
+  ],
+  "tryThis": [
+    "Remove text-underline-offset: the line touches the descenders.",
+    "Change text-decoration-thickness to from-font: it uses the font's own line.",
+    "Set text-decoration: none on .prose a: the links are now hard to spot in the paragraph."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "page",
+      "children": [
+        {
+          "tag": "nav",
+          "cls": "nav",
+          "children": [
+            { "tag": "a", "cls": "nav-link", "text": "Guides", "attrs": { "href": "#" } },
+            { "tag": "a", "cls": "nav-link", "text": "Pricing", "attrs": { "href": "#" } },
+            { "tag": "a", "cls": "nav-link", "text": "Blog", "attrs": { "href": "#" } }
+          ]
+        },
+        {
+          "tag": "p",
+          "cls": "prose",
+          "text": "Read the ",
+          "children": [
+            { "tag": "a", "text": "getting started guide", "attrs": { "href": "#" } },
+            { "tag": "span", "text": " first, then try the " },
+            { "tag": "a", "text": "typography examples", "attrs": { "href": "#" } },
+            { "tag": "span", "text": " to see the ideas in use." }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".page {\n  display: grid;\n  gap: 20px;\n  padding: 24px;\n  font-family: system-ui, sans-serif;\n  font-size: 18px;\n  line-height: 1.6;\n}\n\n.nav {\n  display: flex;\n  gap: 20px;\n}\n\n.nav-link {\n  color: #18181b;\n  font-weight: 600;\n  text-decoration: none;\n}\n\n.nav-link:hover {\n  text-decoration: underline;\n}\n\n.prose {\n  margin: 0;\n  max-width: 52ch;\n}\n\n.prose a {\n  color: #c2410c;\n  text-decoration-line: underline;\n  text-decoration-color: #fdba74;\n  text-decoration-thickness: 2px;\n  text-underline-offset: 4px;\n}\n\n.prose a:hover {\n  text-decoration-color: #c2410c;\n}\n\n.page a:focus-visible {\n  outline: 2px solid #2563eb;\n  outline-offset: 2px;\n}\n"
+}

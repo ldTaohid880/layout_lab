@@ -1,0 +1,84 @@
+{
+  "id": "subgrid-card-rows",
+  "title": "Cards that share their rows",
+  "category": "Grid",
+  "level": "hard",
+  "summary": "grid-template-rows: subgrid lines up titles, text and buttons across cards.",
+  "concepts": ["grid-template-columns", "grid-template-rows", "grid-row", "gap"],
+  "explanation": [
+    "Each card spans three rows of the outer grid (grid-row: span 3) and is itself a grid whose rows are the subgrid of those three. The title, text and button of every card therefore sit on the same three shared rows, so a long title in one card makes the title row taller for all of them.",
+    "Without subgrid, each card sizes its own rows from its own content, and buttons end up at different heights. The usual workaround was fixed heights or margin-top: auto; subgrid needs neither.",
+    "A subgrid inherits the parent's gap between its rows unless you override it, which is why the cards have their row spacing from .cards."
+  ],
+  "tryThis": [
+    "Replace grid-template-rows: subgrid with 1fr 1fr 1fr (in .card): the buttons stop lining up.",
+    "Make a card's text much longer: the text row grows for every card.",
+    "Change repeat(3, 1fr) to repeat(2, 1fr) and delete a card: the cards that remain still share their rows."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "cards",
+      "children": [
+        {
+          "tag": "section",
+          "cls": "card",
+          "children": [
+            {
+              "tag": "h3",
+              "text": "Starter"
+            },
+            {
+              "tag": "p",
+              "text": "For one person."
+            },
+            {
+              "tag": "button",
+              "cls": "buy",
+              "text": "Choose"
+            }
+          ]
+        },
+        {
+          "tag": "section",
+          "cls": "card",
+          "children": [
+            {
+              "tag": "h3",
+              "text": "Team"
+            },
+            {
+              "tag": "p",
+              "text": "Shared projects, roles and a longer description that wraps onto several lines."
+            },
+            {
+              "tag": "button",
+              "cls": "buy",
+              "text": "Choose"
+            }
+          ]
+        },
+        {
+          "tag": "section",
+          "cls": "card",
+          "children": [
+            {
+              "tag": "h3",
+              "text": "Enterprise with single sign-on"
+            },
+            {
+              "tag": "p",
+              "text": "Custom terms."
+            },
+            {
+              "tag": "button",
+              "cls": "buy",
+              "text": "Choose"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".cards {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 12px 16px;\n  padding: 12px;\n}\n\n.card {\n  display: grid;\n  grid-row: span 3;\n  grid-template-rows: subgrid;\n  padding: 12px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n\n.card h3,\n.card p {\n  margin: 0;\n}\n\n.buy {\n  justify-self: start;\n  padding: 6px 12px;\n  border: 0;\n  border-radius: 4px;\n  background: #f97316;\n  color: #fff;\n}\n"
+}

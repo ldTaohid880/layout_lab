@@ -1,0 +1,61 @@
+{
+  "id": "holy-grail",
+  "title": "Holy grail",
+  "level": "hard",
+  "summary": "Header, three columns, footer, and a phone layout that stacks.",
+  "brief": [
+    "At 800px: header and footer span the full width; between them, a 160px nav on the left, a 160px aside on the right and main filling the middle.",
+    "At 375px every section stacks in source order."
+  ],
+  "concepts": [
+    "grid-template-areas",
+    "grid-area",
+    "grid-template-columns",
+    "grid-template-rows"
+  ],
+  "hints": [
+    "This is one grid with three rows and three columns.",
+    "grid-template-columns: 160px 1fr 160px, and grid-template-areas to draw the layout. Give each section a grid-area.",
+    "For 375px, a media query that sets a single column and an areas list with one name per row."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "page",
+      "children": [
+        {
+          "tag": "header",
+          "cls": "header",
+          "text": "Header"
+        },
+        {
+          "tag": "nav",
+          "cls": "nav",
+          "text": "Nav"
+        },
+        {
+          "tag": "main",
+          "cls": "main",
+          "text": "Main"
+        },
+        {
+          "tag": "section",
+          "cls": "aside",
+          "text": "Aside"
+        },
+        {
+          "tag": "footer",
+          "cls": "footer",
+          "text": "Footer"
+        }
+      ]
+    }
+  ],
+  "css": ".page {\n  min-height: 360px;\n}\n\n.header, .nav, .main, .aside, .footer {\n  padding: 12px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n",
+  "solution": ".page {\n  min-height: 360px;\n}\n\n.header, .nav, .main, .aside, .footer {\n  padding: 12px;\n  background: #fed7aa;\n  border: 1px solid #f97316;\n  border-radius: 6px;\n}\n\n/* ---- Solution ---- */\n.page {\n  display: grid;\n  grid-template-columns: 160px 1fr 160px;\n  grid-template-rows: auto 1fr auto;\n  grid-template-areas:\n    \"header header header\"\n    \"nav    main   aside\"\n    \"footer footer footer\";\n  gap: 8px;\n}\n\n.header { grid-area: header; }\n.nav    { grid-area: nav; }\n.main   { grid-area: main; }\n.aside  { grid-area: aside; }\n.footer { grid-area: footer; }\n\n@media (max-width: 500px) {\n  .page {\n    grid-template-columns: 1fr;\n    grid-template-rows: none;\n    grid-template-areas: \"header\" \"nav\" \"main\" \"aside\" \"footer\";\n  }\n}\n",
+  "solutionNotes": "Named areas draw the layout as a picture, and each section picks its spot with grid-area. The media query redraws the picture as one column; the HTML never changes.",
+  "viewports": [
+    800,
+    375
+  ]
+}

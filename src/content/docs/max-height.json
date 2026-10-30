@@ -1,0 +1,31 @@
+{
+  "property": "max-height",
+  "group": "Box & display",
+  "appliesTo": "non-inline elements",
+  "summary": "A ceiling for the height.",
+  "details": "Pair it with overflow to make a region that grows with its content up to a limit and then scrolls. Percentage values only work when the parent has a definite height.",
+  "values": [
+    {
+      "value": "240px",
+      "note": "Grows up to 240px, then stops."
+    },
+    {
+      "value": "50vh",
+      "note": "Never taller than half the viewport."
+    },
+    {
+      "value": "100%",
+      "note": "Never taller than the parent (needs a parent with a set height)."
+    },
+    {
+      "value": "none",
+      "note": "Default: no ceiling."
+    }
+  ],
+  "gotcha": "Content that is taller than the limit spills out. Add overflow: auto to scroll it instead.",
+  "related": [
+    "min-height",
+    "height",
+    "overflow"
+  ]
+}

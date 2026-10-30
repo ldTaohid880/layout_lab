@@ -1,0 +1,37 @@
+{
+  "id": "fluid-spacing",
+  "title": "Fluid spacing with clamp()",
+  "category": "Responsive",
+  "level": "beginner",
+  "summary": "Padding and gaps that grow with the viewport between a minimum and a maximum, with no media queries.",
+  "concepts": ["padding", "gap", "font-size"],
+  "explanation": [
+    "Fixed spacing is either too roomy on a phone or too cramped on a desktop. clamp(16px, 5vw, 56px) means: 5% of the viewport width, but never less than 16px or more than 56px.",
+    "The section padding and the gap between cards both use clamp, so the whole page breathes more on wide screens and tightens on small ones, smoothly rather than in steps.",
+    "The same idea works for font sizes, as in the fluid heading example."
+  ],
+  "tryThis": [
+    "Drag the preview edge from narrow to wide and watch the padding change.",
+    "Replace the padding with a fixed 56px and view it at 375.",
+    "Change 5vw to 10vw: it reaches the 56px maximum at a narrower width."
+  ],
+  "items": [
+    {
+      "tag": "section",
+      "cls": "section",
+      "children": [
+        { "tag": "h2", "cls": "section-title", "text": "Features" },
+        {
+          "tag": "div",
+          "cls": "grid",
+          "children": [
+            { "tag": "div", "cls": "card", "text": "Fast" },
+            { "tag": "div", "cls": "card", "text": "Small" },
+            { "tag": "div", "cls": "card", "text": "Friendly" }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".section {\n  padding: clamp(16px, 5vw, 56px);\n  background-color: #fff7ed;\n  font-family: system-ui, sans-serif;\n}\n\n.section-title {\n  margin: 0 0 clamp(12px, 3vw, 32px);\n  font-size: clamp(1.5rem, 1rem + 2vw, 2.5rem);\n}\n\n.grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));\n  gap: clamp(8px, 3vw, 32px);\n}\n\n.card {\n  padding: 24px 16px;\n  border: 1px solid #f97316;\n  border-radius: 8px;\n  background-color: #fed7aa;\n  font-weight: 600;\n}\n"
+}

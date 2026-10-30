@@ -1,0 +1,31 @@
+{
+  "id": "timing-functions",
+  "title": "Timing functions compared",
+  "category": "Motion",
+  "level": "beginner",
+  "summary": "Four bars slide the same distance on hover with ease, ease-out, linear and a bouncy cubic-bezier.",
+  "concepts": ["transition", "transition-duration", "transition-timing-function"],
+  "explanation": [
+    "Hover the track: all four bars slide right over the same 600ms, but each follows a different timing function, so they move at different speeds along the way.",
+    "ease-out starts fast and slows down, which feels responsive. linear moves at a constant speed, which looks mechanical for most UI. The cubic-bezier overshoots past the end and settles back, a gentle bounce.",
+    "transition-duration and transition-timing-function are written separately here so each bar can override just the timing."
+  ],
+  "tryThis": [
+    "Hover the grey track and watch where each bar is half-way through.",
+    "Change transition-duration to 1500ms to see the curves more clearly.",
+    "Give the last bar steps(5): it jumps in five steps."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "track",
+      "children": [
+        { "tag": "div", "cls": "bar t-ease", "text": "ease" },
+        { "tag": "div", "cls": "bar t-out", "text": "ease-out" },
+        { "tag": "div", "cls": "bar t-linear", "text": "linear" },
+        { "tag": "div", "cls": "bar t-bounce", "text": "bounce" }
+      ]
+    }
+  ],
+  "css": ".track {\n  display: grid;\n  gap: 8px;\n  margin: 16px;\n  padding: 12px;\n  border-radius: 10px;\n  background-color: #f4f4f5;\n  font-family: system-ui, sans-serif;\n}\n\n.bar {\n  width: 100px;\n  padding: 6px 10px;\n  border-radius: 6px;\n  background-color: #f97316;\n  color: #ffffff;\n  font-size: 0.875rem;\n  transition-property: transform;\n  transition-duration: 600ms;\n}\n\n.track:hover .bar {\n  transform: translateX(200px);\n}\n\n.t-ease {\n  transition-timing-function: ease;\n}\n\n.t-out {\n  transition-timing-function: ease-out;\n}\n\n.t-linear {\n  transition-timing-function: linear;\n}\n\n.t-bounce {\n  transition-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);\n}\n"
+}

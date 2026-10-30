@@ -1,0 +1,25 @@
+{
+  "property": "animation-iteration-count",
+  "group": "Motion",
+  "appliesTo": "any element with an animation",
+  "summary": "How many times an animation plays.",
+  "details": "A number of cycles, or infinite. With animation-direction: alternate, odd cycles play forwards and even ones backwards.",
+  "values": [
+    {
+      "value": "1",
+      "note": "Default: play once."
+    },
+    {
+      "value": "3",
+      "note": "Play three times, then stop."
+    },
+    {
+      "value": "infinite",
+      "note": "Loop forever: loaders and spinners."
+    }
+  ],
+  "related": [
+    "animation",
+    "animation-duration"
+  ]
+}

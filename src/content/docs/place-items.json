@@ -1,0 +1,29 @@
+{
+  "property": "place-items",
+  "group": "Grid container",
+  "appliesTo": "grid containers (align-items part also in flex)",
+  "summary": "Shorthand for align-items and justify-items.",
+  "details": "place-items: center on a grid is the shortest way to center a child both ways.",
+  "values": [
+    {
+      "value": "center",
+      "note": "Center in both directions."
+    },
+    {
+      "value": "start",
+      "note": "Top-left of each cell."
+    },
+    {
+      "value": "end start",
+      "note": "Bottom-left (block axis first)."
+    },
+    {
+      "value": "stretch",
+      "note": "Default."
+    }
+  ],
+  "related": [
+    "align-items",
+    "justify-items"
+  ]
+}

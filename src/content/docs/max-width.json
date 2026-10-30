@@ -1,0 +1,30 @@
+{
+  "property": "max-width",
+  "group": "Box & display",
+  "appliesTo": "non-inline elements",
+  "summary": "A ceiling for the width.",
+  "details": "max-width with margin-inline: auto is the classic centered, readable column.",
+  "values": [
+    {
+      "value": "480px",
+      "note": "Grows up to 480px, then stops."
+    },
+    {
+      "value": "65ch",
+      "note": "About 65 characters: a comfortable reading width."
+    },
+    {
+      "value": "100%",
+      "note": "Never wider than the container."
+    },
+    {
+      "value": "none",
+      "note": "Default: no ceiling."
+    }
+  ],
+  "related": [
+    "width",
+    "min-width",
+    "margin"
+  ]
+}

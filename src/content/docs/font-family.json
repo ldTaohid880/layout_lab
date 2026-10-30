@@ -1,0 +1,31 @@
+{
+  "property": "font-family",
+  "group": "Typography",
+  "appliesTo": "any element (inherited)",
+  "summary": "Which typeface the text uses, as a list of fallbacks.",
+  "details": "The browser uses the first font in the list that it has. Always end with a generic family (sans-serif, serif, monospace, system-ui) so there is a sensible fallback. Set it once on a high-level element; children inherit it.",
+  "values": [
+    {
+      "value": "system-ui, sans-serif",
+      "note": "The operating system’s interface font."
+    },
+    {
+      "value": "Georgia, serif",
+      "note": "A classic serif, with a generic fallback."
+    },
+    {
+      "value": "ui-monospace, monospace",
+      "note": "Fixed-width, for code."
+    },
+    {
+      "value": "inherit",
+      "note": "Use the parent’s font (buttons and inputs do not by default)."
+    }
+  ],
+  "gotcha": "Buttons, inputs and other form controls do not inherit font-family. Add font: inherit to them, or they keep the browser’s own small font.",
+  "related": [
+    "font-size",
+    "font-weight",
+    "line-height"
+  ]
+}

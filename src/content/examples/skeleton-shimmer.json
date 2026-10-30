@@ -1,0 +1,38 @@
+{
+  "id": "skeleton-shimmer",
+  "title": "A skeleton loading shimmer",
+  "category": "Motion",
+  "level": "intermediate",
+  "summary": "Grey placeholder shapes with a wide gradient whose background-position slides across forever.",
+  "concepts": ["animation", "background-image", "background-size", "background-position"],
+  "explanation": [
+    "A skeleton shows the shape of content that is still loading, so the page does not jump when it arrives. Each bar is a grey block with the same gradient: grey, a lighter band, grey.",
+    "background-size: 300% makes the gradient three times wider than the bar, so only a slice of it shows. The @keyframes rule slides background-position from 100% to 0%, which drags the light band across. linear infinite keeps it going at an even pace.",
+    "Every bar runs the same animation in sync, which reads as one sweep down the card. A reduced-motion rule stops it for people who asked for less movement; the grey shapes still work."
+  ],
+  "tryThis": [
+    "Change 1.4s to 3s for a calmer shimmer.",
+    "Change background-size to 100%: the band no longer moves because there is nothing extra to slide.",
+    "Add animation-delay: 200ms to .line-short."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "card",
+      "attrs": { "aria-busy": "true", "aria-label": "Loading" },
+      "children": [
+        { "tag": "div", "cls": "bone avatar" },
+        {
+          "tag": "div",
+          "cls": "lines",
+          "children": [
+            { "tag": "div", "cls": "bone line" },
+            { "tag": "div", "cls": "bone line" },
+            { "tag": "div", "cls": "bone line line-short" }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": "@keyframes shimmer {\n  from {\n    background-position: 100% 0;\n  }\n\n  to {\n    background-position: 0 0;\n  }\n}\n\n.card {\n  display: flex;\n  gap: 16px;\n  max-width: 420px;\n  margin: 24px;\n  padding: 16px;\n  border: 1px solid #e4e4e7;\n  border-radius: 12px;\n}\n\n.bone {\n  border-radius: 6px;\n  background-image: linear-gradient(90deg, #e4e4e7 0%, #f4f4f5 50%, #e4e4e7 100%);\n  background-size: 300% 100%;\n  animation: shimmer 1.4s linear infinite;\n}\n\n.avatar {\n  flex-shrink: 0;\n  width: 48px;\n  height: 48px;\n  border-radius: 50%;\n}\n\n.lines {\n  display: grid;\n  flex: 1;\n  gap: 10px;\n}\n\n.line {\n  height: 12px;\n}\n\n.line-short {\n  width: 60%;\n}\n\n@media (prefers-reduced-motion: reduce) {\n  .bone {\n    animation: none;\n  }\n}\n"
+}

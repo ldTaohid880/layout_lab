@@ -1,0 +1,30 @@
+{
+  "property": "font-weight",
+  "group": "Typography",
+  "appliesTo": "any element (inherited)",
+  "summary": "How bold the text is.",
+  "details": "Numbers run from 100 (thin) to 900 (black); normal is 400 and bold is 700. A font only shows the weights it has; others are approximated or synthesised.",
+  "values": [
+    {
+      "value": "400",
+      "note": "Normal."
+    },
+    {
+      "value": "600",
+      "note": "Semi-bold: a softer emphasis for labels and headings."
+    },
+    {
+      "value": "700",
+      "note": "Bold."
+    },
+    {
+      "value": "bolder",
+      "note": "One step bolder than the parent."
+    }
+  ],
+  "gotcha": "Headings and strong are bold by default. To make a heading regular weight you must set font-weight: 400 on it explicitly.",
+  "related": [
+    "font-family",
+    "font-size"
+  ]
+}

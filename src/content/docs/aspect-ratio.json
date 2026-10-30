@@ -1,0 +1,30 @@
+{
+  "property": "aspect-ratio",
+  "group": "Box & display",
+  "appliesTo": "any element",
+  "summary": "Derives one dimension from the other.",
+  "details": "With only a width set, height follows the ratio. If content is taller than the ratio allows, the box grows unless overflow is set.",
+  "values": [
+    {
+      "value": "1 / 1",
+      "note": "Square."
+    },
+    {
+      "value": "16 / 9",
+      "note": "Widescreen."
+    },
+    {
+      "value": "4 / 3",
+      "note": "Classic photo."
+    },
+    {
+      "value": "auto",
+      "note": "Default: no ratio (images use their own)."
+    }
+  ],
+  "related": [
+    "width",
+    "height",
+    "object-fit"
+  ]
+}

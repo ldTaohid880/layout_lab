@@ -1,0 +1,30 @@
+{
+  "property": "height",
+  "group": "Box & display",
+  "appliesTo": "non-inline elements",
+  "summary": "The height of the box.",
+  "details": "auto means \"as tall as the content\", which is almost always what you want. A percentage height only works if the parent has a definite height.",
+  "values": [
+    {
+      "value": "auto",
+      "note": "Default: fits the content."
+    },
+    {
+      "value": "200px",
+      "note": "Fixed height; content may overflow."
+    },
+    {
+      "value": "100%",
+      "note": "Needs a parent with a set height."
+    },
+    {
+      "value": "100vh",
+      "note": "Full viewport height."
+    }
+  ],
+  "related": [
+    "min-height",
+    "overflow",
+    "aspect-ratio"
+  ]
+}

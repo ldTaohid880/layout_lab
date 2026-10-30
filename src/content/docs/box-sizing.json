@@ -1,0 +1,21 @@
+{
+  "property": "box-sizing",
+  "group": "Box & display",
+  "appliesTo": "any element",
+  "summary": "Whether width and height include padding and border.",
+  "details": "With the default content-box, a 200px box with 20px padding is 240px wide. border-box keeps it at 200px and shrinks the content instead, which is easier to reason about.",
+  "values": [
+    {
+      "value": "border-box",
+      "note": "width includes padding and border."
+    },
+    {
+      "value": "content-box",
+      "note": "Default: width is the content only."
+    }
+  ],
+  "related": [
+    "width",
+    "padding"
+  ]
+}

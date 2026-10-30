@@ -1,0 +1,45 @@
+{
+  "id": "styled-ordered-list",
+  "title": "Styled list markers",
+  "category": "Typography",
+  "level": "intermediate",
+  "summary": "Colour the numbers with ::marker, change bullets with list-style-type, and indent with padding.",
+  "concepts": ["color", "font-weight", "padding"],
+  "explanation": [
+    "Each li draws a marker: a number in an ol, a bullet in a ul. ::marker selects just that marker, so the numbers can be orange and bold while the text stays plain. Only a few properties work on ::marker (colour, font, content).",
+    "list-style-type swaps the marker: decimal, lower-alpha, upper-roman, square, or a string such as \"✓ \". The marker hangs in the list's left padding, so padding-left sets how far the text is indented. Setting it to 0 pushes the markers outside the box.",
+    "Spacing between items is a margin on li, or gap if you turn the list into a grid."
+  ],
+  "tryThis": [
+    "Change the ol's list-style-type to upper-roman, then to lower-alpha.",
+    "Set the ul's padding-left to 0: the ticks move out of the box.",
+    "Change the ul's list-style-type to \"→ \"."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "lists",
+      "children": [
+        {
+          "tag": "ol",
+          "cls": "steps",
+          "children": [
+            { "tag": "li", "text": "Create a sandbox" },
+            { "tag": "li", "text": "Add a few elements" },
+            { "tag": "li", "text": "Write the CSS" }
+          ]
+        },
+        {
+          "tag": "ul",
+          "cls": "ticks",
+          "children": [
+            { "tag": "li", "text": "Works offline" },
+            { "tag": "li", "text": "No sign-up" },
+            { "tag": "li", "text": "Free forever" }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".lists {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 24px;\n  padding: 24px;\n  font-family: system-ui, sans-serif;\n  font-size: 17px;\n}\n\n.steps,\n.ticks {\n  margin: 0;\n  padding-left: 28px;\n}\n\n.steps li,\n.ticks li {\n  margin-bottom: 8px;\n}\n\n.steps li::marker {\n  color: #ea580c;\n  font-weight: 700;\n}\n\n.ticks {\n  list-style-type: \"✓  \";\n}\n\n.ticks li::marker {\n  color: #16a34a;\n}\n"
+}

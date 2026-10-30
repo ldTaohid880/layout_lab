@@ -1,0 +1,33 @@
+{
+  "id": "styled-blockquote",
+  "title": "A pull quote",
+  "category": "Typography",
+  "level": "intermediate",
+  "summary": "A blockquote with a serif face, a larger size and a coloured rule, credited below.",
+  "concepts": ["font-family", "font-size", "line-height", "margin", "padding"],
+  "explanation": [
+    "blockquote comes with large side margins from the browser. Resetting margin to 0 and adding padding-left with a border-left gives the classic quote rule instead.",
+    "A change of typeface (a serif against sans-serif body text) and a larger size set the quote apart without any extra decoration.",
+    "The credit is a small, muted line under the quote, so the quote stays the focus."
+  ],
+  "tryThis": [
+    "Remove margin: 0 from .quote: the browser's default indent comes back.",
+    "Change the font-family of .quote to system-ui, sans-serif: it blends into the page.",
+    "Make the border-left 8px wide and a lighter colour."
+  ],
+  "items": [
+    {
+      "tag": "figure",
+      "cls": "pull",
+      "children": [
+        {
+          "tag": "blockquote",
+          "cls": "quote",
+          "text": "Good typography is invisible. Bad typography is everywhere."
+        },
+        { "tag": "figcaption", "cls": "credit", "text": "A designer, probably" }
+      ]
+    }
+  ],
+  "css": ".pull {\n  max-width: 40ch;\n  margin: 24px;\n  font-family: system-ui, sans-serif;\n}\n\n.quote {\n  margin: 0;\n  padding-left: 16px;\n  border-left: 4px solid #f97316;\n  font-family: Georgia, serif;\n  font-size: 1.5rem;\n  font-style: italic;\n  line-height: 1.35;\n  color: #27272a;\n}\n\n.credit {\n  margin-top: 8px;\n  padding-left: 20px;\n  font-size: 0.875rem;\n  color: #71717a;\n}\n"
+}

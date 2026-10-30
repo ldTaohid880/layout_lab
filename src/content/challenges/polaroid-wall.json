@@ -1,0 +1,85 @@
+{
+  "id": "polaroid-wall",
+  "title": "Polaroid wall",
+  "level": "hard",
+  "creative": true,
+  "summary": "CSS art: three overlapping tilted photos taped to a cork board, with the middle one on top.",
+  "brief": [
+    "The board is a cork colour (#c8a27a) with a fine dot pattern (1px rgb(0 0 0 / 0.08) dots every 10px). The three photos sit in a centred row, 56px of padding above them; each one after the first overlaps the previous by 30px.",
+    "Each polaroid is 170px wide, white, with 12px padding (14px at the bottom) and a shadow (0 8px 16px rgb(0 0 0 / 0.25)). The photo is 150px tall; the caption is centred, 10px below it.",
+    "Tilts: the first -6deg, the second 3deg and lifted 16px, the third 8deg. The second photo is on top of both neighbours.",
+    "A strip of tape holds each one: 70 × 24px, rgb(254 243 199 / 0.75), centred on the top edge, 12px above it, tilted -4deg, with a faint shadow (0 1px 2px rgb(0 0 0 / 0.15))."
+  ],
+  "concepts": [
+    "transform",
+    "z-index",
+    "position",
+    "justify-content",
+    "margin",
+    "box-shadow"
+  ],
+  "hints": [
+    "Lay out .board as a flex row with justify-content: center. Overlap with a negative margin: .polaroid + .polaroid { margin-left: -30px; }.",
+    "Tilt with transform: rotate(…); the second also needs translateY(-16px) in the same transform. Later elements paint on top, so the third covers the second until you give the second position: relative and z-index: 1 (every .polaroid should be position: relative).",
+    "The tape is .polaroid::before, absolutely positioned at top: -12px and left: 50%, then transform: translateX(-50%) rotate(-4deg) centres it on its own width and tilts it."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "board",
+      "children": [
+        {
+          "tag": "figure",
+          "cls": "polaroid p1",
+          "children": [
+            {
+              "tag": "div",
+              "cls": "photo photo-sea"
+            },
+            {
+              "tag": "figcaption",
+              "cls": "caption",
+              "text": "Beach day"
+            }
+          ]
+        },
+        {
+          "tag": "figure",
+          "cls": "polaroid p2",
+          "children": [
+            {
+              "tag": "div",
+              "cls": "photo photo-forest"
+            },
+            {
+              "tag": "figcaption",
+              "cls": "caption",
+              "text": "Camping"
+            }
+          ]
+        },
+        {
+          "tag": "figure",
+          "cls": "polaroid p3",
+          "children": [
+            {
+              "tag": "div",
+              "cls": "photo photo-dusk"
+            },
+            {
+              "tag": "figcaption",
+              "cls": "caption",
+              "text": "Rooftop"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".board {\n  padding: 40px;\n}\n\n.polaroid {\n  margin: 0;\n}\n\n.caption {\n  font-family: \"Segoe Print\", \"Comic Sans MS\", cursive;\n  font-size: 15px;\n  color: #3f3f46;\n}\n\n.photo-sea {\n  background-image: linear-gradient(#7dd3fc, #0284c7 60%, #fde68a 60%);\n}\n\n.photo-forest {\n  background-image: linear-gradient(#bbf7d0, #15803d);\n}\n\n.photo-dusk {\n  background-image: linear-gradient(#fb923c, #be185d);\n}\n",
+  "solution": ".board {\n  padding: 40px;\n}\n\n.polaroid {\n  margin: 0;\n}\n\n.caption {\n  font-family: \"Segoe Print\", \"Comic Sans MS\", cursive;\n  font-size: 15px;\n  color: #3f3f46;\n}\n\n.photo-sea {\n  background-image: linear-gradient(#7dd3fc, #0284c7 60%, #fde68a 60%);\n}\n\n.photo-forest {\n  background-image: linear-gradient(#bbf7d0, #15803d);\n}\n\n.photo-dusk {\n  background-image: linear-gradient(#fb923c, #be185d);\n}\n\n/* ---- Solution ---- */\n.board {\n  display: flex;\n  justify-content: center;\n  padding-top: 56px;\n  background-color: #c8a27a;\n  background-image: radial-gradient(rgb(0 0 0 / 0.08) 1px, transparent 1px);\n  background-size: 10px 10px;\n}\n\n.polaroid {\n  position: relative;\n  width: 170px;\n  padding: 12px 12px 14px;\n  background-color: #ffffff;\n  box-shadow: 0 8px 16px rgb(0 0 0 / 0.25);\n}\n\n.polaroid + .polaroid {\n  margin-left: -30px;\n}\n\n.polaroid::before {\n  content: \"\";\n  position: absolute;\n  top: -12px;\n  left: 50%;\n  width: 70px;\n  height: 24px;\n  background-color: rgb(254 243 199 / 0.75);\n  box-shadow: 0 1px 2px rgb(0 0 0 / 0.15);\n  transform: translateX(-50%) rotate(-4deg);\n}\n\n.p1 {\n  transform: rotate(-6deg);\n}\n\n.p2 {\n  z-index: 1;\n  transform: rotate(3deg) translateY(-16px);\n}\n\n.p3 {\n  transform: rotate(8deg);\n}\n\n.photo {\n  height: 150px;\n}\n\n.caption {\n  margin-top: 10px;\n  text-align: center;\n}\n",
+  "solutionNotes": "The hard part is the stacking order. Every rotated polaroid is a positioned element (and a transform makes it a stacking context too), so with equal z-index they paint in page order and the third covers the second. z-index: 1 on the middle one lifts it above both. The overlap is a negative margin in a flex row, the tilt and lift are one transform (functions apply right to left, so it is lifted and then rotated around its centre), and the tape uses the classic centring trick: left: 50% puts its left edge in the middle, translateX(-50%) pulls it back by half its own width.",
+  "viewports": [
+    800
+  ]
+}

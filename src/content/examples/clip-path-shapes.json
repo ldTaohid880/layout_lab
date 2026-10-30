@@ -1,0 +1,39 @@
+{
+  "id": "clip-path-shapes",
+  "title": "Shapes with clip-path",
+  "category": "Borders & effects",
+  "level": "intermediate",
+  "summary": "circle(), polygon() and inset() cut a box into a shape; everything outside the shape is hidden.",
+  "concepts": ["border-radius", "background-image", "aspect-ratio"],
+  "explanation": [
+    "clip-path hides every part of the element outside a shape. circle(closest-side) gives a circle that touches the nearest edges, inset(…) a rectangle with optional rounded corners, and polygon() takes a list of x y points, so a triangle is three points and a hexagon six.",
+    "Unlike border-radius, it can make any straight-edged shape. The slanted hero edge at the bottom is a polygon whose last two points are at different heights.",
+    "Clipping cuts off borders and shadows too, because they are outside the shape. Hover still only reacts inside the visible part."
+  ],
+  "tryThis": [
+    "Change the triangle's first point from 50% 0 to 0 0: it becomes a right-angled triangle.",
+    "Change the hero's 85% to 60%: the slant gets steeper.",
+    "Add box-shadow: 0 0 0 4px black to .hex: the shadow is clipped away.",
+    "Change .notch's clip-path to inset(10px round 12px): a smaller rounded square."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "page",
+      "children": [
+        { "tag": "div", "cls": "hero", "text": "A slanted hero edge" },
+        {
+          "tag": "div",
+          "cls": "shapes",
+          "children": [
+            { "tag": "div", "cls": "shape circle" },
+            { "tag": "div", "cls": "shape triangle" },
+            { "tag": "div", "cls": "shape hex" },
+            { "tag": "div", "cls": "shape notch" }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".page {\n  display: grid;\n  gap: 24px;\n  font-family: system-ui, sans-serif;\n}\n\n.hero {\n  padding: 40px 24px 64px;\n  background-image: linear-gradient(135deg, #f97316, #ec4899);\n  color: #ffffff;\n  font-size: 24px;\n  font-weight: 700;\n  clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);\n}\n\n.shapes {\n  display: flex;\n  gap: 16px;\n  padding: 0 24px 24px;\n}\n\n.shape {\n  width: 80px;\n  aspect-ratio: 1;\n  background-color: #f97316;\n}\n\n.circle {\n  clip-path: circle(closest-side);\n}\n\n.triangle {\n  clip-path: polygon(50% 0, 100% 100%, 0 100%);\n}\n\n.hex {\n  clip-path: polygon(25% 0, 75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%);\n}\n\n.notch {\n  clip-path: polygon(0 0, 70% 0, 100% 30%, 100% 100%, 0 100%);\n}\n"
+}

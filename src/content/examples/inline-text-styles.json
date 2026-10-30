@@ -1,0 +1,35 @@
+{
+  "id": "inline-text-styles",
+  "title": "Bold, italic, small and code",
+  "category": "Typography",
+  "level": "beginner",
+  "summary": "strong, em, small and code each have a default look you can restyle with CSS.",
+  "concepts": ["font-weight", "font-family", "font-size"],
+  "explanation": [
+    "strong (importance), em (emphasis), small (side comments) and code (code) are inline elements with meaning, and each comes with a browser default: bold, italic, smaller and monospace.",
+    "Those defaults are just CSS. Here strong is set to a semi-bold 600, code gets a monospace font, a tinted background and a slightly smaller size so it does not look too big beside the text.",
+    "Choose the element for its meaning, then style it. Do not use strong just to make something bold."
+  ],
+  "tryThis": [
+    "Set font-weight: 900 on .text strong.",
+    "Remove the font-size from .text code: monospace fonts look larger than the text around them.",
+    "Give .text em font-style: normal and a colour instead: emphasis without italics."
+  ],
+  "items": [
+    {
+      "tag": "p",
+      "cls": "text",
+      "text": "Run ",
+      "children": [
+        { "tag": "code", "text": "npm install" },
+        { "tag": "span", "text": " first. This step is " },
+        { "tag": "strong", "text": "required" },
+        { "tag": "span", "text": ", and it can take " },
+        { "tag": "em", "text": "a few minutes" },
+        { "tag": "span", "text": ". " },
+        { "tag": "small", "text": "(Only the first time.)" }
+      ]
+    }
+  ],
+  "css": ".text {\n  max-width: 50ch;\n  padding: 16px;\n  font-family: system-ui, sans-serif;\n  font-size: 1.125rem;\n  line-height: 1.6;\n}\n\n.text strong {\n  font-weight: 600;\n}\n\n.text code {\n  padding: 2px 5px;\n  border-radius: 4px;\n  background: #fed7aa;\n  font-family: ui-monospace, monospace;\n  font-size: 0.875em;\n}\n\n.text small {\n  color: #71717a;\n}\n"
+}

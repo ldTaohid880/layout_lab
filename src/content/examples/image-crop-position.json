@@ -1,0 +1,30 @@
+{
+  "id": "image-crop-position",
+  "title": "Choosing what an image crop keeps",
+  "category": "Responsive",
+  "level": "intermediate",
+  "summary": "object-fit: cover crops an image to its frame; object-position decides which part survives.",
+  "concepts": ["object-fit", "object-position", "aspect-ratio"],
+  "explanation": [
+    "The same placeholder picture sits in three tall, narrow frames. object-fit: cover scales it to fill each frame and crops the sides, because the picture is wider than the frame.",
+    "object-position picks the anchor for that crop: left keeps the mountain's left slope, center the peak, right the sun. With real photos this keeps a face or product in view as the frame changes shape on different screens.",
+    "aspect-ratio gives each frame its shape from its width, so the crop stays the same as the column resizes."
+  ],
+  "tryThis": [
+    "Change .frame's aspect-ratio to 16 / 9: the frames are now wider than the picture, so it crops top and bottom instead.",
+    "Change the third frame's object-position to 90% 20%.",
+    "Remove object-fit: cover: the picture is squashed to fit and object-position no longer matters."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "frames",
+      "children": [
+        { "tag": "img", "cls": "frame pos-left", "attrs": { "alt": "Cropped from the left" } },
+        { "tag": "img", "cls": "frame pos-center", "attrs": { "alt": "Cropped from the center" } },
+        { "tag": "img", "cls": "frame pos-right", "attrs": { "alt": "Cropped from the right" } }
+      ]
+    }
+  ],
+  "css": ".frames {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 12px;\n  max-width: 420px;\n  padding: 16px;\n}\n\n.frame {\n  width: 100%;\n  aspect-ratio: 2 / 3;\n  object-fit: cover;\n  border-radius: 8px;\n}\n\n.pos-left {\n  object-position: left;\n}\n\n.pos-center {\n  object-position: center;\n}\n\n.pos-right {\n  object-position: right;\n}\n"
+}

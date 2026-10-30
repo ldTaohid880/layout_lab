@@ -1,0 +1,141 @@
+{
+  "id": "zebra-table",
+  "title": "Zebra table",
+  "level": "beginner",
+  "summary": "Shade the header and every other row, without adding any classes.",
+  "brief": [
+    "The header row has a #fed7aa background.",
+    "In the body, every even row (the 2nd and 4th) has a #fff7ed background; odd rows stay white.",
+    "Do not add classes to the rows: select them by their position."
+  ],
+  "concepts": [
+    "background-color"
+  ],
+  "hints": [
+    "There is a pseudo-class that selects children by their position: :nth-child().",
+    ":nth-child(even) matches the 2nd, 4th, 6th… child. Count is per parent, so rows in tbody are counted from tbody’s first row.",
+    ".prices th { background-color: #fed7aa; } and .prices tbody tr:nth-child(even) { background-color: #fff7ed; }"
+  ],
+  "items": [
+    {
+      "tag": "table",
+      "cls": "prices",
+      "children": [
+        {
+          "tag": "thead",
+          "cls": "",
+          "children": [
+            {
+              "tag": "tr",
+              "cls": "",
+              "children": [
+                {
+                  "tag": "th",
+                  "cls": "",
+                  "text": "Plan"
+                },
+                {
+                  "tag": "th",
+                  "cls": "",
+                  "text": "Price"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "tbody",
+          "cls": "",
+          "children": [
+            {
+              "tag": "tr",
+              "cls": "",
+              "children": [
+                {
+                  "tag": "td",
+                  "cls": "",
+                  "text": "Starter"
+                },
+                {
+                  "tag": "td",
+                  "cls": "",
+                  "text": "$0"
+                }
+              ]
+            },
+            {
+              "tag": "tr",
+              "cls": "",
+              "children": [
+                {
+                  "tag": "td",
+                  "cls": "",
+                  "text": "Basic"
+                },
+                {
+                  "tag": "td",
+                  "cls": "",
+                  "text": "$9"
+                }
+              ]
+            },
+            {
+              "tag": "tr",
+              "cls": "",
+              "children": [
+                {
+                  "tag": "td",
+                  "cls": "",
+                  "text": "Team"
+                },
+                {
+                  "tag": "td",
+                  "cls": "",
+                  "text": "$29"
+                }
+              ]
+            },
+            {
+              "tag": "tr",
+              "cls": "",
+              "children": [
+                {
+                  "tag": "td",
+                  "cls": "",
+                  "text": "Business"
+                },
+                {
+                  "tag": "td",
+                  "cls": "",
+                  "text": "$79"
+                }
+              ]
+            },
+            {
+              "tag": "tr",
+              "cls": "",
+              "children": [
+                {
+                  "tag": "td",
+                  "cls": "",
+                  "text": "Enterprise"
+                },
+                {
+                  "tag": "td",
+                  "cls": "",
+                  "text": "Ask us"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".prices {\n  width: 100%;\n  max-width: 420px;\n  margin: 16px;\n  border-collapse: collapse;\n  font-family: system-ui, sans-serif;\n}\n\n.prices th,\n.prices td {\n  padding: 8px 12px;\n  text-align: left;\n}\n",
+  "solution": ".prices {\n  width: 100%;\n  max-width: 420px;\n  margin: 16px;\n  border-collapse: collapse;\n  font-family: system-ui, sans-serif;\n}\n\n.prices th,\n.prices td {\n  padding: 8px 12px;\n  text-align: left;\n}\n\n/* ---- Solution ---- */\n.prices th {\n  background-color: #fed7aa;\n}\n\n.prices tbody tr:nth-child(even) {\n  background-color: #fff7ed;\n}\n",
+  "solutionNotes": ":nth-child(even) counts each row’s position among its siblings, so the pattern stays right however many rows there are, and nobody has to remember to add a class. Rows in thead and tbody have separate parents, which is why the count starts again inside tbody.",
+  "viewports": [
+    800
+  ]
+}

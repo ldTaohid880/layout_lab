@@ -1,0 +1,97 @@
+{
+  "id": "truncate-subjects",
+  "title": "Truncate the subjects",
+  "level": "intermediate",
+  "summary": "Long email subjects end in … and never push the time out of the row.",
+  "brief": [
+    "Each row of the 320px inbox shows an avatar, the subject and the time.",
+    "Subjects stay on one line. A subject too long for the space ends in an ellipsis (…), and the time always stays visible at the right end of the row.",
+    "The subject takes all the space the avatar and time do not need."
+  ],
+  "concepts": [
+    "text-overflow",
+    "white-space",
+    "overflow",
+    "min-width",
+    "flex"
+  ],
+  "hints": [
+    "Three declarations make an ellipsis: keep the text on one line, clip what overflows, and draw … at the cut.",
+    "white-space: nowrap, overflow: hidden and text-overflow: ellipsis on .subject. flex: 1 lets it take the free space.",
+    "The time is still pushed out? A flex item will not shrink below its content by default. Add min-width: 0 to .subject."
+  ],
+  "items": [
+    {
+      "tag": "ul",
+      "cls": "inbox",
+      "children": [
+        {
+          "tag": "li",
+          "cls": "mail",
+          "children": [
+            {
+              "tag": "span",
+              "cls": "avatar"
+            },
+            {
+              "tag": "span",
+              "cls": "subject",
+              "text": "Lunch?"
+            },
+            {
+              "tag": "span",
+              "cls": "time",
+              "text": "12:40"
+            }
+          ]
+        },
+        {
+          "tag": "li",
+          "cls": "mail",
+          "children": [
+            {
+              "tag": "span",
+              "cls": "avatar"
+            },
+            {
+              "tag": "span",
+              "cls": "subject",
+              "text": "Re: Re: Fwd: Updated agenda for Thursday’s planning meeting with the whole team"
+            },
+            {
+              "tag": "span",
+              "cls": "time",
+              "text": "11:02"
+            }
+          ]
+        },
+        {
+          "tag": "li",
+          "cls": "mail",
+          "children": [
+            {
+              "tag": "span",
+              "cls": "avatar"
+            },
+            {
+              "tag": "span",
+              "cls": "subject",
+              "text": "Your invoice INV-2026-10-0042 for October is now available to download"
+            },
+            {
+              "tag": "span",
+              "cls": "time",
+              "text": "Yesterday"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".inbox {\n  width: 320px;\n  margin: 16px;\n  padding: 0;\n  list-style: none;\n  border: 1px solid #d4d4d8;\n  border-radius: 8px;\n  font-family: system-ui, sans-serif;\n}\n\n.mail {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  padding: 10px 12px;\n  border-bottom: 1px solid #e4e4e7;\n}\n\n.avatar {\n  width: 32px;\n  height: 32px;\n  border-radius: 50%;\n  background: #fdba74;\n  flex-shrink: 0;\n}\n\n.time {\n  font-size: 0.8rem;\n  color: #71717a;\n}\n",
+  "solution": ".inbox {\n  width: 320px;\n  margin: 16px;\n  padding: 0;\n  list-style: none;\n  border: 1px solid #d4d4d8;\n  border-radius: 8px;\n  font-family: system-ui, sans-serif;\n}\n\n.mail {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  padding: 10px 12px;\n  border-bottom: 1px solid #e4e4e7;\n}\n\n.avatar {\n  width: 32px;\n  height: 32px;\n  border-radius: 50%;\n  background: #fdba74;\n  flex-shrink: 0;\n}\n\n.time {\n  font-size: 0.8rem;\n  color: #71717a;\n}\n\n/* ---- Solution ---- */\n.subject {\n  flex: 1;\n  min-width: 0;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n",
+  "solutionNotes": "An ellipsis needs text that is on one line (nowrap), clipped (overflow: hidden) and told how to end (text-overflow: ellipsis). In a flex row that is not enough: a flex item’s automatic minimum width is its content, here the whole unbroken subject, so it would push the time out. min-width: 0 lets the subject shrink, and then there is something to clip.",
+  "viewports": [
+    800
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "id": "boarding-pass",
+  "title": "Boarding pass",
+  "level": "intermediate",
+  "creative": true,
+  "summary": "Recreate a ticket: a main part and a stub, a dashed tear line, and round notches cut into the edges.",
+  "brief": [
+    "The pass is 560px wide: a white main part and a 140px orange (#f97316) stub on the right, with 12px rounded outer corners and a soft shadow that follows the whole shape (notches included).",
+    "Where the two parts meet, both have a 12px half-circle notch cut out of the top and bottom edge, and the stub has a 2px dashed white line on its left. Both parts have 24px padding.",
+    "Main part: the two airports sit at either end of a row with the arrow between them, centred vertically. Below, after a 1px #e4e4e7 line with 16px above the details and 20px above the line, four equal columns (12px apart) each show an uppercase label (0.08em spacing) over a bold value.",
+    "Stub: white text, centred both ways, 4px between lines, the seat in 36px extra bold."
+  ],
+  "concepts": [
+    "grid-template-columns",
+    "background-image",
+    "filter",
+    "border",
+    "justify-content",
+    "place-items"
+  ],
+  "hints": [
+    "Lay out .pass as a grid with grid-template-columns: 1fr 140px. The details row is another grid with repeat(4, 1fr); the route row is flex with justify-content: space-between.",
+    "A notch is a transparent circle in the background: radial-gradient(circle at 100% 0, transparent 12px, #ffffff 13px) paints white everywhere except a 12px circle at the top-right corner. Use two layers, one sized to the top half and one to the bottom half.",
+    "box-shadow would ignore the notches; filter: drop-shadow(…) on .pass follows the painted shape. The stub uses the same gradients mirrored (circle at 0 0 and 0 100%) in orange, plus border-left: 2px dashed #ffffff."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "pass",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "main",
+          "children": [
+            {
+              "tag": "div",
+              "cls": "route",
+              "children": [
+                {
+                  "tag": "div",
+                  "cls": "stop",
+                  "children": [
+                    {
+                      "tag": "span",
+                      "cls": "code",
+                      "text": "LHR"
+                    },
+                    {
+                      "tag": "span",
+                      "cls": "city",
+                      "text": "London"
+                    }
+                  ]
+                },
+                {
+                  "tag": "span",
+                  "cls": "arrow",
+                  "text": "→"
+                },
+                {
+                  "tag": "div",
+                  "cls": "stop",
+                  "children": [
+                    {
+                      "tag": "span",
+                      "cls": "code",
+                      "text": "JFK"
+                    },
+                    {
+                      "tag": "span",
+                      "cls": "city",
+                      "text": "New York"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "tag": "div",
+              "cls": "details",
+              "children": [
+                {
+                  "tag": "div",
+                  "cls": "detail",
+                  "children": [
+                    {
+                      "tag": "span",
+                      "cls": "label",
+                      "text": "Flight"
+                    },
+                    {
+                      "tag": "span",
+                      "cls": "value",
+                      "text": "BA 117"
+                    }
+                  ]
+                },
+                {
+                  "tag": "div",
+                  "cls": "detail",
+                  "children": [
+                    {
+                      "tag": "span",
+                      "cls": "label",
+                      "text": "Date"
+                    },
+                    {
+                      "tag": "span",
+                      "cls": "value",
+                      "text": "14 Nov"
+                    }
+                  ]
+                },
+                {
+                  "tag": "div",
+                  "cls": "detail",
+                  "children": [
+                    {
+                      "tag": "span",
+                      "cls": "label",
+                      "text": "Gate"
+                    },
+                    {
+                      "tag": "span",
+                      "cls": "value",
+                      "text": "B32"
+                    }
+                  ]
+                },
+                {
+                  "tag": "div",
+                  "cls": "detail",
+                  "children": [
+                    {
+                      "tag": "span",
+                      "cls": "label",
+                      "text": "Boards"
+                    },
+                    {
+                      "tag": "span",
+                      "cls": "value",
+                      "text": "09:40"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "stub",
+          "children": [
+            {
+              "tag": "span",
+              "cls": "label",
+              "text": "Seat"
+            },
+            {
+              "tag": "span",
+              "cls": "seat",
+              "text": "14A"
+            },
+            {
+              "tag": "span",
+              "cls": "label",
+              "text": "Zone 2"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".pass {\n  margin: 24px;\n  font-family: system-ui, sans-serif;\n  color: #18181b;\n}\n\n.code {\n  font-size: 40px;\n  font-weight: 800;\n}\n\n.city {\n  font-size: 13px;\n  color: #52525b;\n}\n\n.label {\n  font-size: 11px;\n  color: #71717a;\n}\n\n.arrow {\n  font-size: 24px;\n  color: #f97316;\n}\n",
+  "solution": ".pass {\n  margin: 24px;\n  font-family: system-ui, sans-serif;\n  color: #18181b;\n}\n\n.code {\n  font-size: 40px;\n  font-weight: 800;\n}\n\n.city {\n  font-size: 13px;\n  color: #52525b;\n}\n\n.label {\n  font-size: 11px;\n  color: #71717a;\n}\n\n.arrow {\n  font-size: 24px;\n  color: #f97316;\n}\n\n/* ---- Solution ---- */\n.pass {\n  display: grid;\n  grid-template-columns: 1fr 140px;\n  width: 560px;\n  filter: drop-shadow(0 6px 12px rgb(0 0 0 / 0.18));\n}\n\n.main {\n  padding: 24px;\n  border-radius: 12px 0 0 12px;\n  background:\n    radial-gradient(circle at 100% 0, transparent 12px, #ffffff 13px) top / 100% 51% no-repeat,\n    radial-gradient(circle at 100% 100%, transparent 12px, #ffffff 13px) bottom / 100% 51% no-repeat;\n}\n\n.stub {\n  display: grid;\n  place-items: center;\n  align-content: center;\n  gap: 4px;\n  padding: 24px;\n  border-left: 2px dashed #ffffff;\n  border-radius: 0 12px 12px 0;\n  background:\n    radial-gradient(circle at 0 0, transparent 12px, #f97316 13px) top / 100% 51% no-repeat,\n    radial-gradient(circle at 0 100%, transparent 12px, #f97316 13px) bottom / 100% 51% no-repeat;\n  background-origin: border-box;\n  color: #ffffff;\n}\n\n.route {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.stop {\n  display: grid;\n}\n\n.details {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 12px;\n  margin-top: 20px;\n  padding-top: 16px;\n  border-top: 1px solid #e4e4e7;\n}\n\n.detail {\n  display: grid;\n  gap: 2px;\n}\n\n.label {\n  letter-spacing: 0.08em;\n  text-transform: uppercase;\n}\n\n.value {\n  font-weight: 700;\n}\n\n.stub .label {\n  color: #ffedd5;\n}\n\n.seat {\n  font-size: 36px;\n  font-weight: 800;\n}\n",
+  "solutionNotes": "Two ideas carry the design. The layout is plain grid and flex: two columns for main and stub, a space-between row for the route, four equal columns for the details. The ticket shape is all background: each part paints its colour with two radial gradients, one per half, that leave a transparent circle in the corner nearest the tear line, so the notches are real holes and the page shows through. A box-shadow would still be rectangular, so the shadow is filter: drop-shadow on the whole pass, which traces whatever is painted, notches and rounded corners included.",
+  "viewports": [
+    800
+  ]
+}

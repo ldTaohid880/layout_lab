@@ -1,0 +1,33 @@
+{
+  "id": "font-weight-scale",
+  "title": "Font stacks and weights",
+  "category": "Typography",
+  "level": "beginner",
+  "summary": "A font-family stack with fallbacks, and the weights from 400 to 800 that build hierarchy.",
+  "concepts": ["font-family", "font-weight"],
+  "explanation": [
+    "font-family takes a list. The browser uses the first font it has, so the list ends with a generic family (sans-serif, serif, monospace) that always exists. system-ui means the operating system's own interface font, which looks native and needs no download.",
+    "font-weight runs from 100 (thin) to 900 (black); 400 is normal and 700 is bold. Most system fonts have several weights in between, so 500 and 600 give softer emphasis than jumping straight to bold.",
+    "If a font lacks a weight, the browser picks the nearest one or fakes bold by smearing the letters, which is why weights sometimes look the same."
+  ],
+  "tryThis": [
+    "Change .serif's font-family to Georgia, serif and then to a made-up name followed by serif: the fallback takes over.",
+    "Set every .weight to font-weight: 700: the hierarchy flattens.",
+    "Change .mono's stack to just monospace and compare the digits."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "specimen",
+      "children": [
+        { "tag": "p", "cls": "weight w400", "text": "400 Regular: the default for body text" },
+        { "tag": "p", "cls": "weight w500", "text": "500 Medium: labels and buttons" },
+        { "tag": "p", "cls": "weight w600", "text": "600 Semibold: subheadings" },
+        { "tag": "p", "cls": "weight w800", "text": "800 Extra bold: big display headings" },
+        { "tag": "p", "cls": "serif", "text": "A serif stack: Georgia, Times New Roman, serif" },
+        { "tag": "p", "cls": "mono", "text": "A monospace stack: 0123456789 {}[]" }
+      ]
+    }
+  ],
+  "css": ".specimen {\n  display: grid;\n  gap: 10px;\n  padding: 24px;\n  font-family: system-ui, -apple-system, \"Segoe UI\", Roboto, sans-serif;\n  font-size: 18px;\n  color: #18181b;\n}\n\n.specimen p {\n  margin: 0;\n}\n\n.w400 {\n  font-weight: 400;\n}\n\n.w500 {\n  font-weight: 500;\n}\n\n.w600 {\n  font-weight: 600;\n}\n\n.w800 {\n  font-weight: 800;\n}\n\n.serif {\n  font-family: Georgia, \"Times New Roman\", serif;\n}\n\n.mono {\n  font-family: ui-monospace, Consolas, \"Courier New\", monospace;\n  font-size: 16px;\n}\n"
+}

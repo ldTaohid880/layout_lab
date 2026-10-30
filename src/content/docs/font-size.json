@@ -1,0 +1,35 @@
+{
+  "property": "font-size",
+  "group": "Typography",
+  "appliesTo": "any element (inherited)",
+  "summary": "How big the text is.",
+  "details": "px is fixed. rem is relative to the root font size (16px by default), so it respects the reader’s browser setting. em is relative to the parent, which compounds when nested. clamp() gives a size that grows with the viewport between a minimum and a maximum.",
+  "values": [
+    {
+      "value": "16px",
+      "note": "Fixed size."
+    },
+    {
+      "value": "1.25rem",
+      "note": "1.25 × the root size (20px by default)."
+    },
+    {
+      "value": "0.875em",
+      "note": "0.875 × the parent’s size; compounds in nested elements."
+    },
+    {
+      "value": "clamp(1.5rem, 4vw, 2.5rem)",
+      "note": "Fluid: 4% of the viewport width, kept between 24px and 40px."
+    },
+    {
+      "value": "small",
+      "note": "A keyword, one step smaller than medium."
+    }
+  ],
+  "gotcha": "em sizes multiply: a 0.8em list inside a 0.8em list is 0.64 of the original. Use rem when you want a size that does not depend on nesting.",
+  "related": [
+    "line-height",
+    "font-family",
+    "letter-spacing"
+  ]
+}

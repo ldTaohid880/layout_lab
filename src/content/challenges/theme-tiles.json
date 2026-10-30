@@ -1,0 +1,69 @@
+{
+  "id": "theme-tiles",
+  "title": "Theme it with variables",
+  "level": "intermediate",
+  "summary": "Turn hard-coded colours into custom properties and make the second tile dark.",
+  "brief": [
+    "The tile rule uses hard-coded colours. Replace them with three custom properties on .tile: --bg (#ffffff), --fg (#18181b) and --line (#e4e4e7), used through var().",
+    "The second tile has data-theme=\"dark\". Without writing any new background, colour or border declarations for it, make it dark by changing only the variables: --bg #18181b, --fg #fafafa, --line #3f3f46."
+  ],
+  "concepts": [
+    "background-color",
+    "color",
+    "border"
+  ],
+  "hints": [
+    "Declare the variables inside .tile, e.g. --bg: #ffffff;, and use them: background-color: var(--bg);.",
+    "An attribute selector targets the dark tile: .tile[data-theme=\"dark\"]. It is more specific than .tile, so its values win.",
+    "In that rule set only the three variables. The existing declarations already read them, so they update automatically."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "cards",
+      "children": [
+        {
+          "tag": "article",
+          "cls": "tile",
+          "children": [
+            {
+              "tag": "h3",
+              "cls": "",
+              "text": "Daylight"
+            },
+            {
+              "tag": "p",
+              "cls": "",
+              "text": "The default theme."
+            }
+          ]
+        },
+        {
+          "tag": "article",
+          "cls": "tile",
+          "children": [
+            {
+              "tag": "h3",
+              "cls": "",
+              "text": "Midnight"
+            },
+            {
+              "tag": "p",
+              "cls": "",
+              "text": "Same rules, darker variables."
+            }
+          ],
+          "attrs": {
+            "data-theme": "dark"
+          }
+        }
+      ]
+    }
+  ],
+  "css": ".cards {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 16px;\n  padding: 16px;\n  font-family: system-ui, sans-serif;\n}\n\n.tile {\n  padding: 16px;\n  border-radius: 10px;\n  border: 1px solid #e4e4e7;\n  background-color: #ffffff;\n  color: #18181b;\n}\n\n.tile h3 {\n  margin: 0 0 4px;\n}\n\n.tile p {\n  margin: 0;\n}\n",
+  "solution": ".cards {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 16px;\n  padding: 16px;\n  font-family: system-ui, sans-serif;\n}\n\n.tile {\n  padding: 16px;\n  border-radius: 10px;\n  border: 1px solid #e4e4e7;\n  background-color: #ffffff;\n  color: #18181b;\n}\n\n.tile h3 {\n  margin: 0 0 4px;\n}\n\n.tile p {\n  margin: 0;\n}\n\n/* ---- Solution ---- */\n.tile {\n  --bg: #ffffff;\n  --fg: #18181b;\n  --line: #e4e4e7;\n\n  border: 1px solid var(--line);\n  background-color: var(--bg);\n  color: var(--fg);\n}\n\n.tile[data-theme=\"dark\"] {\n  --bg: #18181b;\n  --fg: #fafafa;\n  --line: #3f3f46;\n}\n",
+  "solutionNotes": "Custom properties are resolved per element, so redefining them on the dark tile changes what every var() inside it reads, without touching the rules that use them. That is the whole idea of a theme: one set of component rules and several sets of values. The attribute selector adds specificity, so its variables beat the defaults set by .tile.",
+  "viewports": [
+    800
+  ]
+}

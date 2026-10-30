@@ -1,0 +1,31 @@
+{
+  "property": "justify-items",
+  "group": "Grid container",
+  "appliesTo": "grid containers",
+  "summary": "Aligns every item horizontally within its grid cell.",
+  "details": "The default stretch makes items fill the cell width.",
+  "values": [
+    {
+      "value": "stretch",
+      "note": "Default: fill the cell."
+    },
+    {
+      "value": "start",
+      "note": "Left of the cell."
+    },
+    {
+      "value": "center",
+      "note": "Centered in the cell."
+    },
+    {
+      "value": "end",
+      "note": "Right of the cell."
+    }
+  ],
+  "gotcha": "Has no effect in flexbox: there are no cells. Use justify-content or margins.",
+  "related": [
+    "justify-self",
+    "place-items",
+    "align-items"
+  ]
+}

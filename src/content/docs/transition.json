@@ -1,0 +1,36 @@
+{
+  "property": "transition",
+  "group": "Motion",
+  "appliesTo": "any element",
+  "summary": "Animates a property smoothly when its value changes, for example on :hover.",
+  "details": "Shorthand for the property to watch, the duration, the timing function and a delay. Put it on the element’s normal state, not on :hover, so the change animates both ways. List several, comma-separated, for different properties.",
+  "values": [
+    {
+      "value": "background-color 200ms ease",
+      "note": "Fade the background over 0.2s."
+    },
+    {
+      "value": "transform 150ms ease-out",
+      "note": "Smooth movement, e.g. a hover lift."
+    },
+    {
+      "value": "transform 150ms ease-out, box-shadow 150ms ease-out",
+      "note": "Two properties, each with its own timing."
+    },
+    {
+      "value": "all 300ms",
+      "note": "Everything that changes; convenient but can animate more than you meant."
+    },
+    {
+      "value": "none",
+      "note": "Default: changes happen instantly."
+    }
+  ],
+  "gotcha": "Only properties with in-between values can transition: colours, lengths, transforms, opacity. display, and changes to or from auto (height: auto), jump instead of animating.",
+  "related": [
+    "transition-duration",
+    "transition-timing-function",
+    "transform",
+    "animation"
+  ]
+}

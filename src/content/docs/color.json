@@ -1,0 +1,34 @@
+{
+  "property": "color",
+  "group": "Colour & backgrounds",
+  "appliesTo": "any element (inherited)",
+  "summary": "The colour of the text, and the value of currentColor.",
+  "details": "Write colours as names, hex (#f97316), rgb(), hsl() or oklch(). The value is inherited, and the keyword currentColor reuses it elsewhere, so borders, icons and outlines can follow the text colour automatically.",
+  "values": [
+    {
+      "value": "#27272a",
+      "note": "Near-black: softer than pure black for body text."
+    },
+    {
+      "value": "rgb(234 88 12)",
+      "note": "Orange, in modern space-separated rgb()."
+    },
+    {
+      "value": "hsl(25 95% 40%)",
+      "note": "Same family by hue, saturation and lightness."
+    },
+    {
+      "value": "oklch(0.55 0.2 260)",
+      "note": "A blue in OKLCH: equal lightness steps look equal."
+    },
+    {
+      "value": "inherit",
+      "note": "Take the parent’s colour (links and buttons have their own)."
+    }
+  ],
+  "gotcha": "Links and form controls set their own colour, so they do not pick up the colour of their parent. Use color: inherit on them when they should.",
+  "related": [
+    "background-color",
+    "opacity"
+  ]
+}

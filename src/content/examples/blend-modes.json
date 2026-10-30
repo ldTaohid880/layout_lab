@@ -1,0 +1,59 @@
+{
+  "id": "blend-modes",
+  "title": "Tinting with blend modes",
+  "category": "Borders & effects",
+  "level": "intermediate",
+  "summary": "mix-blend-mode blends an element with what is behind it: multiply tints, screen lightens, difference inverts.",
+  "concepts": ["background-color", "background-image", "position"],
+  "explanation": [
+    "Normally an element covers what is behind it. mix-blend-mode mixes their colours instead, like layer modes in a photo editor. multiply darkens (white disappears, colours tint), screen lightens (black disappears), and difference inverts where they overlap.",
+    "Each tile has a striped background and an orange overlay on top. Only the blend mode differs, so compare them side by side.",
+    "Blending reaches through to everything behind, all the way up to the page. isolation: isolate on the tile stops the effect at the tile's edge."
+  ],
+  "tryThis": [
+    "Change multiply to overlay, then to color.",
+    "Change the overlay colour to #2563eb on all tiles.",
+    "Change the tile stripes to linear-gradient(90deg, #18181b, #ffffff) and see how each mode treats the greys in between."
+  ],
+  "items": [
+    {
+      "tag": "div",
+      "cls": "tiles",
+      "children": [
+        {
+          "tag": "div",
+          "cls": "tile",
+          "children": [
+            { "tag": "div", "cls": "tint normal" },
+            { "tag": "span", "cls": "label", "text": "normal" }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "tile",
+          "children": [
+            { "tag": "div", "cls": "tint multiply" },
+            { "tag": "span", "cls": "label", "text": "multiply" }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "tile",
+          "children": [
+            { "tag": "div", "cls": "tint screen" },
+            { "tag": "span", "cls": "label", "text": "screen" }
+          ]
+        },
+        {
+          "tag": "div",
+          "cls": "tile",
+          "children": [
+            { "tag": "div", "cls": "tint difference" },
+            { "tag": "span", "cls": "label", "text": "difference" }
+          ]
+        }
+      ]
+    }
+  ],
+  "css": ".tiles {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 12px;\n  padding: 24px;\n  font-family: system-ui, sans-serif;\n}\n\n.tile {\n  position: relative;\n  height: 140px;\n  overflow: hidden;\n  border-radius: 10px;\n  background-image: repeating-linear-gradient(90deg, #18181b 0 20px, #ffffff 20px 40px);\n  isolation: isolate;\n}\n\n.tint {\n  position: absolute;\n  inset: 20px;\n  border-radius: 50%;\n  background-color: #f97316;\n}\n\n.multiply {\n  mix-blend-mode: multiply;\n}\n\n.screen {\n  mix-blend-mode: screen;\n}\n\n.difference {\n  mix-blend-mode: difference;\n}\n\n.label {\n  position: absolute;\n  bottom: 6px;\n  left: 6px;\n  padding: 2px 6px;\n  border-radius: 4px;\n  background-color: #ffffff;\n  font-size: 12px;\n}\n"
+}
