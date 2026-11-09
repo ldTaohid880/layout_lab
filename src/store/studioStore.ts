@@ -92,7 +92,7 @@ export interface StudioState {
 
 export type CompareMode = 'yours' | 'target' | 'overlay' | 'diff'
 
-export type LastApply =
+type LastApply =
   | {
       kind: 'current'
       title: string

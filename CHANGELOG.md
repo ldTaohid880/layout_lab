@@ -10,6 +10,15 @@
 - **LL-006:** MIT `LICENSE` (also set in `package.json`), `CONTRIBUTING.md` (setup, how to pick and work a task,
   checks, code style, content, security), the pull request template from the plan's playbook, and issue forms for
   bugs, features and new content (example, challenge or docs entry).
+- **LL-007:** dependency hygiene. `knip` (`npm run knip`, `knip.json`) runs in CI and reports nothing; its two
+  documented ignores are `lz-string` (used by share links in LL-209) and the shadcn kit in `src/components/ui/`,
+  treated as entry points so unused primitives stay available. Renovate (`renovate.json`) opens one grouped PR a
+  week for npm minor and patch updates and one for GitHub Actions. CI runs `npm audit --audit-level=high`.
+- Removed dead code knip found: the `el()` and `repeat()` example helpers (unused since examples became JSON),
+  `collectClasses`, `countNodes` and `dropdown-menu`'s unused export state; 20 symbols used only inside their own
+  file are no longer exported. The README's example snippet now shows the JSON format.
+- Vitest 3 → 5 (dev only): Vitest 3 has a critical advisory (tinypool) fixed only in Vitest 5.
+  `src/content/challenges/node.ts` now references Node's types itself, since Vitest 5 no longer brings them in.
 
 ## Continuous integration (2026-11-09)
 

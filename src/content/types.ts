@@ -27,7 +27,7 @@ export const LEVEL_LABELS: Record<Level, string> = {
 }
 
 /** The topic of an example. The Examples tab orders by the learning path (examples/path.ts) instead. */
-export type ExampleCategory = 'Flexbox' | 'Grid' | 'Positioning' | 'Sizing & overflow' | Exclude<Track, 'Layout'>
+type ExampleCategory = 'Flexbox' | 'Grid' | 'Positioning' | 'Sizing & overflow' | Exclude<Track, 'Layout'>
 
 /** The broad areas of CSS the examples path is split into, in path order. */
 export const TRACKS = [
@@ -74,7 +74,7 @@ export type DocGroup =
   | 'Borders & effects'
   | 'Motion'
 
-export interface DocValue {
+interface DocValue {
   value: string
   note: string
 }

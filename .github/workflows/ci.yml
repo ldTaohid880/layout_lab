@@ -28,6 +28,12 @@ jobs:
 
       - run: npm ci
 
+      - name: Audit dependencies (high and critical)
+        run: npm audit --audit-level=high
+
+      - name: Unused files, exports and dependencies
+        run: npx knip
+
       - name: Typecheck
         run: npm run typecheck
 

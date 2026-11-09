@@ -8,7 +8,7 @@ import { TAG_NAMES, type TreeNode } from '@/types/tree'
 
 const MAX_DEPTH = 32
 
-export const treeNodeSchema: z.ZodType<TreeNode> = z.lazy(() =>
+const treeNodeSchema: z.ZodType<TreeNode> = z.lazy(() =>
   z.object({
     id: z.string().regex(/^[a-zA-Z][a-zA-Z0-9_-]{0,63}$/),
     tag: z.enum(TAG_NAMES),
@@ -28,7 +28,7 @@ export const itemsSchema = z
   .max(500)
   .refine((items) => depthOf(items) <= MAX_DEPTH, `Tree is deeper than ${MAX_DEPTH} levels`)
 
-export const sandboxSchema = z.object({
+const sandboxSchema = z.object({
   id: z.string().min(1).max(64),
   name: z.string().max(120),
   items: itemsSchema,
@@ -38,7 +38,7 @@ export const sandboxSchema = z.object({
   updatedAt: z.number(),
 })
 
-export const uiSchema = z.object({
+const uiSchema = z.object({
   theme: z.enum(['light', 'dark', 'system']),
   previewWidth: z.number().min(200).max(4000).nullable(),
   previewBg: z.enum(['white', 'dark', 'checker']),

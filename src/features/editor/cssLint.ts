@@ -6,7 +6,7 @@ import { layoutHints, type HintContext } from './cssHints'
  * (info) from cssHints.ts.
  */
 
-export type DiagnosticSeverity = 'error' | 'warning' | 'info'
+type DiagnosticSeverity = 'error' | 'warning' | 'info'
 
 export interface CssDiagnostic {
   from: number

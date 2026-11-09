@@ -183,7 +183,7 @@ export function gridAxes(rtl: boolean): { inline: Dir; block: Dir } {
 
 // ---- The runtime ------------------------------------------------------------------------------
 
-export function frameMain(CHANNEL: string): void {
+function frameMain(CHANNEL: string): void {
   const root = document.documentElement
   const userStyle = document.getElementById('ll-user-css')
   let state: OverlayState = {

@@ -627,7 +627,7 @@ Goal: every later task is tested, deployed and measured automatically. Gate: CI 
   - Do: Owner picks the licence (MIT, Apache-2.0 or a source-available licence). PR template from the playbook. Issue templates: bug, feature, content (new example/challenge).
   - Done when: files exist; GitHub shows the templates.
   - Tests: none.
-- [ ] **LL-007 · Dependency hygiene**
+- [x] **LL-007 · Dependency hygiene**
   - Depends on: LL-004 · Size: S
   - Files: `knip.json`, `renovate.json`, `ci.yml`
   - Do: Add `knip` (keep `lz-string`; it is used in LL-209), Renovate grouped weekly, `npm audit --audit-level=high` in CI.

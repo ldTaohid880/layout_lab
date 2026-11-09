@@ -202,23 +202,26 @@ Both are plain typed data; the types live in [src/content/types.ts](src/content/
 Code the project skills `new-example` and `new-doc-entry` (in `.claude/skills/`) walk through this
 and run the checks.
 
-**Example:** add a JSON file to [src/content/examples/](src/content/examples/), one per example.
-Build the tree with the `el(tag, classes, textOrChildren, attrs)` helper:
+**Example:** add a JSON file to [src/content/examples/](src/content/examples/), one per example,
+named after its id. The tree is a list of `{ tag, cls, text, attrs, children }` nodes:
 
-```ts
+```json
 {
-  id: 'two-columns',                            // unique, kebab-case
-  title: 'Two equal columns',
-  category: 'Grid',                             // Flexbox | Grid | Positioning | Sizing & overflow
-  level: 'basics',                              // or 'intermediate'
-  summary: 'One line for the list.',
-  concepts: ['grid-template-columns', 'gap'],   // must exist in docs
-  explanation: ['Short paragraph.', 'Another.'],
-  tryThis: ['Change 1fr 1fr to 2fr 1fr.'],
-  items: [el('div', 'cols', [el('div', 'col', 'A'), el('div', 'col', 'B')])],
-  css: `.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }`,
+  "id": "two-columns",
+  "title": "Two equal columns",
+  "category": "Grid",
+  "level": "beginner",
+  "summary": "One line for the list.",
+  "concepts": ["grid-template-columns", "gap"],
+  "explanation": ["Short paragraph.", "Another."],
+  "tryThis": ["Change 1fr 1fr to 2fr 1fr."],
+  "items": [{ "tag": "div", "cls": "cols", "children": [{ "tag": "div", "cls": "col", "text": "A" }] }],
+  "css": ".cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }"
 }
 ```
+
+`concepts` must name properties that exist in the docs; `category` and `level` take the values in
+[src/content/types.ts](src/content/types.ts).
 
 Then add its id to the right module in [src/content/examples/path.ts](src/content/examples/path.ts),
 after the last example of the same level. That list sets the order and numbering of the Examples

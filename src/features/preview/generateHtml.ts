@@ -52,7 +52,7 @@ export function sanitizeImageSrc(value: string): string | null {
 }
 
 /** Neutral placeholder so <img> elements have intrinsic size without any network request. */
-export const PLACEHOLDER_IMG =
+const PLACEHOLDER_IMG =
   'data:image/svg+xml,' +
   encodeURIComponent(
     '<svg xmlns="http://www.w3.org/2000/svg" width="160" height="100" viewBox="0 0 160 100">' +
