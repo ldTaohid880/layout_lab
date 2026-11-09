@@ -1,9 +1,10 @@
 import { ChevronRight, FilePlus2, Play } from 'lucide-react'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { LevelBadge } from '@/components/ui/level-badge'
 import { ChipFilter, LevelFilter } from '@/components/ui/level-filter'
-import { EXAMPLE_MODULES, type PathLesson } from '@/content/examples'
+import { useExamples, type PathLesson } from '@/content/examples'
+import { EXAMPLE_PATH } from '@/content/examples/path'
 import { TRACKS, type Level, type Track } from '@/content/types'
 import { cn } from '@/lib/utils'
 import { useStudio } from '@/store/studioStore'
@@ -14,10 +15,13 @@ import { useStudio } from '@/store/studioStore'
  * always names the same example.
  */
 /** Tracks that have at least one module, in path order. */
-const PATH_TRACKS = TRACKS.filter((track) => EXAMPLE_MODULES.some((m) => m.track === track))
+const PATH_TRACKS = TRACKS.filter((track) => EXAMPLE_PATH.some((m) => m.track === track))
 
 export function ExamplesPanel() {
-  const [openId, setOpenId] = useState<string | null>(null)
+  const { EXAMPLE_MODULES } = useExamples()
+  // In the store, not local state, so the URL (/learn/$lessonId) can show and restore it.
+  const openId = useStudio((s) => s.openLessonId)
+  const setOpenId = useStudio((s) => s.openLesson)
   const [filter, setFilter] = useState<Level | 'all'>('all')
   const [track, setTrack] = useState<Track | 'all'>('all')
 
@@ -31,10 +35,12 @@ export function ExamplesPanel() {
   return (
     <div className="h-full overflow-auto" data-testid="examples-panel">
       <p className="border-b px-3 py-2 text-2xs text-muted-foreground">
-        A path through CSS, from layout to type, colour and motion. Apply an example to load its
-        elements and CSS, then experiment. Undo restores your sandbox.
+        A path through CSS, from layout to type, colour and motion. Apply an example to load its elements and CSS, then
+        experiment. Undo restores your sandbox.
       </p>
-      {PATH_TRACKS.length > 1 && <ChipFilter label="Filter by track" values={PATH_TRACKS} value={track} onChange={setTrack} />}
+      {PATH_TRACKS.length > 1 && (
+        <ChipFilter label="Filter by track" values={PATH_TRACKS} value={track} onChange={setTrack} />
+      )}
       <LevelFilter value={filter} onChange={setFilter} />
       {visible.map(({ module, lessons }, i) => {
         const headingId = `examples-${module.id}`
@@ -75,9 +81,15 @@ function ExampleItem({ lesson, open, onToggle }: { lesson: PathLesson; open: boo
   const applyExample = useStudio((s) => s.applyExample)
   const focusDoc = useStudio((s) => s.focusDoc)
   const bodyId = `example-${example.id}`
+  const itemRef = useRef<HTMLLIElement>(null)
+
+  // An example opened from a link (/learn/$lessonId) may be far down the list.
+  useEffect(() => {
+    if (open) itemRef.current?.scrollIntoView?.({ block: 'nearest' })
+  }, [open])
 
   return (
-    <li className={cn('border-b', open && 'bg-muted/40')}>
+    <li ref={itemRef} className={cn('border-b', open && 'bg-muted/40')}>
       <button
         type="button"
         aria-expanded={open}

@@ -7,7 +7,7 @@ import { collectElementClasses } from '@/features/tree/treeOps'
 import { useDebouncedCallback } from '@/lib/useDebouncedCallback'
 import { useStudio } from '@/store/studioStore'
 
-export const CSS_DEBOUNCE_MS = 150
+const CSS_DEBOUNCE_MS = 150
 
 /** Remount per sandbox so undo history and the debounced write never cross sandboxes. */
 export function CssEditor() {

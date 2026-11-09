@@ -109,7 +109,7 @@ export function removeNode(items: TreeNode[], id: string): TreeNode[] {
   return withSiblings(items, loc.parentId, (siblings) => siblings.filter((n) => n.id !== id))
 }
 
-export function cloneWithNewIds(node: TreeNode): TreeNode {
+function cloneWithNewIds(node: TreeNode): TreeNode {
   return {
     ...node,
     id: newId(),
@@ -202,18 +202,6 @@ export function visibleRows(
     }
   })
   return out
-}
-
-export function collectClasses(items: TreeNode[], into: Set<string> = new Set()): Set<string> {
-  for (const node of items) {
-    node.classes.forEach((c) => into.add(c))
-    collectClasses(node.children, into)
-  }
-  return into
-}
-
-export function countNodes(items: TreeNode[]): number {
-  return items.reduce((sum, n) => sum + 1 + countNodes(n.children), 0)
 }
 
 /** Class lists of every element that has at least one class (for lint context). */

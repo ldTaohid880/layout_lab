@@ -6,7 +6,7 @@ import { Dialog } from '@/components/ui/dialog'
 import { cn } from '@/lib/utils'
 
 /** Public URL of a reference picture. The hash is a cache-buster so a regenerated picture is never stale. */
-export function referenceUrl(challenge: Challenge, width: number): string {
+function referenceUrl(challenge: Challenge, width: number): string {
   return `${import.meta.env.BASE_URL}references/${referenceFile(challenge.id, width)}?v=${referenceKey(challenge, width)}`
 }
 

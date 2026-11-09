@@ -24,6 +24,9 @@ npm run dev        # http://localhost:5180
 | `npm run preview`   | Serve the production build                                       |
 | `npm run typecheck` | Type-check only                                                  |
 | `npm run test`      | Vitest unit + component tests (jsdom)                            |
+| `npm run lint`      | ESLint (type-aware, React hooks, accessibility)                  |
+| `npm run knip`      | Unused files, exports and dependencies                           |
+| `npm run size`      | Initial JS size budget (run after `npm run build`)               |
 | `npm run e2e`       | Playwright E2E (starts its own dev server on port 5181)          |
 | `npm run e2e:prod`  | The same E2E suite against a production build (port 5182)        |
 | `npm run references` | Regenerate the challenge reference pictures in `public/references/` |
@@ -202,23 +205,26 @@ Both are plain typed data; the types live in [src/content/types.ts](src/content/
 Code the project skills `new-example` and `new-doc-entry` (in `.claude/skills/`) walk through this
 and run the checks.
 
-**Example:** add a JSON file to [src/content/examples/](src/content/examples/), one per example.
-Build the tree with the `el(tag, classes, textOrChildren, attrs)` helper:
+**Example:** add a JSON file to [src/content/examples/](src/content/examples/), one per example,
+named after its id. The tree is a list of `{ tag, cls, text, attrs, children }` nodes:
 
-```ts
+```json
 {
-  id: 'two-columns',                            // unique, kebab-case
-  title: 'Two equal columns',
-  category: 'Grid',                             // Flexbox | Grid | Positioning | Sizing & overflow
-  level: 'basics',                              // or 'intermediate'
-  summary: 'One line for the list.',
-  concepts: ['grid-template-columns', 'gap'],   // must exist in docs
-  explanation: ['Short paragraph.', 'Another.'],
-  tryThis: ['Change 1fr 1fr to 2fr 1fr.'],
-  items: [el('div', 'cols', [el('div', 'col', 'A'), el('div', 'col', 'B')])],
-  css: `.cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }`,
+  "id": "two-columns",
+  "title": "Two equal columns",
+  "category": "Grid",
+  "level": "beginner",
+  "summary": "One line for the list.",
+  "concepts": ["grid-template-columns", "gap"],
+  "explanation": ["Short paragraph.", "Another."],
+  "tryThis": ["Change 1fr 1fr to 2fr 1fr."],
+  "items": [{ "tag": "div", "cls": "cols", "children": [{ "tag": "div", "cls": "col", "text": "A" }] }],
+  "css": ".cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }"
 }
 ```
+
+`concepts` must name properties that exist in the docs; `category` and `level` take the values in
+[src/content/types.ts](src/content/types.ts).
 
 Then add its id to the right module in [src/content/examples/path.ts](src/content/examples/path.ts),
 after the last example of the same level. That list sets the order and numbering of the Examples
@@ -278,6 +284,22 @@ renders each solution at each of those widths (600px tall) and writes
 `public/references/<id>-<width>.png` and a `manifest.json` with a hash of what each picture was
 made from. If you change a challenge's tree or solution and forget to regenerate, `npm run test`
 fails with `run "npm run references"`.
+
+## Deployment
+
+The app is a static site hosted on Vercel, configured by [vercel.json](vercel.json).
+
+- **Production:** deploys from `main`. URL: _not connected yet; add it here once the Vercel project exists._
+- **Previews:** every pull request gets its own preview deployment; Vercel links it from the PR.
+- **One-time setup:** in Vercel, import the GitHub repository. It reads `vercel.json` (Vite, `npm ci`,
+  `npm run build`, output `dist/`), so no other settings are needed.
+- **Caching:** hashed files in `/assets/` are cached for a year (`immutable`); everything else, including
+  `index.html`, is `no-cache`, so a new deploy shows on the next load.
+- **Client routes:** any path that is not a file serves `index.html`.
+- **Smoke check:** after each successful deployment, the
+  [Deploy smoke check](.github/workflows/deploy-smoke.yml) workflow checks the home page and a client route
+  return 200 and that hashed assets are immutable. Previews behind Vercel Deployment Protection return 401
+  and are skipped with a warning.
 
 ## Roadmap
 

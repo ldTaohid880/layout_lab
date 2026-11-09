@@ -615,19 +615,19 @@ Goal: every later task is tested, deployed and measured automatically. Gate: CI 
   - Do: On push and pull request: `npm ci`, typecheck, lint, test, build, then `npx playwright install --with-deps chromium` and `PW_CHANNEL=chromium npm run e2e:prod`. Cache npm. Upload the Playwright report on failure.
   - Done when: a PR shows all checks; a deliberately failing test turns CI red.
   - Tests: the workflow itself.
-- [ ] **LL-005 · Deploy with preview URLs**
+- [x] **LL-005 · Deploy with preview URLs**
   - Depends on: LL-004 · Size: S
   - Files: hosting config (`wrangler.toml` / `vercel.json` / `netlify.toml`), `README.md`
   - Do: Static deploy of `dist/` on Cloudflare Pages, Vercel or Netlify (owner picks). Preview deploy per PR, production on `main`. Long-cache hashed assets, no-cache `index.html`. SPA fallback to `index.html` for client routes.
   - Done when: production URL in README; each PR gets a preview link.
   - Tests: smoke check in CI that the deployed URL returns 200.
-- [ ] **LL-006 · Licence, contributing guide, templates**
+- [x] **LL-006 · Licence, contributing guide, templates**
   - Depends on: none · Size: S
   - Files: `LICENSE`, `CONTRIBUTING.md`, `.github/ISSUE_TEMPLATE/*.yml`, `.github/pull_request_template.md`
   - Do: Owner picks the licence (MIT, Apache-2.0 or a source-available licence). PR template from the playbook. Issue templates: bug, feature, content (new example/challenge).
   - Done when: files exist; GitHub shows the templates.
   - Tests: none.
-- [ ] **LL-007 · Dependency hygiene**
+- [x] **LL-007 · Dependency hygiene**
   - Depends on: LL-004 · Size: S
   - Files: `knip.json`, `renovate.json`, `ci.yml`
   - Do: Add `knip` (keep `lz-string`; it is used in LL-209), Renovate grouped weekly, `npm audit --audit-level=high` in CI.
@@ -645,13 +645,13 @@ Goal: every later task is tested, deployed and measured automatically. Gate: CI 
   - Do: `@sentry/react` with an error boundary around the app shell. Forward the frame runtime's existing `error` message type to Sentry with the sandbox id (never the user's CSS). DSN from `VITE_SENTRY_DSN`.
   - Done when: a thrown test error and a frame `error` both show in Sentry from the preview deploy.
   - Tests: unit test for the forwarder.
-- [ ] **LL-010 · Upgrade React 19 and zod 4**
+- [x] **LL-010 · Upgrade React 19 and zod 4**
   - Depends on: LL-004 · Size: M
   - Files: `package.json`, affected code
   - Do: Upgrade `react`, `react-dom`, types, Testing Library; then zod (follow its migration guide for `z.record` and error APIs used in `src/store/schema.ts`). Check Radix and `@uiw/react-codemirror` compatibility first; if a blocker exists, upgrade React only and record why.
   - Done when: all suites green; no React warnings in the console during E2E.
   - Tests: existing suites.
-- [ ] **LL-011 · Router**
+- [x] **LL-011 · Router**
   - Depends on: LL-010 · Size: M
   - Files: `src/router.tsx`, `src/main.tsx`, `src/App.tsx`
   - Do: TanStack Router with routes `/` (home, initially today's studio), `/learn/$lessonId`, `/challenges/$challengeId`, `/play/$sandboxId`, `/design/$fileId` (placeholder), `/s/$payload` (share, LL-209). Today's left tab and active sandbox are reflected in the URL.
@@ -663,7 +663,7 @@ Goal: every later task is tested, deployed and measured automatically. Gate: CI 
   - Do: `useFlag(name)` backed by PostHog flags, with local overrides via `?flag=name` and a typed list of flag names.
   - Done when: a flag hides a dummy component in the preview deploy.
   - Tests: unit test for overrides.
-- [ ] **LL-013 · Lazy-load panels and content**
+- [x] **LL-013 · Lazy-load panels and content**
   - Depends on: LL-004 · Size: M
   - Files: `src/components/layout/LeftPane.tsx`, `src/content/*/index.ts`
   - Do: `React.lazy` for Examples, Docs, Challenges panels and LayoutReport; load content JSON with non-eager `import.meta.glob`, keeping order files eager. Add a size budget check in CI (initial JS gzip under the current size).

@@ -1,0 +1,34 @@
+name: New content
+description: Propose a new example, challenge or docs entry.
+labels: [content]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of content?
+      options:
+        - Example (a worked layout to study)
+        - Challenge (a practice layout with a brief and solution)
+        - Docs entry (a CSS property reference)
+    validations:
+      required: true
+  - type: dropdown
+    id: level
+    attributes:
+      label: Level (challenges only)
+      options:
+        - Beginner
+        - Intermediate
+        - Hard
+  - type: textarea
+    id: idea
+    attributes:
+      label: What should it teach?
+      description: The layout or property, and the CSS concepts a learner should come away with.
+    validations:
+      required: true
+  - type: textarea
+    id: sketch
+    attributes:
+      label: Sketch, tree or CSS
+      description: Optional. A rough element tree, CSS, or a link to a picture of the target layout.

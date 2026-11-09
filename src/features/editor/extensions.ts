@@ -8,7 +8,7 @@ import type { HintContext } from './cssHints'
 import { lintCss } from './cssLint'
 
 /** Suggest class names that exist in the item tree when typing a ".selector". */
-export function classNameCompletion(getClasses: () => string[]) {
+function classNameCompletion(getClasses: () => string[]) {
   return (context: CompletionContext): CompletionResult | null => {
     const word = context.matchBefore(/\.-?[_a-zA-Z0-9-]*/)
     if (!word || (word.from === word.to && !context.explicit)) return null
@@ -23,7 +23,7 @@ export function classNameCompletion(getClasses: () => string[]) {
   }
 }
 
-export const cssLinter = (getContext: () => HintContext) =>
+const cssLinter = (getContext: () => HintContext) =>
   linter(
     (view): Diagnostic[] =>
       lintCss(view.state.doc.toString(), getContext()).map((d) => ({

@@ -75,7 +75,7 @@ export function getProjection(
 }
 
 /** Rebuild a nested tree from flat rows. Sibling order follows row order. */
-export function buildTree(flat: FlatNode[]): TreeNode[] {
+function buildTree(flat: FlatNode[]): TreeNode[] {
   const byId = new Map<string, TreeNode>()
   for (const row of flat) byId.set(row.id, { ...row.node, children: [] })
   const roots: TreeNode[] = []

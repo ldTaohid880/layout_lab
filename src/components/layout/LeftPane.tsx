@@ -1,17 +1,28 @@
 import { BookOpen, ListTree, Shapes, Trophy } from 'lucide-react'
-import { Fragment, useRef } from 'react'
+import { Fragment, Suspense, lazy, useRef, type ReactNode } from 'react'
 import { Panel, PanelGroup } from 'react-resizable-panels'
+import { PanelFallback } from './PanelFallback'
 import { ResizeHandle } from './ResizeHandle'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Hint } from '@/components/ui/tooltip'
-import { ChallengesPanel } from '@/features/challenges/ChallengesPanel'
-import { DocsPanel } from '@/features/docs/DocsPanel'
-import { ExamplesPanel } from '@/features/examples/ExamplesPanel'
 import { ItemInspector } from '@/features/tree/ItemInspector'
 import { TreePanel } from '@/features/tree/TreePanel'
 import { useElementSize } from '@/lib/useElementSize'
 import { useStudio } from '@/store/studioStore'
 import type { LeftTab } from '@/types/sandbox'
+
+// Loaded on first use (LL-013): each panel and its content is a separate chunk.
+const ExamplesPanel = lazy(() =>
+  import('@/features/examples/ExamplesPanel').then((m) => ({ default: m.ExamplesPanel })),
+)
+const DocsPanel = lazy(() => import('@/features/docs/DocsPanel').then((m) => ({ default: m.DocsPanel })))
+const ChallengesPanel = lazy(() =>
+  import('@/features/challenges/ChallengesPanel').then((m) => ({ default: m.ChallengesPanel })),
+)
+
+function Lazy({ children }: { children: ReactNode }) {
+  return <Suspense fallback={<PanelFallback />}>{children}</Suspense>
+}
 
 const TABS: { value: LeftTab; label: string; Icon: typeof ListTree }[] = [
   { value: 'items', label: 'Items', Icon: ListTree },
@@ -67,13 +78,19 @@ export function LeftPane() {
         </PanelGroup>
       </TabsContent>
       <TabsContent value="examples">
-        <ExamplesPanel />
+        <Lazy>
+          <ExamplesPanel />
+        </Lazy>
       </TabsContent>
       <TabsContent value="docs">
-        <DocsPanel />
+        <Lazy>
+          <DocsPanel />
+        </Lazy>
       </TabsContent>
       <TabsContent value="challenges">
-        <ChallengesPanel />
+        <Lazy>
+          <ChallengesPanel />
+        </Lazy>
       </TabsContent>
     </Tabs>
   )

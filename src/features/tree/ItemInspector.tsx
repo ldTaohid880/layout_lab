@@ -1,18 +1,21 @@
 import { Plus, X } from 'lucide-react'
-import { useEffect, useId, useState, type ReactNode } from 'react'
+import { Suspense, lazy, useEffect, useId, useState, type ReactNode } from 'react'
 import { TAG_HINTS, VOID_TAGS, isAllowedAttr, parseClassList } from './tags'
 import { findNode } from './treeOps'
+import { PanelFallback } from '@/components/layout/PanelFallback'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Select } from '@/components/ui/select'
 import { Textarea } from '@/components/ui/textarea'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { LayoutReport } from '@/features/inspect/LayoutReport'
 import { sanitizeImageSrc } from '@/features/preview/generateHtml'
 import { useDebouncedCallback } from '@/lib/useDebouncedCallback'
 import { cn } from '@/lib/utils'
 import { useActiveSandbox, useStudio } from '@/store/studioStore'
 import { TAG_NAMES, type TagName, type TreeNode } from '@/types/tree'
+
+// Loaded the first time the Layout tab is opened (LL-013).
+const LayoutReport = lazy(() => import('@/features/inspect/LayoutReport').then((m) => ({ default: m.LayoutReport })))
 
 export function ItemInspector() {
   const { items } = useActiveSandbox()
@@ -34,7 +37,13 @@ export function ItemInspector() {
         {node ? <InspectorFields key={node.id} node={node} /> : empty}
       </TabsContent>
       <TabsContent value="layout" className="overflow-auto">
-        {node ? <LayoutReport nodeId={node.id} /> : empty}
+        {node ? (
+          <Suspense fallback={<PanelFallback />}>
+            <LayoutReport nodeId={node.id} />
+          </Suspense>
+        ) : (
+          empty
+        )}
       </TabsContent>
     </Tabs>
   )

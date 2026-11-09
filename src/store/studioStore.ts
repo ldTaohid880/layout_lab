@@ -37,6 +37,10 @@ export interface StudioState {
   lastApply: LastApply | null
   /** Not persisted: a docs entry to scroll to and open (set from example concept chips). */
   docsFocus: string | null
+  /** Not persisted (the URL restores it): the example expanded in the Examples tab. */
+  openLessonId: string | null
+  /** Not persisted (the URL restores it): the challenge shown in the Challenges tab, or null for the list. */
+  viewingChallengeId: string | null
   /** Not persisted: element under the pointer in the tree or (in inspect mode) the preview. */
   hoveredItemId: string | null
   /** Not persisted: pick elements by clicking in the preview. */
@@ -78,6 +82,8 @@ export interface StudioState {
   setCompare: (mode: CompareMode) => void
   dismissApply: () => void
   focusDoc: (property: string | null) => void
+  openLesson: (id: string | null) => void
+  viewChallenge: (id: string | null) => void
 
   // Selection and UI
   select: (id: string | null) => void
@@ -92,7 +98,7 @@ export interface StudioState {
 
 export type CompareMode = 'yours' | 'target' | 'overlay' | 'diff'
 
-export type LastApply =
+type LastApply =
   | {
       kind: 'current'
       title: string
@@ -150,6 +156,8 @@ export const useStudio = create<StudioState>()(
         selectedItemId: null,
         lastApply: null,
         docsFocus: null,
+        openLessonId: null,
+        viewingChallengeId: null,
         hoveredItemId: null,
         inspect: false,
         inspectInfo: null,
@@ -366,6 +374,10 @@ export const useStudio = create<StudioState>()(
         },
 
         dismissApply: () => set({ lastApply: null }),
+
+        openLesson: (id) => set((state) => (state.openLessonId === id ? state : { openLessonId: id })),
+
+        viewChallenge: (id) => set((state) => (state.viewingChallengeId === id ? state : { viewingChallengeId: id })),
 
         focusDoc: (property) =>
           set((state) => ({

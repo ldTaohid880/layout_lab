@@ -1,5 +1,43 @@
 # Changelog
 
+## M0 foundations (2026-11-09)
+
+### Added
+- **LL-005:** Vercel hosting (`vercel.json`): production from `main`, a preview deployment per pull request,
+  `/assets/` cached for a year (`immutable`), everything else `no-cache`, and every non-file path served
+  `index.html`. A **Deploy smoke check** workflow runs after each successful deployment and checks the home page,
+  a client route and the asset cache header. README has a new **Deployment** section.
+- **LL-006:** MIT `LICENSE` (also set in `package.json`), `CONTRIBUTING.md` (setup, how to pick and work a task,
+  checks, code style, content, security), the pull request template from the plan's playbook, and issue forms for
+  bugs, features and new content (example, challenge or docs entry).
+- **LL-007:** dependency hygiene. `knip` (`npm run knip`, `knip.json`) runs in CI and reports nothing; its two
+  documented ignores are `lz-string` (used by share links in LL-209) and the shadcn kit in `src/components/ui/`,
+  treated as entry points so unused primitives stay available. Renovate (`renovate.json`) opens one grouped PR a
+  week for npm minor and patch updates and one for GitHub Actions. CI runs `npm audit --audit-level=high`.
+- Removed dead code knip found: the `el()` and `repeat()` example helpers (unused since examples became JSON),
+  `collectClasses`, `countNodes` and `dropdown-menu`'s unused export state; 20 symbols used only inside their own
+  file are no longer exported. The README's example snippet now shows the JSON format.
+- Vitest 3 → 5 (dev only): Vitest 3 has a critical advisory (tinypool) fixed only in Vitest 5.
+  `src/content/challenges/node.ts` now references Node's types itself, since Vitest 5 no longer brings them in.
+- **LL-010:** React 19 (`react`, `react-dom` 19.3, `@types/react` 19, Testing Library 16.3.3) and zod 4 (4.6.7, which
+  also fixes a high-severity zod advisory). Radix, CodeMirror, dnd-kit, zustand and react-resizable-panels already
+  support React 19. Code changes: `useElementSize` takes a `RefObject<HTMLElement | null>` (React 19's `useRef`
+  type), and `z.record()` calls name their key schema, as zod 4 requires.
+- **LL-011:** TanStack Router (`src/router.tsx`). Every studio view has a URL: `/learn/$lessonId` (Examples tab
+  with that lesson open), `/challenges/$challengeId`, `/play/$sandboxId?tab=…` (sandbox and left tab), and `/`,
+  which is replaced by the current view's URL. `/design/$fileId` and `/s/$payload` are placeholder pages until M4
+  and LL-209; other paths show "Page not found". Refreshing restores the view, back/forward step through tab and
+  content changes, and an unknown lesson, challenge or sandbox falls back to the current view. The studio routes
+  share one layout, so the editor and preview never remount on navigation. The open lesson and viewed challenge
+  moved from panel state into the (unpersisted) store so the URL can drive them; the URL scheme is pure functions
+  in `src/lib/studioUrl.ts` with unit tests, and `e2e/routing.spec.ts` covers deep links and history.
+- **LL-013:** lazy loading. The Examples, Docs and Challenges panels and the Layout report load on first use
+  (`React.lazy`), and each content type (examples, docs, challenges) is one on-demand chunk read through
+  `loadX()` / `useX()` in `src/content/*/index.ts`; the order files stay in the main bundle. Initial JS (gzip) went
+  from 562 KB to 437 KB. CI checks it stays under a 460 KB budget (`npm run size`,
+  `scripts/check-bundle-size.ts`). Content tests load content through the same async loaders. README lists the
+  `lint`, `knip` and `size` scripts.
+
 ## Continuous integration (2026-11-09)
 
 ### Added

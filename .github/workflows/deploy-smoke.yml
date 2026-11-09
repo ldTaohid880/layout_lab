@@ -1,0 +1,44 @@
+name: Deploy smoke check
+
+# Vercel's GitHub integration reports each finished deployment (production on main, a preview per PR)
+# as a deployment status. This checks the deployed site actually serves the app.
+on: deployment_status
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    if: github.event.deployment_status.state == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check the deployed URL
+        env:
+          URL: ${{ github.event.deployment_status.environment_url || github.event.deployment_status.target_url }}
+          ENVIRONMENT: ${{ github.event.deployment_status.environment }}
+        run: |
+          set -euo pipefail
+          URL="${URL%/}"
+          echo "Checking $ENVIRONMENT deployment at $URL"
+
+          status() { curl -s -o /dev/null -w '%{http_code}' --retry 3 --retry-all-errors "$1"; }
+
+          home=$(status "$URL/")
+          if [ "$home" = "401" ] && [ "$ENVIRONMENT" != "Production" ]; then
+            echo "::warning::Preview returned 401: Vercel Deployment Protection is on, so the preview cannot be checked."
+            exit 0
+          fi
+          [ "$home" = "200" ] || { echo "::error::$URL/ returned $home"; exit 1; }
+
+          # SPA fallback: a client route that is not a file must still serve index.html.
+          deep=$(status "$URL/challenges/smoke-check")
+          [ "$deep" = "200" ] || { echo "::error::$URL/challenges/smoke-check returned $deep (SPA fallback)"; exit 1; }
+
+          # Hashed assets are cached for a year.
+          asset=$(curl -s "$URL/" | grep -oE '/assets/[^"]+\.js' | head -n 1)
+          [ -n "$asset" ] || { echo "::error::No /assets/*.js script found in index.html"; exit 1; }
+          curl -sI "$URL$asset" | grep -i '^cache-control:.*immutable' \
+            || { echo "::error::$asset is missing the immutable Cache-Control header"; exit 1; }
+
+          echo "OK: home 200, SPA fallback 200, hashed assets immutable"

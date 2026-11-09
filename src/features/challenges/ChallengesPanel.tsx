@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { ConfirmDialog } from '@/components/ui/confirm-dialog'
 import { LevelBadge } from '@/components/ui/level-badge'
 import { ChipFilter, LevelFilter } from '@/components/ui/level-filter'
-import { CHALLENGES, CHALLENGES_BY_ID } from '@/content/challenges'
+import { useChallenges } from '@/content/challenges'
 import { instantiate } from '@/content/instantiate'
 import {
   CHALLENGE_KINDS,
@@ -24,14 +24,17 @@ import { ReferenceGallery, ReferenceThumb } from './Reference'
  * do hints and the solution appear.
  */
 export function ChallengesPanel() {
+  const { CHALLENGES_BY_ID } = useChallenges()
   const sandbox = useActiveSandbox()
   const activeChallengeId = sandbox.challengeId ?? null
-  const [viewingId, setViewingId] = useState<string | null>(activeChallengeId)
+  // In the store, not local state, so the URL (/challenges/$challengeId) can show and restore it.
+  const viewingId = useStudio((s) => s.viewingChallengeId)
+  const setViewingId = useStudio((s) => s.viewChallenge)
 
   // Switching to a challenge's sandbox (e.g. from the sandbox tabs) shows that challenge.
   useEffect(() => {
     if (activeChallengeId) setViewingId(activeChallengeId)
-  }, [activeChallengeId])
+  }, [activeChallengeId, setViewingId])
 
   const viewing = viewingId ? CHALLENGES_BY_ID.get(viewingId) : undefined
   if (viewing) {
@@ -41,6 +44,7 @@ export function ChallengesPanel() {
 }
 
 function ChallengeList({ onOpen }: { onOpen: (id: string) => void }) {
+  const { CHALLENGES } = useChallenges()
   const sandboxes = useStudio((s) => s.sandboxes)
   const started = new Set(Object.values(sandboxes).map((s) => s.challengeId))
   const [filter, setFilter] = useState<Level | 'all'>('all')

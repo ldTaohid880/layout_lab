@@ -1,20 +1,35 @@
-import type { Challenge } from '../types'
-import { CHALLENGE_ORDER } from './order'
+import { use, useEffect, useState } from 'react'
+import type * as Data from './data'
 
 /*
- * One JSON file per challenge: a starter tree and cosmetic CSS, a brief, hints, a solution, and
- * the widths its reference pictures are rendered at (see src/content/references.ts and
- * npm run references). Adding a file here adds it to the Challenges tab once its id is placed in
- * order.ts; the content tests (src/content/content.test.ts) check each one.
+ * Challenge content is loaded on demand (LL-013): data.ts and its JSON files are one lazy chunk, fetched
+ * the first time something needs them. The ids and their order (order.ts) stay in the main bundle.
  */
-const files = import.meta.glob<Challenge>('./*.json', { eager: true, import: 'default' })
 
-const byId = new Map(Object.values(files).map((challenge) => [challenge.id, challenge]))
+export type ChallengeContent = typeof Data
 
-/** All challenges, in order.ts order. */
-export const CHALLENGES: Challenge[] = CHALLENGE_ORDER.flatMap((id) => byId.get(id) ?? [])
+let promise: Promise<ChallengeContent> | undefined
+let loaded: ChallengeContent | undefined
 
-export const CHALLENGES_BY_ID: ReadonlyMap<string, Challenge> = new Map(CHALLENGES.map((c) => [c.id, c]))
+export function loadChallenges(): Promise<ChallengeContent> {
+  return (promise ??= import('./data').then((data) => (loaded = data)))
+}
 
-/** Every challenge file by id, whether or not it is in order.ts. */
-export const CHALLENGE_FILES: ReadonlyMap<string, Challenge> = byId
+/** The challenge content; suspends until it has loaded. */
+export function useChallenges(): ChallengeContent {
+  return use(loadChallenges())
+}
+
+/** The challenge content, or undefined while it loads. Never suspends, so it suits always-visible UI. */
+export function useChallengesIfLoaded(enabled = true): ChallengeContent | undefined {
+  const [content, setContent] = useState(loaded)
+  useEffect(() => {
+    if (!enabled || content) return
+    let current = true
+    void loadChallenges().then((data) => current && setContent(data))
+    return () => {
+      current = false
+    }
+  }, [enabled, content])
+  return content
+}

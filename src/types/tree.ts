@@ -40,7 +40,7 @@ export const TAG_NAMES = [
 export type TagName = (typeof TAG_NAMES)[number]
 
 /** One element in the learner's tree. Markup is always generated from this, never from raw HTML. */
-export interface TreeItem {
+interface TreeItem {
   id: string
   tag: TagName
   classes: string[]
