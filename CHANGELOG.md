@@ -1,5 +1,12 @@
 # Changelog
 
+## Fix: first-visit sandbox URL (2026-11-09)
+
+### Fixed
+- On a first visit nothing was saved until the first change, so refreshing straight away created a different
+  sandbox and the `/play/$sandboxId` URL fell back to the default view. The store now saves its initial state
+  when nothing is stored yet.
+
 ## M0 foundations (2026-11-09)
 
 ### Added

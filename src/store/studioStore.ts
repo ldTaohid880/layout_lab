@@ -445,6 +445,10 @@ export const useStudio = create<StudioState>()(
   ),
 )
 
+// A first visit has nothing saved, and persist only writes on a change. Save now, so the new sandbox in the URL
+// (/play/$sandboxId) still exists if the page is refreshed before anything else changes.
+if (localStorage.getItem(STORAGE_KEY) === null) useStudio.setState({})
+
 export function useActiveSandbox(): Sandbox {
   return useStudio((state) => {
     const sandbox = state.sandboxes[state.activeSandboxId]

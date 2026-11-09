@@ -240,3 +240,13 @@ describe('sandbox tabs', () => {
     expect(active().updatedAt).toBeGreaterThan(active().createdAt)
   })
 })
+
+describe('first visit', () => {
+  it('saves the new sandbox straight away, so its URL survives an immediate refresh', async () => {
+    localStorage.clear()
+    vi.resetModules()
+    const { useStudio: fresh, STORAGE_KEY: key } = await import('./studioStore')
+    const saved = JSON.parse(localStorage.getItem(key) ?? 'null') as { state: { activeSandboxId: string } } | null
+    expect(saved?.state.activeSandboxId).toBe(fresh.getState().activeSandboxId)
+  })
+})
