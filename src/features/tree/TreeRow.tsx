@@ -57,6 +57,8 @@ export const TreeRow = forwardRef<HTMLDivElement, TreeRowProps>(function TreeRow
   const { setNodeRef, setActivatorNodeRef, listeners, transform, transition } = useSortable({ id: node.id })
 
   return (
+    // Keyboard selection is handled by the tree's onKeyDown (roving tabindex), not on each row.
+    // eslint-disable-next-line jsx-a11y/click-events-have-key-events
     <div
       ref={(el) => {
         setNodeRef(el)

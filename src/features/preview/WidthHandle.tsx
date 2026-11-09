@@ -21,6 +21,9 @@ export function WidthHandle({ width, scale, onChange, side }: WidthHandleProps) 
   const sign = side === 'right' ? 1 : -1
 
   return (
+    // A focusable separator is the ARIA window-splitter widget (arrow keys resize); jsx-a11y treats every
+    // separator as non-interactive.
+    // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
     <div
       role="separator"
       aria-orientation="vertical"
@@ -29,6 +32,7 @@ export function WidthHandle({ width, scale, onChange, side }: WidthHandleProps) 
       aria-valuemax={MAX_PREVIEW_WIDTH}
       aria-valuenow={Math.round(width)}
       aria-valuetext={`${Math.round(width)} pixels`}
+      // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex -- the splitter must be focusable for arrow keys
       tabIndex={0}
       className={cn(
         'group absolute top-0 z-10 flex h-full w-3 cursor-ew-resize touch-none items-center justify-center',

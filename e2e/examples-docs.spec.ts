@@ -51,7 +51,7 @@ test('examples form a numbered path, and the level filter hides rows without ren
   const module = EXAMPLE_PATH.findIndex((m) => m.examples.includes('kanban-board'))
   const kanban = panel.getByRole('button', { name: /Kanban board/ })
   await expect(kanban.getByTestId('lesson-number')).toHaveText(
-    `${module + 1}.${EXAMPLE_PATH[module]!.examples.indexOf('kanban-board') + 1}`,
+    `${module + 1}.${EXAMPLE_PATH[module].examples.indexOf('kanban-board') + 1}`,
   )
 
   await filter.getByRole('radio', { name: 'All' }).click()

@@ -49,7 +49,7 @@ function InspectorFields({ node }: { node: TreeNode }) {
   const joined = node.classes.join(' ')
   useEffect(() => {
     if (parseClassList(classDraft).classes.join(' ') !== joined) setClassDraft(joined)
-  }, [joined]) // classDraft omitted on purpose: only external changes should resync
+  }, [joined]) // eslint-disable-line react-hooks/exhaustive-deps -- classDraft omitted on purpose: only external changes should resync
   const isVoid = VOID_TAGS.has(node.tag)
   const ids = { tag: useId(), classes: useId(), text: useId(), classErr: useId() }
 
@@ -164,7 +164,7 @@ function ImageSourceField({ node }: { node: TreeNode }) {
   useEffect(() => {
     setStatus('loading')
     if (saved !== (sanitizeImageSrc(draft) ?? draft.trim())) setDraft(saved)
-  }, [saved]) // draft omitted on purpose: only external changes should resync
+  }, [saved]) // eslint-disable-line react-hooks/exhaustive-deps -- draft omitted on purpose: only external changes should resync
 
   return (
     <Field label="Image URL" htmlFor={ids.input}>
