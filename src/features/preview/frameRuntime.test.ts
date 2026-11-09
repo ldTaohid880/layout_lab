@@ -166,6 +166,7 @@ describe('FRAME_RUNTIME', () => {
     const onMessage = (e: MessageEvent) => messages.push(e.data)
     window.addEventListener('message', onMessage)
 
+    // eslint-disable-next-line @typescript-eslint/no-implied-eval, @typescript-eslint/no-unsafe-call -- runs the serialised runtime the way the frame does
     new Function(FRAME_RUNTIME)()
     await new Promise((r) => setTimeout(r, 0))
     window.removeEventListener('message', onMessage)

@@ -116,7 +116,7 @@ describe('docs', () => {
     for (const doc of DOCS) {
       for (const { value } of doc.values) {
         const decl = parse(`${doc.property}: ${value}`, { context: 'declaration' })
-        const match = lexer.matchDeclaration(decl as Parameters<typeof lexer.matchDeclaration>[0])
+        const match = lexer.matchDeclaration(decl)
         expect(match.error?.message ?? null, `${doc.property}: ${value}`).toBeNull()
       }
     }
@@ -148,7 +148,7 @@ describe('levels', () => {
 })
 
 describe('reference screenshots', () => {
-  const manifest: ReferenceManifest = JSON.parse(manifestRaw)
+  const manifest = JSON.parse(manifestRaw) as ReferenceManifest
 
   it('hashes deterministically and differently per input', () => {
     expect(hashString('a')).toBe(hashString('a'))

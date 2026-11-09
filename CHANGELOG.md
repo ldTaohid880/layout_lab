@@ -1,5 +1,19 @@
 # Changelog
 
+## ESLint (2026-11-09)
+
+### Added
+- **LL-003:** `npm run lint` with an ESLint 9 flat config (`eslint.config.js`): `typescript-eslint` type-aware
+  recommended rules, `eslint-plugin-react-hooks`, `eslint-plugin-jsx-a11y` and `eslint-config-prettier`. ESLint 9,
+  not 10, because `eslint-plugin-jsx-a11y` does not support ESLint 10 yet.
+
+### Changed
+- Fixed every lint error: typed the frame runtime's incoming messages, a `JSON.parse` result and a `Map`, and removed
+  three unneeded type assertions. Deliberate patterns keep a disable comment with the reason (focusable width
+  splitter, roving-tabindex tree, control-character check, running the serialised runtime in a test).
+- Three React Compiler rules (`refs`, `immutability`, `set-state-in-effect`) are off, with the reason in the config:
+  they flag the latest-value ref and draft-resync patterns the app uses on purpose.
+
 ## Architecture decision records (2026-11-09)
 
 ### Added

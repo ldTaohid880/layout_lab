@@ -37,6 +37,7 @@ export function sanitizeImageSrc(value: string): string | null {
   const trimmed = value.trim()
   if (trimmed.length === 0 || trimmed.length > 2000) return null
   // Reject whitespace and control characters outright: URL parsing would silently strip some.
+  // eslint-disable-next-line no-control-regex -- matching control characters is the point of this check
   if (/[\s\u0000-\u001f\u007f]/.test(trimmed)) return null
   // A host must follow "https://" directly: URL parsing would otherwise read "https:///a.png"
   // as host "a.png". Backslashes are treated as slashes by URL parsing, so they are refused too.

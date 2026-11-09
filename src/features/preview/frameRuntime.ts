@@ -727,7 +727,14 @@ export function frameMain(CHANNEL: string): void {
   // ---- Messages from the parent ----
   window.addEventListener('message', (event) => {
     if (event.source !== window.parent) return
-    const data = event.data
+    // Type-only annotation (erased at build), so the serialised runtime is unchanged.
+    const data = event.data as {
+      channel?: unknown
+      type?: unknown
+      css?: unknown
+      bg?: unknown
+      state?: unknown
+    } | null
     if (!data || data.channel !== CHANNEL) return
     if (data.type === 'set-css' && typeof data.css === 'string') {
       if (userStyle) userStyle.textContent = data.css

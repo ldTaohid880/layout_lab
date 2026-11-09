@@ -36,7 +36,7 @@ test('capture reference screenshots', async ({ page }) => {
       await page.setContent(srcDoc, { waitUntil: 'load' })
       await page.evaluate(() => document.fonts.ready)
       await page.screenshot({ path: resolve(OUT, referenceFile(challenge.id, width)), fullPage: true })
-      manifest[challenge.id]![String(width)] = referenceKey(challenge, width)
+      manifest[challenge.id][String(width)] = referenceKey(challenge, width)
     }
   }
 

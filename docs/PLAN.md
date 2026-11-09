@@ -603,7 +603,7 @@ Goal: every later task is tested, deployed and measured automatically. Gate: CI 
   - Do: One file per row of the Key decisions table: Context, Decision, Consequences, Rejected options.
   - Done when: 12 ADRs with status "Accepted"; the README indexes them.
   - Tests: none.
-- [ ] **LL-003 · Add ESLint**
+- [x] **LL-003 · Add ESLint**
   - Depends on: none · Size: M
   - Files: `eslint.config.js`, `package.json`, files with lint errors
   - Do: ESLint flat config with `typescript-eslint` (type-aware), `eslint-plugin-react-hooks`, `eslint-plugin-jsx-a11y`, `eslint-config-prettier`. Add `npm run lint`. Fix all errors; any disabled rule needs a comment with the reason.

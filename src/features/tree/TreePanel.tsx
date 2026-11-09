@@ -212,6 +212,8 @@ export function TreePanel() {
         onDelete={() => selected && deleteItem(selected.id)}
       />
 
+      {/* Clicking the empty space is a mouse shortcut; keyboard users clear the selection with Escape in the tree. */}
+      {/* eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions */}
       <div
         className="min-h-0 flex-1 overflow-auto p-1.5"
         data-testid="tree-scroll"
@@ -238,6 +240,8 @@ export function TreePanel() {
             onDragCancel={resetDrag}
           >
             <SortableContext items={sortable.map((r) => r.id)} strategy={verticalListSortingStrategy}>
+              {/* Roving tabindex: focus sits on one treeitem, not on the tree itself (ARIA tree pattern). */}
+              {/* eslint-disable-next-line jsx-a11y/interactive-supports-focus */}
               <div role="tree" aria-label="Elements" aria-multiselectable={false} onKeyDown={onTreeKeyDown}>
                 {sortable.map((flatRow) => {
                   const row = rows.find((r) => r.node.id === flatRow.id)

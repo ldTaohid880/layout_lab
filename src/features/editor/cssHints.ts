@@ -82,7 +82,7 @@ export function layoutHints(ast: CssNode, ctx: HintContext = {}): CssDiagnostic[
   for (const rule of rules) {
     const decls = declsOf(rule)
     for (const sel of selectorsOf(rule)) {
-      const entry = bySelector.get(sel) ?? new Map()
+      const entry: Decls = bySelector.get(sel) ?? new Map<string, Set<string>>()
       addDecls(entry, decls)
       bySelector.set(sel, entry)
     }
