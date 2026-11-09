@@ -1,0 +1,26 @@
+name: Feature request
+description: Suggest a new feature or an improvement.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem would this solve?
+      description: Who runs into it, and when.
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like to happen?
+    validations:
+      required: true
+  - type: input
+    id: plan
+    attributes:
+      label: Related task in docs/PLAN.md (if any)
+      placeholder: LL-209
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives you considered

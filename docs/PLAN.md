@@ -621,7 +621,7 @@ Goal: every later task is tested, deployed and measured automatically. Gate: CI 
   - Do: Static deploy of `dist/` on Cloudflare Pages, Vercel or Netlify (owner picks). Preview deploy per PR, production on `main`. Long-cache hashed assets, no-cache `index.html`. SPA fallback to `index.html` for client routes.
   - Done when: production URL in README; each PR gets a preview link.
   - Tests: smoke check in CI that the deployed URL returns 200.
-- [ ] **LL-006 · Licence, contributing guide, templates**
+- [x] **LL-006 · Licence, contributing guide, templates**
   - Depends on: none · Size: S
   - Files: `LICENSE`, `CONTRIBUTING.md`, `.github/ISSUE_TEMPLATE/*.yml`, `.github/pull_request_template.md`
   - Do: Owner picks the licence (MIT, Apache-2.0 or a source-available licence). PR template from the playbook. Issue templates: bug, feature, content (new example/challenge).

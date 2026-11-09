@@ -7,6 +7,9 @@
   `/assets/` cached for a year (`immutable`), everything else `no-cache`, and every non-file path served
   `index.html`. A **Deploy smoke check** workflow runs after each successful deployment and checks the home page,
   a client route and the asset cache header. README has a new **Deployment** section.
+- **LL-006:** MIT `LICENSE` (also set in `package.json`), `CONTRIBUTING.md` (setup, how to pick and work a task,
+  checks, code style, content, security), the pull request template from the plan's playbook, and issue forms for
+  bugs, features and new content (example, challenge or docs entry).
 
 ## Continuous integration (2026-11-09)
 
