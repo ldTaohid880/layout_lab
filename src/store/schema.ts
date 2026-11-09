@@ -44,7 +44,7 @@ const uiSchema = z.object({
   previewBg: z.enum(['white', 'dark', 'checker']),
   mobileView: z.enum(['tree', 'editor', 'preview']),
   leftTab: z.enum(['items', 'examples', 'docs', 'challenges']),
-  collapsed: z.record(z.literal(true)),
+  collapsed: z.record(z.string(), z.literal(true)),
   // Optional: state saved before Milestone 3 has no overlays and must still load.
   overlays: z
     .object({ box: z.boolean(), layout: z.boolean(), axes: z.boolean().optional(), outlines: z.boolean() })
@@ -53,7 +53,7 @@ const uiSchema = z.object({
 
 export const persistedStateSchema = z
   .object({
-    sandboxes: z.record(sandboxSchema),
+    sandboxes: z.record(z.string(), sandboxSchema),
     sandboxOrder: z.array(z.string()).min(1),
     activeSandboxId: z.string(),
     ui: uiSchema,

@@ -19,6 +19,10 @@
   file are no longer exported. The README's example snippet now shows the JSON format.
 - Vitest 3 → 5 (dev only): Vitest 3 has a critical advisory (tinypool) fixed only in Vitest 5.
   `src/content/challenges/node.ts` now references Node's types itself, since Vitest 5 no longer brings them in.
+- **LL-010:** React 19 (`react`, `react-dom` 19.3, `@types/react` 19, Testing Library 16.3.3) and zod 4 (4.6.7, which
+  also fixes a high-severity zod advisory). Radix, CodeMirror, dnd-kit, zustand and react-resizable-panels already
+  support React 19. Code changes: `useElementSize` takes a `RefObject<HTMLElement | null>` (React 19's `useRef`
+  type), and `z.record()` calls name their key schema, as zod 4 requires.
 
 ## Continuous integration (2026-11-09)
 
