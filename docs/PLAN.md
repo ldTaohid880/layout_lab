@@ -597,7 +597,7 @@ Goal: every later task is tested, deployed and measured automatically. Gate: CI 
   - Do: Copy the AGENTS.md block from the Agent playbook. `CLAUDE.md` contains one line pointing to AGENTS.md. Export this doc to Markdown as `docs/PLAN.md`.
   - Done when: the three files exist; README links to `docs/PLAN.md` under a new "Roadmap" heading.
   - Tests: none (docs only).
-- [ ] **LL-002 · Write the 12 ADRs**
+- [x] **LL-002 · Write the 12 ADRs**
   - Depends on: LL-001 · Size: S
   - Files: `docs/adr/001-renderer.md` … `012-routing.md`, `docs/adr/README.md`
   - Do: One file per row of the Key decisions table: Context, Decision, Consequences, Rejected options.
