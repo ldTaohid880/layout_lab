@@ -279,6 +279,15 @@ renders each solution at each of those widths (600px tall) and writes
 made from. If you change a challenge's tree or solution and forget to regenerate, `npm run test`
 fails with `run "npm run references"`.
 
+## Roadmap
+
+The plan to grow Layout Lab Studio into a CSS-native design tool lives in
+[docs/PLAN.md](docs/PLAN.md): vision, 12 key decisions, the document model and design-to-CSS
+specs, and 126 numbered tasks (`LL-001` to `LL-920`) across milestones M0–M9. Coding agents follow
+[AGENTS.md](AGENTS.md) (Claude Code reads it through [CLAUDE.md](CLAUDE.md)) and build one task per
+pull request. [docs/IMPROVEMENT-PLAN.md](docs/IMPROVEMENT-PLAN.md) is the earlier review the plan
+was built from (background reading).
+
 ## Notes
 
 - If your `C:` drive is full, npm can't write its cache. Point it elsewhere for a single command,
