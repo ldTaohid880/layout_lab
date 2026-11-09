@@ -1,5 +1,14 @@
 # Changelog
 
+## Agent instructions and build plan (2026-11-09)
+
+### Added
+- **LL-001:** `AGENTS.md` (commands, how to work a task, code conventions, security invariants,
+  dependencies, definition of done), a one-line `CLAUDE.md` pointing to it, and `docs/PLAN.md`,
+  the agent-ready build plan with 126 tasks across milestones M0–M9.
+- `docs/IMPROVEMENT-PLAN.md`, the earlier review the plan is based on (background reading).
+- A **Roadmap** section in the README linking to the plan.
+
 ## Challenges and docs as JSON (2026-10-30)
 
 ### Changed
