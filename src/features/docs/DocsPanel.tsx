@@ -1,7 +1,7 @@
 import { ChevronRight, ExternalLink, Search, TriangleAlert, X } from 'lucide-react'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Input } from '@/components/ui/input'
-import { DOCS_BY_PROPERTY, DOC_GROUPS, searchDocs } from '@/content/docs'
+import { useDocs } from '@/content/docs'
 import type { DocEntry } from '@/content/types'
 import { findNode } from '@/features/tree/treeOps'
 import { cn } from '@/lib/utils'
@@ -19,6 +19,7 @@ function useTryTarget(): { selector: string | null; reason: string } {
 }
 
 export function DocsPanel() {
+  const { DOCS_BY_PROPERTY, DOC_GROUPS, searchDocs } = useDocs()
   const [query, setQuery] = useState('')
   const searchRef = useRef<HTMLInputElement>(null)
   const [open, setOpen] = useState<Set<string>>(new Set())
@@ -28,7 +29,7 @@ export function DocsPanel() {
   const target = useTryTarget()
   const entryRefs = useRef(new Map<string, HTMLElement>())
 
-  const results = useMemo(() => searchDocs(query), [query])
+  const results = useMemo(() => searchDocs(query), [searchDocs, query])
 
   // Jump to an entry requested from an example's property chips or a related link.
   useEffect(() => {
@@ -42,7 +43,7 @@ export function DocsPanel() {
       el?.scrollIntoView({ block: 'start' })
       el?.querySelector('button')?.focus()
     })
-  }, [docsFocus, focusDoc])
+  }, [DOCS_BY_PROPERTY, docsFocus, focusDoc])
 
   const toggle = (property: string) =>
     setOpen((prev) => {

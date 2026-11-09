@@ -5,7 +5,7 @@ import { ChallengeBar, TargetFrame } from './TargetFrame'
 import { computeFrameLayout } from './usePreviewSize'
 import { WidthHandle } from './WidthHandle'
 import { Select } from '@/components/ui/select'
-import { CHALLENGES_BY_ID } from '@/content/challenges'
+import { useChallengesIfLoaded } from '@/content/challenges'
 import { Hint } from '@/components/ui/tooltip'
 import { useElementSize } from '@/lib/useElementSize'
 import { cn } from '@/lib/utils'
@@ -24,7 +24,9 @@ export function PreviewPane() {
   const previewWidth = useStudio((s) => s.ui.previewWidth)
   const previewBg = useStudio((s) => s.ui.previewBg)
   const setUi = useStudio((s) => s.setUi)
-  const challenge = sandbox.challengeId ? CHALLENGES_BY_ID.get(sandbox.challengeId) : undefined
+  // Challenge content loads on demand; until then a challenge sandbox previews like any other.
+  const challenges = useChallengesIfLoaded(Boolean(sandbox.challengeId))
+  const challenge = sandbox.challengeId ? challenges?.CHALLENGES_BY_ID.get(sandbox.challengeId) : undefined
 
   const stageRef = useRef<HTMLDivElement>(null)
   const stage = useElementSize(stageRef)

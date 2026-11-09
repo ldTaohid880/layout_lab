@@ -14,7 +14,8 @@
     "e2e:prod": "playwright test -c playwright.prod.config.ts",
     "references": "playwright test -c playwright.references.config.ts",
     "lint": "eslint .",
-    "knip": "knip"
+    "knip": "knip",
+    "size": "node scripts/check-bundle-size.ts"
   },
   "dependencies": {
     "@codemirror/autocomplete": "^6.18.6",

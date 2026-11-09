@@ -3,7 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { LevelBadge } from '@/components/ui/level-badge'
 import { ChipFilter, LevelFilter } from '@/components/ui/level-filter'
-import { EXAMPLE_MODULES, type PathLesson } from '@/content/examples'
+import { useExamples, type PathLesson } from '@/content/examples'
+import { EXAMPLE_PATH } from '@/content/examples/path'
 import { TRACKS, type Level, type Track } from '@/content/types'
 import { cn } from '@/lib/utils'
 import { useStudio } from '@/store/studioStore'
@@ -14,9 +15,10 @@ import { useStudio } from '@/store/studioStore'
  * always names the same example.
  */
 /** Tracks that have at least one module, in path order. */
-const PATH_TRACKS = TRACKS.filter((track) => EXAMPLE_MODULES.some((m) => m.track === track))
+const PATH_TRACKS = TRACKS.filter((track) => EXAMPLE_PATH.some((m) => m.track === track))
 
 export function ExamplesPanel() {
+  const { EXAMPLE_MODULES } = useExamples()
   // In the store, not local state, so the URL (/learn/$lessonId) can show and restore it.
   const openId = useStudio((s) => s.openLessonId)
   const setOpenId = useStudio((s) => s.openLesson)

@@ -1,8 +1,10 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { persistedStateSchema } from './schema'
 import { STORAGE_KEY, useStudio } from './studioStore'
-import { EXAMPLES } from '@/content/examples'
+import { loadExamples } from '@/content/examples'
 import { findNode } from '@/features/tree/treeOps'
+
+const { EXAMPLES } = await loadExamples()
 
 const state = () => useStudio.getState()
 const active = () => state().sandboxes[state().activeSandboxId]!

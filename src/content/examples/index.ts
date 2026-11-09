@@ -1,44 +1,21 @@
-import type { Example, Track } from '../types'
-import { EXAMPLE_PATH } from './path'
+import { use } from 'react'
+import type * as Data from './data'
 
 /*
- * One JSON file per guided example. Adding a file here adds it to the Examples tab once its id
- * is placed in path.ts; the content tests (src/content/content.test.ts) check each one and
- * that every example is on the path exactly once.
+ * Example content is loaded on demand (LL-013): data.ts and its JSON files are one lazy chunk, fetched
+ * the first time the Examples tab opens. The path of ids (path.ts) stays in the main bundle.
  */
-const files = import.meta.glob<Example>('./*.json', { eager: true, import: 'default' })
 
-/** Every example file, by id, whether or not it is on the path. */
-export const EXAMPLES_BY_ID: ReadonlyMap<string, Example> = new Map(
-  Object.values(files).map((example) => [example.id, example]),
-)
+export type { PathLesson } from './data'
+export type ExampleContent = typeof Data
 
-export interface PathLesson {
-  example: Example
-  /** "module.position", e.g. "2.3". */
-  number: string
+let promise: Promise<ExampleContent> | undefined
+
+export function loadExamples(): Promise<ExampleContent> {
+  return (promise ??= import('./data'))
 }
 
-export interface ResolvedModule {
-  id: string
-  track: Track
-  number: number
-  title: string
-  blurb: string
-  lessons: PathLesson[]
+/** The example content; suspends until it has loaded. */
+export function useExamples(): ExampleContent {
+  return use(loadExamples())
 }
-
-export const EXAMPLE_MODULES: ResolvedModule[] = EXAMPLE_PATH.map((module, m) => ({
-  id: module.id,
-  track: module.track,
-  number: m + 1,
-  title: module.title,
-  blurb: module.blurb,
-  lessons: module.examples.flatMap((id, i) => {
-    const example = EXAMPLES_BY_ID.get(id)
-    return example ? [{ example, number: `${m + 1}.${i + 1}` }] : []
-  }),
-}))
-
-/** All examples on the path, in learning order. */
-export const EXAMPLES: Example[] = EXAMPLE_MODULES.flatMap((module) => module.lessons.map((l) => l.example))

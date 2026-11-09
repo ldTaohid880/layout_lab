@@ -663,7 +663,7 @@ Goal: every later task is tested, deployed and measured automatically. Gate: CI 
   - Do: `useFlag(name)` backed by PostHog flags, with local overrides via `?flag=name` and a typed list of flag names.
   - Done when: a flag hides a dummy component in the preview deploy.
   - Tests: unit test for overrides.
-- [ ] **LL-013 · Lazy-load panels and content**
+- [x] **LL-013 · Lazy-load panels and content**
   - Depends on: LL-004 · Size: M
   - Files: `src/components/layout/LeftPane.tsx`, `src/content/*/index.ts`
   - Do: `React.lazy` for Examples, Docs, Challenges panels and LayoutReport; load content JSON with non-eager `import.meta.glob`, keeping order files eager. Add a size budget check in CI (initial JS gzip under the current size).

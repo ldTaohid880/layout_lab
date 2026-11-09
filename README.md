@@ -24,6 +24,9 @@ npm run dev        # http://localhost:5180
 | `npm run preview`   | Serve the production build                                       |
 | `npm run typecheck` | Type-check only                                                  |
 | `npm run test`      | Vitest unit + component tests (jsdom)                            |
+| `npm run lint`      | ESLint (type-aware, React hooks, accessibility)                  |
+| `npm run knip`      | Unused files, exports and dependencies                           |
+| `npm run size`      | Initial JS size budget (run after `npm run build`)               |
 | `npm run e2e`       | Playwright E2E (starts its own dev server on port 5181)          |
 | `npm run e2e:prod`  | The same E2E suite against a production build (port 5182)        |
 | `npm run references` | Regenerate the challenge reference pictures in `public/references/` |

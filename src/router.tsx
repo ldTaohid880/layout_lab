@@ -10,8 +10,8 @@ import {
 import { useEffect, type ReactNode } from 'react'
 import { AppShell } from '@/components/layout/AppShell'
 import { TooltipProvider } from '@/components/ui/tooltip'
-import { CHALLENGES_BY_ID } from '@/content/challenges'
-import { EXAMPLES } from '@/content/examples'
+import { CHALLENGE_ORDER } from '@/content/challenges/order'
+import { EXAMPLE_PATH } from '@/content/examples/path'
 import { hrefFor, isLeftTab, locationFor, parseStudioLocation, type StudioLocation } from '@/lib/studioUrl'
 import { useResolvedTheme } from '@/lib/useResolvedTheme'
 import { useStudio, type StudioState } from '@/store/studioStore'
@@ -21,7 +21,9 @@ import { useStudio, type StudioState } from '@/store/studioStore'
  * editor or the preview; the URL and the studio state are kept in step by useStudioUrlSync.
  */
 
-const LESSON_IDS: ReadonlySet<string> = new Set(EXAMPLES.map((e) => e.id))
+// Ids come from the small, always-loaded order files; the content itself loads on demand (LL-013).
+const LESSON_IDS: ReadonlySet<string> = new Set(EXAMPLE_PATH.flatMap((m) => m.examples))
+const CHALLENGE_IDS: ReadonlySet<string> = new Set(CHALLENGE_ORDER)
 
 function RootLayout() {
   useResolvedTheme()
@@ -121,7 +123,7 @@ function applyLocationNow(location: StudioLocation): boolean {
       showTab('examples')
       return true
     case 'challenge':
-      if (!CHALLENGES_BY_ID.has(location.challengeId)) return false
+      if (!CHALLENGE_IDS.has(location.challengeId)) return false
       state.viewChallenge(location.challengeId)
       showTab('challenges')
       return true

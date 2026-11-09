@@ -1,15 +1,20 @@
 import { lexer, parse } from 'css-tree'
 import { describe, expect, it } from 'vitest'
-import { CHALLENGES, CHALLENGE_FILES } from './challenges'
+import { loadChallenges } from './challenges'
 import { CHALLENGE_ORDER } from './challenges/order'
-import { DOCS, DOCS_BY_PROPERTY, DOC_FILES, DOC_GROUPS, searchDocs } from './docs'
+import { loadDocs } from './docs'
 import { DOC_ORDER } from './docs/order'
-import { EXAMPLES, EXAMPLES_BY_ID, EXAMPLE_MODULES } from './examples'
+import { loadExamples } from './examples'
 import { EXAMPLE_PATH } from './examples/path'
 import { instantiate } from './instantiate'
 import manifestRaw from '../../public/references/manifest.json?raw'
 import { hashString, referenceKey, type ReferenceManifest } from './references'
 import { LEVELS, LEVEL_LABELS, TRACKS } from './types'
+
+// Content loads on demand in the app (LL-013); the tests load it through the same loaders.
+const { CHALLENGES, CHALLENGE_FILES } = await loadChallenges()
+const { DOCS, DOCS_BY_PROPERTY, DOC_FILES, DOC_GROUPS, searchDocs } = await loadDocs()
+const { EXAMPLES, EXAMPLES_BY_ID, EXAMPLE_MODULES } = await loadExamples()
 import { lintCss } from '@/features/editor/cssLint'
 import { collectElementClasses } from '@/features/tree/treeOps'
 import { itemsSchema } from '@/store/schema'

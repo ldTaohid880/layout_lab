@@ -31,6 +31,12 @@
   share one layout, so the editor and preview never remount on navigation. The open lesson and viewed challenge
   moved from panel state into the (unpersisted) store so the URL can drive them; the URL scheme is pure functions
   in `src/lib/studioUrl.ts` with unit tests, and `e2e/routing.spec.ts` covers deep links and history.
+- **LL-013:** lazy loading. The Examples, Docs and Challenges panels and the Layout report load on first use
+  (`React.lazy`), and each content type (examples, docs, challenges) is one on-demand chunk read through
+  `loadX()` / `useX()` in `src/content/*/index.ts`; the order files stay in the main bundle. Initial JS (gzip) went
+  from 562 KB to 437 KB. CI checks it stays under a 460 KB budget (`npm run size`,
+  `scripts/check-bundle-size.ts`). Content tests load content through the same async loaders. README lists the
+  `lint`, `knip` and `size` scripts.
 
 ## Continuous integration (2026-11-09)
 
