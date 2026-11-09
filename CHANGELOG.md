@@ -1,5 +1,13 @@
 # Changelog
 
+## Continuous integration (2026-11-09)
+
+### Added
+- **LL-004:** GitHub Actions CI (`.github/workflows/ci.yml`) on pushes to `main` and on every pull request:
+  `npm ci` (npm cache), typecheck, lint, unit tests, build, then Playwright Chromium and the E2E suite against the
+  production build. On failure the Playwright HTML report and traces are uploaded as the `playwright-report`
+  artifact (kept 14 days). A newer push to the same branch cancels the run in progress.
+
 ## ESLint (2026-11-09)
 
 ### Added

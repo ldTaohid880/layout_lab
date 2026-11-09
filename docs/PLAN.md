@@ -609,7 +609,7 @@ Goal: every later task is tested, deployed and measured automatically. Gate: CI 
   - Do: ESLint flat config with `typescript-eslint` (type-aware), `eslint-plugin-react-hooks`, `eslint-plugin-jsx-a11y`, `eslint-config-prettier`. Add `npm run lint`. Fix all errors; any disabled rule needs a comment with the reason.
   - Done when: `npm run lint` exits 0 on a clean checkout.
   - Tests: existing suites still pass.
-- [ ] **LL-004 · GitHub Actions CI**
+- [x] **LL-004 · GitHub Actions CI**
   - Depends on: LL-003 · Size: S
   - Files: `.github/workflows/ci.yml`
   - Do: On push and pull request: `npm ci`, typecheck, lint, test, build, then `npx playwright install --with-deps chromium` and `PW_CHANNEL=chromium npm run e2e:prod`. Cache npm. Upload the Playwright report on failure.
