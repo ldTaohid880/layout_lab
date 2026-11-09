@@ -279,6 +279,22 @@ renders each solution at each of those widths (600px tall) and writes
 made from. If you change a challenge's tree or solution and forget to regenerate, `npm run test`
 fails with `run "npm run references"`.
 
+## Deployment
+
+The app is a static site hosted on Vercel, configured by [vercel.json](vercel.json).
+
+- **Production:** deploys from `main`. URL: _not connected yet; add it here once the Vercel project exists._
+- **Previews:** every pull request gets its own preview deployment; Vercel links it from the PR.
+- **One-time setup:** in Vercel, import the GitHub repository. It reads `vercel.json` (Vite, `npm ci`,
+  `npm run build`, output `dist/`), so no other settings are needed.
+- **Caching:** hashed files in `/assets/` are cached for a year (`immutable`); everything else, including
+  `index.html`, is `no-cache`, so a new deploy shows on the next load.
+- **Client routes:** any path that is not a file serves `index.html`.
+- **Smoke check:** after each successful deployment, the
+  [Deploy smoke check](.github/workflows/deploy-smoke.yml) workflow checks the home page and a client route
+  return 200 and that hashed assets are immutable. Previews behind Vercel Deployment Protection return 401
+  and are skipped with a warning.
+
 ## Roadmap
 
 The plan to grow Layout Lab Studio into a CSS-native design tool lives in

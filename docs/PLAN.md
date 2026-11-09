@@ -615,7 +615,7 @@ Goal: every later task is tested, deployed and measured automatically. Gate: CI 
   - Do: On push and pull request: `npm ci`, typecheck, lint, test, build, then `npx playwright install --with-deps chromium` and `PW_CHANNEL=chromium npm run e2e:prod`. Cache npm. Upload the Playwright report on failure.
   - Done when: a PR shows all checks; a deliberately failing test turns CI red.
   - Tests: the workflow itself.
-- [ ] **LL-005 · Deploy with preview URLs**
+- [x] **LL-005 · Deploy with preview URLs**
   - Depends on: LL-004 · Size: S
   - Files: hosting config (`wrangler.toml` / `vercel.json` / `netlify.toml`), `README.md`
   - Do: Static deploy of `dist/` on Cloudflare Pages, Vercel or Netlify (owner picks). Preview deploy per PR, production on `main`. Long-cache hashed assets, no-cache `index.html`. SPA fallback to `index.html` for client routes.

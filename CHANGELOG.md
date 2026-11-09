@@ -1,5 +1,13 @@
 # Changelog
 
+## M0 foundations (2026-11-09)
+
+### Added
+- **LL-005:** Vercel hosting (`vercel.json`): production from `main`, a preview deployment per pull request,
+  `/assets/` cached for a year (`immutable`), everything else `no-cache`, and every non-file path served
+  `index.html`. A **Deploy smoke check** workflow runs after each successful deployment and checks the home page,
+  a client route and the asset cache header. README has a new **Deployment** section.
+
 ## Continuous integration (2026-11-09)
 
 ### Added
