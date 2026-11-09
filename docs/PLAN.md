@@ -651,7 +651,7 @@ Goal: every later task is tested, deployed and measured automatically. Gate: CI 
   - Do: Upgrade `react`, `react-dom`, types, Testing Library; then zod (follow its migration guide for `z.record` and error APIs used in `src/store/schema.ts`). Check Radix and `@uiw/react-codemirror` compatibility first; if a blocker exists, upgrade React only and record why.
   - Done when: all suites green; no React warnings in the console during E2E.
   - Tests: existing suites.
-- [ ] **LL-011 · Router**
+- [x] **LL-011 · Router**
   - Depends on: LL-010 · Size: M
   - Files: `src/router.tsx`, `src/main.tsx`, `src/App.tsx`
   - Do: TanStack Router with routes `/` (home, initially today's studio), `/learn/$lessonId`, `/challenges/$challengeId`, `/play/$sandboxId`, `/design/$fileId` (placeholder), `/s/$payload` (share, LL-209). Today's left tab and active sandbox are reflected in the URL.

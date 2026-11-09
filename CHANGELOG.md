@@ -23,6 +23,14 @@
   also fixes a high-severity zod advisory). Radix, CodeMirror, dnd-kit, zustand and react-resizable-panels already
   support React 19. Code changes: `useElementSize` takes a `RefObject<HTMLElement | null>` (React 19's `useRef`
   type), and `z.record()` calls name their key schema, as zod 4 requires.
+- **LL-011:** TanStack Router (`src/router.tsx`). Every studio view has a URL: `/learn/$lessonId` (Examples tab
+  with that lesson open), `/challenges/$challengeId`, `/play/$sandboxId?tab=…` (sandbox and left tab), and `/`,
+  which is replaced by the current view's URL. `/design/$fileId` and `/s/$payload` are placeholder pages until M4
+  and LL-209; other paths show "Page not found". Refreshing restores the view, back/forward step through tab and
+  content changes, and an unknown lesson, challenge or sandbox falls back to the current view. The studio routes
+  share one layout, so the editor and preview never remount on navigation. The open lesson and viewed challenge
+  moved from panel state into the (unpersisted) store so the URL can drive them; the URL scheme is pure functions
+  in `src/lib/studioUrl.ts` with unit tests, and `e2e/routing.spec.ts` covers deep links and history.
 
 ## Continuous integration (2026-11-09)
 

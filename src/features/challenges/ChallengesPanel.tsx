@@ -26,12 +26,14 @@ import { ReferenceGallery, ReferenceThumb } from './Reference'
 export function ChallengesPanel() {
   const sandbox = useActiveSandbox()
   const activeChallengeId = sandbox.challengeId ?? null
-  const [viewingId, setViewingId] = useState<string | null>(activeChallengeId)
+  // In the store, not local state, so the URL (/challenges/$challengeId) can show and restore it.
+  const viewingId = useStudio((s) => s.viewingChallengeId)
+  const setViewingId = useStudio((s) => s.viewChallenge)
 
   // Switching to a challenge's sandbox (e.g. from the sandbox tabs) shows that challenge.
   useEffect(() => {
     if (activeChallengeId) setViewingId(activeChallengeId)
-  }, [activeChallengeId])
+  }, [activeChallengeId, setViewingId])
 
   const viewing = viewingId ? CHALLENGES_BY_ID.get(viewingId) : undefined
   if (viewing) {
