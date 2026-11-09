@@ -1,5 +1,12 @@
 # Changelog
 
+## Architecture decision records (2026-11-09)
+
+### Added
+- **LL-002:** the 12 architecture decision records in `docs/adr/` (`001-renderer.md` to `012-routing.md`),
+  one per row of the plan's Key decisions table, each with Context, Decision, Consequences, Rejected options
+  and related tasks, all "Accepted". `docs/adr/README.md` indexes them and explains how to add or supersede one.
+
 ## Agent instructions and build plan (2026-11-09)
 
 ### Added
